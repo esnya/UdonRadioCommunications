@@ -1,9 +1,9 @@
 {
-  "name": "com.nekometer.esnya.template",
-  "displayName": "EsnyaUnitypackageTemplate",
+  "name": "com.nekometer.esnya.udon-radio-communication",
+  "displayName": "UdonRadioCommunication",
   "version": "1.0.0",
   "private": true,
-  "description": "Template repository for uinitypackage.",
+  "description": "Simplified radio communication system for VRChat Udon worlds.",
   "keywords": [
     "Unity"
   ],
@@ -35,12 +35,10 @@
       "master",
       {
         "name": "beta",
-        "channel": "next",
         "prerelease": true
       },
       {
         "name": "alpha",
-        "channel": "next",
         "prerelease": true
       }
     ],
