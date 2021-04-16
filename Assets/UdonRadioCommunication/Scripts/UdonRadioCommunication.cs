@@ -21,6 +21,7 @@ namespace UdonRadioCommunication
         [Range(0, 1000000)] public float defaultVoiceDistanceNear = 0;
         [Range(0, 1000000)] public float defaultVoiceDistanceFar = 25;
         [Range(0, 1000)] public float defaultVoiceVolumetricRadius = 0;
+        public float distanceAttenuation = 10.0f;
 
         [Space]
 
@@ -51,9 +52,10 @@ namespace UdonRadioCommunication
             return -1;
         }
 
-        private void UpdatePlayerVoice(VRCPlayerApi player, float near, float far, float volumetric)
+        private void UpdatePlayerVoice(VRCPlayerApi player, float gain, float near, float far, float volumetric)
         {
-            // Debug.Log($"[{gameObject.name}] Update player ({player.playerId}:{player.displayName}) voice {near}-{far}/{volumetric}");
+            // Debug.Log($"[{gameObject.name}] Update player ({player.playerId}:{player.displayName}) voice {gain}/{near}-{far}/{volumetric}");
+            player.SetVoiceGain(gain);
             player.SetVoiceDistanceNear(near);
             player.SetVoiceDistanceFar(far);
             player.SetVoiceVolumetricRadius(volumetric);
@@ -104,15 +106,15 @@ namespace UdonRadioCommunication
                 if (remotePlayer.isLocal) continue;
 
                 var transmitter = playerTransmitters[i];
-                var isDefaultVoice = transmitter == null;
+                Receiver receiver = transmitter == null ? null : GetReceiver(transmitter.frequency);
+                var isDefaultVoice = receiver == null;
 
                 if (isDefaultVoice)
                 {
-                    if (!playerPrevIsDefaultVoice[i]) UpdatePlayerVoice(remotePlayer, defaultVoiceDistanceNear, defaultVoiceDistanceFar, defaultVoiceVolumetricRadius);
+                    if (!playerPrevIsDefaultVoice[i]) UpdatePlayerVoice(remotePlayer, defaultVoiceGain, defaultVoiceDistanceNear, defaultVoiceDistanceFar, defaultVoiceVolumetricRadius);
                 }
                 else
                 {
-                    var receiver = GetReceiver(transmitter.frequency);
                     if (Utilities.IsValid(receiver) && Utilities.IsValid(remotePlayer))
                     {
                         var receiverPosition = receiver.transform.position;
@@ -124,7 +126,8 @@ namespace UdonRadioCommunication
 
                         var near = Mathf.Max(realDistance - distanceOverRadio, 0);
                         var far = near + defaultVoiceDistanceFar - defaultVoiceDistanceNear;
-                        UpdatePlayerVoice(remotePlayer, near, far, (near + far) / 2.0f);
+                        var gain = defaultVoiceGain / Mathf.Max(1.0f + Mathf.Pow(distanceOverRadio * distanceAttenuation, 2.0f), 1);
+                        UpdatePlayerVoice(remotePlayer, gain, near, far, (near + far) / 2.0f);
                     }
                 }
 

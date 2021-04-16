@@ -14,7 +14,7 @@ namespace UdonRadioCommunication
         public Receiver receiver;
         public Transmitter transmitter;
         public float frequency = 122.6f, frequencyStep = 0.025f, minFrequency = 118.0f, maxFrequency = 136.975f;
-        public string frequencySuffix = " <size=75%>MHz</size>", frequencyFormat="f2";
+        public string frequencySuffix = " <size=75%>MHz</size>", frequencyFormat="f3";
         [Tooltip("Drives bool parameters \"PowerOn\" and \"Talking\"")] public Animator[] animators = {};
 
         private void SetBool(string name, bool value)
@@ -41,10 +41,8 @@ namespace UdonRadioCommunication
             Networking.SetOwner(Networking.LocalPlayer, transmitter.gameObject);
         }
 
-        private bool talking;
         private void SetTalking(bool b)
         {
-            talking = b;
             SetBool("Talking", b);
             transmitter.frequency = frequency;
             if (powerOn)
