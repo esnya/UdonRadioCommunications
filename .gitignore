@@ -1,5 +1,4 @@
 node_modules/*
-!node_modules/node_modules.asmdef
 
 # This .gitignore file should be placed at the root of your Unity project directory
 #
