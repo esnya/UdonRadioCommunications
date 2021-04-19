@@ -22,7 +22,7 @@ namespace UdonRadioCommunication
             }
         }
 
-        public void _Activate()
+        public void Activate()
         {
             if (Networking.IsOwner(gameObject)) SendCustomNetworkEvent(NetworkEventTarget.All, nameof(Activated));
             else
@@ -32,7 +32,7 @@ namespace UdonRadioCommunication
             }
         }
 
-        public void _Deactivate()
+        public void Deactivate()
         {
             activating = false;
             if (Networking.IsOwner(gameObject)) SendCustomNetworkEvent(NetworkEventTarget.All, nameof(Deactivated));

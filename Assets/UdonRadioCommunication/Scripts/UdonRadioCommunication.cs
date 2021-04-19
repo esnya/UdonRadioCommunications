@@ -6,8 +6,8 @@ using VRC.SDKBase;
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
 using System.Linq;
 using UnityEditor;
-using UnityEditor.Build;
 using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 using UdonSharpEditor;
 #endif
 
@@ -145,13 +145,30 @@ namespace UdonRadioCommunication
         }
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
-        public void SearchComopnoents()
+        public void Setup()
         {
             this.UpdateProxy();
             var rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
             transmitters = rootObjects.SelectMany(o => o.GetUdonSharpComponentsInChildren<Transmitter>()).ToArray();
             receivers = rootObjects.SelectMany(o => o.GetUdonSharpComponentsInChildren<Receiver>()).ToArray();
             this.ApplyProxyModifications();
+        }
+
+        static private void SetupAll(Scene scene)
+        {
+            var targets = scene
+                .GetRootGameObjects()
+                .SelectMany(o => o.GetUdonSharpComponentsInChildren<UdonRadioCommunication>());
+            foreach (var urc in targets)
+            {
+                urc.Setup();
+            }
+        }
+
+        static UdonRadioCommunication()
+        {
+            EditorSceneManager.sceneOpened += (s,m) => SetupAll(s);
+            EditorSceneManager.sceneClosing += (s,m) => SetupAll(s);
         }
 #endif
     }
@@ -167,27 +184,11 @@ namespace UdonRadioCommunication
             EditorGUILayout.Space();
 
             var urc = target as UdonRadioCommunication;
-            if (GUILayout.Button("Search URC Components"))
+            if (GUILayout.Button("Setup"))
             {
-                urc.SearchComopnoents();
+                urc.Setup();
             }
         }
     }
-
-    /*
-    public class UdonRadioCommunicationBuildPreprocessor : IPreprocessBuild
-    {
-
-        public void OnPreprocessBuild (BuildTarget target, string path)
-        {
-            Debug.Log("Updating UdonRadioCommunaction");
-            foreach (var udon in SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(g => g.GetUdonSharpComponentsInChildren<UdonRadioCommunication>()))
-            {
-                udon.SearchComopnoents();
-            }
-        }
-
-        public int callbackOrder => 99; // Before USharp
-    }*/
 #endif
 }

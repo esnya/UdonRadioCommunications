@@ -10,13 +10,13 @@ namespace UdonRadioCommunication
         [HideInInspector] public bool active;
         public float frequency = 122.6f;
 
-        public void _Activate()
+        public void Activate()
         {
             active = true;
             Debug.Log($"[{gameObject.name}] Activated");
         }
 
-        public void _Deactivate()
+        public void Deactivate()
         {
             active = false;
             Debug.Log($"[{gameObject.name}] Deactivated");
