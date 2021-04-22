@@ -63,10 +63,16 @@ namespace UdonRadioCommunication
 
         private Receiver GetReceiver(float frequency)
         {
-            foreach (var receiver in receivers) {
-                if (receiver.active && receiver.frequency == frequency) return receiver;
+            var localPosition = Networking.LocalPlayer.GetPosition();
+            float minDistance = float.MaxValue;
+            Receiver result = null;
+            foreach (var r in receivers) {
+                if (!r.active|| r.frequency != frequency) continue;
+
+                var distance = Vector3.SqrMagnitude(r.transform.position - localPosition);
+                if (distance < minDistance) result = r;
             }
-            return null;
+            return result;
         }
 
         private void Update()
@@ -121,8 +127,9 @@ namespace UdonRadioCommunication
                         var remotePlayerPosition = remotePlayer.GetPosition();
                         var transmitterPosition = transmitter.transform.position;
 
-                        var distanceOverRadio = Vector3.Distance(remotePlayerPosition, transmitterPosition) + Vector3.Distance(localPlayerPosition, receiverPosition);
+                        var distanceOverRadio = (Vector3.Distance(remotePlayerPosition, transmitterPosition) + Vector3.Distance(localPlayerPosition, receiverPosition)) * 0;
                         var realDistance = Vector3.Distance(localPlayerPosition, remotePlayerPosition);
+                        // Debug.Log($"|{remotePlayerPosition}-{localPlayerPosition}|={realDistance}");
 
                         var near = Mathf.Max(realDistance - distanceOverRadio, 0);
                         var far = near + defaultVoiceDistanceFar - defaultVoiceDistanceNear;
