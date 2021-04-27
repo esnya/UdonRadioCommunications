@@ -70,7 +70,7 @@ namespace UdonRadioCommunication
                 if (!r.active|| r.frequency != frequency) continue;
 
                 var distance = Vector3.SqrMagnitude(r.transform.position - localPosition);
-                if (distance < minDistance) result = r;
+                if ((!r.limitRange ||  distance <= r.maxRange) && distance < minDistance) result = r;
             }
             return result;
         }
