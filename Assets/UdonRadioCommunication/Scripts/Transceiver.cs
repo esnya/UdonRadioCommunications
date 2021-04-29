@@ -32,7 +32,7 @@ namespace UdonRadioCommunication
             var pickup = (VRCPickup)GetComponent(typeof(VRCPickup));
             pickup.AutoHold = VRC_Pickup.AutoHoldMode.Yes;
 
-            _SetFrequency(frequency);
+            SetFrequency(frequency);
             SetActive(active);
             SetTalking(talking);
         }
@@ -59,9 +59,9 @@ namespace UdonRadioCommunication
         public override void OnPickupUseDown() => SetTalking(true);
 
         public override void OnPickupUseUp() => SetTalking(false);
-        public void _StartTalking() => SetTalking(true);
-        public void _StopTalking() => SetTalking(false);
-        public void _ToggleTalking() => SetTalking(!talking);
+        public void StartTalking() => SetTalking(true);
+        public void StopTalking() => SetTalking(false);
+        public void ToggleTalking() => SetTalking(!talking);
 
         private void SetActive(bool b)
         {
@@ -75,14 +75,14 @@ namespace UdonRadioCommunication
         public void Deactivate() => SetActive(false);
         public void ToggleActive() => SetActive(!active);
 
-        private void _SetFrequency(float newFrequency)
+        private void SetFrequency(float newFrequency)
         {
             frequency = Mathf.Clamp(newFrequency, minFrequency, maxFrequency);
             receiver.frequency = frequency;
             transmitter.frequency = frequency;
             frequencyText.text = $"{frequencyPrefix}{frequency.ToString(frequencyFormat)}{frequencySuffix}";
         }
-        public void _IncrementFrequency() => _SetFrequency(frequency + frequencyStep);
-        public void _DecrementFrequency() => _SetFrequency(frequency - frequencyStep);
+        public void IncrementFrequency() => SetFrequency(frequency + frequencyStep);
+        public void DecrementFrequency() => SetFrequency(frequency - frequencyStep);
     }
 }
