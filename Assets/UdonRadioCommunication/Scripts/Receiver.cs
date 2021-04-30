@@ -15,12 +15,6 @@ namespace UdonRadioCommunication
 
         public void Activate()
         {
-            if (!Networking.IsOwner(gameObject))
-            {
-                Networking.SetOwner(Networking.LocalPlayer, gameObject);
-                SendCustomEventDelayedSeconds(nameof(Activate), 0.5f);
-                return;
-            }
             active = true;
             Debug.Log($"[{gameObject.name}] Activated");
         }
