@@ -7,14 +7,20 @@ using VRC.SDKBase;
 
 namespace UdonRadioCommunication
 {
-    [RequireComponent(typeof(VRCPickup))]
+    [
+        RequireComponent(typeof(VRCPickup)),
+        RequireComponent(typeof(VRCObjectSync)),
+        UdonBehaviourSyncMode(BehaviourSyncMode.Continuous),
+    ]
     public class Transceiver : UdonSharpBehaviour
     {
-        public bool active, talking, exclusive = true;
+        [UdonSynced] public bool active;
+        public bool talking, exclusive = true;
         public TextMeshPro frequencyText;
         public Receiver receiver;
         public Transmitter transmitter;
-        public float frequency = 122.6f, frequencyStep = 0.025f, minFrequency = 118.0f, maxFrequency = 136.975f;
+        [UdonSynced] public float frequency = 122.6f;
+        public float frequencyStep = 0.025f, minFrequency = 118.0f, maxFrequency = 136.975f;
         public string frequencyPrefix = "", frequencySuffix = " <size=75%>MHz</size>", frequencyFormat="f3";
         [Tooltip("Drives bool parameters \"PowerOn\" and \"Talking\"")] public Animator[] animators = {};
 
@@ -40,12 +46,12 @@ namespace UdonRadioCommunication
         public override void OnPickup()
         {
             Networking.SetOwner(Networking.LocalPlayer, transmitter.gameObject);
+            Networking.SetOwner(Networking.LocalPlayer, receiver.gameObject);
         }
 
         private void SetTalking(bool b)
         {
             talking = b;
-            SetBool("Talking", b && active);
             transmitter.frequency = frequency;
             if (active && exclusive)
             {
@@ -54,6 +60,8 @@ namespace UdonRadioCommunication
             }
             if (b && active) transmitter.Activate();
             else transmitter.Deactivate();
+
+            UpdateVisual();
         }
 
         public override void OnPickupUseDown() => SetTalking(true);
@@ -66,10 +74,11 @@ namespace UdonRadioCommunication
         private void SetActive(bool b)
         {
             active = b;
-            SetBool("PowerOn", b);
+            RequestSerialization();
             if (b) receiver.Activate();
             else receiver.Deactivate();
             SetTalking(talking);
+            UpdateVisual();
         }
         public void Activate() => SetActive(true);
         public void Deactivate() => SetActive(false);
@@ -78,11 +87,30 @@ namespace UdonRadioCommunication
         private void SetFrequency(float newFrequency)
         {
             frequency = Mathf.Clamp(newFrequency, minFrequency, maxFrequency);
+            RequestSerialization();
+
             receiver.frequency = frequency;
+            receiver.RequestSerialization();
+
             transmitter.frequency = frequency;
-            frequencyText.text = $"{frequencyPrefix}{frequency.ToString(frequencyFormat)}{frequencySuffix}";
+            transmitter.RequestSerialization();
+
+            UpdateVisual();
         }
         public void IncrementFrequency() => SetFrequency(frequency + frequencyStep);
         public void DecrementFrequency() => SetFrequency(frequency - frequencyStep);
+
+        public override void OnDeserialization()
+        {
+            UpdateVisual();
+        }
+
+        public void UpdateVisual()
+        {
+            frequencyText.text = $"{frequencyPrefix}{frequency.ToString(frequencyFormat)}{frequencySuffix}";
+
+            SetBool("Talking", talking && active);
+            SetBool("PowerOn", active);
+        }
     }
 }

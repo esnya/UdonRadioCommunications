@@ -6,26 +6,23 @@ using VRC.Udon.Common.Interfaces;
 
 namespace UdonRadioCommunication
 {
+    [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class Transmitter : UdonSharpBehaviour
     {
-        [UdonSynced][HideInInspector] public bool active;
+        [UdonSynced] public bool active;
         [UdonSynced] public float frequency = 122.6f;
 
         public void Activate()
         {
-            if (!Networking.IsOwner(gameObject))
-            {
-                Networking.SetOwner(Networking.LocalPlayer, gameObject);
-                SendCustomEventDelayedSeconds(nameof(Activate), 0.5f);
-                return;
-            }
+            Networking.SetOwner(Networking.LocalPlayer, gameObject);
             active = true;
-            Debug.Log($"[{gameObject.name}] Activated");
+            RequestSerialization();
         }
+
         public void Deactivate()
         {
             active = false;
-            Debug.Log($"[{gameObject.name}] Deactivated");
+            RequestSerialization();
         }
     }
 }

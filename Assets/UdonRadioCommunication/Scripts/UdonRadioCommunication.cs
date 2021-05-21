@@ -13,6 +13,7 @@ using UdonSharpEditor;
 
 namespace UdonRadioCommunication
 {
+    [UdonBehaviourSyncMode(BehaviourSyncMode.NoVariableSync)]
     public class UdonRadioCommunication : UdonSharpBehaviour
     {
         [HideInInspector] public readonly string UdonTypeID = "UdonRadioCommunication.UdonRadioCommunication";
