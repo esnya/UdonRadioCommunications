@@ -17,7 +17,7 @@ MonoBehaviour:
   udonAssembly: 
   assemblyError: 
   sourceCsScript: {fileID: 11500000, guid: 81a2556e5dbb32242b3b4b4f20d8ac28, type: 3}
-  behaviourSyncMode: 0
+  behaviourSyncMode: 2
   behaviourIDHeapVarName: __refl_const_intnl_udonTypeID
   compileErrors: []
   hasInteractEvent: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
       Data: 1
     - Name: syncMode
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: symbolResolvedTypeName
       Entry: 1
       Data: SystemBoolean
@@ -93,7 +93,13 @@ MonoBehaviour:
       Data: 5|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 6|UdonSharp.UdonSyncedAttribute, UdonSharp.Runtime
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -117,10 +123,10 @@ MonoBehaviour:
       Data: talking
     - Name: $v
       Entry: 7
-      Data: 6|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
+      Data: 7|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
     - Name: fieldSymbol
       Entry: 7
-      Data: 7|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
+      Data: 8|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
     - Name: internalType
       Entry: 9
       Data: 4
@@ -146,8 +152,17 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: fieldAttributes
-      Entry: 9
-      Data: 5
+      Entry: 7
+      Data: 9|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: userBehaviourSource
       Entry: 6
       Data: 
@@ -165,10 +180,10 @@ MonoBehaviour:
       Data: exclusive
     - Name: $v
       Entry: 7
-      Data: 8|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
+      Data: 10|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
     - Name: fieldSymbol
       Entry: 7
-      Data: 9|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
+      Data: 11|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
     - Name: internalType
       Entry: 9
       Data: 4
@@ -195,7 +210,7 @@ MonoBehaviour:
       Data: 
     - Name: fieldAttributes
       Entry: 9
-      Data: 5
+      Data: 9
     - Name: userBehaviourSource
       Entry: 6
       Data: 
@@ -213,13 +228,13 @@ MonoBehaviour:
       Data: frequencyText
     - Name: $v
       Entry: 7
-      Data: 10|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
+      Data: 12|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
     - Name: fieldSymbol
       Entry: 7
-      Data: 11|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
+      Data: 13|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
     - Name: internalType
       Entry: 7
-      Data: 12|System.RuntimeType, mscorlib
+      Data: 14|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: TMPro.TextMeshPro, Unity.TextMeshPro
@@ -249,7 +264,7 @@ MonoBehaviour:
       Data: 
     - Name: fieldAttributes
       Entry: 7
-      Data: 13|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+      Data: 15|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -276,13 +291,13 @@ MonoBehaviour:
       Data: receiver
     - Name: $v
       Entry: 7
-      Data: 14|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
+      Data: 16|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
     - Name: fieldSymbol
       Entry: 7
-      Data: 15|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
+      Data: 17|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
     - Name: internalType
       Entry: 7
-      Data: 16|System.RuntimeType, mscorlib
+      Data: 18|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: UdonRadioCommunication.Receiver, UdonRadioCommunication.Runtime
@@ -312,7 +327,7 @@ MonoBehaviour:
       Data: 
     - Name: fieldAttributes
       Entry: 7
-      Data: 17|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+      Data: 19|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -339,13 +354,13 @@ MonoBehaviour:
       Data: transmitter
     - Name: $v
       Entry: 7
-      Data: 18|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
+      Data: 20|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
     - Name: fieldSymbol
       Entry: 7
-      Data: 19|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
+      Data: 21|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
     - Name: internalType
       Entry: 7
-      Data: 20|System.RuntimeType, mscorlib
+      Data: 22|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: UdonRadioCommunication.Transmitter, UdonRadioCommunication.Runtime
@@ -375,7 +390,7 @@ MonoBehaviour:
       Data: 
     - Name: fieldAttributes
       Entry: 7
-      Data: 21|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+      Data: 23|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -402,13 +417,13 @@ MonoBehaviour:
       Data: frequency
     - Name: $v
       Entry: 7
-      Data: 22|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
+      Data: 24|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
     - Name: fieldSymbol
       Entry: 7
-      Data: 23|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
+      Data: 25|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
     - Name: internalType
       Entry: 7
-      Data: 24|System.RuntimeType, mscorlib
+      Data: 26|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: System.Single, mscorlib
@@ -420,7 +435,7 @@ MonoBehaviour:
       Data: 1
     - Name: syncMode
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: symbolResolvedTypeName
       Entry: 1
       Data: SystemSingle
@@ -438,10 +453,16 @@ MonoBehaviour:
       Data: 
     - Name: fieldAttributes
       Entry: 7
-      Data: 25|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+      Data: 27|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 28|UdonSharp.UdonSyncedAttribute, UdonSharp.Runtime
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -465,13 +486,13 @@ MonoBehaviour:
       Data: frequencyStep
     - Name: $v
       Entry: 7
-      Data: 26|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
+      Data: 29|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
     - Name: fieldSymbol
       Entry: 7
-      Data: 27|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
+      Data: 30|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
     - Name: internalType
       Entry: 9
-      Data: 24
+      Data: 26
     - Name: declarationType
       Entry: 3
       Data: 1
@@ -494,8 +515,17 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: fieldAttributes
-      Entry: 9
-      Data: 25
+      Entry: 7
+      Data: 31|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: userBehaviourSource
       Entry: 6
       Data: 
@@ -513,13 +543,13 @@ MonoBehaviour:
       Data: minFrequency
     - Name: $v
       Entry: 7
-      Data: 28|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
+      Data: 32|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
     - Name: fieldSymbol
       Entry: 7
-      Data: 29|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
+      Data: 33|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
     - Name: internalType
       Entry: 9
-      Data: 24
+      Data: 26
     - Name: declarationType
       Entry: 3
       Data: 1
@@ -543,7 +573,7 @@ MonoBehaviour:
       Data: 
     - Name: fieldAttributes
       Entry: 9
-      Data: 25
+      Data: 31
     - Name: userBehaviourSource
       Entry: 6
       Data: 
@@ -561,13 +591,13 @@ MonoBehaviour:
       Data: maxFrequency
     - Name: $v
       Entry: 7
-      Data: 30|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
+      Data: 34|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
     - Name: fieldSymbol
       Entry: 7
-      Data: 31|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
+      Data: 35|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
     - Name: internalType
       Entry: 9
-      Data: 24
+      Data: 26
     - Name: declarationType
       Entry: 3
       Data: 1
@@ -591,7 +621,7 @@ MonoBehaviour:
       Data: 
     - Name: fieldAttributes
       Entry: 9
-      Data: 25
+      Data: 31
     - Name: userBehaviourSource
       Entry: 6
       Data: 
@@ -609,13 +639,13 @@ MonoBehaviour:
       Data: frequencyPrefix
     - Name: $v
       Entry: 7
-      Data: 32|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
+      Data: 36|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
     - Name: fieldSymbol
       Entry: 7
-      Data: 33|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
+      Data: 37|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
     - Name: internalType
       Entry: 7
-      Data: 34|System.RuntimeType, mscorlib
+      Data: 38|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: System.String, mscorlib
@@ -645,7 +675,7 @@ MonoBehaviour:
       Data: 
     - Name: fieldAttributes
       Entry: 7
-      Data: 35|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+      Data: 39|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -672,13 +702,13 @@ MonoBehaviour:
       Data: frequencySuffix
     - Name: $v
       Entry: 7
-      Data: 36|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
+      Data: 40|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
     - Name: fieldSymbol
       Entry: 7
-      Data: 37|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
+      Data: 41|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
     - Name: internalType
       Entry: 9
-      Data: 34
+      Data: 38
     - Name: declarationType
       Entry: 3
       Data: 1
@@ -702,7 +732,7 @@ MonoBehaviour:
       Data: 
     - Name: fieldAttributes
       Entry: 9
-      Data: 35
+      Data: 39
     - Name: userBehaviourSource
       Entry: 6
       Data: 
@@ -720,13 +750,13 @@ MonoBehaviour:
       Data: frequencyFormat
     - Name: $v
       Entry: 7
-      Data: 38|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
+      Data: 42|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
     - Name: fieldSymbol
       Entry: 7
-      Data: 39|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
+      Data: 43|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
     - Name: internalType
       Entry: 9
-      Data: 34
+      Data: 38
     - Name: declarationType
       Entry: 3
       Data: 1
@@ -750,7 +780,7 @@ MonoBehaviour:
       Data: 
     - Name: fieldAttributes
       Entry: 9
-      Data: 35
+      Data: 39
     - Name: userBehaviourSource
       Entry: 6
       Data: 
@@ -768,13 +798,13 @@ MonoBehaviour:
       Data: animators
     - Name: $v
       Entry: 7
-      Data: 40|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
+      Data: 44|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
     - Name: fieldSymbol
       Entry: 7
-      Data: 41|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
+      Data: 45|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
     - Name: internalType
       Entry: 7
-      Data: 42|System.RuntimeType, mscorlib
+      Data: 46|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: UnityEngine.Animator[], UnityEngine.AnimationModule
@@ -804,13 +834,13 @@ MonoBehaviour:
       Data: 
     - Name: fieldAttributes
       Entry: 7
-      Data: 43|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+      Data: 47|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 44|UnityEngine.TooltipAttribute, UnityEngine.CoreModule
+      Data: 48|UnityEngine.TooltipAttribute, UnityEngine.CoreModule
     - Name: tooltip
       Entry: 1
       Data: Drives bool parameters "PowerOn" and "Talking"
