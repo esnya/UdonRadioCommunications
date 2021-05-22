@@ -74,6 +74,7 @@ namespace UdonRadioCommunication
         private void SetActive(bool b)
         {
             active = b;
+            if (active) Networking.SetOwner(Networking.LocalPlayer, gameObject);
             RequestSerialization();
             if (b) receiver.Activate();
             else receiver.Deactivate();
