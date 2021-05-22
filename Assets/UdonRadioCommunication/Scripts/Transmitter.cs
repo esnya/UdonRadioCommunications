@@ -9,8 +9,8 @@ namespace UdonRadioCommunication
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class Transmitter : UdonSharpBehaviour
     {
-        [UdonSynced] public bool active;
-        [UdonSynced] public float frequency = 122.6f;
+        [UdonSynced] private bool active;
+        [UdonSynced] private float frequency = 122.6f;
 
         public void Activate()
         {
@@ -21,8 +21,20 @@ namespace UdonRadioCommunication
 
         public void Deactivate()
         {
+            if (active) Networking.SetOwner(Networking.LocalPlayer, gameObject);
             active = false;
             RequestSerialization();
         }
+
+        public bool IsActive() => active;
+
+        public void SetFerquency(float f)
+        {
+            Networking.SetOwner(Networking.LocalPlayer, gameObject);
+            frequency = f;
+            RequestSerialization();
+        }
+
+        public float GetFrequency() => frequency;
     }
 }

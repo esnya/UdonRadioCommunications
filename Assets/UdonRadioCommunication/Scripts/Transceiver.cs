@@ -43,16 +43,10 @@ namespace UdonRadioCommunication
             SetTalking(talking);
         }
 
-        public override void OnPickup()
-        {
-            Networking.SetOwner(Networking.LocalPlayer, transmitter.gameObject);
-            Networking.SetOwner(Networking.LocalPlayer, receiver.gameObject);
-        }
-
         private void SetTalking(bool b)
         {
             talking = b;
-            transmitter.frequency = frequency;
+            transmitter.SetFerquency(frequency);
             if (active && exclusive)
             {
                 if (b) receiver.Deactivate();
@@ -74,27 +68,26 @@ namespace UdonRadioCommunication
         private void SetActive(bool b)
         {
             active = b;
-            if (active) Networking.SetOwner(Networking.LocalPlayer, gameObject);
             RequestSerialization();
+
             if (b) receiver.Activate();
             else receiver.Deactivate();
             SetTalking(talking);
+
             UpdateVisual();
         }
         public void Activate() => SetActive(true);
         public void Deactivate() => SetActive(false);
         public void ToggleActive() => SetActive(!active);
 
-        private void SetFrequency(float newFrequency)
+        private void SetFrequency(float f)
         {
-            frequency = Mathf.Clamp(newFrequency, minFrequency, maxFrequency);
+            Networking.SetOwner(Networking.LocalPlayer, gameObject);
+            frequency = Mathf.Clamp(f, minFrequency, maxFrequency);
             RequestSerialization();
 
-            receiver.frequency = frequency;
-            receiver.RequestSerialization();
-
-            transmitter.frequency = frequency;
-            transmitter.RequestSerialization();
+            receiver.SetFrequency(frequency);
+            transmitter.SetFerquency(frequency);
 
             UpdateVisual();
         }
