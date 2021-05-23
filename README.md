@@ -12,3 +12,10 @@ For more usage such as `Transceiver`, open a scene `Demo.unity`.
 
 ## Runtime Overhead
 Only one udon is using the `Update` loop. If the number of `Transmitters` is `Nt`, the number of `Receivers` is `Nr`, and the number of `Players` is `Np`, the computational complexity is `O(Np(Nt+Nr))`.
+
+## Configurations
+
+### Transceiver
+| Property Name | Description |
+| :-- | :-- |
+| Exclusive | Turn off receiver during transmitting. |

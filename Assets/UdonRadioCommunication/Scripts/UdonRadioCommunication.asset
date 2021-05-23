@@ -19,10 +19,7 @@ MonoBehaviour:
   sourceCsScript: {fileID: 11500000, guid: 5a1b6f42fc93f3d41a69e0ad3c9efa91, type: 3}
   behaviourSyncMode: 1
   behaviourIDHeapVarName: __refl_const_intnl_udonTypeID
-  compileErrors:
-  - 
-  - '[<color=#FF00FF>UdonSharp</color>] Assets\UdonRadioCommunication\Assets\UdonRadioCommunication\Scripts\UdonRadioCommunication.cs(71,23):
-    System.Exception: ''Receiver'' does not contain a definition for ''IsAcive'''
+  compileErrors: []
   hasInteractEvent: 0
   serializationData:
     SerializedFormat: 2
