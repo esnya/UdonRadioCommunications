@@ -68,7 +68,7 @@ namespace UdonRadioCommunication
             float minDistance = float.MaxValue;
             Receiver result = null;
             foreach (var r in receivers) {
-                if (!r.IsAcive() || r.GetFrequency() != frequency) continue;
+                if (!r.IsActive() || r.GetFrequency() != frequency) continue;
 
                 var distance = Vector3.SqrMagnitude(r.transform.position - localPosition);
                 if ((!r.limitRange ||  distance <= r.maxRange) && distance < minDistance) result = r;
