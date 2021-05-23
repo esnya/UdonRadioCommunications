@@ -130,7 +130,6 @@ namespace UdonRadioCommunication
 
                         var distanceOverRadio = (Vector3.Distance(remotePlayerPosition, transmitterPosition) + Vector3.Distance(localPlayerPosition, receiverPosition)) * 0;
                         var realDistance = Vector3.Distance(localPlayerPosition, remotePlayerPosition);
-                        // Debug.Log($"|{remotePlayerPosition}-{localPlayerPosition}|={realDistance}");
 
                         var near = Mathf.Max(realDistance - distanceOverRadio, 0);
                         var far = near + defaultVoiceDistanceFar - defaultVoiceDistanceNear;
