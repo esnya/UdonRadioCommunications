@@ -8,18 +8,19 @@ using VRC.SDKBase;
 namespace UdonRadioCommunication
 {
     [
-        RequireComponent(typeof(VRCPickup)),
+        DefaultExecutionOrder(1000),
         RequireComponent(typeof(VRCObjectSync)),
         UdonBehaviourSyncMode(BehaviourSyncMode.Continuous),
     ]
     public class Transceiver : UdonSharpBehaviour
     {
-        [UdonSynced] public bool active;
-        public bool talking, exclusive = true;
+        [UdonSynced] public bool active, talking;
+        public bool exclusive = true;
         public TextMeshPro frequencyText;
         public Receiver receiver;
         public Transmitter transmitter;
-        [UdonSynced] public float frequency = 122.6f;
+        public float frequency = 122.6f;
+
         public float frequencyStep = 0.025f, minFrequency = 118.0f, maxFrequency = 136.975f;
         public string frequencyPrefix = "", frequencySuffix = " <size=75%>MHz</size>", frequencyFormat="f3";
         [Tooltip("Drives bool parameters \"PowerOn\" and \"Talking\"")] public Animator[] animators = {};
@@ -36,66 +37,76 @@ namespace UdonRadioCommunication
         private void Start()
         {
             var pickup = (VRCPickup)GetComponent(typeof(VRCPickup));
-            pickup.AutoHold = VRC_Pickup.AutoHoldMode.Yes;
+            if (pickup != null) pickup.AutoHold = VRC_Pickup.AutoHoldMode.Yes;
 
-            SetFrequency(frequency);
-            SetActive(active);
-            SetTalking(talking);
+            if (Networking.IsMaster) ApplyState();
+            else UpdateVisual();
         }
 
-        private void SetTalking(bool b)
+        public override void OnOwnershipTransferred(VRCPlayerApi player)
         {
-            talking = b;
-            transmitter.SetFerquency(frequency);
-            if (active && exclusive)
+            if (player.isLocal)
             {
-                if (b) receiver.Deactivate();
-                else receiver.Activate();
+                ApplyState();
             }
-            if (b && active) transmitter.Activate();
-            else transmitter.Deactivate();
-
-            UpdateVisual();
         }
-
         public override void OnPickupUseDown() => SetTalking(true);
 
         public override void OnPickupUseUp() => SetTalking(false);
+
+        public void TakeOwnership()
+        {
+            if (Networking.IsOwner(gameObject)) return;
+            Networking.SetOwner(Networking.LocalPlayer, gameObject);
+        }
+
+        public void SetTalking(bool value)
+        {
+            TakeOwnership();
+            talking = value;
+            ApplyState();
+        }
+        public bool GetTalking() => talking;
         public void StartTalking() => SetTalking(true);
         public void StopTalking() => SetTalking(false);
         public void ToggleTalking() => SetTalking(!talking);
 
-        private void SetActive(bool b)
+        private void SetActive(bool value)
         {
-            active = b;
-            RequestSerialization();
-
-            if (b) receiver.Activate();
-            else receiver.Deactivate();
-            SetTalking(talking);
-
-            UpdateVisual();
+            TakeOwnership();
+            active = value;
+            ApplyState();
         }
+        public bool GetActive() => active;
         public void Activate() => SetActive(true);
         public void Deactivate() => SetActive(false);
         public void ToggleActive() => SetActive(!active);
 
         private void SetFrequency(float f)
         {
-            Networking.SetOwner(Networking.LocalPlayer, gameObject);
+            TakeOwnership();
             frequency = Mathf.Clamp(f, minFrequency, maxFrequency);
-            RequestSerialization();
-
-            receiver.SetFrequency(frequency);
-            transmitter.SetFerquency(frequency);
-
-            UpdateVisual();
+            ApplyState();
         }
         public void IncrementFrequency() => SetFrequency(frequency + frequencyStep);
         public void DecrementFrequency() => SetFrequency(frequency - frequencyStep);
 
         public override void OnDeserialization()
         {
+            UpdateVisual();
+        }
+
+        public void ApplyState()
+        {
+            TakeOwnership();
+
+            receiver.SetActive(active && !(exclusive && talking));
+            transmitter.SetActive(active && talking);
+            receiver.SetFrequency(frequency);
+            transmitter.SetFrequency(frequency);
+
+            RequestSerialization();
+
             UpdateVisual();
         }
 

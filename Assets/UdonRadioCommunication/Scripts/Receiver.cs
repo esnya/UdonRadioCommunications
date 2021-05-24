@@ -14,24 +14,26 @@ namespace UdonRadioCommunication
         public bool limitRange = true;
         public float maxRange = 5.0f;
 
-        public void Activate()
+        public void TakeOwnership()
         {
+            if (Networking.IsOwner(gameObject)) return;
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
-            active = true;
+        }
+
+        public void SetActive(bool value)
+        {
+            TakeOwnership();
+            active = value;
             RequestSerialization();
         }
         public bool IsActive() => active;
+        public void Activate() => SetActive(true);
 
-        public void Deactivate()
-        {
-            if (active) Networking.SetOwner(Networking.LocalPlayer, gameObject);
-            active = false;
-            RequestSerialization();
-        }
+        public void Deactivate() => SetActive(false);
 
         public void SetFrequency(float f)
         {
-            Networking.SetOwner(Networking.LocalPlayer, gameObject);
+            TakeOwnership();
             frequency = f;
             RequestSerialization();
         }

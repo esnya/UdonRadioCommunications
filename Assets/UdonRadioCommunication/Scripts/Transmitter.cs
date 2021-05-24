@@ -1,8 +1,6 @@
 
 using UdonSharp;
-using UnityEngine;
 using VRC.SDKBase;
-using VRC.Udon.Common.Interfaces;
 
 namespace UdonRadioCommunication
 {
@@ -12,25 +10,26 @@ namespace UdonRadioCommunication
         [UdonSynced] private bool active;
         [UdonSynced] private float frequency = 122.6f;
 
-        public void Activate()
+        public void TakeOwnership()
         {
+            if (Networking.IsOwner(gameObject)) return;
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
-            active = true;
-            RequestSerialization();
         }
 
-        public void Deactivate()
+        public void SetActive(bool value)
         {
-            if (active) Networking.SetOwner(Networking.LocalPlayer, gameObject);
-            active = false;
+            TakeOwnership();
+            active = value;
             RequestSerialization();
         }
-
         public bool IsActive() => active;
+        public void Activate() => SetActive(true);
+        public void Deactivate() => SetActive(false);
 
-        public void SetFerquency(float f)
+
+        public void SetFrequency(float f)
         {
-            Networking.SetOwner(Networking.LocalPlayer, gameObject);
+            TakeOwnership();
             frequency = f;
             RequestSerialization();
         }
