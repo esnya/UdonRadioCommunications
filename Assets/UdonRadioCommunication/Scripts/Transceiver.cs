@@ -7,11 +7,7 @@ using VRC.SDKBase;
 
 namespace UdonRadioCommunication
 {
-    [
-        DefaultExecutionOrder(1000),
-        RequireComponent(typeof(VRCObjectSync)),
-        UdonBehaviourSyncMode(BehaviourSyncMode.Continuous),
-    ]
+    [DefaultExecutionOrder(1000)]
     public class Transceiver : UdonSharpBehaviour
     {
         [UdonSynced] public bool active, talking;
@@ -19,10 +15,10 @@ namespace UdonRadioCommunication
         public TextMeshPro frequencyText;
         public Receiver receiver;
         public Transmitter transmitter;
-        public float frequency = 122.6f;
+        public float frequency = 1.0f;
 
-        public float frequencyStep = 0.025f, minFrequency = 118.0f, maxFrequency = 136.975f;
-        public string frequencyPrefix = "", frequencySuffix = " <size=75%>MHz</size>", frequencyFormat="f3";
+        public float frequencyStep = 1.0f, minFrequency = 1.0f, maxFrequency = 8.0f;
+        public string frequencyPrefix = "", frequencySuffix = " <size=75%>Ch</size>", frequencyFormat="{}";
         [Tooltip("Drives bool parameters \"PowerOn\" and \"Talking\"")] public Animator[] animators = {};
 
         private void SetBool(string name, bool value)
