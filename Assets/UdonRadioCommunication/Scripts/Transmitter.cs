@@ -7,8 +7,8 @@ namespace UdonRadioCommunication
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class Transmitter : UdonSharpBehaviour
     {
-        [UdonSynced] private bool active;
-        [UdonSynced] private float frequency = 122.6f;
+        [UdonSynced] public bool active;
+        [UdonSynced] public float frequency = 1.0f;
 
         public void TakeOwnership()
         {

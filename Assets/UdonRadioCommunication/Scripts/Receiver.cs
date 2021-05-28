@@ -8,15 +8,32 @@ namespace UdonRadioCommunication
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class Receiver : UdonSharpBehaviour
     {
-        [HideInInspector] public readonly string UdonTypeID = "UdonRadioCommunication.Receiver";
-        [UdonSynced] private bool active;
-        [UdonSynced] private float frequency = 122.6f;
+        public bool active;
+        public float frequency = 1.0f;
         public bool limitRange = true;
         public float maxRange = 5.0f;
+        public bool sync = true;
+
+        [HideInInspector][UdonSynced] private bool syncActive;
+        [HideInInspector][UdonSynced] private float syncFrequency;
+
+        public override void OnPreSerialization()
+        {
+            syncActive = active;
+            syncFrequency = frequency;
+        }
+
+        public override void OnDeserialization()
+        {
+            if (sync) {
+                active = syncActive;
+                frequency = syncFrequency;
+            }
+        }
 
         public void TakeOwnership()
         {
-            if (Networking.IsOwner(gameObject)) return;
+            if (!sync || Networking.IsOwner(gameObject)) return;
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
         }
 
@@ -24,7 +41,7 @@ namespace UdonRadioCommunication
         {
             TakeOwnership();
             active = value;
-            RequestSerialization();
+            if (sync) RequestSerialization();
         }
         public bool IsActive() => active;
         public void Activate() => SetActive(true);
@@ -35,9 +52,7 @@ namespace UdonRadioCommunication
         {
             TakeOwnership();
             frequency = f;
-            RequestSerialization();
+            if (sync) RequestSerialization();
         }
-
-        public float GetFrequency() => frequency;
     }
 }

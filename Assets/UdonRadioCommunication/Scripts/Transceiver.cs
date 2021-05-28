@@ -15,10 +15,10 @@ namespace UdonRadioCommunication
         public TextMeshPro frequencyText;
         public Receiver receiver;
         public Transmitter transmitter;
-        public float frequency = 1.0f;
+        [UdonSynced] public float frequency = 1.0f;
 
         public float frequencyStep = 1.0f, minFrequency = 1.0f, maxFrequency = 8.0f;
-        public string frequencyPrefix = "", frequencySuffix = " <size=75%>Ch</size>", frequencyFormat="{}";
+        public string frequencyPrefix = "", frequencySuffix = " <size=75%>Ch</size>", frequencyFormat="";
         [Tooltip("Drives bool parameters \"PowerOn\" and \"Talking\"")] public Animator[] animators = {};
 
         private void SetBool(string name, bool value)

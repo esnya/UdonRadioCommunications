@@ -1,9 +1,10 @@
 # URC Integrations SaccFlightAndVehicles
 
 ## Usage
-1. Copy a `UdonBehaviour` on `PilotSeat` in your plane.
-2. Create a new GameObject as child of `PilotSeat`.
-3. Pase as new component into created GameObject.
-4. Remove a `UdonBehaviour` on `PilotSeat`.
-5. Add new component `URCPilotSeeat` and press `Convert` button.
-6. Place GameObject which has `Tranceiver`, `Transmitter` and `Receiver` into your plane.
+1. Create a new GameObject as a child of `PilotSeat` GameObject.
+2. Copy the `UdonBehaviour` on `PilotSeat`, a child of the plane.
+3. Paste the Component as a new component into the created GameObject.
+4. Delete `UdonBehaviour` from `PilotSeat`.
+5. Add a new component `URCPilotSeeat` and press the `Convert` button.
+6. Put a GameObject with `Transmitter`, `Transmitter` and `Receiver` into the plane.
+7. Press the `Setup` button in the `UdonRadioCommunication` inspector. **Do not forget this step!**

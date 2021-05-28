@@ -18,6 +18,7 @@ namespace UdonRadioCommunication
         private GameObject Gun_pilot;
         private GameObject SeatAdjuster;
         private LeaveVehicleButton LeaveButtonControl;
+        private new Collider collider;
 
         private void Start()
         {
@@ -26,6 +27,7 @@ namespace UdonRadioCommunication
             Gun_pilot = originalPilotSeat.Gun_pilot;
             SeatAdjuster = originalPilotSeat.SeatAdjuster;
             LeaveButtonControl = LeaveButton.GetComponent<LeaveVehicleButton>();
+            collider = GetComponent<Collider>();
         }
 
         public override void Interact()
@@ -39,6 +41,8 @@ namespace UdonRadioCommunication
 
         public override void OnStationEntered(VRCPlayerApi player)
         {
+            collider.enabled = false;
+
             if (player.isLocal)
             {
                 transceiver.exclusive = false;
@@ -68,6 +72,8 @@ namespace UdonRadioCommunication
 
         public override void OnStationExited(VRCPlayerApi player)
         {
+            collider.enabled = true;
+
             if (player.isLocal)
             {
                 transceiver.StopTalking();
