@@ -8,7 +8,7 @@ using VRC.SDKBase;
 namespace UdonRadioCommunication
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.NoVariableSync), DefaultExecutionOrder(100)]
-    class URCPilotSeat : UdonSharpBehaviour
+    public class URCPilotSeat : UdonSharpBehaviour
     {
         public Transceiver transceiver;
         public PilotSeat originalPilotSeat;
