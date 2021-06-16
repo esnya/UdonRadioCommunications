@@ -56,6 +56,14 @@ namespace UdonRadioCommunication
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
         }
 
+        public void Respawn()
+        {
+            TakeOwnership();
+            var sync = (VRCObjectSync)GetComponent(typeof(VRCObjectSync));
+            if (sync == null) return;
+            sync.Respawn();
+        }
+
         public void SetTalking(bool value)
         {
             TakeOwnership();
@@ -78,7 +86,7 @@ namespace UdonRadioCommunication
         public void Deactivate() => SetActive(false);
         public void ToggleActive() => SetActive(!active);
 
-        private void SetFrequency(float f)
+        public void SetFrequency(float f)
         {
             TakeOwnership();
             frequency = Mathf.Clamp(f, minFrequency, maxFrequency);
