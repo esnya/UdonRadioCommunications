@@ -12,6 +12,11 @@ namespace UdonRadioCommunication
     {
         public Transceiver transceiver;
         public PilotSeat originalPilotSeat;
+        public UdonSharpBehaviour[] onEnterEventTargets = {};
+        public string[] onEnterEventNames = {};
+        public UdonSharpBehaviour[] onLeaveEventTargets = {};
+        public string[] onLeaveEventNames = {};
+
 
         private EngineController EngineControl;
         private GameObject LeaveButton;
@@ -28,6 +33,16 @@ namespace UdonRadioCommunication
             SeatAdjuster = originalPilotSeat.SeatAdjuster;
             LeaveButtonControl = LeaveButton.GetComponent<LeaveVehicleButton>();
             collider = GetComponent<Collider>();
+        }
+
+        private void SendEvents(UdonSharpBehaviour[] targets, string[] names)
+        {
+            for (int i = 0; i < targets.Length; i++)
+            {
+                var target = targets[i];
+                if (target == null) continue;
+                target.SendCustomEvent(names[i]);
+            }
         }
 
         public override void Interact()
@@ -48,6 +63,7 @@ namespace UdonRadioCommunication
                 transceiver.exclusive = false;
                 transceiver.Activate();
                 transceiver.StartTalking();
+                SendEvents(onEnterEventTargets, onEnterEventNames);
             }
 
             EngineControl.PilotEnterPlaneGlobal(player);
@@ -78,6 +94,7 @@ namespace UdonRadioCommunication
             {
                 transceiver.StopTalking();
                 transceiver.Deactivate();
+                SendEvents(onLeaveEventTargets, onLeaveEventNames);
             }
             originalPilotSeat.PlayerExitPlane(player);
         }
