@@ -159,8 +159,7 @@ namespace UdonRadioCommunication
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
         private static IEnumerable<T> GetUdonSharpComponentsInScene<T>() where T : UdonSharpBehaviour
         {
-            return SceneManager.GetActiveScene().GetRootGameObjects()
-                .SelectMany(o => o.GetComponentsInChildren<UdonBehaviour>())
+            return FindObjectsOfType<UdonBehaviour>()
                 .Where(UdonSharpEditorUtility.IsUdonSharpBehaviour)
                 .Select(UdonSharpEditorUtility.GetProxyBehaviour)
                 .Select(u => u as T)
@@ -171,6 +170,7 @@ namespace UdonRadioCommunication
         {
             this.UpdateProxy();
             transmitters = GetUdonSharpComponentsInScene<Transmitter>().ToArray();
+            this.ApplyProxyModifications();
             receivers = GetUdonSharpComponentsInScene<Receiver>().ToArray();
             this.ApplyProxyModifications();
         }
@@ -196,6 +196,15 @@ namespace UdonRadioCommunication
 
     [CustomEditor(typeof(UdonRadioCommunication))]
     public class UdonRadioCommunicationEditor : Editor {
+        private static IEnumerable<T> GetUdonSharpComponentsInScene<T>() where T : UdonSharpBehaviour
+        {
+            return FindObjectsOfType<UdonBehaviour>()
+                .Where(UdonSharpEditorUtility.IsUdonSharpBehaviour)
+                .Select(UdonSharpEditorUtility.GetProxyBehaviour)
+                .Select(u => u as T)
+                .Where(u => u != null);
+        }
+
         public override void OnInspectorGUI() {
             if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
             base.OnInspectorGUI();
