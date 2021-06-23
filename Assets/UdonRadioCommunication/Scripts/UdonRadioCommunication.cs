@@ -2,8 +2,10 @@
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
+using VRC.Udon;
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine.SceneManagement;
@@ -155,20 +157,27 @@ namespace UdonRadioCommunication
         }
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
+        private static IEnumerable<T> GetUdonSharpComponentsInScene<T>() where T : UdonSharpBehaviour
+        {
+            return FindObjectsOfType<UdonBehaviour>()
+                .Where(UdonSharpEditorUtility.IsUdonSharpBehaviour)
+                .Select(UdonSharpEditorUtility.GetProxyBehaviour)
+                .Select(u => u as T)
+                .Where(u => u != null);
+        }
+
         public void Setup()
         {
             this.UpdateProxy();
-            var rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
-            transmitters = rootObjects.SelectMany(o => o.GetUdonSharpComponentsInChildren<Transmitter>()).ToArray();
-            receivers = rootObjects.SelectMany(o => o.GetUdonSharpComponentsInChildren<Receiver>()).ToArray();
+            transmitters = GetUdonSharpComponentsInScene<Transmitter>().ToArray();
+            this.ApplyProxyModifications();
+            receivers = GetUdonSharpComponentsInScene<Receiver>().ToArray();
             this.ApplyProxyModifications();
         }
 
-        static private void SetupAll(Scene scene)
+        static private void SetupAll()
         {
-            var targets = scene
-                .GetRootGameObjects()
-                .SelectMany(o => o.GetUdonSharpComponentsInChildren<UdonRadioCommunication>());
+            var targets = GetUdonSharpComponentsInScene<UdonRadioCommunication>();
             foreach (var urc in targets)
             {
                 urc.Setup();
@@ -177,8 +186,8 @@ namespace UdonRadioCommunication
 
         static UdonRadioCommunication()
         {
-            EditorSceneManager.sceneOpened += (s,m) => SetupAll(s);
-            EditorSceneManager.sceneClosing += (s,m) => SetupAll(s);
+            EditorSceneManager.sceneOpened += (s,m) => SetupAll();
+            EditorSceneManager.sceneClosing += (s,m) => SetupAll();
         }
 #endif
     }
@@ -187,6 +196,15 @@ namespace UdonRadioCommunication
 
     [CustomEditor(typeof(UdonRadioCommunication))]
     public class UdonRadioCommunicationEditor : Editor {
+        private static IEnumerable<T> GetUdonSharpComponentsInScene<T>() where T : UdonSharpBehaviour
+        {
+            return FindObjectsOfType<UdonBehaviour>()
+                .Where(UdonSharpEditorUtility.IsUdonSharpBehaviour)
+                .Select(UdonSharpEditorUtility.GetProxyBehaviour)
+                .Select(u => u as T)
+                .Where(u => u != null);
+        }
+
         public override void OnInspectorGUI() {
             if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
             base.OnInspectorGUI();
