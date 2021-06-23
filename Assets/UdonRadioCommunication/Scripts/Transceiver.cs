@@ -75,7 +75,7 @@ namespace UdonRadioCommunication
         public void StopTalking() => SetTalking(false);
         public void ToggleTalking() => SetTalking(!talking);
 
-        private void SetActive(bool value)
+        public void SetActive(bool value)
         {
             TakeOwnership();
             active = value;
