@@ -38,6 +38,7 @@ namespace UdonRadioCommunication
 
         private void StationExited()
         {
+            seated = false;
             transceiver.StopTalking();
             transceiver.Deactivate();
             SendEvents(onLeaveEventTargets, onLeaveEventNames);
@@ -51,11 +52,12 @@ namespace UdonRadioCommunication
 
         public override void Interact()
         {
-            if (engineController.PilotID < 0) return;
+            if (engineController.Piloting) return;
 
             seated = true;
 
             transceiver.exclusive = false;
+            transceiver.receiver.sync = false;
             transceiver.Activate();
             transceiver.StartTalking();
             SendEvents(onEnterEventTargets, onEnterEventNames);
