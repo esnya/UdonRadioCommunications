@@ -50,27 +50,6 @@ namespace UdonRadioCommunication
             }
         }
 #else
-        private static PilotSeat MovePilotSeat(PilotSeat src, GameObject dstGameObject)
-        {
-            var srcUdon = UdonSharpEditorUtility.GetBackingUdonBehaviour(src);
-
-            var dstUdon = dstGameObject.AddComponent<UdonBehaviour>();
-            Undo.RegisterCreatedObjectUndo(dstUdon, "URC Move PilotSeat");
-            dstUdon.programSource = srcUdon.programSource;
-
-            var dst = UdonSharpEditorUtility.GetProxyBehaviour(dstUdon) as PilotSeat;
-
-            dst.EngineControl = src.EngineControl;
-            dst.LeaveButton = src.LeaveButton;
-            dst.Gun_pilot = src.Gun_pilot;
-            dst.SeatAdjuster = src.SeatAdjuster;
-            dst.ApplyProxyModifications();
-
-            Undo.DestroyObjectImmediate(srcUdon);
-
-            return dst;
-        }
-
         private static UdonRadioCommunication GetOrCreateManager()
         {
             var found = SceneManager.GetActiveScene().GetRootGameObjects().Select(o => o.GetUdonSharpComponent<UdonRadioCommunication>()).FirstOrDefault(a => a != null);
@@ -89,20 +68,23 @@ namespace UdonRadioCommunication
             urc.Setup();
         }
 
+        private static void MoveBoxCollider(GameObject src, GameObject dst)
+        {
+            var srcCollider = src.GetComponent<BoxCollider>();
+            var dstCollider = dst.AddComponent<BoxCollider>();
+
+            Undo.RecordObject(srcCollider, "Move Collider");
+            srcCollider.enabled = false;
+
+            dstCollider.isTrigger = srcCollider.isTrigger;
+            dstCollider.center = srcCollider.center;
+            dstCollider.size = srcCollider.size;
+
+            Undo.RegisterCreatedObjectUndo(dstCollider, "Move Collider");
+        }
+
         private void Install(GameObject vehicleRoot, PilotSeat pilotSeat)
         {
-            var urcSeatTemplate = pilotSeat.gameObject.AddComponent<URCPilotSeat>();
-            var urcSeatUdon = UdonSharpEditorUtility.ConvertToUdonBehaviours(new[] { urcSeatTemplate }).First();
-            Undo.RegisterCreatedObjectUndo(urcSeatUdon, "Install URC");
-            var urcSeat = UdonSharpEditorUtility.GetProxyBehaviour(urcSeatUdon) as URCPilotSeat;
-
-            var originalPilotSeatObj = new GameObject("PilotSeat");
-            Undo.RegisterCreatedObjectUndo(originalPilotSeatObj, "Install URC");
-            originalPilotSeatObj.transform.parent = urcSeat.transform;
-            ClearLocalTransform(originalPilotSeatObj.transform);
-
-            var originalPilotSeat = MovePilotSeat(pilotSeat, originalPilotSeatObj);
-
             var planeRadio = Instantiate(planeRadioPrefab);
             Undo.RegisterCreatedObjectUndo(planeRadio, "Install URC");
             planeRadio.name = planeRadioPrefab.name;
@@ -110,19 +92,27 @@ namespace UdonRadioCommunication
             planeRadio.transform.parent = vehicleRoot.transform;
             ClearLocalTransform(planeRadio.transform);
 
-            urcSeat.originalPilotSeat = originalPilotSeat;
-            urcSeat.transceiver = planeRadio.GetUdonSharpComponentInChildren<Transceiver>();
-            urcSeat.ApplyProxyModifications();
+            var relayObj = new GameObject("URC_Relay");
+            relayObj.transform.parent = pilotSeat.transform;
+            ClearLocalTransform(relayObj.transform);
+
+            Undo.RegisterCreatedObjectUndo(relayObj, "Install URC");
+            MoveBoxCollider(pilotSeat.gameObject, relayObj);
+
+            var relay = relayObj.AddUdonSharpComponent<SFRelay>();
+            relay.relayTarget = pilotSeat;
+            relay.transceiver = planeRadio.GetUdonSharpComponentInChildren<Transceiver>();
+
+            relay.ApplyProxyModifications();
 
             SetupURC();
         }
 
-        private void Uninstall(PilotSeat pilotSeat, URCPilotSeat urcInstalledSeat)
+        private void Uninstall(PilotSeat pilotSeat, SFRelay relay)
         {
-            MovePilotSeat(pilotSeat, urcInstalledSeat.gameObject);
-            Undo.DestroyObjectImmediate(urcInstalledSeat.originalPilotSeat.gameObject);
-            Undo.DestroyObjectImmediate(urcInstalledSeat.transceiver.gameObject);
-            Undo.DestroyObjectImmediate(UdonSharpEditorUtility.GetBackingUdonBehaviour(urcInstalledSeat));
+            Undo.DestroyObjectImmediate(relay.transceiver.gameObject);
+            pilotSeat.GetComponent<BoxCollider>().enabled = true;
+            Undo.DestroyObjectImmediate(relay.gameObject);
             SetupURC();
         }
 
@@ -142,21 +132,23 @@ namespace UdonRadioCommunication
                 EditorGUILayout.Space();
 
                 using (new EditorGUI.DisabledGroupScope(planeRadioPrefab == null))
+                {
                     foreach (var engineController in engineControllers)
                     {
                         var vehicleRoot = engineController.GetComponentInParent<Rigidbody>()?.gameObject ?? engineController.gameObject;
                         var pilotSeat = vehicleRoot.GetUdonSharpComponentInChildren<PilotSeat>();
-                        var urcInstalledSeat = vehicleRoot.GetUdonSharpComponentInChildren<URCPilotSeat>();
-                        var installed = urcInstalledSeat != null;
+                        var relay = vehicleRoot.GetUdonSharpComponentInChildren<SFRelay>();
+                        var installed = relay != null;
 
                         using (new EditorGUILayout.HorizontalScope())
                         {
                             EditorGUILayout.ObjectField(vehicleRoot, typeof(GameObject), true);
 
                             using (new EditorGUI.DisabledGroupScope(installed)) if (GUILayout.Button("Install", EditorStyles.miniButtonLeft, miniButtonLayout)) Install(vehicleRoot, pilotSeat);
-                            using (new EditorGUI.DisabledGroupScope(!installed)) if (GUILayout.Button("Uninstall", EditorStyles.miniButtonRight, miniButtonLayout)) Uninstall(pilotSeat, urcInstalledSeat);
+                            using (new EditorGUI.DisabledGroupScope(!installed)) if (GUILayout.Button("Uninstall", EditorStyles.miniButtonRight, miniButtonLayout)) Uninstall(pilotSeat, relay);
                         }
                     }
+                }
 
                 EditorGUILayout.Space();
 
