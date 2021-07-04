@@ -173,6 +173,7 @@ namespace UdonRadioCommunication
             this.ApplyProxyModifications();
             receivers = GetUdonSharpComponentsInScene<Receiver>().ToArray();
             this.ApplyProxyModifications();
+            EditorUtility.SetDirty(UdonSharpEditorUtility.GetBackingUdonBehaviour(this));
         }
 
         static private void SetupAll()
