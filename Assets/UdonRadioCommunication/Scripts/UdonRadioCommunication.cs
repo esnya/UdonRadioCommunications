@@ -30,9 +30,13 @@ namespace UdonRadioCommunication
         public float distanceAttenuation = 10.0f;
 
         [Space]
+        public bool autoSetupBeforeSave = true;
+
+        [Space]
 
         public Transmitter[] transmitters;
         public Receiver[] receivers;
+
         private bool playerListDirty = true;
         private VRCPlayerApi[] players = {};
         private Transmitter[] playerTransmitters = {};
@@ -215,6 +219,24 @@ namespace UdonRadioCommunication
             if (GUILayout.Button("Setup"))
             {
                 urc.Setup();
+            }
+        }
+
+        [InitializeOnLoadMethod]
+        private static void RegisterCallback()
+        {
+            EditorSceneManager.sceneSaving += (_, __) => SetupAll();
+        }
+
+        private static void SetupAll()
+        {
+            var urcs = GetUdonSharpComponentsInScene<UdonRadioCommunication>();
+            foreach (var urc in urcs)
+            {
+                if (urc?.autoSetupBeforeSave != true) continue;
+                Debug.Log($"[{urc.gameObject.name}] Auto setup");
+                urc.Setup();
+                EditorUtility.SetDirty(UdonSharpEditorUtility.GetBackingUdonBehaviour(urc));
             }
         }
     }
