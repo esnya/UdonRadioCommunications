@@ -77,7 +77,7 @@ namespace UdonRadioCommunication
             float minDistance = float.MaxValue;
             Receiver result = null;
             foreach (var r in receivers) {
-                if (!r.active || r.frequency != frequency) continue;
+                if (r == null || !r.active || r.frequency != frequency) continue;
 
                 var distance = Vector3.SqrMagnitude(r.transform.position - localPosition);
                 if ((!r.limitRange ||  distance <= r.maxRange) && distance < minDistance) result = r;
@@ -107,7 +107,7 @@ namespace UdonRadioCommunication
 
             foreach (var transmitter in transmitters)
             {
-                if (!transmitter.active) continue;
+                if (transmitter == null || !transmitter.active) continue;
 
                 var owner = Networking.GetOwner(transmitter.gameObject);
                 var index = GetPlayerIndex(owner);
