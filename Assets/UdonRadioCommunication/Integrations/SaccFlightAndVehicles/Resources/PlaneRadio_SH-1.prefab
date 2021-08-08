@@ -196,6 +196,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: -30.000002
       objectReference: {fileID: 0}
+    - target: {fileID: 1444931317865712115, guid: bee4000f6d59cc3418dd98ea707d50fe,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ab0b324ea24509b4ca97bff7563103c2,
+        type: 2}
     - target: {fileID: 1616151762370149502, guid: bee4000f6d59cc3418dd98ea707d50fe,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -356,11 +362,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6811454642972273702, guid: bee4000f6d59cc3418dd98ea707d50fe,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: f39e89225462e184eabc50c0f39a6486,
+        type: 2}
     - target: {fileID: 7422882663793839734, guid: bee4000f6d59cc3418dd98ea707d50fe,
         type: 3}
       propertyPath: m_Name
       value: PlaneRadio_SH-1
       objectReference: {fileID: 0}
+    - target: {fileID: 8307606457100917231, guid: bee4000f6d59cc3418dd98ea707d50fe,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c6c0b64e514086644b232e646f4c2e4b,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bee4000f6d59cc3418dd98ea707d50fe, type: 3}
 --- !u!4 &975790023486125278 stripped

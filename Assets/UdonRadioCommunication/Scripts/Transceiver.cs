@@ -16,6 +16,7 @@ namespace UdonRadioCommunication
         public Receiver receiver;
         public Transmitter transmitter;
         [UdonSynced] public float frequency = 1.0f;
+        public bool startTalkOnActivate = false;
 
         public float frequencyStep = 1.0f, minFrequency = 1.0f, maxFrequency = 8.0f;
         public string frequencyPrefix = "", frequencySuffix = " <size=75%>Ch</size>", frequencyFormat="";
@@ -46,9 +47,6 @@ namespace UdonRadioCommunication
                 ApplyState();
             }
         }
-        public override void OnPickupUseDown() => SetTalking(true);
-
-        public override void OnPickupUseUp() => SetTalking(false);
 
         public void TakeOwnership()
         {
@@ -104,6 +102,8 @@ namespace UdonRadioCommunication
         {
             TakeOwnership();
 
+            if (active && startTalkOnActivate) talking = true;
+
             receiver.SetActive(active && !(exclusive && talking));
             transmitter.SetActive(active && talking);
             receiver.SetFrequency(frequency);
@@ -121,5 +121,15 @@ namespace UdonRadioCommunication
             SetBool("Talking", talking && active);
             SetBool("PowerOn", active);
         }
+
+        #region Pickup
+        public override void OnPickupUseDown() => SetTalking(true);
+        public override void OnPickupUseUp() => SetTalking(false);
+        #endregion
+
+        #region SaccFlightAndVehicles
+        public void PilotEnter() => Activate();
+        public void PilotExit() => Deactivate();
+        #endregion
     }
 }

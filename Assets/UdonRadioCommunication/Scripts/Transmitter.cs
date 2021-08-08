@@ -25,7 +25,7 @@ namespace UdonRadioCommunication
         public void Activate()
         {
             TakeOwnership();
-            active = false;
+            active = true;
             RequestSerialization();
         }
         public void Deactivate()
