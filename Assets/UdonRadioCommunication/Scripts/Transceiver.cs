@@ -12,7 +12,7 @@ namespace UdonRadioCommunication
     {
         [UdonSynced] public bool active, talking;
         public bool exclusive = true;
-        public TextMeshPro frequencyText;
+        [Tooltip("Optional")] public TextMeshPro frequencyText;
         public Receiver receiver;
         public Transmitter transmitter;
         [UdonSynced] public float frequency = 1.0f;
@@ -116,7 +116,7 @@ namespace UdonRadioCommunication
 
         public void UpdateVisual()
         {
-            frequencyText.text = $"{frequencyPrefix}{frequency.ToString(frequencyFormat)}{frequencySuffix}";
+            if (frequencyText != null) frequencyText.text = $"{frequencyPrefix}{frequency.ToString(frequencyFormat)}{frequencySuffix}";
 
             SetBool("Talking", talking && active);
             SetBool("PowerOn", active);
