@@ -1,5 +1,6 @@
 
 using UdonSharp;
+using UnityEngine;
 using VRC.SDKBase;
 
 namespace UdonRadioCommunication
@@ -10,6 +11,8 @@ namespace UdonRadioCommunication
         [UdonSynced] public bool active;
         [UdonSynced] public float frequency = 1.0f;
         public float deactivateDelay = 3.0f;
+        [Tooltip("Optional")] public GameObject ownerDetector;
+
         public void TakeOwnership()
         {
             if (Networking.IsOwner(gameObject)) return;
@@ -24,6 +27,7 @@ namespace UdonRadioCommunication
         }
         public void Activate()
         {
+            if (ownerDetector != null && !Networking.IsOwner(ownerDetector)) return;
             TakeOwnership();
             active = false;
             RequestSerialization();
