@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: URCPilotSeat
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 2554995923a7cf64d8bc9cfaf45fb40a,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: c9a186a1572753344af62282dab7b72d,
     type: 2}
   udonAssembly: 
   assemblyError: 

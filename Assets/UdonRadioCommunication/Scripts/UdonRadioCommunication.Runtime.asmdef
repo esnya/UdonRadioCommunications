@@ -4,14 +4,16 @@
         "VRC.Udon",
         "UdonSharp.Runtime",
         "UdonSharp.Editor",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "UdonToolkitRuntime"
     ],
-    "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": []
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
