@@ -1,4 +1,5 @@
 
+#pragma warning disable IDE0051,IDE1006
 using TMPro;
 using UdonSharp;
 using UnityEngine;
@@ -10,16 +11,53 @@ namespace UdonRadioCommunication
     [DefaultExecutionOrder(1000)]
     public class Transceiver : UdonSharpBehaviour
     {
-        [UdonSynced] public bool active, talking;
+
+        public bool receive, transmit;
         public bool exclusive = true;
-        [Tooltip("Optional")] public TextMeshPro frequencyText;
         public Receiver receiver;
         public Transmitter transmitter;
-        [UdonSynced] public float frequency = 1.0f;
-
+        public float frequency = 1.0f;
         public float frequencyStep = 1.0f, minFrequency = 1.0f, maxFrequency = 8.0f;
-        public string frequencyPrefix = "", frequencySuffix = " <size=75%>Ch</size>", frequencyFormat="";
+        public bool manualSync;
+
+        [Header("Optional")]
+        public TextMeshPro frequencyText;
         [Tooltip("Drives bool parameters \"PowerOn\" and \"Talking\"")] public Animator[] animators = {};
+
+        private string frequencyFormat;
+        private VRCObjectSync objectSync;
+
+        [UdonSynced, FieldChangeCallback(nameof(Frequency))] private float _frequency = 1.0f;
+        private float Frequency {
+            set {
+                receiver.frequency = value;
+                transmitter.frequency = value;
+                if (frequencyText != null) frequencyText.text = string.Format(frequencyFormat, frequency);
+                _frequency = value;
+            }
+            get => _frequency;
+        }
+
+        [UdonSynced, FieldChangeCallback(nameof(Receive))] private bool _receive;
+        private bool Receive {
+            set {
+                receiver._SetActive(value);
+                SetBool("PowerOn", value);
+                _receive = value;
+            }
+            get => _receive;
+        }
+
+        [UdonSynced, FieldChangeCallback(nameof(Transmit))] private bool _transmit;
+        private bool Transmit {
+            set {
+                transmitter._SetActive(value);
+                if (exclusive && Receive) receiver._SetActive(!value);
+                SetBool("Talking", value);
+                _transmit = value;
+            }
+            get => _transmit;
+        }
 
         private void SetBool(string name, bool value)
         {
@@ -35,91 +73,67 @@ namespace UdonRadioCommunication
             var pickup = (VRCPickup)GetComponent(typeof(VRCPickup));
             if (pickup != null) pickup.AutoHold = VRC_Pickup.AutoHoldMode.Yes;
 
-            if (Networking.IsMaster) ApplyState();
-            else UpdateVisual();
+            objectSync = (VRCObjectSync)GetComponent(typeof(VRCObjectSync));
+
+            if (frequencyText) frequencyFormat = frequencyText.text;
         }
 
-        public override void OnOwnershipTransferred(VRCPlayerApi player)
-        {
-            if (player.isLocal)
-            {
-                ApplyState();
-            }
-        }
-        public override void OnPickupUseDown() => SetTalking(true);
+        public override void OnPickupUseDown() => _StartTransmit();
+        public override void OnPickupUseUp() => _StopTransmit();
 
-        public override void OnPickupUseUp() => SetTalking(false);
-
-        public void TakeOwnership()
+        public void _TakeOwnership()
         {
             if (Networking.IsOwner(gameObject)) return;
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
         }
 
-        public void Respawn()
+        public void _Respawn()
         {
-            TakeOwnership();
-            var sync = (VRCObjectSync)GetComponent(typeof(VRCObjectSync));
-            if (sync == null) return;
-            sync.Respawn();
+            if (objectSync == null) return;
+            _TakeOwnership();
+            objectSync.Respawn();
         }
 
-        public void SetTalking(bool value)
+        public void _SetTransmit(bool value)
         {
-            TakeOwnership();
-            talking = value;
-            ApplyState();
+            _TakeOwnership();
+            Transmit = value;
+            if (manualSync) RequestSerialization();
         }
-        public bool GetTalking() => talking;
-        public void StartTalking() => SetTalking(true);
-        public void StopTalking() => SetTalking(false);
-        public void ToggleTalking() => SetTalking(!talking);
+        public bool _GetTransmit() => Transmit;
+        public void _StartTransmit() => _SetTransmit(true);
+        public void _StopTransmit() => _SetTransmit(false);
+        public void _ToggleTransmit() => _SetTransmit(!Transmit);
 
-        public void SetActive(bool value)
+        public void _SetReceive(bool value)
         {
-            TakeOwnership();
-            active = value;
-            ApplyState();
+            _TakeOwnership();
+            Receive = value;
+            if (manualSync) RequestSerialization();
         }
-        public bool GetActive() => active;
-        public void Activate() => SetActive(true);
-        public void Deactivate() => SetActive(false);
-        public void ToggleActive() => SetActive(!active);
+        public bool _GetReceive() => Receive;
+        public void _StartReceive() => _SetReceive(true);
+        public void _StopReceive() => _SetReceive(false);
+        public void _ToggleReceive() => _SetReceive(!Receive);
 
-        public void SetFrequency(float f)
+        public void _SetFrequency(float f)
         {
-            TakeOwnership();
-            frequency = Mathf.Clamp(f, minFrequency, maxFrequency);
-            ApplyState();
+            _TakeOwnership();
+            Frequency = Mathf.Clamp(f, minFrequency, maxFrequency);
+            if (manualSync) RequestSerialization();
         }
-        public void IncrementFrequency() => SetFrequency(frequency + frequencyStep);
-        public void DecrementFrequency() => SetFrequency(frequency - frequencyStep);
+        public void _IncrementFrequency() => _SetFrequency(Frequency + frequencyStep);
+        public void _DecrementFrequency() => _SetFrequency(Frequency - frequencyStep);
 
-        public override void OnDeserialization()
+        public void _SetActive(bool value)
         {
-            UpdateVisual();
+            _TakeOwnership();
+            Transmit = value;
+            Receive = value;
+            if (manualSync) RequestSerialization();
         }
-
-        public void ApplyState()
-        {
-            TakeOwnership();
-
-            receiver.SetActive(active && !(exclusive && talking));
-            transmitter.SetActive(active && talking);
-            receiver.SetFrequency(frequency);
-            transmitter.SetFrequency(frequency);
-
-            RequestSerialization();
-
-            UpdateVisual();
-        }
-
-        public void UpdateVisual()
-        {
-            if (frequencyText != null) frequencyText.text = $"{frequencyPrefix}{frequency.ToString(frequencyFormat)}{frequencySuffix}";
-
-            SetBool("Talking", talking && active);
-            SetBool("PowerOn", active);
-        }
+        public void _Activate() => _SetActive(true);
+        public void _Deactivate() => _SetActive(false);
+        public void _ToggleActive() => _SetActive(!(Transmit || Receive));
     }
 }

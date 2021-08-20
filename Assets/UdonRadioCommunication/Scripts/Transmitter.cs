@@ -13,43 +13,45 @@ namespace UdonRadioCommunication
         public float deactivateDelay = 3.0f;
         [Tooltip("Optional")] public GameObject ownerDetector;
 
-        public void TakeOwnership()
+        public void _TakeOwnership()
         {
             if (Networking.IsOwner(gameObject)) return;
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
         }
 
-        public bool IsActive() => active;
-        public void SetActive(bool value)
+        public bool _IsActive() => active;
+        public void _SetActive(bool value)
         {
-            if (value) Activate();
-            else Deactivate();
+            _TakeOwnership();
+            if (value) _Activate();
+            else _Deactivate();
         }
-        public void Activate()
+        public void _Activate()
         {
             if (ownerDetector != null && !Networking.IsOwner(ownerDetector)) return;
+            _TakeOwnership();
             active = true;
             RequestSerialization();
         }
-        public void Deactivate()
+        public void _Deactivate()
         {
             SendCustomEventDelayedSeconds(nameof(_DelayedDeactivate), deactivateDelay);
         }
 
         public void _DelayedDeactivate()
         {
-            TakeOwnership();
+            _TakeOwnership();
             active = false;
             RequestSerialization();
         }
 
-        public void SetFrequency(float f)
+        public void _SetFrequency(float f)
         {
-            TakeOwnership();
+            _TakeOwnership();
             frequency = f;
             RequestSerialization();
         }
 
-        public float GetFrequency() => frequency;
+        public float _GetFrequency() => frequency;
     }
 }

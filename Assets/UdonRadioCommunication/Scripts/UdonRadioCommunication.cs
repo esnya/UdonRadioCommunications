@@ -3,6 +3,7 @@ using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
+using TMPro;
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
 using System.Collections.Generic;
@@ -65,7 +66,7 @@ namespace UdonRadioCommunication
 
         private void UpdatePlayerVoice(VRCPlayerApi player, float gain, float near, float far, float volumetric, bool lowpassEnabled)
         {
-            // Debug.Log($"[{gameObject.name}] Update player ({player.playerId}:{player.displayName}) voice {gain}/{near}-{far}/{volumetric}");
+            Debug.Log($"[{gameObject.name}] Update player ({player.playerId}:{player.displayName}) voice {gain}/{near}-{far}/{volumetric}/{lowpassEnabled}");
             player.SetVoiceGain(gain);
             player.SetVoiceDistanceNear(Mathf.Clamp(near, 0.0f, MaxDistance));
             player.SetVoiceDistanceFar(Mathf.Clamp(far, 0.0f, MaxDistance));

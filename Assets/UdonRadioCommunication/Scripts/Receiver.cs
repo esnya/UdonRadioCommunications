@@ -31,26 +31,26 @@ namespace UdonRadioCommunication
             }
         }
 
-        public void TakeOwnership()
+        public void _TakeOwnership()
         {
             if (!sync || Networking.IsOwner(gameObject)) return;
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
         }
 
-        public void SetActive(bool value)
+        public void _SetActive(bool value)
         {
-            TakeOwnership();
+            _TakeOwnership();
             active = value;
             if (sync) RequestSerialization();
         }
-        public bool IsActive() => active;
-        public void Activate() => SetActive(true);
+        public bool _IsActive() => active;
+        public void _Activate() => _SetActive(true);
 
-        public void Deactivate() => SetActive(false);
+        public void _Deactivate() => _SetActive(false);
 
-        public void SetFrequency(float f)
+        public void _SetFrequency(float f)
         {
-            TakeOwnership();
+            _TakeOwnership();
             frequency = f;
             if (sync) RequestSerialization();
         }

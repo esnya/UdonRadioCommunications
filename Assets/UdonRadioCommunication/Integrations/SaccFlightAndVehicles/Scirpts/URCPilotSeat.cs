@@ -61,8 +61,8 @@ namespace UdonRadioCommunication
             if (player.isLocal)
             {
                 transceiver.exclusive = false;
-                transceiver.Activate();
-                transceiver.StartTalking();
+                transceiver._StartReceive();
+                transceiver._StartTransmit();
                 SendEvents(onEnterEventTargets, onEnterEventNames);
             }
 
@@ -92,8 +92,8 @@ namespace UdonRadioCommunication
 
             if (player.isLocal)
             {
-                transceiver.StopTalking();
-                transceiver.Deactivate();
+                transceiver._StopTransmit();
+                transceiver._StopReceive();
                 SendEvents(onLeaveEventTargets, onLeaveEventNames);
             }
             originalPilotSeat.PlayerExitPlane(player);
