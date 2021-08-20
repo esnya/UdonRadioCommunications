@@ -32,9 +32,11 @@ namespace UdonRadioCommunication
         public bool autoSetupBeforeSave = true;
 
         [Space]
-
         public Transmitter[] transmitters;
         public Receiver[] receivers;
+
+        [Space]
+        public TextMeshPro debugText;
 
         private bool playerListDirty = true;
         private VRCPlayerApi[] players = {};
@@ -148,6 +150,48 @@ namespace UdonRadioCommunication
                 }
 
                 playerPrevIsDefaultVoice[i] = isDefaultVoice;
+            }
+
+            if (debugText !=  null && debugText.gameObject.activeInHierarchy)
+            {
+                var text = "Transmitters:\n";
+                var activeText = "<color=green>Active</color>";
+                var nonActiveText = "<color=blue>Not Active</color>";
+
+                for (int i = 0; i < transmitters.Length; i++)
+                {
+                    var transmitter = transmitters[i];
+                    if (transmitter == null) continue;
+                    var owner = Networking.GetOwner(transmitter.gameObject);
+                    text += $"\t{i:##0}:{transmitter.gameObject.name}\t{(transmitter.active ? activeText : nonActiveText)}\t{transmitter.frequency:#0.00}\t{owner.playerId:##0}:{owner.displayName}\n";
+                }
+
+                text += "\nReceivers:\n";
+                for (int i = 0; i < receivers.Length; i++)
+                {
+                    var receiver = receivers[i];
+                    if (receiver == null) continue;
+                    var owner = Networking.GetOwner(receiver.gameObject);
+                    text += $"\t{i:##0}:{receiver.gameObject.name}\t{(receiver.active ? activeText : nonActiveText)}\t{receiver.frequency:#0.00}\t{owner.playerId:##0}:{owner.displayName}\n";
+                }
+
+                text += "\nPlayers:\n";
+                var talkingText = "<color=red>Talking</color>";
+                var defaultVoiceText = "<color=green>Default</color>";
+                for (int i = 0; i < players.Length; i++)
+                {
+                    var player = players[i];
+                    if (!Utilities.IsValid(player)) continue;
+
+                    var transmitter = playerTransmitters[i];
+                    var transmitterName = playerTransmitters[i] == null ? "-" : transmitter.gameObject.name;
+                    var receiver = transmitter == null ? (Receiver)null : GetReceiver(transmitter.frequency);
+                    var receiverName = receiver == null ? "-" : receiver.gameObject.name;
+
+                    text += $"\t{i:##0}:{player.playerId:##0}:{player.displayName}\t{transmitterName}\t{receiverName}\t{(player.isLocal ? "<color=blue>Local</color>" : playerPrevIsDefaultVoice[i] ? defaultVoiceText : talkingText)}\n";
+                }
+
+                debugText.text = text;
             }
         }
 
