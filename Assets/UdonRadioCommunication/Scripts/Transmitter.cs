@@ -28,8 +28,7 @@ namespace UdonRadioCommunication
         public void Activate()
         {
             if (ownerDetector != null && !Networking.IsOwner(ownerDetector)) return;
-            TakeOwnership();
-            active = false;
+            active = true;
             RequestSerialization();
         }
         public void Deactivate()
