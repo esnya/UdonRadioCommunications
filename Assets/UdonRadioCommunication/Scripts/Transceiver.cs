@@ -76,6 +76,10 @@ namespace UdonRadioCommunication
             objectSync = (VRCObjectSync)GetComponent(typeof(VRCObjectSync));
 
             if (frequencyText) frequencyFormat = frequencyText.text;
+
+            Frequency = frequency;
+            Receive = receive;
+            Transmit = transmit;
         }
 
         public override void OnPickupUseDown() => _StartTransmit();
