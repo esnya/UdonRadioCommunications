@@ -157,14 +157,14 @@ namespace UdonRadioCommunication
             {
                 var text = "Transmitters:\n";
                 var activeText = "<color=green>Active</color>";
-                var nonActiveText = "<color=blue>Not Active</color>";
+                var nonActiveText = "<color=blue>Disabled</color>";
 
                 for (int i = 0; i < transmitters.Length; i++)
                 {
                     var transmitter = transmitters[i];
                     if (transmitter == null) continue;
                     var owner = Networking.GetOwner(transmitter.gameObject);
-                    text += $"\t{i:##0}:{transmitter.gameObject.name}\t{(transmitter.active ? activeText : nonActiveText)}\t{transmitter.frequency:#0.00}\t{owner.playerId:##0}:{owner.displayName}\n";
+                    text += $"\t{i:##0}:{GetUniqueName(transmitter)}\t{(transmitter.active ? activeText : nonActiveText)}\t{transmitter.frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
                 }
 
                 text += "\nReceivers:\n";
@@ -173,7 +173,7 @@ namespace UdonRadioCommunication
                     var receiver = receivers[i];
                     if (receiver == null) continue;
                     var owner = Networking.GetOwner(receiver.gameObject);
-                    text += $"\t{i:##0}:{receiver.gameObject.name}\t{(receiver.active ? activeText : nonActiveText)}\t{receiver.frequency:#0.00}\t{owner.playerId:##0}:{owner.displayName}\n";
+                    text += $"\t{i:##0}:{GetUniqueName(receiver)}\t{(receiver.active ? activeText : nonActiveText)}\t{receiver.frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
                 }
 
                 text += "\nPlayers:\n";
@@ -185,15 +185,24 @@ namespace UdonRadioCommunication
                     if (!Utilities.IsValid(player)) continue;
 
                     var transmitter = playerTransmitters[i];
-                    var transmitterName = playerTransmitters[i] == null ? "-" : transmitter.gameObject.name;
                     var receiver = transmitter == null ? (Receiver)null : GetReceiver(transmitter.frequency);
-                    var receiverName = receiver == null ? "-" : receiver.gameObject.name;
 
-                    text += $"\t{i:##0}:{player.playerId:##0}:{player.displayName}\t{transmitterName}\t{receiverName}\t{(player.isLocal ? "<color=blue>Local</color>" : playerPrevIsDefaultVoice[i] ? defaultVoiceText : talkingText)}\n";
+                    text += $"\t{i:##0}:{GetDebugPlayerString(player)}\t{GetUniqueName(transmitter)}\t{GetUniqueName(receiver)}\t{(player.isLocal ? "<color=blue>Local</color>" : playerPrevIsDefaultVoice[i] ? defaultVoiceText : talkingText)}\n";
                 }
 
                 debugText.text = text;
             }
+        }
+
+        private string GetUniqueName(Object o)
+        {
+            if (o == null) return " - ";
+            return $"[{o.GetInstanceID():x8}]{o}";
+        }
+
+        private string GetDebugPlayerString(VRCPlayerApi player)
+        {
+            return $"({player.playerId:##0}){player.displayName}";
         }
 
         public override void OnPlayerJoined(VRCPlayerApi player)
