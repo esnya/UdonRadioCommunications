@@ -1,3 +1,4 @@
+#pragma warning disable IDE0051
 
 using UdonSharp;
 using UnityEngine;
@@ -164,7 +165,7 @@ namespace UdonRadioCommunication
                     var transmitter = transmitters[i];
                     if (transmitter == null) continue;
                     var owner = Networking.GetOwner(transmitter.gameObject);
-                    text += $"\t{i:##0}:{GetUniqueName(transmitter)}\t{(transmitter.active ? activeText : nonActiveText)}\t{transmitter.frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
+                    text += $"\t{i:000}:{GetUniqueName(transmitter)}\t{(transmitter.active ? activeText : nonActiveText)}\t{transmitter.frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
                 }
 
                 text += "\nReceivers:\n";
@@ -173,7 +174,7 @@ namespace UdonRadioCommunication
                     var receiver = receivers[i];
                     if (receiver == null) continue;
                     var owner = Networking.GetOwner(receiver.gameObject);
-                    text += $"\t{i:##0}:{GetUniqueName(receiver)}\t{(receiver.active ? activeText : nonActiveText)}\t{receiver.frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
+                    text += $"\t{i:000}:{GetUniqueName(receiver)}\t{(receiver.active ? activeText : nonActiveText)}\t{receiver.frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
                 }
 
                 text += "\nPlayers:\n";
@@ -187,7 +188,7 @@ namespace UdonRadioCommunication
                     var transmitter = playerTransmitters[i];
                     var receiver = transmitter == null ? (Receiver)null : GetReceiver(transmitter.frequency);
 
-                    text += $"\t{i:##0}:{GetDebugPlayerString(player)}\t{GetUniqueName(transmitter)}\t{GetUniqueName(receiver)}\t{(player.isLocal ? "<color=blue>Local</color>" : playerPrevIsDefaultVoice[i] ? defaultVoiceText : talkingText)}\n";
+                    text += $"\t{i:000}:{GetDebugPlayerString(player)}\t{GetUniqueName(transmitter)}\t{GetUniqueName(receiver)}\t{(player.isLocal ? "<color=blue>Local</color>" : playerPrevIsDefaultVoice[i] ? defaultVoiceText : talkingText)}\n";
                 }
 
                 debugText.text = text;
@@ -202,7 +203,7 @@ namespace UdonRadioCommunication
 
         private string GetDebugPlayerString(VRCPlayerApi player)
         {
-            return $"({player.playerId:##0}){player.displayName}";
+            return $"({player.playerId:000}){player.displayName}";
         }
 
         public override void OnPlayerJoined(VRCPlayerApi player)
