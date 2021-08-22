@@ -10,7 +10,6 @@ using TMPro;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
-using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
 using UdonSharpEditor;
 #endif
@@ -198,7 +197,7 @@ namespace UdonRadioCommunication
         private string GetUniqueName(Object o)
         {
             if (o == null) return " - ";
-            return $"[{o.GetInstanceID():x8}]{o}";
+            return $"{o.GetInstanceID():x8}@{o}";
         }
 
         private string GetDebugPlayerString(VRCPlayerApi player)
@@ -229,9 +228,10 @@ namespace UdonRadioCommunication
         {
             this.UpdateProxy();
             transmitters = GetUdonSharpComponentsInScene<Transmitter>().ToArray();
-            this.ApplyProxyModifications();
             receivers = GetUdonSharpComponentsInScene<Receiver>().ToArray();
             this.ApplyProxyModifications();
+
+            EditorUtility.SetDirty(UdonSharpEditorUtility.GetBackingUdonBehaviour(this));
         }
 
         static private void SetupAll()
@@ -241,12 +241,6 @@ namespace UdonRadioCommunication
             {
                 urc.Setup();
             }
-        }
-
-        static UdonRadioCommunication()
-        {
-            EditorSceneManager.sceneOpened += (s,m) => SetupAll();
-            EditorSceneManager.sceneClosing += (s,m) => SetupAll();
         }
 #endif
     }
@@ -291,7 +285,6 @@ namespace UdonRadioCommunication
                 if (urc?.autoSetupBeforeSave != true) continue;
                 Debug.Log($"[{urc.gameObject.name}] Auto setup");
                 urc.Setup();
-                EditorUtility.SetDirty(UdonSharpEditorUtility.GetBackingUdonBehaviour(urc));
             }
         }
     }

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PowerOn
+  m_Name: Transceiver_Talking
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 2100000, guid: 1856b7928a21e284fa348cd123b8960b, type: 2}
+      value: {fileID: 2100000, guid: 9b2f264f8b4023041a29d3f12bf0537f, type: 2}
     attribute: m_Materials.Array.data[1]
     path: 
     classID: 23
@@ -40,7 +40,7 @@ AnimationClip:
       customType: 21
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 2100000, guid: 1856b7928a21e284fa348cd123b8960b, type: 2}
+    - {fileID: 2100000, guid: 9b2f264f8b4023041a29d3f12bf0537f, type: 2}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
