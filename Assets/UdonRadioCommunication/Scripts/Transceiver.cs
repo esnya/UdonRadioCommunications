@@ -116,7 +116,7 @@ namespace UdonRadioCommunication
 
         public void UpdateVisual()
         {
-            frequencyText.text = $"{frequencyPrefix}{frequency.ToString(frequencyFormat)}{frequencySuffix}";
+            if (frequencyText != null) frequencyText.text = $"{frequencyPrefix}{frequency.ToString(frequencyFormat)}{frequencySuffix}";
 
             SetBool("Talking", talking && active);
             SetBool("PowerOn", active);
@@ -130,6 +130,8 @@ namespace UdonRadioCommunication
         #region SaccFlightAndVehicles
         public void PilotEnter() => Activate();
         public void PilotExit() => Deactivate();
+        public void SFEXT_O_PilotEnter() => Activate();
+        public void SFEXT_O_PilotExit() => Deactivate();
         #endregion
     }
 }
