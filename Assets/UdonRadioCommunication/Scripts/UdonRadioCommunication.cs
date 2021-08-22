@@ -278,7 +278,7 @@ namespace UdonRadioCommunication
         }
 
         [InitializeOnLoadMethod]
-        private static void RegisterCallback()
+        public void RegisterCallback()
         {
             EditorSceneManager.sceneSaving += (_, __) => SetupAll();
         }

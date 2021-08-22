@@ -1,4 +1,4 @@
-
+#pragma warning disable IDE0051,IDE1006
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
@@ -45,7 +45,6 @@ namespace UdonRadioCommunication
         }
         public bool _IsActive() => active;
         public void _Activate() => _SetActive(true);
-
         public void _Deactivate() => _SetActive(false);
 
         public void _SetFrequency(float f)
