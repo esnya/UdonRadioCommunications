@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: TransceiverEnabledTrigger
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: c33036e3c3639b54abdf500d1c36a497,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 7051fed6321e29148907c5393c74b307,
     type: 2}
   udonAssembly: 
   assemblyError: 

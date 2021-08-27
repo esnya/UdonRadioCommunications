@@ -91,15 +91,25 @@ namespace UdonRadioCommunication
             SetupURC();
         }
 
+        private GameObject GetSeatedUserOnly(UdonSharpBehaviour seat)
+        {
+            var type = seat.GetType();
+            return (
+                type.GetField("LeaveButton")?.GetValue(seat) // 1.4 or before
+                    ?? type.GetField("PilotOnly")?.GetValue(seat)
+                    ?? type.GetField("PassengerOnly")?.GetValue(seat)
+             ) as GameObject;
+        }
+
         private void OnGUI()
         {
             var scene = SceneManager.GetActiveScene();
             var pilotSeats = scene.GetRootGameObjects().SelectMany(o => o.GetUdonSharpComponentsInChildren<PilotSeat>());
             var passengerSeats = scene.GetRootGameObjects().SelectMany(o => o.GetUdonSharpComponentsInChildren<PassengerSeat>());
 
-            var seats = pilotSeats.Select(s => (s.gameObject, s.EngineControl, s.LeaveButton, true))
-                .Concat(passengerSeats.Select(s => (s.gameObject, s.EngineControl, s.LeaveButton, false)))
-                .Where(s => s.EngineControl != null);
+            var seats = pilotSeats.Select(s => (s.gameObject, s.EngineControl, seatedUserOnly: GetSeatedUserOnly(s), true))
+                .Concat(passengerSeats.Select(s => (s.gameObject, s.EngineControl, seatedUserOnly: GetSeatedUserOnly(s), false)))
+                .Where(s => s.EngineControl != null && s.seatedUserOnly != null);
 
             using (var scrollScope = new EditorGUILayout.ScrollViewScope(scrollPosition))
             {

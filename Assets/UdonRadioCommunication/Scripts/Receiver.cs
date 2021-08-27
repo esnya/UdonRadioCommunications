@@ -13,9 +13,12 @@ namespace UdonRadioCommunication
         public bool limitRange = true;
         public float maxRange = 5.0f;
         public bool sync = true;
+        public GameObject indicator;
 
         [HideInInspector][UdonSynced] private bool syncActive;
         [HideInInspector][UdonSynced] private float syncFrequency;
+
+        private void Start() => UpdateIndicator();
 
         public override void OnPreSerialization()
         {
@@ -28,7 +31,13 @@ namespace UdonRadioCommunication
             if (sync) {
                 active = syncActive;
                 frequency = syncFrequency;
+                UpdateIndicator();
             }
+        }
+
+        private void UpdateIndicator()
+        {
+            if (indicator != null) indicator.SetActive(active);
         }
 
         public void _TakeOwnership()
@@ -41,11 +50,13 @@ namespace UdonRadioCommunication
         {
             _TakeOwnership();
             active = value;
+            UpdateIndicator();
             if (sync) RequestSerialization();
         }
         public bool _IsActive() => active;
         public void _Activate() => _SetActive(true);
         public void _Deactivate() => _SetActive(false);
+        public void _ToggleActive() => _SetActive(!active);
 
         public void _SetFrequency(float f)
         {
