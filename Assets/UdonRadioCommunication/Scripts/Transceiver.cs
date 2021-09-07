@@ -9,7 +9,7 @@ using VRC.SDKBase;
 
 namespace UdonRadioCommunication
 {
-    [DefaultExecutionOrder(1000), UdonBehaviourSyncMode(BehaviourSyncMode.Continuous)]
+    [DefaultExecutionOrder(1000), UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class Transceiver : UdonSharpBehaviour
     {
 
@@ -95,6 +95,7 @@ namespace UdonRadioCommunication
         {
             _TakeOwnership();
             Transmit = value;
+            RequestSerialization();
         }
         public bool _GetTransmit() => Transmit;
         public void _StartTransmit() => _SetTransmit(true);
@@ -105,6 +106,7 @@ namespace UdonRadioCommunication
         {
             _TakeOwnership();
             Receive = value;
+            RequestSerialization();
         }
         public bool _GetReceive() => Receive;
         public void _StartReceive() => _SetReceive(true);
@@ -115,6 +117,7 @@ namespace UdonRadioCommunication
         {
             _TakeOwnership();
             Frequency = Mathf.Clamp(f, minFrequency, maxFrequency);
+            RequestSerialization();
         }
         public void _IncrementFrequency() => _SetFrequency(Frequency + frequencyStep);
         public void _DecrementFrequency() => _SetFrequency(Frequency - frequencyStep);
@@ -124,6 +127,7 @@ namespace UdonRadioCommunication
             _TakeOwnership();
             Transmit = value;
             Receive = value;
+            RequestSerialization();
         }
         public void _Activate() => _SetActive(true);
         public void _Deactivate() => _SetActive(false);
