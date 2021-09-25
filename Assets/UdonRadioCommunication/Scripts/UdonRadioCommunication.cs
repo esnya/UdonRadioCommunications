@@ -16,7 +16,7 @@ using UdonSharpEditor;
 
 namespace UdonRadioCommunication
 {
-    [UdonBehaviourSyncMode(BehaviourSyncMode.NoVariableSync)]
+    [UdonBehaviourSyncMode(/*BehaviourSyncMode.None*/ BehaviourSyncMode.NoVariableSync)]
     public class UdonRadioCommunication : UdonSharpBehaviour
     {
         public const float MaxDistance = 1000000.0f;
@@ -162,7 +162,8 @@ namespace UdonRadioCommunication
 
             if (debugText != null && debugText.gameObject.activeInHierarchy || debugTextUi != null && ((Component)debugTextUi).gameObject.activeInHierarchy)
             {
-                var text = "<color=red>!! For Debug Only !!</color>\n\nTransmitters:\n";
+                var text = "<color=red>FOR DEBUG ONLY: This screen will worsen performance</color>\n\nTransmitters:\n";
+                var closeText = "<color=red>Too Close (Active)</color>";
                 var activeText = "<color=green>Active</color>";
                 var nonActiveText = "<color=blue>Disabled</color>";
 
@@ -171,8 +172,8 @@ namespace UdonRadioCommunication
                     var transmitter = transmitters[i];
                     if (transmitter == null) continue;
                     var owner = Networking.GetOwner(transmitter.gameObject);
-                    var near = (transmitter.transform.position - localPlayerPosition).sqrMagnitude < Mathf.Pow(transmitter.minDistance, 2);
-                    text += $"\t{i:000}:{GetUniqueName(transmitter)}\t{(transmitter.active ? activeText : nonActiveText)}\t{transmitter.frequency:#0.00}\t{(near ? "<color=red>Too Close</color>" : "<color=green>Range Clear</color>")}\t{GetDebugPlayerString(owner)}\n";
+                    var tooClose = (transmitter.transform.position - localPlayerPosition).sqrMagnitude < Mathf.Pow(transmitter.minDistance, 2);
+                    text += $"\t{i:000}:{GetUniqueName(transmitter)}\t{(transmitter.active ? (tooClose ? closeText : activeText) : nonActiveText)}\t{transmitter.frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
                 }
 
                 text += "\nReceivers:\n";
