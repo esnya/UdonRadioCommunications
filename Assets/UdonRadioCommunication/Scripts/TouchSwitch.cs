@@ -80,8 +80,8 @@ namespace UdonRadioCommunication
 #endif
             if (inVR)
             {
-                var radius = sphereCollider.radius * transform.lossyScale.x;
-                var center = Vector3.Scale(sphereCollider.center, transform.lossyScale);
+                var radius = sphereCollider.radius;
+                var center = sphereCollider.center;
 
                 lastSwitchPosition = transform.position;
 
