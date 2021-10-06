@@ -16,6 +16,11 @@ namespace UdonRadioCommunication
 #if URC_SF
         private void Start()
         {
+            SendCustomEventDelayedSeconds(nameof(_Inject), 10);
+        }
+
+        public void _Inject()
+        {
             InjectInVehicleOnly();
             InjectSeatedPlayerOnly();
         }

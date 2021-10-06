@@ -26,10 +26,6 @@ namespace UdonRadioCommunication
         [Range(0, 1)] public float hapticAmplitude = 0.5f;
         [Range(0, 1)] public float hapticFrequency = 0.1f;
 
-#if UNITY_EDITOR
-        [Header("Debug")]
-        public bool debugIsPressed;
-#endif
         [HideInInspector] public bool inVR;
 
         private bool prevIsPressed;
@@ -48,9 +44,6 @@ namespace UdonRadioCommunication
 
         private bool DetectTouch(VRC_Pickup.PickupHand hand, Vector3 switchPosition, float radius, Vector3 offset)
         {
-#if UNITY_EDITOR
-            if (debugIsPressed) return true;
-#endif
             var isLeft = hand == VRC_Pickup.PickupHand.Left;
 
             var localPlayer = Networking.LocalPlayer;
@@ -75,10 +68,7 @@ namespace UdonRadioCommunication
 
         public override void PostLateUpdate()
         {
-#if UNITY_EDITOR
-            if (debugIsPressed) inVR = true;
-#endif
-            if (inVR)
+            if (Networking.LocalPlayer.IsUserInVR())
             {
                 var radius = sphereCollider.radius;
                 var center = sphereCollider.center;
@@ -95,7 +85,8 @@ namespace UdonRadioCommunication
 
                 lastSwitchPosition = transform.position;
             }
-            else if (enableDesktopKey)
+
+            if (enableDesktopKey)
             {
                 if (Input.GetKeyDown(desktopKey)) OnTouchStart(VRC_Pickup.PickupHand.None);
                 else if (Input.GetKeyUp(desktopKey)) OnTouchEnd();

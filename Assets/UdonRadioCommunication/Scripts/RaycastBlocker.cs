@@ -6,9 +6,9 @@ namespace UdonRadioCommunication
     [UdonBehaviourSyncMode(BehaviourSyncMode.NoVariableSync)]
     public class RaycastBlocker : UdonSharpBehaviour
     {
-        private void Start()
+        public override void OnPlayerJoined(VRCPlayerApi player)
         {
-            if (!Networking.LocalPlayer.IsUserInVR())
+            if (player.isLocal && !player.IsUserInVR())
             {
                 gameObject.SetActive(false);
             }
