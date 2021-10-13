@@ -12,6 +12,13 @@ namespace UdonRadioCommunication
         public string eventName;
         public bool ownerOnly = false;
 
+        [Header("Knob")]
+        public bool knobMode = false;
+        public string onKnobRight, onKnobLeft;
+        public Vector3 knobAxis = Vector3.forward;
+        public Vector3 knobUp = Vector3.up;
+        public float knobStep = 10.0f;
+
         [Header("Desktop Key")]
         public bool enableDesktopKey;
         public KeyCode desktopKey;
@@ -28,9 +35,10 @@ namespace UdonRadioCommunication
 
         [HideInInspector] public bool inVR;
 
-        private bool prevIsPressed;
+        private bool prevTouch;
         private Vector3 lastSwitchPosition;
         private SphereCollider sphereCollider;
+        private Quaternion inverseHandRotaion;
 
         private void Start()
         {
@@ -55,11 +63,29 @@ namespace UdonRadioCommunication
             return (switchPosition + offset - tipPosition).sqrMagnitude < Mathf.Pow(radius, 2);
         }
 
+        private void PlayHaptic(VRC_Pickup.PickupHand hand)
+        {
+            Networking.LocalPlayer.PlayHapticEventInHand(hand, hapticDuration, hapticAmplitude, hapticFrequency);
+        }
+
+        private void PlaySound()
+        {
+            if (audioSource != null && switchSound != null) audioSource.PlayOneShot(switchSound);
+        }
+
         private void OnTouchStart(VRC_Pickup.PickupHand hand)
         {
-            if (eventTarget != null && (!ownerOnly || Networking.IsOwner(eventTarget.gameObject))) eventTarget.SendCustomEvent(eventName);
-            if (enableHaptics && inVR) Networking.LocalPlayer.PlayHapticEventInHand(hand, hapticDuration, hapticAmplitude, hapticFrequency);
-            if (audioSource != null && switchSound != null) audioSource.PlayOneShot(switchSound);
+            if ((hand == VRC_Pickup.PickupHand.None || !knobMode) && eventTarget != null && (!ownerOnly || Networking.IsOwner(eventTarget.gameObject)))
+            {
+                PlaySound();
+                eventTarget.SendCustomEvent(eventName);
+            }
+            if (enableHaptics)  PlayHaptic(hand);
+
+            if (hand != VRC_Pickup.PickupHand.None)
+            {
+                inverseHandRotaion = Quaternion.Inverse(Networking.LocalPlayer.GetTrackingData(hand == VRC_Pickup.PickupHand.Left ? VRCPlayerApi.TrackingDataType.LeftHand : VRCPlayerApi.TrackingDataType.RightHand).rotation);
+            }
         }
 
         private void OnTouchEnd()
@@ -77,11 +103,26 @@ namespace UdonRadioCommunication
 
                 var touchRight = DetectTouch(VRC_Pickup.PickupHand.Right, lastSwitchPosition, radius, center);
                 var touch = touchRight || DetectTouch(VRC_Pickup.PickupHand.Left, lastSwitchPosition, radius, center);
+                var hand = touchRight ? VRC_Pickup.PickupHand.Right : VRC_Pickup.PickupHand.Left;
 
-                if (touch && !prevIsPressed) OnTouchStart(touchRight ? VRC_Pickup.PickupHand.Right : VRC_Pickup.PickupHand.Left);
-                else if (!touch && prevIsPressed) OnTouchEnd();
+                if (touch && !prevTouch) OnTouchStart(hand);
+                else if (!touch && prevTouch) OnTouchEnd();
 
-                prevIsPressed = touch;
+                if (touch && knobMode)
+                {
+                    var handRotation = Networking.LocalPlayer.GetTrackingData(touchRight ? VRCPlayerApi.TrackingDataType.RightHand : VRCPlayerApi.TrackingDataType.LeftHand).rotation;
+                    var worldUp = transform.TransformDirection(knobUp);
+                    var angle = Vector3.SignedAngle(worldUp, handRotation * inverseHandRotaion * worldUp, transform.TransformDirection(knobAxis));
+                    if (Mathf.Abs(angle) >= knobStep)
+                    {
+                        PlayHaptic(hand);
+                        PlaySound();
+                        eventTarget.SendCustomEvent(angle > 0 ? onKnobRight : onKnobLeft);
+                        inverseHandRotaion = Quaternion.Inverse(handRotation);
+                    }
+                }
+
+                prevTouch = touch;
 
                 lastSwitchPosition = transform.position;
             }

@@ -116,7 +116,7 @@ namespace UdonRadioCommunication
         public void _SetFrequency(float f)
         {
             _TakeOwnership();
-            Frequency = Mathf.Clamp(f, minFrequency, maxFrequency);
+            Frequency = f > maxFrequency ? minFrequency : (f < minFrequency ? maxFrequency : f);
             RequestSerialization();
         }
         public void _IncrementFrequency() => _SetFrequency(Frequency + frequencyStep);
