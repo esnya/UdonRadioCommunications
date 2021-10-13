@@ -63,6 +63,7 @@ namespace UdonRadioCommunication
 
         private void SetBool(string name, bool value)
         {
+            if (animators == null) return;
             foreach (var animator in animators)
             {
                 if (animator == null) continue;
