@@ -94,7 +94,10 @@ namespace UdonRadioCommunication
 
         public override void PostLateUpdate()
         {
-            if (Networking.LocalPlayer.IsUserInVR())
+            var localPlayer = Networking.LocalPlayer;
+            if (localPlayer == null) return;
+
+            if (localPlayer.IsUserInVR())
             {
                 var radius = sphereCollider.radius;
                 var center = sphereCollider.center;
