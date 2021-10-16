@@ -11,6 +11,7 @@ namespace UdonRadioCommunication
         public UdonSharpBehaviour eventTarget;
         public string eventName;
         public bool ownerOnly = false;
+        public bool disableInteractInVR = true;
 
         [Header("Knob")]
         public bool knobMode = false;
@@ -47,7 +48,10 @@ namespace UdonRadioCommunication
 
         public override void OnPlayerJoined(VRCPlayerApi player)
         {
-            if (player.isLocal) inVR = Networking.LocalPlayer.IsUserInVR();
+            if (player.isLocal)
+            {
+                if (disableInteractInVR && Networking.LocalPlayer.IsUserInVR()) DisableInteractive = true;
+            }
         }
 
         private bool DetectTouch(VRC_Pickup.PickupHand hand, Vector3 switchPosition, float radius, Vector3 offset)
