@@ -44,14 +44,12 @@ namespace UdonRadioCommunication
         private void Start()
         {
             sphereCollider = GetComponent<SphereCollider>();
+            SendCustomEventDelayedFrames(nameof(_PostStart), 1);
         }
 
-        public override void OnPlayerJoined(VRCPlayerApi player)
+        public void _PostStart()
         {
-            if (player.isLocal)
-            {
-                if (disableInteractInVR && Networking.LocalPlayer.IsUserInVR()) DisableInteractive = true;
-            }
+            if (disableInteractInVR && Networking.LocalPlayer.IsUserInVR()) DisableInteractive = true;
         }
 
         private bool DetectTouch(VRC_Pickup.PickupHand hand, Vector3 switchPosition, float radius, Vector3 offset)
