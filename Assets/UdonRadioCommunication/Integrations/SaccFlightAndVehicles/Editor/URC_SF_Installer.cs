@@ -47,7 +47,7 @@ namespace UdonRadioCommunication
                 var buildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
                 var syms = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
                 PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, $"URC_SF;{syms}");
-                AssetDatabase.Reload();
+                AssetDatabase.Refresh();
             }
         }
 #else
