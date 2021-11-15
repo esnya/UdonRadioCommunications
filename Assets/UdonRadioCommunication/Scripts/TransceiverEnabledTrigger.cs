@@ -11,10 +11,12 @@ namespace UdonRadioCommunication
     public class TransceiverEnabledTrigger : UdonSharpBehaviour
     {
         public Transceiver transceiver;
+        public bool defaultReceive = true, defaultTransmit = true;
 
         private void OnEnable()
         {
-            transceiver._Activate();
+            transceiver._SetReceive(defaultReceive);
+            transceiver._SetTransmit(defaultTransmit);
         }
 
         private void OnDisable()
