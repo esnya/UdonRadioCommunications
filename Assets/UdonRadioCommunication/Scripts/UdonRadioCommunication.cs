@@ -1,3 +1,4 @@
+#pragma warning disable IDE0051
 
 using UdonSharp;
 using UnityEngine;
@@ -9,14 +10,13 @@ using TMPro;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
-using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
 using UdonSharpEditor;
 #endif
 
 namespace UdonRadioCommunication
 {
-    [UdonBehaviourSyncMode(BehaviourSyncMode.NoVariableSync)]
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class UdonRadioCommunication : UdonSharpBehaviour
     {
         public const float MaxDistance = 1000000.0f;
@@ -38,6 +38,7 @@ namespace UdonRadioCommunication
 
         [Space]
         public TextMeshPro debugText;
+        public TextMeshProUGUI debugTextUi;
 
         private bool playerListDirty = true;
         private VRCPlayerApi[] players = {};
@@ -80,10 +81,10 @@ namespace UdonRadioCommunication
             float minDistance = float.MaxValue;
             Receiver result = null;
             foreach (var r in receivers) {
-                if (!r.active || r.frequency != frequency) continue;
+                if (r == null || !r.active || r.frequency != frequency) continue;
 
                 var distance = Vector3.SqrMagnitude(r.transform.position - localPosition);
-                if ((!r.limitRange ||  distance <= r.maxRange) && distance < minDistance) result = r;
+                if ((!r.limitRange || distance <= Mathf.Pow(r.maxRange, 2.0f)) && distance < minDistance) result = r;
             }
             return result;
         }
@@ -108,17 +109,23 @@ namespace UdonRadioCommunication
                 playerTransmitters[i] = null;
             }
 
+            var localPlayerPosition = localPlayer.GetPosition();
             foreach (var transmitter in transmitters)
             {
-                if (!transmitter.active) continue;
+                if (
+                    transmitter == null
+                    || !transmitter.active
+                    || (transmitter.transform.position - localPlayerPosition).sqrMagnitude < Mathf.Pow(transmitter.minDistance, 2)
+                ) continue;
 
                 var owner = Networking.GetOwner(transmitter.gameObject);
                 var index = GetPlayerIndex(owner);
                 if (index < 0) continue;
+
                 playerTransmitters[index] = transmitter;
+
             }
 
-            var localPlayerPosition = localPlayer.GetPosition();
             for (int i = 0; i < players.Length; i++)
             {
                 var remotePlayer = players[i];
@@ -153,18 +160,20 @@ namespace UdonRadioCommunication
                 playerPrevIsDefaultVoice[i] = isDefaultVoice;
             }
 
-            if (debugText !=  null && debugText.gameObject.activeInHierarchy)
+            if (debugText != null && debugText.gameObject.activeInHierarchy || debugTextUi != null && ((Component)debugTextUi).gameObject.activeInHierarchy)
             {
-                var text = "Transmitters:\n";
+                var text = "<color=red>FOR DEBUG ONLY: This screen will worsen performance</color>\n\nTransmitters:\n";
+                var closeText = "<color=red>Too Close (Active)</color>";
                 var activeText = "<color=green>Active</color>";
-                var nonActiveText = "<color=blue>Not Active</color>";
+                var nonActiveText = "<color=blue>Disabled</color>";
 
                 for (int i = 0; i < transmitters.Length; i++)
                 {
                     var transmitter = transmitters[i];
                     if (transmitter == null) continue;
                     var owner = Networking.GetOwner(transmitter.gameObject);
-                    text += $"\t{i:##0}:{transmitter.gameObject.name}\t{(transmitter.active ? activeText : nonActiveText)}\t{transmitter.frequency:#0.00}\t{owner.playerId:##0}:{owner.displayName}\n";
+                    var tooClose = (transmitter.transform.position - localPlayerPosition).sqrMagnitude < Mathf.Pow(transmitter.minDistance, 2);
+                    text += $"\t{i:000}:{GetUniqueName(transmitter)}\t{(transmitter.active ? (tooClose ? closeText : activeText) : nonActiveText)}\t{transmitter.frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
                 }
 
                 text += "\nReceivers:\n";
@@ -173,7 +182,7 @@ namespace UdonRadioCommunication
                     var receiver = receivers[i];
                     if (receiver == null) continue;
                     var owner = Networking.GetOwner(receiver.gameObject);
-                    text += $"\t{i:##0}:{receiver.gameObject.name}\t{(receiver.active ? activeText : nonActiveText)}\t{receiver.frequency:#0.00}\t{owner.playerId:##0}:{owner.displayName}\n";
+                    text += $"\t{i:000}:{GetUniqueName(receiver)}\t{(receiver.active ? activeText : nonActiveText)}\t{receiver.frequency:#0.00}\t{(receiver.sync ? "Sync" : "Local")}\t{GetDebugPlayerString(owner)}\n";
                 }
 
                 text += "\nPlayers:\n";
@@ -185,15 +194,25 @@ namespace UdonRadioCommunication
                     if (!Utilities.IsValid(player)) continue;
 
                     var transmitter = playerTransmitters[i];
-                    var transmitterName = playerTransmitters[i] == null ? "-" : transmitter.gameObject.name;
                     var receiver = transmitter == null ? (Receiver)null : GetReceiver(transmitter.frequency);
-                    var receiverName = receiver == null ? "-" : receiver.gameObject.name;
 
-                    text += $"\t{i:##0}:{player.playerId:##0}:{player.displayName}\t{transmitterName}\t{receiverName}\t{(player.isLocal ? "<color=blue>Local</color>" : playerPrevIsDefaultVoice[i] ? defaultVoiceText : talkingText)}\n";
+                    text += $"\t{i:000}:{GetDebugPlayerString(player)}\t{GetUniqueName(transmitter)}\t{GetUniqueName(receiver)}\t{(player.isLocal ? "<color=blue>Local</color>" : playerPrevIsDefaultVoice[i] ? defaultVoiceText : talkingText)}\n";
                 }
 
-                debugText.text = text;
+                if (debugText != null) debugText.text = text;
+                if (debugTextUi != null) debugTextUi.text = text;
             }
+        }
+
+        private string GetUniqueName(Object o)
+        {
+            if (o == null) return " - ";
+            return $"{o.GetInstanceID():x8}@{o}";
+        }
+
+        private string GetDebugPlayerString(VRCPlayerApi player)
+        {
+            return $"({player.playerId:000}){player.displayName}";
         }
 
         public override void OnPlayerJoined(VRCPlayerApi player)
@@ -220,8 +239,13 @@ namespace UdonRadioCommunication
             this.UpdateProxy();
             transmitters = GetUdonSharpComponentsInScene<Transmitter>().ToArray();
             this.ApplyProxyModifications();
+            EditorUtility.SetDirty(UdonSharpEditorUtility.GetBackingUdonBehaviour(this));
+
+            this.UpdateProxy();
             receivers = GetUdonSharpComponentsInScene<Receiver>().ToArray();
             this.ApplyProxyModifications();
+
+            EditorUtility.SetDirty(UdonSharpEditorUtility.GetBackingUdonBehaviour(this));
         }
 
         static private void SetupAll()
@@ -231,12 +255,6 @@ namespace UdonRadioCommunication
             {
                 urc.Setup();
             }
-        }
-
-        static UdonRadioCommunication()
-        {
-            EditorSceneManager.sceneOpened += (s,m) => SetupAll();
-            EditorSceneManager.sceneClosing += (s,m) => SetupAll();
         }
 #endif
     }
@@ -268,7 +286,7 @@ namespace UdonRadioCommunication
         }
 
         [InitializeOnLoadMethod]
-        private static void RegisterCallback()
+        static public void RegisterCallback()
         {
             EditorSceneManager.sceneSaving += (_, __) => SetupAll();
         }
@@ -281,7 +299,6 @@ namespace UdonRadioCommunication
                 if (urc?.autoSetupBeforeSave != true) continue;
                 Debug.Log($"[{urc.gameObject.name}] Auto setup");
                 urc.Setup();
-                EditorUtility.SetDirty(UdonSharpEditorUtility.GetBackingUdonBehaviour(urc));
             }
         }
     }

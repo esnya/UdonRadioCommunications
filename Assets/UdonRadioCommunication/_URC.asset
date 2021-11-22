@@ -1,0 +1,1106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba914234891ddd458239d9a948eaa9a, type: 3}
+  m_Name: _URC
+  m_EditorClassIdentifier: 
+  udonVariables:
+  - prefabInstance: {fileID: 7422882663793839734, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+      type: 3}
+    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/Resources/SFVehicleTransceiver_SF-1.prefab
+    udonVariables:
+    - udonInstance: {fileID: 8044369878589353289, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: DEC
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 206386918371787431, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: desktopKey
+        objectReference: {fileID: 0}
+        value: None
+      - symbolName: disableInteractInVR
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: enableDesktopKey
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: enableHaptics
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: eventName
+        objectReference: {fileID: 0}
+        value: _DecrementFrequency
+      - symbolName: eventTarget
+        objectReference: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+      - symbolName: hapticAmplitude
+        objectReference: {fileID: 0}
+        value: 0.5
+      - symbolName: hapticDuration
+        objectReference: {fileID: 0}
+        value: 0.2
+      - symbolName: hapticFrequency
+        objectReference: {fileID: 0}
+        value: 0.1
+      - symbolName: inVR
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobAxis
+        objectReference: {fileID: 0}
+        value: (0.0, 0.0, 1.0)
+      - symbolName: knobMode
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobStep
+        objectReference: {fileID: 0}
+        value: 10
+      - symbolName: knobUp
+        objectReference: {fileID: 0}
+        value: (0.0, 1.0, 0.0)
+      - symbolName: onKnobLeft
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: onKnobRight
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: ownerOnly
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: switchSound
+        objectReference: {fileID: 8300000, guid: 484bb1a0a09f3f644806c74d9c794a58,
+          type: 3}
+        value: MenuSelect (UnityEngine.AudioClip)
+    - udonInstance: {fileID: 744255598630967915, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: EnabledTrigger
+      variables:
+      - symbolName: transceiver
+        objectReference: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 3058926742901724699, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: INC
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 206386918371787431, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: desktopKey
+        objectReference: {fileID: 0}
+        value: Minus
+      - symbolName: disableInteractInVR
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: enableDesktopKey
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: enableHaptics
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: eventName
+        objectReference: {fileID: 0}
+        value: _IncrementFrequency
+      - symbolName: eventTarget
+        objectReference: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+      - symbolName: hapticAmplitude
+        objectReference: {fileID: 0}
+        value: 0.5
+      - symbolName: hapticDuration
+        objectReference: {fileID: 0}
+        value: 0.2
+      - symbolName: hapticFrequency
+        objectReference: {fileID: 0}
+        value: 0.1
+      - symbolName: inVR
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobAxis
+        objectReference: {fileID: 0}
+        value: (0.0, 0.0, 1.0)
+      - symbolName: knobMode
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobStep
+        objectReference: {fileID: 0}
+        value: 10
+      - symbolName: knobUp
+        objectReference: {fileID: 0}
+        value: (0.0, 1.0, 0.0)
+      - symbolName: onKnobLeft
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: onKnobRight
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: ownerOnly
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: switchSound
+        objectReference: {fileID: 8300000, guid: 484bb1a0a09f3f644806c74d9c794a58,
+          type: 3}
+        value: MenuSelect (UnityEngine.AudioClip)
+    - udonInstance: {fileID: 1444931317865712115, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: Receiver
+      variables:
+      - symbolName: active
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: frequency
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: indicator
+        objectReference: {fileID: 5204799180407210142, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: RX (UnityEngine.GameObject)
+      - symbolName: limitRange
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: maxRange
+        objectReference: {fileID: 0}
+        value: 5
+      - symbolName: sync
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: UdonTypeID
+        objectReference: {fileID: 0}
+        value: UdonRadioCommunication.Receiver
+    - udonInstance: {fileID: 2700790021508780596, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: RX
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 206386918371787431, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: desktopKey
+        objectReference: {fileID: 0}
+        value: L
+      - symbolName: disableInteractInVR
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: enableDesktopKey
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: enableHaptics
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: eventName
+        objectReference: {fileID: 0}
+        value: _ToggleReceive
+      - symbolName: eventTarget
+        objectReference: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+      - symbolName: hapticAmplitude
+        objectReference: {fileID: 0}
+        value: 0.5
+      - symbolName: hapticDuration
+        objectReference: {fileID: 0}
+        value: 0.2
+      - symbolName: hapticFrequency
+        objectReference: {fileID: 0}
+        value: 0.1
+      - symbolName: inVR
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobAxis
+        objectReference: {fileID: 0}
+        value: (0.0, 0.0, 1.0)
+      - symbolName: knobMode
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobStep
+        objectReference: {fileID: 0}
+        value: 10
+      - symbolName: knobUp
+        objectReference: {fileID: 0}
+        value: (0.0, 1.0, 0.0)
+      - symbolName: onKnobLeft
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: onKnobRight
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: ownerOnly
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: switchSound
+        objectReference: {fileID: 8300000, guid: 484bb1a0a09f3f644806c74d9c794a58,
+          type: 3}
+        value: MenuSelect (UnityEngine.AudioClip)
+    - udonInstance: {fileID: 5148093546528513602, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: SFVehicleTransceiver_SF-1
+      variables:
+      - symbolName: inVehicleOnly
+        objectReference: {fileID: 8192073424493444320, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: InVehicleOnly (UnityEngine.Transform)
+      - symbolName: seatedPlayerOnly
+        objectReference: {fileID: 6033713933725025841, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: SeatOnly (UnityEngine.Transform)
+    - udonInstance: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: Transceiver
+      variables:
+      - symbolName: exclusive
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: frequency
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: frequencyStep
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: frequencyText
+        objectReference: {fileID: 45782310221632630, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Channel (TMPro.TextMeshPro)
+      - symbolName: maxFrequency
+        objectReference: {fileID: 0}
+        value: 4
+      - symbolName: minFrequency
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: receiver
+        objectReference: {fileID: 1444931317865712115, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+      - symbolName: transmitter
+        objectReference: {fileID: 6811454642972273702, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Transmitter (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 6811454642972273702, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: Transmitter
+      variables:
+      - symbolName: active
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: deactivateDelay
+        objectReference: {fileID: 0}
+        value: 0
+      - symbolName: frequency
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: indicator
+        objectReference: {fileID: 6151286723788040603, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: TX (UnityEngine.GameObject)
+      - symbolName: minDistance
+        objectReference: {fileID: 0}
+        value: 5
+    - udonInstance: {fileID: 6942311959307636596, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: TX
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 206386918371787431, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: desktopKey
+        objectReference: {fileID: 0}
+        value: P
+      - symbolName: disableInteractInVR
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: enableDesktopKey
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: enableHaptics
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: eventName
+        objectReference: {fileID: 0}
+        value: _ToggleTransmit
+      - symbolName: eventTarget
+        objectReference: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+      - symbolName: hapticAmplitude
+        objectReference: {fileID: 0}
+        value: 0.5
+      - symbolName: hapticDuration
+        objectReference: {fileID: 0}
+        value: 0.2
+      - symbolName: hapticFrequency
+        objectReference: {fileID: 0}
+        value: 0.1
+      - symbolName: inVR
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobAxis
+        objectReference: {fileID: 0}
+        value: (0.0, 0.0, 1.0)
+      - symbolName: knobMode
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobStep
+        objectReference: {fileID: 0}
+        value: 10
+      - symbolName: knobUp
+        objectReference: {fileID: 0}
+        value: (0.0, 1.0, 0.0)
+      - symbolName: onKnobLeft
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: onKnobRight
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: ownerOnly
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: switchSound
+        objectReference: {fileID: 8300000, guid: 484bb1a0a09f3f644806c74d9c794a58,
+          type: 3}
+        value: MenuSelect (UnityEngine.AudioClip)
+  - prefabInstance: {fileID: 7629702917372400804, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+      type: 3}
+    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/SF-1Main+COM
+      Variant.prefab
+    udonVariables:
+    - udonInstance: {fileID: 6130260223460244824, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: DEC
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 4066015122381918902, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: eventTarget
+        objectReference: {fileID: 891601295425563906, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 3523073295724890746, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: EnabledTrigger
+      variables:
+      - symbolName: transceiver
+        objectReference: {fileID: 891601295425563906, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 1207850165486994954, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: INC
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 4066015122381918902, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: eventTarget
+        objectReference: {fileID: 891601295425563906, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 3367907030829324770, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: Receiver
+      variables:
+      - symbolName: indicator
+        objectReference: {fileID: 8253815804090175631, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: RX (UnityEngine.GameObject)
+    - udonInstance: {fileID: 2291059860962607653, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: RX
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 4066015122381918902, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: eventTarget
+        objectReference: {fileID: 891601295425563906, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 7629702917102528272, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: SF-1
+      variables:
+      - symbolName: AAMTargetsLayer
+        objectReference: {fileID: 0}
+        value: UnityEngine.LayerMask
+      - symbolName: CenterOfMass
+        objectReference: {fileID: 7629702917201531074, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: CenterOfMass (UnityEngine.Transform)
+      - symbolName: Dial_Functions_L
+        objectReference: {fileID: 0}
+        value: UnityEngine.Component[]
+      - symbolName: Dial_Functions_R
+        objectReference: {fileID: 0}
+        value: UnityEngine.Component[]
+      - symbolName: DisableAfter10Seconds
+        objectReference: {fileID: 0}
+        value: UnityEngine.GameObject[]
+      - symbolName: ExtensionUdonBehaviours
+        objectReference: {fileID: 0}
+        value: UnityEngine.Component[]
+      - symbolName: InVehicleOnly
+        objectReference: {fileID: 7629702918005804835, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: InVehicleOnly (UnityEngine.GameObject)
+      - symbolName: LeftDialDivideStraightUp
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: LStickDisplayHighlighter
+        objectReference: {fileID: 7629702918481622401, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: LStickDisplayHighlighter (UnityEngine.Transform)
+      - symbolName: RightDialDivideStraightUp
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: RStickDisplayHighlighter
+        objectReference: {fileID: 7629702917376595452, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: RStickDisplayHighlighter (UnityEngine.Transform)
+      - symbolName: SwitchFunctionSound
+        objectReference: {fileID: 7629702918388607388, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: MenuSelect (UnityEngine.AudioSource)
+    - udonInstance: {fileID: 9061782546709630547, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: SFVehicleTransceiver_SF-1
+      variables:
+      - symbolName: inVehicleOnly
+        objectReference: {fileID: 5404407072735309041, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: InVehicleOnly (UnityEngine.Transform)
+      - symbolName: seatedPlayerOnly
+        objectReference: {fileID: 7569519785636468256, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SeatOnly (UnityEngine.Transform)
+    - udonInstance: {fileID: 891601295425563906, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: Transceiver
+      variables:
+      - symbolName: frequencyText
+        objectReference: {fileID: 4184686545064133735, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: Channel (TMPro.TextMeshPro)
+      - symbolName: receiver
+        objectReference: {fileID: 3367907030829324770, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+      - symbolName: transmitter
+        objectReference: {fileID: 7221378042586364983, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: Transmitter (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 7221378042586364983, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: Transmitter
+      variables:
+      - symbolName: indicator
+        objectReference: {fileID: 8065272202751129994, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: TX (UnityEngine.GameObject)
+    - udonInstance: {fileID: 6550576955750358885, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: TX
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 4066015122381918902, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: eventTarget
+        objectReference: {fileID: 891601295425563906, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+  - prefabInstance: {fileID: 6729289301852982897, guid: a35c399fcf052ad42aa9da31a8cfd147,
+      type: 3}
+    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/SH-1Main+COM
+      Variant.prefab
+    udonVariables:
+    - udonInstance: {fileID: 1267692352830881690, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: DEC
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 9000957867893428340, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: eventTarget
+        objectReference: {fileID: 5249836986178809792, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 7575665110051441934, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: DEC
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 314204415170110176, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: eventTarget
+        objectReference: {fileID: 3489936567374208340, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 8385922636049516728, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: EnabledTrigger
+      variables:
+      - symbolName: transceiver
+        objectReference: {fileID: 5249836986178809792, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 924746492768090668, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: EnabledTrigger
+      variables:
+      - symbolName: transceiver
+        objectReference: {fileID: 3489936567374208340, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 6072986555415561416, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: INC
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 9000957867893428340, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: eventTarget
+        objectReference: {fileID: 5249836986178809792, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 3238652341571679836, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: INC
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 314204415170110176, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: eventTarget
+        objectReference: {fileID: 3489936567374208340, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 7654296179485973280, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: Receiver
+      variables:
+      - symbolName: indicator
+        objectReference: {fileID: 3895545463574073933, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: RX (UnityEngine.GameObject)
+    - udonInstance: {fileID: 1336462911727298996, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: Receiver
+      variables:
+      - symbolName: indicator
+        objectReference: {fileID: 5672941000015667417, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: RX (UnityEngine.GameObject)
+    - udonInstance: {fileID: 6579700257438712039, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: RX
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 9000957867893428340, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: eventTarget
+        objectReference: {fileID: 5249836986178809792, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 2592488680513286771, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: RX
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 314204415170110176, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: eventTarget
+        objectReference: {fileID: 3489936567374208340, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 4126805225691221137, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: SFVehicleTransceiver_SH-1
+      variables:
+      - symbolName: inVehicleOnly
+        objectReference: {fileID: 1118299887604362803, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: InVehicleOnly (UnityEngine.Transform)
+      - symbolName: seatedPlayerOnly
+        objectReference: {fileID: 3281125663861134562, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: SeatOnly (UnityEngine.Transform)
+    - udonInstance: {fileID: 4751525485854621189, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: SFVehicleTransceiver_SH-1_Gunner
+      variables:
+      - symbolName: inVehicleOnly
+        objectReference: {fileID: 8588764640662330535, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: InVehicleOnly (UnityEngine.Transform)
+      - symbolName: seatedPlayerOnly
+        objectReference: {fileID: 6142191180005582454, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: SeatOnly (UnityEngine.Transform)
+    - udonInstance: {fileID: 5249836986178809792, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: Transceiver
+      variables:
+      - symbolName: frequencyText
+        objectReference: {fileID: 9121564364671600293, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Channel (TMPro.TextMeshPro)
+      - symbolName: receiver
+        objectReference: {fileID: 7654296179485973280, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+      - symbolName: transmitter
+        objectReference: {fileID: 2356452817948983029, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Transmitter (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 3489936567374208340, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: Transceiver
+      variables:
+      - symbolName: frequencyText
+        objectReference: {fileID: 442437208147080241, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Channel (TMPro.TextMeshPro)
+      - symbolName: receiver
+        objectReference: {fileID: 1336462911727298996, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+      - symbolName: transmitter
+        objectReference: {fileID: 6342855426476362849, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Transmitter (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 2356452817948983029, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: Transmitter
+      variables:
+      - symbolName: indicator
+        objectReference: {fileID: 3128077723904998216, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: TX (UnityEngine.GameObject)
+    - udonInstance: {fileID: 6342855426476362849, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: Transmitter
+      variables:
+      - symbolName: indicator
+        objectReference: {fileID: 6042913844675873244, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: TX (UnityEngine.GameObject)
+    - udonInstance: {fileID: 2192376995653311911, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: TX
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 9000957867893428340, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: eventTarget
+        objectReference: {fileID: 5249836986178809792, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 7411086048567897907, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: TX
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 314204415170110176, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: eventTarget
+        objectReference: {fileID: 3489936567374208340, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+  - prefabInstance: {fileID: 8162674524155193012, guid: cd45481f45f805d479b5ec5936f1aefd,
+      type: 3}
+    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/SampleAssets/Transceiver.prefab
+    udonVariables:
+    - udonInstance: {fileID: 335755895, guid: cd45481f45f805d479b5ec5936f1aefd, type: 3}
+      gameObjectName: Dec
+      variables:
+      - symbolName: eventName
+        objectReference: {fileID: 0}
+        value: _DecrementFrequency
+      - symbolName: target
+        objectReference: {fileID: 5998218476377328925, guid: cd45481f45f805d479b5ec5936f1aefd,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 1424001442, guid: cd45481f45f805d479b5ec5936f1aefd, type: 3}
+      gameObjectName: Inc
+      variables:
+      - symbolName: eventName
+        objectReference: {fileID: 0}
+        value: _IncrementFrequency
+      - symbolName: target
+        objectReference: {fileID: 5998218476377328925, guid: cd45481f45f805d479b5ec5936f1aefd,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 1043634736, guid: cd45481f45f805d479b5ec5936f1aefd, type: 3}
+      gameObjectName: Receiver
+      variables:
+      - symbolName: active
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: frequency
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: limitRange
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: maxRange
+        objectReference: {fileID: 0}
+        value: 5
+      - symbolName: sync
+        objectReference: {fileID: 0}
+        value: True
+    - udonInstance: {fileID: 5998218476377328925, guid: cd45481f45f805d479b5ec5936f1aefd,
+        type: 3}
+      gameObjectName: Transceiver
+      variables:
+      - symbolName: animators
+        objectReference: {fileID: 0}
+        value: UnityEngine.Animator[]
+      - symbolName: exclusive
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: frequency
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: frequencyStep
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: frequencyText
+        objectReference: {fileID: 500029228, guid: cd45481f45f805d479b5ec5936f1aefd,
+          type: 3}
+        value: Text (TMP) (TMPro.TextMeshPro)
+      - symbolName: maxFrequency
+        objectReference: {fileID: 0}
+        value: 4
+      - symbolName: minFrequency
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: receiver
+        objectReference: {fileID: 1043634736, guid: cd45481f45f805d479b5ec5936f1aefd,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+      - symbolName: transmitter
+        objectReference: {fileID: 339694334, guid: cd45481f45f805d479b5ec5936f1aefd,
+          type: 3}
+        value: Transmitter (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 339694334, guid: cd45481f45f805d479b5ec5936f1aefd, type: 3}
+      gameObjectName: Transmitter
+      variables:
+      - symbolName: active
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: deactivateDelay
+        objectReference: {fileID: 0}
+        value: 3
+      - symbolName: frequency
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: minDistance
+        objectReference: {fileID: 0}
+        value: 5
+  - prefabInstance: {fileID: 459845885882140270, guid: a496d14eadd8a2642afddf01b6517838,
+      type: 3}
+    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/SampleAssets/UdonRadioCommunicationDemo.prefab
+    udonVariables:
+    - udonInstance: {fileID: 8585574336693194300, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Dec
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 2601925763593288022, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 459845887046928316, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Dec
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 6150862150005928150, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 459845885668551814, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Dec
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 6150862149294365676, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 459845886830726754, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Dec
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 6150862150288849160, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 8585574335625657833, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Inc
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 2601925763593288022, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 459845885962548329, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Inc
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 6150862150005928150, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 459845886735900499, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Inc
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 6150862149294365676, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 459845885742546359, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Inc
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 6150862150288849160, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 8585574335171264780, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: OffButton
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 2601925763593288022, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 459845886412687500, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: OffButton
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 6150862150005928150, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 459845887123006390, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: OffButton
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 6150862149294365676, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 459845886096081234, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: OffButton
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 6150862150288849160, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 8585574335171264782, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: OnButton
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 2601925763593288022, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 459845886412687502, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: OnButton
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 6150862150005928150, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 459845887123006388, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: OnButton
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 6150862149294365676, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 459845886096081232, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: OnButton
+      variables:
+      - symbolName: target
+        objectReference: {fileID: 6150862150288849160, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 8504472053699279656, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: ToggleDebug
+      variables:
+      - symbolName: toggleObjects
+        objectReference: {fileID: 0}
+        value: UnityEngine.GameObject[]
+    - udonInstance: {fileID: 2601925763593288022, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Transceiver
+      variables:
+      - symbolName: animators
+        objectReference: {fileID: 0}
+        value: UnityEngine.Animator[]
+      - symbolName: frequencyText
+        objectReference: {fileID: 8585574336813867879, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Text (TMP) (TMPro.TextMeshPro)
+      - symbolName: receiver
+        objectReference: {fileID: 8585574336259780219, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+      - symbolName: transmitter
+        objectReference: {fileID: 8585574336695543477, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transmitter (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 6150862150005928150, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Transceiver
+      variables:
+      - symbolName: animators
+        objectReference: {fileID: 0}
+        value: UnityEngine.Animator[]
+      - symbolName: frequencyText
+        objectReference: {fileID: 459845886916537063, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Text (TMP) (TMPro.TextMeshPro)
+      - symbolName: receiver
+        objectReference: {fileID: 459845887484291067, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+      - symbolName: transmitter
+        objectReference: {fileID: 459845887047708469, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transmitter (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 6150862149294365676, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Transceiver
+      variables:
+      - symbolName: animators
+        objectReference: {fileID: 0}
+        value: UnityEngine.Animator[]
+      - symbolName: frequencyText
+        objectReference: {fileID: 459845885547512285, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Text (TMP) (TMPro.TextMeshPro)
+      - symbolName: receiver
+        objectReference: {fileID: 459845886034660545, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+      - symbolName: transmitter
+        objectReference: {fileID: 459845885666165775, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transmitter (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 6150862150288849160, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Transceiver
+      variables:
+      - symbolName: animators
+        objectReference: {fileID: 0}
+        value: UnityEngine.Animator[]
+      - symbolName: frequencyText
+        objectReference: {fileID: 459845886667039545, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Text (TMP) (TMPro.TextMeshPro)
+      - symbolName: receiver
+        objectReference: {fileID: 459845887197179429, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+      - symbolName: transmitter
+        objectReference: {fileID: 459845886827308779, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transmitter (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 8746472628674702095, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Transceiver (1)
+      variables:
+      - symbolName: trasnceiver
+        objectReference: {fileID: 2601925763593288022, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 587178486611878543, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Transceiver (2)
+      variables:
+      - symbolName: trasnceiver
+        objectReference: {fileID: 6150862150005928150, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 587178485301709237, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Transceiver (3)
+      variables:
+      - symbolName: trasnceiver
+        objectReference: {fileID: 6150862149294365676, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 587178486328961873, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: Transceiver (4)
+      variables:
+      - symbolName: trasnceiver
+        objectReference: {fileID: 6150862150288849160, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 459845885882140268, guid: a496d14eadd8a2642afddf01b6517838,
+        type: 3}
+      gameObjectName: UdonRadioCommunicationDemo
+      variables:
+      - symbolName: autoSetupBeforeSave
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: debugText
+        objectReference: {fileID: 8847472149701082144, guid: a496d14eadd8a2642afddf01b6517838,
+          type: 3}
+        value: URCDebugger (TMPro.TextMeshPro)
+      - symbolName: debugTextUi
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: defaultVoiceDistanceFar
+        objectReference: {fileID: 0}
+        value: 25
+      - symbolName: defaultVoiceDistanceNear
+        objectReference: {fileID: 0}
+        value: 0
+      - symbolName: defaultVoiceGain
+        objectReference: {fileID: 0}
+        value: 24
+      - symbolName: defaultVoiceVolumetricRadius
+        objectReference: {fileID: 0}
+        value: 0
+      - symbolName: disableLowpassFilter
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: distanceAttenuation
+        objectReference: {fileID: 0}
+        value: 10
+      - symbolName: receivers
+        objectReference: {fileID: 0}
+        value: UnityEngine.Component[]
+      - symbolName: transmitters
+        objectReference: {fileID: 0}
+        value: UnityEngine.Component[]
+      - symbolName: UdonTypeID
+        objectReference: {fileID: 0}
+        value: UdonRadioCommunication.UdonRadioCommunication

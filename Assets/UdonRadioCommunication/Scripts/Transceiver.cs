@@ -1,5 +1,6 @@
 
 #pragma warning disable IDE0051,IDE1006
+using JetBrains.Annotations;
 using TMPro;
 using UdonSharp;
 using UnityEngine;
@@ -8,51 +9,58 @@ using VRC.SDKBase;
 
 namespace UdonRadioCommunication
 {
-    [DefaultExecutionOrder(1000)]
+    [DefaultExecutionOrder(1000), UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class Transceiver : UdonSharpBehaviour
     {
 
-        public bool receive, transmit;
         public bool exclusive = true;
-        public Receiver receiver;
-        public Transmitter transmitter;
-        public float frequency = 1.0f;
+        [NotNull] public Receiver receiver;
+        [NotNull] public Transmitter transmitter;
+        [UdonSynced, FieldChangeCallback(nameof(Frequency))] public float frequency = 1.0f;
         public float frequencyStep = 1.0f, minFrequency = 1.0f, maxFrequency = 8.0f;
-        public bool manualSync;
 
         [Header("Optional")]
         public TextMeshPro frequencyText;
-        [Tooltip("Drives bool parameters \"PowerOn\" and \"Talking\"")] public Animator[] animators = {};
+        [Tooltip("Drives bool parameters \"PowerOn\" and \"Talking\"")] public Animator[] animators = { };
 
         private string frequencyFormat;
-        private VRCObjectSync objectSync;
-
-        [UdonSynced, FieldChangeCallback(nameof(Frequency))] private float _frequency = 1.0f;
-        private float Frequency {
-            set {
-                receiver.frequency = value;
-                transmitter.frequency = value;
-                if (frequencyText != null) frequencyText.text = string.Format(frequencyFormat, frequency);
-                _frequency = value;
+        private float Frequency
+        {
+            set
+            {
+                if (Networking.IsOwner(gameObject))
+                {
+                    receiver._SetFrequency(value);
+                    transmitter._SetFrequency(value);
+                }
+                if (frequencyText != null) frequencyText.text = string.Format(frequencyFormat, value);
+                frequency = value;
             }
-            get => _frequency;
+            get => frequency;
         }
 
         [UdonSynced, FieldChangeCallback(nameof(Receive))] private bool _receive;
-        private bool Receive {
-            set {
-                receiver._SetActive(value);
-                SetBool("PowerOn", value);
+        private bool Receive
+        {
+            set
+            {
+                if (Networking.IsOwner(gameObject)) receiver._SetActive(value);
                 _receive = value;
+                SetBool("PowerOn", value);
             }
             get => _receive;
         }
 
         [UdonSynced, FieldChangeCallback(nameof(Transmit))] private bool _transmit;
-        private bool Transmit {
-            set {
-                transmitter._SetActive(value);
-                if (exclusive && Receive) receiver._SetActive(!value);
+        private bool Transmit
+        {
+            set
+            {
+                if (Networking.IsOwner(gameObject))
+                {
+                    transmitter._SetActive(value);
+                    if (exclusive && Receive) receiver._SetActive(!value);
+                }
                 SetBool("Talking", value);
                 _transmit = value;
             }
@@ -61,6 +69,7 @@ namespace UdonRadioCommunication
 
         private void SetBool(string name, bool value)
         {
+            if (animators == null) return;
             foreach (var animator in animators)
             {
                 if (animator == null) continue;
@@ -73,13 +82,11 @@ namespace UdonRadioCommunication
             var pickup = (VRCPickup)GetComponent(typeof(VRCPickup));
             if (pickup != null) pickup.AutoHold = VRC_Pickup.AutoHoldMode.Yes;
 
-            objectSync = (VRCObjectSync)GetComponent(typeof(VRCObjectSync));
-
             if (frequencyText) frequencyFormat = frequencyText.text;
 
             Frequency = frequency;
-            Receive = receive;
-            Transmit = transmit;
+            Receive = false;
+            Transmit = false;
         }
 
         public override void OnPickupUseDown() => _StartTransmit();
@@ -91,18 +98,11 @@ namespace UdonRadioCommunication
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
         }
 
-        public void _Respawn()
-        {
-            if (objectSync == null) return;
-            _TakeOwnership();
-            objectSync.Respawn();
-        }
-
         public void _SetTransmit(bool value)
         {
             _TakeOwnership();
             Transmit = value;
-            if (manualSync) RequestSerialization();
+            RequestSerialization();
         }
         public bool _GetTransmit() => Transmit;
         public void _StartTransmit() => _SetTransmit(true);
@@ -113,7 +113,7 @@ namespace UdonRadioCommunication
         {
             _TakeOwnership();
             Receive = value;
-            if (manualSync) RequestSerialization();
+            RequestSerialization();
         }
         public bool _GetReceive() => Receive;
         public void _StartReceive() => _SetReceive(true);
@@ -123,8 +123,8 @@ namespace UdonRadioCommunication
         public void _SetFrequency(float f)
         {
             _TakeOwnership();
-            Frequency = Mathf.Clamp(f, minFrequency, maxFrequency);
-            if (manualSync) RequestSerialization();
+            Frequency = f > maxFrequency ? minFrequency : (f < minFrequency ? maxFrequency : f);
+            RequestSerialization();
         }
         public void _IncrementFrequency() => _SetFrequency(Frequency + frequencyStep);
         public void _DecrementFrequency() => _SetFrequency(Frequency - frequencyStep);
@@ -134,7 +134,7 @@ namespace UdonRadioCommunication
             _TakeOwnership();
             Transmit = value;
             Receive = value;
-            if (manualSync) RequestSerialization();
+            RequestSerialization();
         }
         public void _Activate() => _SetActive(true);
         public void _Deactivate() => _SetActive(false);

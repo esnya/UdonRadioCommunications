@@ -11,7 +11,16 @@ namespace UdonRadioCommunication
         [UdonSynced] public bool active;
         [UdonSynced] public float frequency = 1.0f;
         public float deactivateDelay = 3.0f;
-        [Tooltip("Optional")] public GameObject ownerDetector;
+        public float minDistance = 5.0f;
+        public GameObject indicator;
+
+        private void Start() => UpdateIndicator();
+        public override void OnDeserialization() => UpdateIndicator();
+
+        private void UpdateIndicator()
+        {
+            if (indicator != null) indicator.SetActive(active);
+        }
 
         public void _TakeOwnership()
         {
@@ -28,22 +37,24 @@ namespace UdonRadioCommunication
         }
         public void _Activate()
         {
-            if (ownerDetector != null && !Networking.IsOwner(ownerDetector)) return;
             _TakeOwnership();
             active = true;
+            UpdateIndicator();
             RequestSerialization();
         }
         public void _Deactivate()
         {
             SendCustomEventDelayedSeconds(nameof(_DelayedDeactivate), deactivateDelay);
+            if (indicator != null) indicator.SetActive(false);
         }
-
         public void _DelayedDeactivate()
         {
             _TakeOwnership();
             active = false;
+            UpdateIndicator();
             RequestSerialization();
         }
+        public void _ToggleActive() => _SetActive(!active);
 
         public void _SetFrequency(float f)
         {
