@@ -10,6 +10,11 @@ namespace UdonRadioCommunication
 {
     public class URC_SF_Installer : EditorWindow
     {
+        private readonly BuildTargetGroup[] buildTargetGroups = {
+            BuildTargetGroup.Standalone,
+            BuildTargetGroup.Android,
+        };
+
         [MenuItem("UdonRadioCommunication/Installer for SaccFight")]
         private static void ShowWindow()
         {
@@ -44,9 +49,11 @@ namespace UdonRadioCommunication
             EditorGUILayout.Space();
             if (GUILayout.Button("Enable URC Integration for SaccFlight"))
             {
-                var buildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
-                var syms = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
-                PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, $"URC_SF;{syms}");
+                foreach (var buildTargetGroup in buildTargetGroups)
+                {
+                    var syms = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
+                    PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, $"URC_SF;{syms}");
+                }
                 AssetDatabase.Refresh();
             }
         }
@@ -105,12 +112,17 @@ namespace UdonRadioCommunication
         private void OnGUI()
         {
             var scene = SceneManager.GetActiveScene();
-            var pilotSeats = scene.GetRootGameObjects().SelectMany(o => o.GetUdonSharpComponentsInChildren<PilotSeat>());
-            var passengerSeats = scene.GetRootGameObjects().SelectMany(o => o.GetUdonSharpComponentsInChildren<PassengerSeat>());
+            var pilotSeats = scene.GetRootGameObjects().SelectMany(o => o.GetUdonSharpComponentsInChildren<SaccVehicleSeat>());
 
-            var seats = pilotSeats.Select(s => (s.gameObject, s.EngineControl, seatedUserOnly: GetSeatedUserOnly(s), true))
-                .Concat(passengerSeats.Select(s => (s.gameObject, s.EngineControl, seatedUserOnly: GetSeatedUserOnly(s), false)))
-                .Where(s => s.EngineControl != null && s.seatedUserOnly != null);
+            var seats = pilotSeats
+            .Select(seat => {
+                var seatObject = seat.gameObject;
+                var seatOnly = (GameObject)seat.GetProgramVariable("ThisSeatOnly");
+                var entity = seat.GetComponentInParent<SaccEntity>();
+                var vehicle = entity.GetComponentInChildren<SaccAirVehicle>();
+                return (seat, seatObject, seatOnly, entity, vehicle);
+            })
+                .Where(s => s.seatOnly != null);
 
             using (var scrollScope = new EditorGUILayout.ScrollViewScope(scrollPosition))
             {
@@ -122,12 +134,12 @@ namespace UdonRadioCommunication
 
                 using (new EditorGUI.DisabledGroupScope(transceiverPrefab == null))
                 {
-                    foreach (var (seat, engineController, pilotOnly, isPilot) in seats)
+                    foreach (var (seat, seatObject, seatOnly, entity, vehicle) in seats)
                     {
-                        var planeMesh = engineController.PlaneMesh;
+                        var planeMesh = (Transform)vehicle.GetProgramVariable("VehicleMesh");
                         using (new EditorGUILayout.HorizontalScope())
                         {
-                            EditorGUILayout.ObjectField(engineController.VehicleMainObj ?? engineController.gameObject, typeof(GameObject), true);
+                            EditorGUILayout.ObjectField(entity.gameObject, typeof(GameObject), true);
                             EditorGUILayout.ObjectField(seat, typeof(GameObject), true);
 
                             if (planeMesh == null)
@@ -135,18 +147,13 @@ namespace UdonRadioCommunication
                                 EditorGUILayout.HelpBox("EnginController.PlaneMesh is required", MessageType.Error);
                                 return;
                             }
-                            if (pilotOnly == null)
-                            {
-                                EditorGUILayout.HelpBox("PilotSeat.LeaveButton/PassengerSeat.LeaveButton is required", MessageType.Error);
-                                return;
-                            }
 
-                            var trigger = pilotOnly.GetUdonSharpComponentInChildren<TransceiverEnabledTrigger>();
+                            var trigger = seatOnly.GetUdonSharpComponentInChildren<TransceiverEnabledTrigger>();
                             var installed = trigger != null;
 
                             using (new EditorGUI.DisabledGroupScope(trigger))
                             {
-                                if (GUILayout.Button(isPilot ? "Install" : "Install (Experimental)", EditorStyles.miniButtonLeft, miniButtonLayout)) Install(planeMesh.transform, pilotOnly.transform);
+                                if (GUILayout.Button("Install", EditorStyles.miniButtonLeft, miniButtonLayout)) Install(planeMesh.transform, seatOnly.transform);
                             }
                             using (new EditorGUI.DisabledGroupScope(!installed))
                             {
@@ -160,9 +167,11 @@ namespace UdonRadioCommunication
 
                 if (GUILayout.Button("Disable URC Integration for SaccFlight"))
                 {
-                    var buildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
-                    var syms = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
-                    PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, syms.Replace("URC_SF;", ""));
+                    foreach (var buildTargetGroup in buildTargetGroups)
+                    {
+                        var syms = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
+                        PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, syms.Replace("URC_SF;", ""));
+                    }
                 }
             }
         }
