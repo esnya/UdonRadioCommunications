@@ -10,7 +10,7 @@ jobs:
       package_name: ${{steps.package_name.outputs.package_name}}
     steps:
       - id: package_name
-        run: echo "::set-output name=package_name::$(echo ${GITHUB_REPOSITORY##*/})-$(echo ${GITHUB_REF#refs/*/})"
+        run: echo "::set-output name=package_name::$(echo ${GITHUB_REPOSITORY##*/})-$(echo ${GITHUB_REF#refs/*/})" | sed 's#/#-#g'
 
   build:
     needs: prebuild
