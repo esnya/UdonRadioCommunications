@@ -945,12 +945,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b39ef38247fe0464cb326a7b3f6ab5c8,
         type: 2}
-    - target: {fileID: 8038924226575229755, guid: fb6267a6a8705d44595ddba4f6a695d9,
-        type: 3}
-      propertyPath: serializedProgramAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: fec54d45ba19c98469f45f9adc8766ba,
-        type: 2}
     - target: {fileID: 8083693857749350125, guid: fb6267a6a8705d44595ddba4f6a695d9,
         type: 3}
       propertyPath: serializedProgramAsset

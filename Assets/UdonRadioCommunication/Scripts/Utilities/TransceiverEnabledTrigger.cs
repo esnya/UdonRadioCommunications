@@ -5,7 +5,7 @@ using UnityEngine;
 namespace UdonRadioCommunication
 {
     [
-        UdonBehaviourSyncMode(/*BehaviourSyncMode.None*/ BehaviourSyncMode.NoVariableSync),
+        UdonBehaviourSyncMode(BehaviourSyncMode.None),
         DefaultExecutionOrder(1100), // After Transceiver
     ]
     public class TransceiverEnabledTrigger : UdonSharpBehaviour

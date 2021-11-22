@@ -3,12 +3,12 @@ using VRC.SDKBase;
 
 namespace UdonRadioCommunication
 {
-    [UdonBehaviourSyncMode(BehaviourSyncMode.NoVariableSync)]
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class RaycastBlocker : UdonSharpBehaviour
     {
-        public override void OnPlayerJoined(VRCPlayerApi player)
+        private void Start()
         {
-            if (player.isLocal && !player.IsUserInVR())
+            if (!Networking.LocalPlayer.IsUserInVR())
             {
                 gameObject.SetActive(false);
             }
