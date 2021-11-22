@@ -261,7 +261,7 @@ MonoBehaviour:
       variables:
       - symbolName: exclusive
         objectReference: {fileID: 0}
-        value: True
+        value: False
       - symbolName: frequency
         objectReference: {fileID: 0}
         value: 1
@@ -295,7 +295,7 @@ MonoBehaviour:
         value: False
       - symbolName: deactivateDelay
         objectReference: {fileID: 0}
-        value: 3
+        value: 0
       - symbolName: frequency
         objectReference: {fileID: 0}
         value: 1
