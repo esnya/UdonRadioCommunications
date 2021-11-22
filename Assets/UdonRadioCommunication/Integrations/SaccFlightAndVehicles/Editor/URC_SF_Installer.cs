@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using UdonSharp;
 using UdonSharpEditor;
+using UdonToolkit;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -76,25 +77,20 @@ namespace UdonRadioCommunication
             urc.Setup();
         }
 
-        private void Install(Transform planeMesh, Transform pilotOnly)
+        private void Install(Transform seat)
         {
-            var transceiverObj = PrefabUtility.InstantiatePrefab(transceiverPrefab, planeMesh) as GameObject;
+            var transceiverObj = PrefabUtility.InstantiatePrefab(transceiverPrefab, seat) as GameObject;
             Undo.RegisterCreatedObjectUndo(transceiverObj, "Install URC");
 
-            var triggerObj = new GameObject("TrasceiverTrigger");
-            triggerObj.transform.SetParent(pilotOnly, false);
-            var trigger = triggerObj.AddUdonSharpComponent<TransceiverEnabledTrigger>();
-            trigger.transceiver = transceiverObj.GetUdonSharpComponent<Transceiver>();
-            trigger.ApplyProxyModifications();
+            transceiverObj.transform.SetParent(seat, false);
             Undo.RegisterCreatedObjectUndo(transceiverObj, "Install URC");
 
             SetupURC();
         }
 
-        private void Uninstall(TransceiverEnabledTrigger trigger)
+        private void Uninstall(SFComInjector injector)
         {
-            if (trigger.transceiver != null) Undo.DestroyObjectImmediate(trigger.transceiver.gameObject);
-            Undo.DestroyObjectImmediate(trigger.gameObject);
+            Undo.DestroyObjectImmediate(injector.gameObject);
 
             SetupURC();
         }
@@ -115,14 +111,14 @@ namespace UdonRadioCommunication
             var pilotSeats = scene.GetRootGameObjects().SelectMany(o => o.GetUdonSharpComponentsInChildren<SaccVehicleSeat>());
 
             var seats = pilotSeats
-            .Select(seat => {
-                var seatObject = seat.gameObject;
-                var seatOnly = (GameObject)seat.GetProgramVariable("ThisSeatOnly");
-                var entity = seat.GetComponentInParent<SaccEntity>();
-                var vehicle = entity.GetComponentInChildren<SaccAirVehicle>();
-                return (seat, seatObject, seatOnly, entity, vehicle);
-            })
-                .Where(s => s.seatOnly != null);
+                .Select(seat =>
+                {
+                    var seatObject = seat.gameObject;
+                    var seatOnly = (GameObject)seat.GetProgramVariable("ThisSeatOnly");
+                    var entity = seat.GetComponentInParent<SaccEntity>();
+                    var vehicle = entity.GetComponentInChildren<SaccAirVehicle>();
+                    return (seat, seatObject, seatOnly, entity, vehicle);
+                });
 
             using (var scrollScope = new EditorGUILayout.ScrollViewScope(scrollPosition))
             {
@@ -136,28 +132,27 @@ namespace UdonRadioCommunication
                 {
                     foreach (var (seat, seatObject, seatOnly, entity, vehicle) in seats)
                     {
-                        var planeMesh = (Transform)vehicle.GetProgramVariable("VehicleMesh");
                         using (new EditorGUILayout.HorizontalScope())
                         {
                             EditorGUILayout.ObjectField(entity.gameObject, typeof(GameObject), true);
                             EditorGUILayout.ObjectField(seat, typeof(GameObject), true);
 
-                            if (planeMesh == null)
+                            if (!seatOnly)
                             {
-                                EditorGUILayout.HelpBox("EnginController.PlaneMesh is required", MessageType.Error);
-                                return;
+                                EditorGUILayout.HelpBox("SaccVehicleSeat.ThisSeatOnly is required.", MessageType.Error);
+                                continue;
                             }
 
-                            var trigger = seatOnly.GetUdonSharpComponentInChildren<TransceiverEnabledTrigger>();
-                            var installed = trigger != null;
+                            var injector = seat.GetUdonSharpComponentInChildren<SFComInjector>();
+                            var installed = injector != null;
 
-                            using (new EditorGUI.DisabledGroupScope(trigger))
+                            using (new EditorGUI.DisabledGroupScope(installed))
                             {
-                                if (GUILayout.Button("Install", EditorStyles.miniButtonLeft, miniButtonLayout)) Install(planeMesh.transform, seatOnly.transform);
+                                if (GUILayout.Button("Install", EditorStyles.miniButtonLeft, miniButtonLayout)) Install(seat.transform);
                             }
                             using (new EditorGUI.DisabledGroupScope(!installed))
                             {
-                                if (GUILayout.Button("Uninstall", EditorStyles.miniButtonRight, miniButtonLayout)) Uninstall(trigger);
+                                if (GUILayout.Button("Uninstall", EditorStyles.miniButtonRight, miniButtonLayout)) Uninstall(injector);
                             }
                         }
                     }

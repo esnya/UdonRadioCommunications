@@ -5,10 +5,8 @@ using UnityEngine;
 namespace UdonRadioCommunication
 {
 
-    [
-        UdonBehaviourSyncMode(BehaviourSyncMode.NoVariableSync),
-        DefaultExecutionOrder(100), // After SaccEntity
-    ]
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
+    [DefaultExecutionOrder(100)]
     public class SFComInjector : UdonSharpBehaviour
     {
         public Transform inVehicleOnly, seatedPlayerOnly;
