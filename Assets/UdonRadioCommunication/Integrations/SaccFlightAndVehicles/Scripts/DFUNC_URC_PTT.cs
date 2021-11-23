@@ -1,5 +1,4 @@
-﻿using BestHTTP.SecureProtocol.Org.BouncyCastle.Crypto.Tls;
-using UdonSharp;
+﻿using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
@@ -18,7 +17,7 @@ namespace UdonRadioCommunication
         {
             var entity = GetComponentInParent<SaccEntity>();
             SaccVehicleSeat pilotSeat = null;
-            foreach (var seat in entity.GetComponentsInChildren<SaccVehicleSeat>(true))
+            foreach (var seat in entity.gameObject.GetComponentsInChildren<SaccVehicleSeat>(true)) // ToDo: Workarond on U# 0.x
             {
                 if ((bool)seat.GetProgramVariable("IsPilotSeat"))
                 {
@@ -35,7 +34,7 @@ namespace UdonRadioCommunication
             var enabledTrigger = pilotSeat.GetComponentInChildren<TransceiverEnabledTrigger>(true);
             if (enabledTrigger) enabledTrigger.defaultTransmit = false;
 
-            foreach (var touchSwitch in entity.GetComponentsInChildren<TouchSwitch>(true))
+            foreach (var touchSwitch in entity.gameObject.GetComponentsInChildren<TouchSwitch>(true)) // ToDo: Workarond on U# 0.x
             {
                 if (touchSwitch.eventTarget == transceiver && touchSwitch.eventName == nameof(Transceiver._ToggleTransmit))
                 {
