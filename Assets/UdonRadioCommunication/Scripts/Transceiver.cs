@@ -21,11 +21,13 @@ namespace UdonRadioCommunication
 
         [Header("Optional")]
         public TextMeshPro frequencyText;
-        [Tooltip("Drives bool parameters \"PowerOn\" and \"Talking\"")] public Animator[] animators = {};
+        [Tooltip("Drives bool parameters \"PowerOn\" and \"Talking\"")] public Animator[] animators = { };
 
         private string frequencyFormat;
-        private float Frequency {
-            set {
+        private float Frequency
+        {
+            set
+            {
                 if (Networking.IsOwner(gameObject))
                 {
                     receiver._SetFrequency(value);
@@ -38,8 +40,10 @@ namespace UdonRadioCommunication
         }
 
         [UdonSynced, FieldChangeCallback(nameof(Receive))] private bool _receive;
-        private bool Receive {
-            set {
+        private bool Receive
+        {
+            set
+            {
                 if (Networking.IsOwner(gameObject)) receiver._SetActive(value);
                 _receive = value;
                 SetBool("PowerOn", value);
@@ -48,8 +52,10 @@ namespace UdonRadioCommunication
         }
 
         [UdonSynced, FieldChangeCallback(nameof(Transmit))] private bool _transmit;
-        private bool Transmit {
-            set {
+        private bool Transmit
+        {
+            set
+            {
                 if (Networking.IsOwner(gameObject))
                 {
                     transmitter._SetActive(value);

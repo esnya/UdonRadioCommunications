@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using UdonSharp;
 using UdonSharpEditor;
+using UdonToolkit;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,11 @@ namespace UdonRadioCommunication
 {
     public class URC_SF_Installer : EditorWindow
     {
+        private readonly BuildTargetGroup[] buildTargetGroups = {
+            BuildTargetGroup.Standalone,
+            BuildTargetGroup.Android,
+        };
+
         [MenuItem("UdonRadioCommunication/Installer for SaccFight")]
         private static void ShowWindow()
         {
@@ -44,9 +50,11 @@ namespace UdonRadioCommunication
             EditorGUILayout.Space();
             if (GUILayout.Button("Enable URC Integration for SaccFlight"))
             {
-                var buildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
-                var syms = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
-                PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, $"URC_SF;{syms}");
+                foreach (var buildTargetGroup in buildTargetGroups)
+                {
+                    var syms = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
+                    PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, $"URC_SF;{syms}");
+                }
                 AssetDatabase.Refresh();
             }
         }
@@ -69,25 +77,20 @@ namespace UdonRadioCommunication
             urc.Setup();
         }
 
-        private void Install(Transform planeMesh, Transform pilotOnly)
+        private void Install(Transform seat)
         {
-            var transceiverObj = PrefabUtility.InstantiatePrefab(transceiverPrefab, planeMesh) as GameObject;
+            var transceiverObj = PrefabUtility.InstantiatePrefab(transceiverPrefab, seat) as GameObject;
             Undo.RegisterCreatedObjectUndo(transceiverObj, "Install URC");
 
-            var triggerObj = new GameObject("TrasceiverTrigger");
-            triggerObj.transform.SetParent(pilotOnly, false);
-            var trigger = triggerObj.AddUdonSharpComponent<TransceiverEnabledTrigger>();
-            trigger.transceiver = transceiverObj.GetUdonSharpComponent<Transceiver>();
-            trigger.ApplyProxyModifications();
+            transceiverObj.transform.SetParent(seat, false);
             Undo.RegisterCreatedObjectUndo(transceiverObj, "Install URC");
 
             SetupURC();
         }
 
-        private void Uninstall(TransceiverEnabledTrigger trigger)
+        private void Uninstall(SFComInjector injector)
         {
-            if (trigger.transceiver != null) Undo.DestroyObjectImmediate(trigger.transceiver.gameObject);
-            Undo.DestroyObjectImmediate(trigger.gameObject);
+            Undo.DestroyObjectImmediate(injector.gameObject);
 
             SetupURC();
         }
@@ -105,12 +108,17 @@ namespace UdonRadioCommunication
         private void OnGUI()
         {
             var scene = SceneManager.GetActiveScene();
-            var pilotSeats = scene.GetRootGameObjects().SelectMany(o => o.GetUdonSharpComponentsInChildren<PilotSeat>());
-            var passengerSeats = scene.GetRootGameObjects().SelectMany(o => o.GetUdonSharpComponentsInChildren<PassengerSeat>());
+            var pilotSeats = scene.GetRootGameObjects().SelectMany(o => o.GetUdonSharpComponentsInChildren<SaccVehicleSeat>());
 
-            var seats = pilotSeats.Select(s => (s.gameObject, s.EngineControl, seatedUserOnly: GetSeatedUserOnly(s), true))
-                .Concat(passengerSeats.Select(s => (s.gameObject, s.EngineControl, seatedUserOnly: GetSeatedUserOnly(s), false)))
-                .Where(s => s.EngineControl != null && s.seatedUserOnly != null);
+            var seats = pilotSeats
+                .Select(seat =>
+                {
+                    var seatObject = seat.gameObject;
+                    var seatOnly = (GameObject)seat.GetProgramVariable("ThisSeatOnly");
+                    var entity = seat.GetComponentInParent<SaccEntity>();
+                    var vehicle = entity.GetComponentInChildren<SaccAirVehicle>();
+                    return (seat, seatObject, seatOnly, entity, vehicle);
+                });
 
             using (var scrollScope = new EditorGUILayout.ScrollViewScope(scrollPosition))
             {
@@ -122,35 +130,29 @@ namespace UdonRadioCommunication
 
                 using (new EditorGUI.DisabledGroupScope(transceiverPrefab == null))
                 {
-                    foreach (var (seat, engineController, pilotOnly, isPilot) in seats)
+                    foreach (var (seat, seatObject, seatOnly, entity, vehicle) in seats)
                     {
-                        var planeMesh = engineController.PlaneMesh;
                         using (new EditorGUILayout.HorizontalScope())
                         {
-                            EditorGUILayout.ObjectField(engineController.VehicleMainObj ?? engineController.gameObject, typeof(GameObject), true);
+                            EditorGUILayout.ObjectField(entity.gameObject, typeof(GameObject), true);
                             EditorGUILayout.ObjectField(seat, typeof(GameObject), true);
 
-                            if (planeMesh == null)
+                            if (!seatOnly)
                             {
-                                EditorGUILayout.HelpBox("EnginController.PlaneMesh is required", MessageType.Error);
-                                return;
-                            }
-                            if (pilotOnly == null)
-                            {
-                                EditorGUILayout.HelpBox("PilotSeat.LeaveButton/PassengerSeat.LeaveButton is required", MessageType.Error);
-                                return;
+                                EditorGUILayout.HelpBox("SaccVehicleSeat.ThisSeatOnly is required.", MessageType.Error);
+                                continue;
                             }
 
-                            var trigger = pilotOnly.GetUdonSharpComponentInChildren<TransceiverEnabledTrigger>();
-                            var installed = trigger != null;
+                            var injector = seat.GetUdonSharpComponentInChildren<SFComInjector>();
+                            var installed = injector != null;
 
-                            using (new EditorGUI.DisabledGroupScope(trigger))
+                            using (new EditorGUI.DisabledGroupScope(installed))
                             {
-                                if (GUILayout.Button(isPilot ? "Install" : "Install (Experimental)", EditorStyles.miniButtonLeft, miniButtonLayout)) Install(planeMesh.transform, pilotOnly.transform);
+                                if (GUILayout.Button("Install", EditorStyles.miniButtonLeft, miniButtonLayout)) Install(seat.transform);
                             }
                             using (new EditorGUI.DisabledGroupScope(!installed))
                             {
-                                if (GUILayout.Button("Uninstall", EditorStyles.miniButtonRight, miniButtonLayout)) Uninstall(trigger);
+                                if (GUILayout.Button("Uninstall", EditorStyles.miniButtonRight, miniButtonLayout)) Uninstall(injector);
                             }
                         }
                     }
@@ -160,9 +162,11 @@ namespace UdonRadioCommunication
 
                 if (GUILayout.Button("Disable URC Integration for SaccFlight"))
                 {
-                    var buildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
-                    var syms = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
-                    PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, syms.Replace("URC_SF;", ""));
+                    foreach (var buildTargetGroup in buildTargetGroups)
+                    {
+                        var syms = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
+                        PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, syms.Replace("URC_SF;", ""));
+                    }
                 }
             }
         }

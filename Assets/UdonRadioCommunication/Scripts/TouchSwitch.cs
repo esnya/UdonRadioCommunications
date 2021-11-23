@@ -5,7 +5,8 @@ using VRC.Udon;
 
 namespace UdonRadioCommunication
 {
-    [UdonBehaviourSyncMode(BehaviourSyncMode.NoVariableSync), RequireComponent(typeof(SphereCollider))]
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
+    [RequireComponent(typeof(SphereCollider))]
     public class TouchSwitch : UdonSharpBehaviour
     {
         public UdonSharpBehaviour eventTarget;

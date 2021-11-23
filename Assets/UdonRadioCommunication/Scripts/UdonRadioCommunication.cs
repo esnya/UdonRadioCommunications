@@ -16,7 +16,7 @@ using UdonSharpEditor;
 
 namespace UdonRadioCommunication
 {
-    [UdonBehaviourSyncMode(/*BehaviourSyncMode.None*/ BehaviourSyncMode.NoVariableSync)]
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class UdonRadioCommunication : UdonSharpBehaviour
     {
         public const float MaxDistance = 1000000.0f;

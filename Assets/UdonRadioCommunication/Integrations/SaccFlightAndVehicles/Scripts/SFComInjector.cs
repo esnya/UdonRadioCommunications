@@ -5,10 +5,8 @@ using UnityEngine;
 namespace UdonRadioCommunication
 {
 
-    [
-        UdonBehaviourSyncMode(BehaviourSyncMode.NoVariableSync),
-        DefaultExecutionOrder(100), // After EngineController
-    ]
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
+    [DefaultExecutionOrder(100)]
     public class SFComInjector : UdonSharpBehaviour
     {
         public Transform inVehicleOnly, seatedPlayerOnly;
@@ -29,41 +27,31 @@ namespace UdonRadioCommunication
         {
             if (inVehicleOnly == null) return;
 
-            var engineController = GetEngineController();
-            if (engineController == null) return;
+            var saccEntity = GetSaccEntity();
+            if (saccEntity == null) return;
 
-            var hudController = engineController.HUDControl;
-            if (hudController == null) return;
+            var target = saccEntity.InVehicleOnly;
+            if (target == null) return;
 
-            inVehicleOnly.SetParent(hudController.transform, true);
+            inVehicleOnly.SetParent(target.transform, true);
         }
 
         private void InjectSeatedPlayerOnly()
         {
-            var leaveButton = GetLeaveButton();
-            if (leaveButton == null || seatedPlayerOnly == null) return;
-            seatedPlayerOnly.SetParent(leaveButton.transform, true);
+            var seatOnly = GetSeatOnly();
+            if (seatOnly == null || seatedPlayerOnly == null) return;
+            seatedPlayerOnly.SetParent(seatOnly.transform, true);
         }
 
-        private EngineController GetEngineController()
+        private SaccEntity GetSaccEntity()
         {
-            var pilotSeat = GetComponentInParent<PilotSeat>();
-            if (pilotSeat != null) return pilotSeat.EngineControl;
-
-            var passengerSeat = GetComponentInParent<PassengerSeat>();
-            if (passengerSeat != null) return passengerSeat.EngineControl;
-
-            return null;
+            return GetComponentInParent<SaccEntity>();
         }
 
-        private GameObject GetLeaveButton()
+        private GameObject GetSeatOnly()
         {
-            var pilotSeat = GetComponentInParent<PilotSeat>();
-            if (pilotSeat != null) return pilotSeat.LeaveButton;
-
-            var passengerSeat = GetComponentInParent<PassengerSeat>();
-            if (passengerSeat != null) return passengerSeat.LeaveButton;
-
+            var seat = GetComponentInParent<SaccVehicleSeat>();
+            if (seat != null) return (GameObject)seat.GetProgramVariable("ThisSeatOnly");
             return null;
         }
 #endif
