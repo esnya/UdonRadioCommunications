@@ -3,7 +3,10 @@ guid: 384baea1ec6c94b4f8f3e1650af93dcf
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - transceiverPrefab: {fileID: 7422882663793839734, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

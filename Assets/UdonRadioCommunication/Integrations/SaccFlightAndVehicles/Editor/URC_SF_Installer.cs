@@ -41,7 +41,6 @@ namespace UdonRadioCommunication
         private void OnEnable()
         {
             titleContent = new GUIContent("URC Installer for SaccFlight");
-            if (transceiverPrefab == null) transceiverPrefab = Resources.Load<GameObject>("SFVehicleTransceiver_SF-1");
         }
 
 #if !URC_SF
@@ -137,18 +136,12 @@ namespace UdonRadioCommunication
                             EditorGUILayout.ObjectField(entity.gameObject, typeof(GameObject), true);
                             EditorGUILayout.ObjectField(seat, typeof(GameObject), true);
 
-                            if (!seatOnly)
-                            {
-                                EditorGUILayout.HelpBox("SaccVehicleSeat.ThisSeatOnly is required.", MessageType.Error);
-                                continue;
-                            }
-
                             var injector = seat.GetUdonSharpComponentInChildren<SFComInjector>();
                             var installed = injector != null;
 
-                            using (new EditorGUI.DisabledGroupScope(installed))
+                            using (new EditorGUI.DisabledGroupScope(installed || !seatOnly))
                             {
-                                if (GUILayout.Button("Install", EditorStyles.miniButtonLeft, miniButtonLayout)) Install(seat.transform);
+                                if (GUILayout.Button(new GUIContent("Install", seatOnly != null ? null : "SaccVehicleSeat.ThisSeatOnly is required"), EditorStyles.miniButtonLeft, miniButtonLayout)) Install(seat.transform);
                             }
                             using (new EditorGUI.DisabledGroupScope(!installed))
                             {
