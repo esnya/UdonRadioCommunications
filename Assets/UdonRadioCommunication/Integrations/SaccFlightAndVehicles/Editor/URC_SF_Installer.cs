@@ -16,7 +16,7 @@ namespace UdonRadioCommunication
             BuildTargetGroup.Android,
         };
 
-        [MenuItem("UdonRadioCommunication/Installer for SaccFight")]
+        [MenuItem("SaccFlight/UdonRadioCommunication/Installer")]
         private static void ShowWindow()
         {
             var window = GetWindow<URC_SF_Installer>();
