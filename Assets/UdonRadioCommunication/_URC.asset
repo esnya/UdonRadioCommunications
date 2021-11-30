@@ -13,363 +13,6 @@ MonoBehaviour:
   m_Name: _URC
   m_EditorClassIdentifier: 
   udonVariables:
-  - prefabInstance: {fileID: 7422882663793839734, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-      type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/Resources/SFVehicleTransceiver_SF-1.prefab
-    udonVariables:
-    - udonInstance: {fileID: 8044369878589353289, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-        type: 3}
-      gameObjectName: DEC
-      variables:
-      - symbolName: audioSource
-        objectReference: {fileID: 206386918371787431, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: Audio Source (UnityEngine.AudioSource)
-      - symbolName: desktopKey
-        objectReference: {fileID: 0}
-        value: None
-      - symbolName: disableInteractInVR
-        objectReference: {fileID: 0}
-        value: True
-      - symbolName: enableDesktopKey
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: enableHaptics
-        objectReference: {fileID: 0}
-        value: True
-      - symbolName: eventName
-        objectReference: {fileID: 0}
-        value: _DecrementFrequency
-      - symbolName: eventTarget
-        objectReference: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: Transceiver (VRC.Udon.UdonBehaviour)
-      - symbolName: hapticAmplitude
-        objectReference: {fileID: 0}
-        value: 0.5
-      - symbolName: hapticDuration
-        objectReference: {fileID: 0}
-        value: 0.2
-      - symbolName: hapticFrequency
-        objectReference: {fileID: 0}
-        value: 0.1
-      - symbolName: inVR
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: knobAxis
-        objectReference: {fileID: 0}
-        value: (0.0, 0.0, 1.0)
-      - symbolName: knobMode
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: knobStep
-        objectReference: {fileID: 0}
-        value: 10
-      - symbolName: knobUp
-        objectReference: {fileID: 0}
-        value: (0.0, 1.0, 0.0)
-      - symbolName: onKnobLeft
-        objectReference: {fileID: 0}
-        value: 
-      - symbolName: onKnobRight
-        objectReference: {fileID: 0}
-        value: 
-      - symbolName: ownerOnly
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: switchSound
-        objectReference: {fileID: 8300000, guid: 484bb1a0a09f3f644806c74d9c794a58,
-          type: 3}
-        value: MenuSelect (UnityEngine.AudioClip)
-    - udonInstance: {fileID: 744255598630967915, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-        type: 3}
-      gameObjectName: EnabledTrigger
-      variables:
-      - symbolName: transceiver
-        objectReference: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: Transceiver (VRC.Udon.UdonBehaviour)
-    - udonInstance: {fileID: 3058926742901724699, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-        type: 3}
-      gameObjectName: INC
-      variables:
-      - symbolName: audioSource
-        objectReference: {fileID: 206386918371787431, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: Audio Source (UnityEngine.AudioSource)
-      - symbolName: desktopKey
-        objectReference: {fileID: 0}
-        value: Minus
-      - symbolName: disableInteractInVR
-        objectReference: {fileID: 0}
-        value: True
-      - symbolName: enableDesktopKey
-        objectReference: {fileID: 0}
-        value: True
-      - symbolName: enableHaptics
-        objectReference: {fileID: 0}
-        value: True
-      - symbolName: eventName
-        objectReference: {fileID: 0}
-        value: _IncrementFrequency
-      - symbolName: eventTarget
-        objectReference: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: Transceiver (VRC.Udon.UdonBehaviour)
-      - symbolName: hapticAmplitude
-        objectReference: {fileID: 0}
-        value: 0.5
-      - symbolName: hapticDuration
-        objectReference: {fileID: 0}
-        value: 0.2
-      - symbolName: hapticFrequency
-        objectReference: {fileID: 0}
-        value: 0.1
-      - symbolName: inVR
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: knobAxis
-        objectReference: {fileID: 0}
-        value: (0.0, 0.0, 1.0)
-      - symbolName: knobMode
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: knobStep
-        objectReference: {fileID: 0}
-        value: 10
-      - symbolName: knobUp
-        objectReference: {fileID: 0}
-        value: (0.0, 1.0, 0.0)
-      - symbolName: onKnobLeft
-        objectReference: {fileID: 0}
-        value: 
-      - symbolName: onKnobRight
-        objectReference: {fileID: 0}
-        value: 
-      - symbolName: ownerOnly
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: switchSound
-        objectReference: {fileID: 8300000, guid: 484bb1a0a09f3f644806c74d9c794a58,
-          type: 3}
-        value: MenuSelect (UnityEngine.AudioClip)
-    - udonInstance: {fileID: 1444931317865712115, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-        type: 3}
-      gameObjectName: Receiver
-      variables:
-      - symbolName: active
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: frequency
-        objectReference: {fileID: 0}
-        value: 1
-      - symbolName: indicator
-        objectReference: {fileID: 5204799180407210142, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: RX (UnityEngine.GameObject)
-      - symbolName: limitRange
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: maxRange
-        objectReference: {fileID: 0}
-        value: 5
-      - symbolName: sync
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: UdonTypeID
-        objectReference: {fileID: 0}
-        value: UdonRadioCommunication.Receiver
-    - udonInstance: {fileID: 2700790021508780596, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-        type: 3}
-      gameObjectName: RX
-      variables:
-      - symbolName: audioSource
-        objectReference: {fileID: 206386918371787431, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: Audio Source (UnityEngine.AudioSource)
-      - symbolName: desktopKey
-        objectReference: {fileID: 0}
-        value: L
-      - symbolName: disableInteractInVR
-        objectReference: {fileID: 0}
-        value: True
-      - symbolName: enableDesktopKey
-        objectReference: {fileID: 0}
-        value: True
-      - symbolName: enableHaptics
-        objectReference: {fileID: 0}
-        value: True
-      - symbolName: eventName
-        objectReference: {fileID: 0}
-        value: _ToggleReceive
-      - symbolName: eventTarget
-        objectReference: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: Transceiver (VRC.Udon.UdonBehaviour)
-      - symbolName: hapticAmplitude
-        objectReference: {fileID: 0}
-        value: 0.5
-      - symbolName: hapticDuration
-        objectReference: {fileID: 0}
-        value: 0.2
-      - symbolName: hapticFrequency
-        objectReference: {fileID: 0}
-        value: 0.1
-      - symbolName: inVR
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: knobAxis
-        objectReference: {fileID: 0}
-        value: (0.0, 0.0, 1.0)
-      - symbolName: knobMode
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: knobStep
-        objectReference: {fileID: 0}
-        value: 10
-      - symbolName: knobUp
-        objectReference: {fileID: 0}
-        value: (0.0, 1.0, 0.0)
-      - symbolName: onKnobLeft
-        objectReference: {fileID: 0}
-        value: 
-      - symbolName: onKnobRight
-        objectReference: {fileID: 0}
-        value: 
-      - symbolName: ownerOnly
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: switchSound
-        objectReference: {fileID: 8300000, guid: 484bb1a0a09f3f644806c74d9c794a58,
-          type: 3}
-        value: MenuSelect (UnityEngine.AudioClip)
-    - udonInstance: {fileID: 5148093546528513602, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-        type: 3}
-      gameObjectName: SFVehicleTransceiver_SF-1
-      variables:
-      - symbolName: inVehicleOnly
-        objectReference: {fileID: 8192073424493444320, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: InVehicleOnly (UnityEngine.Transform)
-      - symbolName: seatedPlayerOnly
-        objectReference: {fileID: 6033713933725025841, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: SeatOnly (UnityEngine.Transform)
-    - udonInstance: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-        type: 3}
-      gameObjectName: Transceiver
-      variables:
-      - symbolName: exclusive
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: frequency
-        objectReference: {fileID: 0}
-        value: 1
-      - symbolName: frequencyStep
-        objectReference: {fileID: 0}
-        value: 1
-      - symbolName: frequencyText
-        objectReference: {fileID: 45782310221632630, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: Channel (TMPro.TextMeshPro)
-      - symbolName: maxFrequency
-        objectReference: {fileID: 0}
-        value: 4
-      - symbolName: minFrequency
-        objectReference: {fileID: 0}
-        value: 1
-      - symbolName: receiver
-        objectReference: {fileID: 1444931317865712115, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: Receiver (VRC.Udon.UdonBehaviour)
-      - symbolName: transmitter
-        objectReference: {fileID: 6811454642972273702, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: Transmitter (VRC.Udon.UdonBehaviour)
-    - udonInstance: {fileID: 6811454642972273702, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-        type: 3}
-      gameObjectName: Transmitter
-      variables:
-      - symbolName: active
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: deactivateDelay
-        objectReference: {fileID: 0}
-        value: 0
-      - symbolName: frequency
-        objectReference: {fileID: 0}
-        value: 1
-      - symbolName: indicator
-        objectReference: {fileID: 6151286723788040603, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: TX (UnityEngine.GameObject)
-      - symbolName: minDistance
-        objectReference: {fileID: 0}
-        value: 5
-    - udonInstance: {fileID: 6942311959307636596, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-        type: 3}
-      gameObjectName: TX
-      variables:
-      - symbolName: audioSource
-        objectReference: {fileID: 206386918371787431, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: Audio Source (UnityEngine.AudioSource)
-      - symbolName: desktopKey
-        objectReference: {fileID: 0}
-        value: P
-      - symbolName: disableInteractInVR
-        objectReference: {fileID: 0}
-        value: True
-      - symbolName: enableDesktopKey
-        objectReference: {fileID: 0}
-        value: True
-      - symbolName: enableHaptics
-        objectReference: {fileID: 0}
-        value: True
-      - symbolName: eventName
-        objectReference: {fileID: 0}
-        value: _ToggleTransmit
-      - symbolName: eventTarget
-        objectReference: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
-          type: 3}
-        value: Transceiver (VRC.Udon.UdonBehaviour)
-      - symbolName: hapticAmplitude
-        objectReference: {fileID: 0}
-        value: 0.5
-      - symbolName: hapticDuration
-        objectReference: {fileID: 0}
-        value: 0.2
-      - symbolName: hapticFrequency
-        objectReference: {fileID: 0}
-        value: 0.1
-      - symbolName: inVR
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: knobAxis
-        objectReference: {fileID: 0}
-        value: (0.0, 0.0, 1.0)
-      - symbolName: knobMode
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: knobStep
-        objectReference: {fileID: 0}
-        value: 10
-      - symbolName: knobUp
-        objectReference: {fileID: 0}
-        value: (0.0, 1.0, 0.0)
-      - symbolName: onKnobLeft
-        objectReference: {fileID: 0}
-        value: 
-      - symbolName: onKnobRight
-        objectReference: {fileID: 0}
-        value: 
-      - symbolName: ownerOnly
-        objectReference: {fileID: 0}
-        value: False
-      - symbolName: switchSound
-        objectReference: {fileID: 8300000, guid: 484bb1a0a09f3f644806c74d9c794a58,
-          type: 3}
-        value: MenuSelect (UnityEngine.AudioClip)
   - prefabInstance: {fileID: 7629702917372400804, guid: 5aa0696f016f7214b9ee757e6f549ee6,
       type: 3}
     prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/SF-1Main+COM.prefab
@@ -827,6 +470,363 @@ MonoBehaviour:
         objectReference: {fileID: 3489936567374208340, guid: a35c399fcf052ad42aa9da31a8cfd147,
           type: 3}
         value: Transceiver (VRC.Udon.UdonBehaviour)
+  - prefabInstance: {fileID: 7422882663793839734, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+      type: 3}
+    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Prefabs/SFVehicleTransceiver_SF-1.prefab
+    udonVariables:
+    - udonInstance: {fileID: 8044369878589353289, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: DEC
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 206386918371787431, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: desktopKey
+        objectReference: {fileID: 0}
+        value: None
+      - symbolName: disableInteractInVR
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: enableDesktopKey
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: enableHaptics
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: eventName
+        objectReference: {fileID: 0}
+        value: _DecrementFrequency
+      - symbolName: eventTarget
+        objectReference: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+      - symbolName: hapticAmplitude
+        objectReference: {fileID: 0}
+        value: 0.5
+      - symbolName: hapticDuration
+        objectReference: {fileID: 0}
+        value: 0.2
+      - symbolName: hapticFrequency
+        objectReference: {fileID: 0}
+        value: 0.1
+      - symbolName: inVR
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobAxis
+        objectReference: {fileID: 0}
+        value: (0.0, 0.0, 1.0)
+      - symbolName: knobMode
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobStep
+        objectReference: {fileID: 0}
+        value: 10
+      - symbolName: knobUp
+        objectReference: {fileID: 0}
+        value: (0.0, 1.0, 0.0)
+      - symbolName: onKnobLeft
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: onKnobRight
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: ownerOnly
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: switchSound
+        objectReference: {fileID: 8300000, guid: 484bb1a0a09f3f644806c74d9c794a58,
+          type: 3}
+        value: MenuSelect (UnityEngine.AudioClip)
+    - udonInstance: {fileID: 744255598630967915, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: EnabledTrigger
+      variables:
+      - symbolName: transceiver
+        objectReference: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 3058926742901724699, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: INC
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 206386918371787431, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: desktopKey
+        objectReference: {fileID: 0}
+        value: Minus
+      - symbolName: disableInteractInVR
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: enableDesktopKey
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: enableHaptics
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: eventName
+        objectReference: {fileID: 0}
+        value: _IncrementFrequency
+      - symbolName: eventTarget
+        objectReference: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+      - symbolName: hapticAmplitude
+        objectReference: {fileID: 0}
+        value: 0.5
+      - symbolName: hapticDuration
+        objectReference: {fileID: 0}
+        value: 0.2
+      - symbolName: hapticFrequency
+        objectReference: {fileID: 0}
+        value: 0.1
+      - symbolName: inVR
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobAxis
+        objectReference: {fileID: 0}
+        value: (0.0, 0.0, 1.0)
+      - symbolName: knobMode
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobStep
+        objectReference: {fileID: 0}
+        value: 10
+      - symbolName: knobUp
+        objectReference: {fileID: 0}
+        value: (0.0, 1.0, 0.0)
+      - symbolName: onKnobLeft
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: onKnobRight
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: ownerOnly
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: switchSound
+        objectReference: {fileID: 8300000, guid: 484bb1a0a09f3f644806c74d9c794a58,
+          type: 3}
+        value: MenuSelect (UnityEngine.AudioClip)
+    - udonInstance: {fileID: 1444931317865712115, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: Receiver
+      variables:
+      - symbolName: active
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: frequency
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: indicator
+        objectReference: {fileID: 5204799180407210142, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: RX (UnityEngine.GameObject)
+      - symbolName: limitRange
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: maxRange
+        objectReference: {fileID: 0}
+        value: 5
+      - symbolName: sync
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: UdonTypeID
+        objectReference: {fileID: 0}
+        value: UdonRadioCommunication.Receiver
+    - udonInstance: {fileID: 2700790021508780596, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: RX
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 206386918371787431, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: desktopKey
+        objectReference: {fileID: 0}
+        value: L
+      - symbolName: disableInteractInVR
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: enableDesktopKey
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: enableHaptics
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: eventName
+        objectReference: {fileID: 0}
+        value: _ToggleReceive
+      - symbolName: eventTarget
+        objectReference: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+      - symbolName: hapticAmplitude
+        objectReference: {fileID: 0}
+        value: 0.5
+      - symbolName: hapticDuration
+        objectReference: {fileID: 0}
+        value: 0.2
+      - symbolName: hapticFrequency
+        objectReference: {fileID: 0}
+        value: 0.1
+      - symbolName: inVR
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobAxis
+        objectReference: {fileID: 0}
+        value: (0.0, 0.0, 1.0)
+      - symbolName: knobMode
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobStep
+        objectReference: {fileID: 0}
+        value: 10
+      - symbolName: knobUp
+        objectReference: {fileID: 0}
+        value: (0.0, 1.0, 0.0)
+      - symbolName: onKnobLeft
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: onKnobRight
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: ownerOnly
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: switchSound
+        objectReference: {fileID: 8300000, guid: 484bb1a0a09f3f644806c74d9c794a58,
+          type: 3}
+        value: MenuSelect (UnityEngine.AudioClip)
+    - udonInstance: {fileID: 5148093546528513602, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: SFVehicleTransceiver_SF-1
+      variables:
+      - symbolName: inVehicleOnly
+        objectReference: {fileID: 8192073424493444320, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: InVehicleOnly (UnityEngine.Transform)
+      - symbolName: seatedPlayerOnly
+        objectReference: {fileID: 6033713933725025841, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: SeatOnly (UnityEngine.Transform)
+    - udonInstance: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: Transceiver
+      variables:
+      - symbolName: exclusive
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: frequency
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: frequencyStep
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: frequencyText
+        objectReference: {fileID: 45782310221632630, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Channel (TMPro.TextMeshPro)
+      - symbolName: maxFrequency
+        objectReference: {fileID: 0}
+        value: 4
+      - symbolName: minFrequency
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: receiver
+        objectReference: {fileID: 1444931317865712115, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+      - symbolName: transmitter
+        objectReference: {fileID: 6811454642972273702, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Transmitter (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 6811454642972273702, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: Transmitter
+      variables:
+      - symbolName: active
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: deactivateDelay
+        objectReference: {fileID: 0}
+        value: 0
+      - symbolName: frequency
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: indicator
+        objectReference: {fileID: 6151286723788040603, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: TX (UnityEngine.GameObject)
+      - symbolName: minDistance
+        objectReference: {fileID: 0}
+        value: 5
+    - udonInstance: {fileID: 6942311959307636596, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      gameObjectName: TX
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 206386918371787431, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Audio Source (UnityEngine.AudioSource)
+      - symbolName: desktopKey
+        objectReference: {fileID: 0}
+        value: P
+      - symbolName: disableInteractInVR
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: enableDesktopKey
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: enableHaptics
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: eventName
+        objectReference: {fileID: 0}
+        value: _ToggleTransmit
+      - symbolName: eventTarget
+        objectReference: {fileID: 3958596308481621267, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+          type: 3}
+        value: Transceiver (VRC.Udon.UdonBehaviour)
+      - symbolName: hapticAmplitude
+        objectReference: {fileID: 0}
+        value: 0.5
+      - symbolName: hapticDuration
+        objectReference: {fileID: 0}
+        value: 0.2
+      - symbolName: hapticFrequency
+        objectReference: {fileID: 0}
+        value: 0.1
+      - symbolName: inVR
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobAxis
+        objectReference: {fileID: 0}
+        value: (0.0, 0.0, 1.0)
+      - symbolName: knobMode
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobStep
+        objectReference: {fileID: 0}
+        value: 10
+      - symbolName: knobUp
+        objectReference: {fileID: 0}
+        value: (0.0, 1.0, 0.0)
+      - symbolName: onKnobLeft
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: onKnobRight
+        objectReference: {fileID: 0}
+        value: 
+      - symbolName: ownerOnly
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: switchSound
+        objectReference: {fileID: 8300000, guid: 484bb1a0a09f3f644806c74d9c794a58,
+          type: 3}
+        value: MenuSelect (UnityEngine.AudioClip)
   - prefabInstance: {fileID: 8288458946717863568, guid: 694cce977817f56459a966291200eca2,
       type: 3}
     prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Prefabs/UdonRadioCommunication.prefab

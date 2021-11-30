@@ -102,8 +102,8 @@ namespace UdonRadioCommunication
 
             if (localPlayer.IsUserInVR())
             {
-                var radius = sphereCollider.radius;
-                var center = sphereCollider.center;
+                var radius = sphereCollider.radius * transform.lossyScale.x;
+                var center = transform.rotation * Vector3.Scale(sphereCollider.center, transform.lossyScale);
 
                 lastSwitchPosition = transform.position;
 
