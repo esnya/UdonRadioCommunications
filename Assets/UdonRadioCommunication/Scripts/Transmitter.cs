@@ -12,6 +12,7 @@ namespace UdonRadioCommunication
         public float deactivateDelay = 1.0f;
         public float minDistance = 5.0f;
         public GameObject indicator;
+        public bool indicatorAsLocal = false;
 
         private float lastActivatedTime;
         [UdonSynced][FieldChangeCallback(nameof(Active))] private bool _active;
@@ -21,7 +22,7 @@ namespace UdonRadioCommunication
             set {
                 if (value) lastActivatedTime = Time.time;
                 _active = value;
-                if (indicator != null) indicator.SetActive(value);
+                if (indicator != null) indicator.SetActive((!indicatorAsLocal || Networking.IsOwner(gameObject)) && value);
             }
         }
 

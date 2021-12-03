@@ -910,6 +910,9 @@ MonoBehaviour:
         objectReference: {fileID: 4362246542932363112, guid: 417a26f9a8d9ffc4880245473499ecc6,
           type: 3}
         value: TX (UnityEngine.GameObject)
+      - symbolName: indicatorAsLocal
+        objectReference: {fileID: 0}
+        value: True
       - symbolName: minDistance
         objectReference: {fileID: 0}
         value: 5
