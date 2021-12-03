@@ -902,7 +902,7 @@ MonoBehaviour:
         value: False
       - symbolName: deactivateDelay
         objectReference: {fileID: 0}
-        value: 3
+        value: 1
       - symbolName: frequency
         objectReference: {fileID: 0}
         value: 1
@@ -997,7 +997,7 @@ MonoBehaviour:
         value: False
       - symbolName: deactivateDelay
         objectReference: {fileID: 0}
-        value: 3
+        value: 1
       - symbolName: frequency
         objectReference: {fileID: 0}
         value: 1

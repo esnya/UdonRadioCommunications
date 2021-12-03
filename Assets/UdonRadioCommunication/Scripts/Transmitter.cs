@@ -8,18 +8,26 @@ namespace UdonRadioCommunication
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class Transmitter : UdonSharpBehaviour
     {
-        [UdonSynced] public bool active;
         [UdonSynced] public float frequency = 1.0f;
-        public float deactivateDelay = 3.0f;
+        public float deactivateDelay = 1.0f;
         public float minDistance = 5.0f;
         public GameObject indicator;
 
-        private void Start() => UpdateIndicator();
-        public override void OnDeserialization() => UpdateIndicator();
-
-        private void UpdateIndicator()
+        private float lastActivatedTime;
+        [UdonSynced][FieldChangeCallback(nameof(Active))] private bool _active;
+        public bool Active
         {
-            if (indicator != null) indicator.SetActive(active);
+            get => _active;
+            set {
+                if (value) lastActivatedTime = Time.time;
+                _active = value;
+                if (indicator != null) indicator.SetActive(value);
+            }
+        }
+
+        private void Start()
+        {
+            Active = false;
         }
 
         public void _TakeOwnership()
@@ -28,33 +36,29 @@ namespace UdonRadioCommunication
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
         }
 
-        public bool _IsActive() => active;
         public void _SetActive(bool value)
         {
-            _TakeOwnership();
             if (value) _Activate();
             else _Deactivate();
         }
         public void _Activate()
         {
             _TakeOwnership();
-            active = true;
-            UpdateIndicator();
+            Active = true;
             RequestSerialization();
         }
         public void _Deactivate()
         {
+            _TakeOwnership();
             SendCustomEventDelayedSeconds(nameof(_DelayedDeactivate), deactivateDelay);
-            if (indicator != null) indicator.SetActive(false);
         }
         public void _DelayedDeactivate()
         {
-            _TakeOwnership();
-            active = false;
-            UpdateIndicator();
+            if (Time.time - lastActivatedTime < deactivateDelay) return;
+            Active = false;
             RequestSerialization();
         }
-        public void _ToggleActive() => _SetActive(!active);
+        public void _ToggleActive() => _SetActive(!Active);
 
         public void _SetFrequency(float f)
         {

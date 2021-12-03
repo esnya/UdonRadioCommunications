@@ -114,7 +114,7 @@ namespace UdonRadioCommunication
             {
                 if (
                     transmitter == null
-                    || !transmitter.active
+                    || !transmitter.Active
                     || (transmitter.transform.position - localPlayerPosition).sqrMagnitude < Mathf.Pow(transmitter.minDistance, 2)
                 ) continue;
 
@@ -173,7 +173,7 @@ namespace UdonRadioCommunication
                     if (transmitter == null) continue;
                     var owner = Networking.GetOwner(transmitter.gameObject);
                     var tooClose = (transmitter.transform.position - localPlayerPosition).sqrMagnitude < Mathf.Pow(transmitter.minDistance, 2);
-                    text += $"\t{i:000}:{GetUniqueName(transmitter)}\t{(transmitter.active ? (tooClose ? closeText : activeText) : nonActiveText)}\t{transmitter.frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
+                    text += $"\t{i:000}:{GetUniqueName(transmitter)}\t{(transmitter.Active ? (tooClose ? closeText : activeText) : nonActiveText)}\t{transmitter.frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
                 }
 
                 text += "\nReceivers:\n";
