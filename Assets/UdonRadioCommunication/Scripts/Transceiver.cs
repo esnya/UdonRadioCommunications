@@ -28,11 +28,10 @@ namespace UdonRadioCommunication
         {
             set
             {
-                if (Networking.IsOwner(gameObject))
-                {
-                    receiver._SetFrequency(value);
-                    transmitter._SetFrequency(value);
-                }
+                var isOwner = Networking.IsOwner(gameObject);
+                if (!receiver.sync || isOwner) receiver._SetFrequency(value);
+                if (isOwner) transmitter._SetFrequency(value);
+
                 if (frequencyText != null) frequencyText.text = string.Format(frequencyFormat, value);
                 frequency = value;
             }

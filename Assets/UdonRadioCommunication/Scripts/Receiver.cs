@@ -48,7 +48,7 @@ namespace UdonRadioCommunication
 
         public void _SetActive(bool value)
         {
-            _TakeOwnership();
+            if (sync) _TakeOwnership();
             active = value;
             UpdateIndicator();
             if (sync) RequestSerialization();
@@ -60,7 +60,7 @@ namespace UdonRadioCommunication
 
         public void _SetFrequency(float f)
         {
-            _TakeOwnership();
+            if (sync) _TakeOwnership();
             frequency = f;
             if (sync) RequestSerialization();
         }
