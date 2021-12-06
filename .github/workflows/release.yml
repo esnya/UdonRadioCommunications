@@ -44,7 +44,7 @@ jobs:
         with:
           node-version: '14'
       - name: Install dependencies
-        run: npm install semantic-release semantic-release-gitmoji @semantic-release/exec @semantic-release/github
+        run: npm install semantic-release@17 semantic-release-gitmoji @semantic-release/exec @semantic-release/github
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
