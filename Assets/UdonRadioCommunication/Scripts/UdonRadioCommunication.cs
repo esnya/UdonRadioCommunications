@@ -17,6 +17,7 @@ using UdonSharpEditor;
 namespace UdonRadioCommunication
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
+    [DefaultExecutionOrder(1100)]
     public class UdonRadioCommunication : UdonSharpBehaviour
     {
         public const float MaxDistance = 1000000.0f;
@@ -28,6 +29,11 @@ namespace UdonRadioCommunication
         [Range(0, 1000)] public float defaultVoiceVolumetricRadius = 0;
         public float distanceAttenuation = 10.0f;
         public bool disableLowpassFilter = true;
+
+        [Space]
+        public bool overrideFrequency = false;
+        public float minFrequency = 118.0f, maxFrequency = 118.0f + 0.05f * 8;
+        public float frequencyStep = 0.05f;
 
         [Space]
         public bool autoSetupBeforeSave = true;
@@ -47,6 +53,25 @@ namespace UdonRadioCommunication
 
         private void Start()
         {
+
+            if (overrideFrequency)
+            {
+                foreach (var receiver in receivers)
+                {
+                    receiver.frequency = minFrequency;
+
+                    var transceiver = receiver.GetComponentInParent<Transceiver>();
+                    if (transceiver)
+                    {
+                        transceiver.minFrequency = minFrequency;
+                        transceiver.maxFrequency = maxFrequency;
+                        transceiver.frequencyStep = frequencyStep;
+                        transceiver.frequency = minFrequency;
+                    }
+                }
+
+                foreach (var transmitter in transmitters) transmitter.frequency = minFrequency;
+            }
             Debug.Log($"[{gameObject.name}] Started with {transmitters.Length} transmitters, {receivers.Length} receivers");
         }
 

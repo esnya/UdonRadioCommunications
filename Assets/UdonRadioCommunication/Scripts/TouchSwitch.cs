@@ -3,6 +3,13 @@ using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
 
+#if !COMPILER_UDONSHARP && UNITY_EDITOR
+using UnityEditor;
+using UdonSharpEditor;
+using System.Reflection;
+using System.Linq;
+#endif
+
 namespace UdonRadioCommunication
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
@@ -145,5 +152,58 @@ namespace UdonRadioCommunication
             OnTouchStart(VRC_Pickup.PickupHand.None);
             OnTouchEnd();
         }
+
+#if !COMPILER_UDONSHARP && UNITY_EDITOR
+        private void Reset()
+        {
+            GetComponent<SphereCollider>().isTrigger = true;
+        }
+#endif
     }
+
+#if !COMPILER_UDONSHARP && UNITY_EDITOR
+    [CustomEditor(typeof(TouchSwitch))]
+    public class TouchSwitchEditor : Editor
+    {
+        private static string UdonPublicEventField(string label, UdonSharpBehaviour udon, string value)
+        {
+            if (udon == null) return EditorGUILayout.TextField(label, value);
+
+            var events = udon.GetType().GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public).Select(m => m.Name).ToList();
+            if (events.Count == 0) return EditorGUILayout.TextField(label, value);
+
+            var index = Mathf.Max(events.FindIndex(e => e == value), 0);
+            index = EditorGUILayout.Popup(label, index, events.ToArray());
+
+            return events.Skip(index).FirstOrDefault();
+        }
+
+        public override void OnInspectorGUI()
+        {
+            if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
+
+            serializedObject.Update();
+
+            var property = serializedObject.GetIterator();
+            property.NextVisible(true);
+
+            while (property.NextVisible(false))
+            {
+                switch (property.name)
+                {
+                    case nameof(TouchSwitch.eventName):
+                    case nameof(TouchSwitch.onKnobRight):
+                    case nameof(TouchSwitch.onKnobLeft):
+                        property.stringValue = UdonPublicEventField(property.displayName, serializedObject.FindProperty(nameof(TouchSwitch.eventTarget)).objectReferenceValue as UdonSharpBehaviour, property.stringValue);
+                        break;
+                    default:
+                        EditorGUILayout.PropertyField(property);
+                        break;
+                }
+            }
+
+            serializedObject.ApplyModifiedProperties();
+        }
+    }
+#endif
 }
