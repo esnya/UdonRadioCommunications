@@ -1,4 +1,5 @@
 #pragma warning disable IDE0051
+using System;
 
 using UdonSharp;
 using UnityEngine;
@@ -32,8 +33,10 @@ namespace UdonRadioCommunication
 
         [Space]
         public bool overrideFrequency = false;
-        public float minFrequency = 118.0f, maxFrequency = 118.0f + 0.05f * 8;
-        public float frequencyStep = 0.05f;
+        public float minFrequency = 118.0f, maxFrequency = 136.975f;
+        public float frequencyStep = 0.025f;
+        public float fastFrequencyStep = 1.0f;
+        public string frequencyFormat = "{0:#00.00#}";
 
         [Space]
         public bool autoSetupBeforeSave = true;
@@ -47,13 +50,12 @@ namespace UdonRadioCommunication
         public TextMeshProUGUI debugTextUi;
 
         private bool playerListDirty = true;
-        private VRCPlayerApi[] players = {};
-        private Transmitter[] playerTransmitters = {};
-        private bool[] playerPrevIsDefaultVoice = {};
+        private VRCPlayerApi[] players = { };
+        private Transmitter[] playerTransmitters = { };
+        private bool[] playerPrevIsDefaultVoice = { };
 
-        private void Start()
+        private void LateStart()
         {
-
             if (overrideFrequency)
             {
                 foreach (var receiver in receivers)
@@ -66,7 +68,11 @@ namespace UdonRadioCommunication
                         transceiver.minFrequency = minFrequency;
                         transceiver.maxFrequency = maxFrequency;
                         transceiver.frequencyStep = frequencyStep;
+                        transceiver.fastFrequencyStep = fastFrequencyStep;
                         transceiver.frequency = minFrequency;
+                        transceiver.overrideFrequencyFormat = true;
+                        transceiver.frequencyFormat = frequencyFormat;
+                        transceiver._UpdateFrequencyText();
                     }
                 }
 
@@ -81,7 +87,8 @@ namespace UdonRadioCommunication
             {
                 for (int i = 0; i < players.Length; i++)
                 {
-                    if (Utilities.IsValid(players[i]) && player.playerId == players[i].playerId) {
+                    if (Utilities.IsValid(players[i]) && player.playerId == players[i].playerId)
+                    {
                         return i;
                     }
                 }
@@ -105,7 +112,8 @@ namespace UdonRadioCommunication
             var localPosition = Networking.LocalPlayer.GetPosition();
             float minDistance = float.MaxValue;
             Receiver result = null;
-            foreach (var r in receivers) {
+            foreach (var r in receivers)
+            {
                 if (r == null || !r.active || r.frequency != frequency) continue;
 
                 var distance = Vector3.SqrMagnitude(r.transform.position - localPosition);
@@ -229,7 +237,7 @@ namespace UdonRadioCommunication
             }
         }
 
-        private string GetUniqueName(Object o)
+        private string GetUniqueName(UnityEngine.Object o)
         {
             if (o == null) return " - ";
             return $"{o.GetInstanceID():x8}@{o}";
@@ -243,6 +251,7 @@ namespace UdonRadioCommunication
         public override void OnPlayerJoined(VRCPlayerApi player)
         {
             playerListDirty = true;
+            if (player.isLocal) LateStart();
         }
         public override void OnPlayerLeft(VRCPlayerApi player)
         {
@@ -287,7 +296,8 @@ namespace UdonRadioCommunication
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
 
     [CustomEditor(typeof(UdonRadioCommunication))]
-    public class UdonRadioCommunicationEditor : Editor {
+    public class UdonRadioCommunicationEditor : Editor
+    {
         private static IEnumerable<T> GetUdonSharpComponentsInScene<T>() where T : UdonSharpBehaviour
         {
             return FindObjectsOfType<UdonBehaviour>()
@@ -297,7 +307,8 @@ namespace UdonRadioCommunication
                 .Where(u => u != null);
         }
 
-        public override void OnInspectorGUI() {
+        public override void OnInspectorGUI()
+        {
             if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
             base.OnInspectorGUI();
 

@@ -13,9 +13,9 @@ using System.Linq;
 namespace UdonRadioCommunication
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
-    [RequireComponent(typeof(SphereCollider))]
     public class TouchSwitch : UdonSharpBehaviour
     {
+        public float radius = 0.0075f;
         public UdonSharpBehaviour eventTarget;
         public string eventName;
         public bool ownerOnly = false;
@@ -46,12 +46,10 @@ namespace UdonRadioCommunication
 
         private bool prevTouch;
         private Vector3 lastSwitchPosition;
-        private SphereCollider sphereCollider;
         private Quaternion inverseHandRotaion;
 
         private void Start()
         {
-            sphereCollider = GetComponent<SphereCollider>();
             SendCustomEventDelayedFrames(nameof(_PostStart), 1);
         }
 
@@ -60,7 +58,7 @@ namespace UdonRadioCommunication
             if (disableInteractInVR && Networking.LocalPlayer.IsUserInVR()) DisableInteractive = true;
         }
 
-        private bool DetectTouch(VRC_Pickup.PickupHand hand, Vector3 switchPosition, float radius, Vector3 offset)
+        private bool DetectTouch(VRC_Pickup.PickupHand hand, Vector3 switchPosition, float radius)
         {
             var isLeft = hand == VRC_Pickup.PickupHand.Left;
 
@@ -70,7 +68,7 @@ namespace UdonRadioCommunication
 
             var tipPosition = distalPosition + distalPosition - intermediatePosition;
 
-            return (switchPosition + offset - tipPosition).sqrMagnitude < Mathf.Pow(radius, 2);
+            return (switchPosition - tipPosition).sqrMagnitude < Mathf.Pow(radius, 2);
         }
 
         private void PlayHaptic(VRC_Pickup.PickupHand hand)
@@ -90,7 +88,7 @@ namespace UdonRadioCommunication
                 PlaySound();
                 eventTarget.SendCustomEvent(eventName);
             }
-            if (enableHaptics)  PlayHaptic(hand);
+            if (enableHaptics) PlayHaptic(hand);
 
             if (hand != VRC_Pickup.PickupHand.None)
             {
@@ -109,13 +107,10 @@ namespace UdonRadioCommunication
 
             if (localPlayer.IsUserInVR())
             {
-                var radius = sphereCollider.radius * transform.lossyScale.x;
-                var center = transform.rotation * Vector3.Scale(sphereCollider.center, transform.lossyScale);
-
                 lastSwitchPosition = transform.position;
 
-                var touchRight = DetectTouch(VRC_Pickup.PickupHand.Right, lastSwitchPosition, radius, center);
-                var touch = touchRight || DetectTouch(VRC_Pickup.PickupHand.Left, lastSwitchPosition, radius, center);
+                var touchRight = DetectTouch(VRC_Pickup.PickupHand.Right, lastSwitchPosition, radius);
+                var touch = touchRight || DetectTouch(VRC_Pickup.PickupHand.Left, lastSwitchPosition, radius);
                 var hand = touchRight ? VRC_Pickup.PickupHand.Right : VRC_Pickup.PickupHand.Left;
 
                 if (touch && !prevTouch) OnTouchStart(hand);
@@ -154,9 +149,11 @@ namespace UdonRadioCommunication
         }
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
-        private void Reset()
+        private void OnDrawGizmos()
         {
-            GetComponent<SphereCollider>().isTrigger = true;
+            this.UpdateProxy();
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, radius);
         }
 #endif
     }
@@ -165,19 +162,6 @@ namespace UdonRadioCommunication
     [CustomEditor(typeof(TouchSwitch))]
     public class TouchSwitchEditor : Editor
     {
-        private static string UdonPublicEventField(string label, UdonSharpBehaviour udon, string value)
-        {
-            if (udon == null) return EditorGUILayout.TextField(label, value);
-
-            var events = udon.GetType().GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public).Select(m => m.Name).ToList();
-            if (events.Count == 0) return EditorGUILayout.TextField(label, value);
-
-            var index = Mathf.Max(events.FindIndex(e => e == value), 0);
-            index = EditorGUILayout.Popup(label, index, events.ToArray());
-
-            return events.Skip(index).FirstOrDefault();
-        }
-
         public override void OnInspectorGUI()
         {
             if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
@@ -194,7 +178,7 @@ namespace UdonRadioCommunication
                     case nameof(TouchSwitch.eventName):
                     case nameof(TouchSwitch.onKnobRight):
                     case nameof(TouchSwitch.onKnobLeft):
-                        property.stringValue = UdonPublicEventField(property.displayName, serializedObject.FindProperty(nameof(TouchSwitch.eventTarget)).objectReferenceValue as UdonSharpBehaviour, property.stringValue);
+                        URCUtility.UdonPublicEventField(serializedObject.FindProperty(nameof(TouchSwitch.eventTarget)), property);
                         break;
                     default:
                         EditorGUILayout.PropertyField(property);
