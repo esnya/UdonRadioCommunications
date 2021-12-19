@@ -24,7 +24,7 @@ namespace UdonRadioCommunication
         [NotNull] public Receiver receiver;
         [NotNull] public Transmitter transmitter;
         [UdonSynced, FieldChangeCallback(nameof(Frequency))] public float frequency = 1.0f;
-        public float frequencyStep = 1.0f, fastFrequencyStep = 10.0f, minFrequency = 1.0f, maxFrequency = 8.0f;
+        public float frequencyStep = 1.0f, fastFrequencyStep = 2.0f, minFrequency = 1.0f, maxFrequency = 8.0f;
 
         public bool overrideFrequencyFormat = false;
         public string frequencyFormat = "{0:#00.00#}";
@@ -175,6 +175,7 @@ namespace UdonRadioCommunication
 
         public void _Dispatch(string eventName)
         {
+            if (subscribers == null) return;
             foreach (var subscriber in subscribers)
             {
                 if (!subscriber) return;

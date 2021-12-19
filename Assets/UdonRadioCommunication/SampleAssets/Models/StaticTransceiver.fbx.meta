@@ -30,7 +30,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties:
-    - '#BAKERY{"meshName":["Cables","Transceiver","Speaker","Mic"],"padding":[256,256,256,256],"unwrapper":[0,0,0,0]}'
+    - '#BAKERY{"meshName":["Mic","Speaker","Transceiver","Cables"],"padding":[256,256,256,256],"unwrapper":[0,0,0,0]}'
     clipAnimations: []
     isReadable: 0
   meshes:

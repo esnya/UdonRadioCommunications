@@ -36,7 +36,7 @@ namespace UdonRadioCommunication
         public float minFrequency = 118.0f, maxFrequency = 136.975f;
         public float frequencyStep = 0.025f;
         public float fastFrequencyStep = 1.0f;
-        public string frequencyFormat = "{0:#00.00#}";
+        public string frequencyFormat = "{0:##0.000}";
 
         [Space]
         public bool autoSetupBeforeSave = true;
@@ -54,7 +54,11 @@ namespace UdonRadioCommunication
         private Transmitter[] playerTransmitters = { };
         private bool[] playerPrevIsDefaultVoice = { };
 
-        private void LateStart()
+        private void Start()
+        {
+            SendCustomEventDelayedSeconds(nameof(_LateStart), 10);
+        }
+        public void _LateStart()
         {
             if (overrideFrequency)
             {
@@ -251,7 +255,6 @@ namespace UdonRadioCommunication
         public override void OnPlayerJoined(VRCPlayerApi player)
         {
             playerListDirty = true;
-            if (player.isLocal) LateStart();
         }
         public override void OnPlayerLeft(VRCPlayerApi player)
         {
