@@ -13,13 +13,6 @@ namespace UdonRadioCommunication
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class Transceiver : UdonSharpBehaviour
     {
-        const int MAX_SUBSCRIBERS = 32;
-        const string EVENT_FREQUENCY_CHANGED = "_Transceiver_Frequency_Changed";
-        const string EVENT_RECEIVER_ON = "_Transceiver_Receiver_On";
-        const string EVENT_RECEIVER_OFF = "_Transceiver_Receiver_Off";
-        const string EVENT_TRANSMITTER_ON = "_Transceiver_Transmitter_On";
-        const string EVENT_TRANSMITTER_OFF = "_Transceiver_Transmitter_Off";
-
         public bool exclusive = true;
         [NotNull] public Receiver receiver;
         [NotNull] public Transmitter transmitter;
@@ -33,7 +26,6 @@ namespace UdonRadioCommunication
         public TextMeshPro frequencyText;
         [Tooltip("Drives bool parameters \"PowerOn\" and \"Talking\"")] public Animator[] animators = { };
 
-        private UdonSharpBehaviour[] subscribers;
         private float Frequency
         {
             set
@@ -44,8 +36,6 @@ namespace UdonRadioCommunication
 
                 frequency = value;
                 _UpdateFrequencyText();
-
-                _Dispatch(EVENT_FREQUENCY_CHANGED);
             }
             get => frequency;
         }
@@ -58,8 +48,6 @@ namespace UdonRadioCommunication
                 if (Networking.IsOwner(gameObject)) receiver._SetActive(value);
                 _receive = value;
                 SetBool("PowerOn", value);
-
-                _Dispatch(value ? EVENT_RECEIVER_ON : EVENT_RECEIVER_OFF);
             }
             get => _receive;
         }
@@ -76,8 +64,6 @@ namespace UdonRadioCommunication
                 }
                 SetBool("Talking", value);
                 _transmit = value;
-
-                _Dispatch(value ? EVENT_TRANSMITTER_ON : EVENT_TRANSMITTER_OFF);
             }
             get => _transmit;
         }
@@ -94,8 +80,6 @@ namespace UdonRadioCommunication
 
         private void Start()
         {
-            subscribers = new UdonSharpBehaviour[MAX_SUBSCRIBERS];
-
             var pickup = (VRCPickup)GetComponent(typeof(VRCPickup));
             if (pickup != null) pickup.AutoHold = VRC_Pickup.AutoHoldMode.Yes;
 
@@ -159,28 +143,6 @@ namespace UdonRadioCommunication
         public void _UpdateFrequencyText()
         {
             if (frequencyText != null) frequencyText.text = string.Format(frequencyFormat, frequency);
-        }
-
-        public void _Subscribe(UdonSharpBehaviour subscriber)
-        {
-            for (var i = 0; i < MAX_SUBSCRIBERS; i++)
-            {
-                if (!subscribers[i])
-                {
-                    subscribers[i] = subscriber;
-                    return;
-                }
-            }
-        }
-
-        public void _Dispatch(string eventName)
-        {
-            if (subscribers == null) return;
-            foreach (var subscriber in subscribers)
-            {
-                if (!subscriber) return;
-                subscriber.SendCustomEvent(eventName);
-            }
         }
     }
 }
