@@ -1,4 +1,5 @@
 #pragma warning disable IDE0051
+using System;
 
 using UdonSharp;
 using UnityEngine;
@@ -17,6 +18,7 @@ using UdonSharpEditor;
 namespace UdonRadioCommunication
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
+    [DefaultExecutionOrder(1100)]
     public class UdonRadioCommunication : UdonSharpBehaviour
     {
         public const float MaxDistance = 1000000.0f;
@@ -30,6 +32,13 @@ namespace UdonRadioCommunication
         public bool disableLowpassFilter = true;
 
         [Space]
+        public bool overrideFrequency = false;
+        public float minFrequency = 118.0f, maxFrequency = 136.975f;
+        public float frequencyStep = 0.025f;
+        public float fastFrequencyStep = 1.0f;
+        public string frequencyFormat = "{0:##0.000}";
+
+        [Space]
         public bool autoSetupBeforeSave = true;
 
         [Space]
@@ -41,12 +50,38 @@ namespace UdonRadioCommunication
         public TextMeshProUGUI debugTextUi;
 
         private bool playerListDirty = true;
-        private VRCPlayerApi[] players = {};
-        private Transmitter[] playerTransmitters = {};
-        private bool[] playerPrevIsDefaultVoice = {};
+        private VRCPlayerApi[] players = { };
+        private Transmitter[] playerTransmitters = { };
+        private bool[] playerPrevIsDefaultVoice = { };
 
         private void Start()
         {
+            SendCustomEventDelayedSeconds(nameof(_LateStart), 10);
+        }
+        public void _LateStart()
+        {
+            if (overrideFrequency)
+            {
+                foreach (var receiver in receivers)
+                {
+                    receiver.frequency = minFrequency;
+
+                    var transceiver = receiver.GetComponentInParent<Transceiver>();
+                    if (transceiver)
+                    {
+                        transceiver.minFrequency = minFrequency;
+                        transceiver.maxFrequency = maxFrequency;
+                        transceiver.frequencyStep = frequencyStep;
+                        transceiver.fastFrequencyStep = fastFrequencyStep;
+                        transceiver.frequency = minFrequency;
+                        transceiver.overrideFrequencyFormat = true;
+                        transceiver.frequencyFormat = frequencyFormat;
+                        transceiver._UpdateFrequencyText();
+                    }
+                }
+
+                foreach (var transmitter in transmitters) transmitter.frequency = minFrequency;
+            }
             Debug.Log($"[{gameObject.name}] Started with {transmitters.Length} transmitters, {receivers.Length} receivers");
         }
 
@@ -56,7 +91,8 @@ namespace UdonRadioCommunication
             {
                 for (int i = 0; i < players.Length; i++)
                 {
-                    if (Utilities.IsValid(players[i]) && player.playerId == players[i].playerId) {
+                    if (Utilities.IsValid(players[i]) && player.playerId == players[i].playerId)
+                    {
                         return i;
                     }
                 }
@@ -80,7 +116,8 @@ namespace UdonRadioCommunication
             var localPosition = Networking.LocalPlayer.GetPosition();
             float minDistance = float.MaxValue;
             Receiver result = null;
-            foreach (var r in receivers) {
+            foreach (var r in receivers)
+            {
                 if (r == null || !r.active || r.frequency != frequency) continue;
 
                 var distance = Vector3.SqrMagnitude(r.transform.position - localPosition);
@@ -114,7 +151,7 @@ namespace UdonRadioCommunication
             {
                 if (
                     transmitter == null
-                    || !transmitter.active
+                    || !transmitter.Active
                     || (transmitter.transform.position - localPlayerPosition).sqrMagnitude < Mathf.Pow(transmitter.minDistance, 2)
                 ) continue;
 
@@ -173,7 +210,7 @@ namespace UdonRadioCommunication
                     if (transmitter == null) continue;
                     var owner = Networking.GetOwner(transmitter.gameObject);
                     var tooClose = (transmitter.transform.position - localPlayerPosition).sqrMagnitude < Mathf.Pow(transmitter.minDistance, 2);
-                    text += $"\t{i:000}:{GetUniqueName(transmitter)}\t{(transmitter.active ? (tooClose ? closeText : activeText) : nonActiveText)}\t{transmitter.frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
+                    text += $"\t{i:000}:{GetUniqueName(transmitter)}\t{(transmitter.Active ? (tooClose ? closeText : activeText) : nonActiveText)}\t{transmitter.frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
                 }
 
                 text += "\nReceivers:\n";
@@ -204,7 +241,7 @@ namespace UdonRadioCommunication
             }
         }
 
-        private string GetUniqueName(Object o)
+        private string GetUniqueName(UnityEngine.Object o)
         {
             if (o == null) return " - ";
             return $"{o.GetInstanceID():x8}@{o}";
@@ -262,7 +299,8 @@ namespace UdonRadioCommunication
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
 
     [CustomEditor(typeof(UdonRadioCommunication))]
-    public class UdonRadioCommunicationEditor : Editor {
+    public class UdonRadioCommunicationEditor : Editor
+    {
         private static IEnumerable<T> GetUdonSharpComponentsInScene<T>() where T : UdonSharpBehaviour
         {
             return FindObjectsOfType<UdonBehaviour>()
@@ -272,7 +310,8 @@ namespace UdonRadioCommunication
                 .Where(u => u != null);
         }
 
-        public override void OnInspectorGUI() {
+        public override void OnInspectorGUI()
+        {
             if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
             base.OnInspectorGUI();
 

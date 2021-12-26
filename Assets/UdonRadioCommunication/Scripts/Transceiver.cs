@@ -9,32 +9,33 @@ using VRC.SDKBase;
 
 namespace UdonRadioCommunication
 {
-    [DefaultExecutionOrder(1000), UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
+    [DefaultExecutionOrder(1000)]
+    [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class Transceiver : UdonSharpBehaviour
     {
-
         public bool exclusive = true;
         [NotNull] public Receiver receiver;
         [NotNull] public Transmitter transmitter;
         [UdonSynced, FieldChangeCallback(nameof(Frequency))] public float frequency = 1.0f;
-        public float frequencyStep = 1.0f, minFrequency = 1.0f, maxFrequency = 8.0f;
+        public float frequencyStep = 1.0f, fastFrequencyStep = 2.0f, minFrequency = 1.0f, maxFrequency = 8.0f;
+
+        public bool overrideFrequencyFormat = false;
+        public string frequencyFormat = "{0:#00.00#}";
 
         [Header("Optional")]
         public TextMeshPro frequencyText;
         [Tooltip("Drives bool parameters \"PowerOn\" and \"Talking\"")] public Animator[] animators = { };
 
-        private string frequencyFormat;
         private float Frequency
         {
             set
             {
-                if (Networking.IsOwner(gameObject))
-                {
-                    receiver._SetFrequency(value);
-                    transmitter._SetFrequency(value);
-                }
-                if (frequencyText != null) frequencyText.text = string.Format(frequencyFormat, value);
+                var isOwner = Networking.IsOwner(gameObject);
+                if (!receiver.sync || isOwner) receiver._SetFrequency(value);
+                if (isOwner) transmitter._SetFrequency(value);
+
                 frequency = value;
+                _UpdateFrequencyText();
             }
             get => frequency;
         }
@@ -82,15 +83,12 @@ namespace UdonRadioCommunication
             var pickup = (VRCPickup)GetComponent(typeof(VRCPickup));
             if (pickup != null) pickup.AutoHold = VRC_Pickup.AutoHoldMode.Yes;
 
-            if (frequencyText) frequencyFormat = frequencyText.text;
+            if (frequencyText && !overrideFrequencyFormat) frequencyFormat = frequencyText.text;
 
             Frequency = frequency;
             Receive = false;
             Transmit = false;
         }
-
-        public override void OnPickupUseDown() => _StartTransmit();
-        public override void OnPickupUseUp() => _StopTransmit();
 
         public void _TakeOwnership()
         {
@@ -128,6 +126,8 @@ namespace UdonRadioCommunication
         }
         public void _IncrementFrequency() => _SetFrequency(Frequency + frequencyStep);
         public void _DecrementFrequency() => _SetFrequency(Frequency - frequencyStep);
+        public void _FastIncrementFrequency() => _SetFrequency(Frequency + fastFrequencyStep);
+        public void _FastDecrementFrequency() => _SetFrequency(Frequency - fastFrequencyStep);
 
         public void _SetActive(bool value)
         {
@@ -139,5 +139,10 @@ namespace UdonRadioCommunication
         public void _Activate() => _SetActive(true);
         public void _Deactivate() => _SetActive(false);
         public void _ToggleActive() => _SetActive(!(Transmit || Receive));
+
+        public void _UpdateFrequencyText()
+        {
+            if (frequencyText != null) frequencyText.text = string.Format(frequencyFormat, frequency);
+        }
     }
 }

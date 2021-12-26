@@ -1,11 +1,9 @@
 ﻿using System.Linq;
 using UdonSharp;
 using UdonSharpEditor;
-using UdonToolkit;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using VRC.Udon;
 
 namespace UdonRadioCommunication
 {
@@ -16,7 +14,7 @@ namespace UdonRadioCommunication
             BuildTargetGroup.Android,
         };
 
-        [MenuItem("UdonRadioCommunication/Installer for SaccFight")]
+        [MenuItem("SaccFlight/UdonRadioCommunication/Installer")]
         private static void ShowWindow()
         {
             var window = GetWindow<URC_SF_Installer>();
@@ -41,7 +39,6 @@ namespace UdonRadioCommunication
         private void OnEnable()
         {
             titleContent = new GUIContent("URC Installer for SaccFlight");
-            if (transceiverPrefab == null) transceiverPrefab = Resources.Load<GameObject>("SFVehicleTransceiver_SF-1");
         }
 
 #if !URC_SF
@@ -137,18 +134,12 @@ namespace UdonRadioCommunication
                             EditorGUILayout.ObjectField(entity.gameObject, typeof(GameObject), true);
                             EditorGUILayout.ObjectField(seat, typeof(GameObject), true);
 
-                            if (!seatOnly)
-                            {
-                                EditorGUILayout.HelpBox("SaccVehicleSeat.ThisSeatOnly is required.", MessageType.Error);
-                                continue;
-                            }
-
                             var injector = seat.GetUdonSharpComponentInChildren<SFComInjector>();
                             var installed = injector != null;
 
-                            using (new EditorGUI.DisabledGroupScope(installed))
+                            using (new EditorGUI.DisabledGroupScope(installed || !seatOnly))
                             {
-                                if (GUILayout.Button("Install", EditorStyles.miniButtonLeft, miniButtonLayout)) Install(seat.transform);
+                                if (GUILayout.Button(new GUIContent("Install", seatOnly != null ? null : "SaccVehicleSeat.ThisSeatOnly is required"), EditorStyles.miniButtonLeft, miniButtonLayout)) Install(seat.transform);
                             }
                             using (new EditorGUI.DisabledGroupScope(!installed))
                             {

@@ -13,6 +13,7 @@ namespace UdonRadioCommunication
         private Transceiver transceiver;
         private GameObject txIndicator;
 
+#if URC_SF
         public void SFEXT_L_EntityStart()
         {
             var entity = GetComponentInParent<SaccEntity>();
@@ -83,5 +84,6 @@ namespace UdonRadioCommunication
             transmit = value;
             transceiver._SetTransmit(value);
         }
+#endif
     }
 }
