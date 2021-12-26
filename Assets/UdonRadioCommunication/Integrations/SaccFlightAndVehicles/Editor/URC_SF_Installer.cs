@@ -1,11 +1,9 @@
 ﻿using System.Linq;
 using UdonSharp;
 using UdonSharpEditor;
-using UdonToolkit;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using VRC.Udon;
 
 namespace UdonRadioCommunication
 {
