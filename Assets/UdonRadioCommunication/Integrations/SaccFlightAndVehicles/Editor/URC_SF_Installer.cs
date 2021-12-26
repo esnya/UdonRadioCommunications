@@ -15,17 +15,10 @@ namespace UdonRadioCommunication
         };
 
         [MenuItem("SaccFlight/UdonRadioCommunication/Installer")]
-        private static void ShowWindow()
+        public static void ShowWindow()
         {
             var window = GetWindow<URC_SF_Installer>();
             window.Show();
-        }
-
-        private static void ClearLocalTransform(Transform t)
-        {
-            t.localPosition = Vector3.zero;
-            t.localRotation = Quaternion.identity;
-            t.localScale = Vector3.one;
         }
 
         public GameObject transceiverPrefab;
@@ -90,16 +83,6 @@ namespace UdonRadioCommunication
             Undo.DestroyObjectImmediate(injector.gameObject);
 
             SetupURC();
-        }
-
-        private GameObject GetSeatedUserOnly(UdonSharpBehaviour seat)
-        {
-            var type = seat.GetType();
-            return (
-                type.GetField("LeaveButton")?.GetValue(seat) // 1.4 or before
-                    ?? type.GetField("PilotOnly")?.GetValue(seat)
-                    ?? type.GetField("PassengerOnly")?.GetValue(seat)
-             ) as GameObject;
         }
 
         private void OnGUI()
