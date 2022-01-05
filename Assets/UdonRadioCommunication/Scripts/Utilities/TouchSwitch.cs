@@ -2,6 +2,7 @@ using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
+using VRC.Udon.Common.Interfaces;
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
 using UnityEditor;
@@ -19,6 +20,7 @@ namespace UdonRadioCommunication
         public UdonSharpBehaviour eventTarget;
         public string eventName;
         public bool ownerOnly = false;
+        public bool sentToOwner = false;
         public bool disableInteractInVR = true;
 
         [Header("Knob")]
@@ -86,7 +88,7 @@ namespace UdonRadioCommunication
             if ((hand == VRC_Pickup.PickupHand.None || !knobMode) && eventTarget != null && (!ownerOnly || Networking.IsOwner(eventTarget.gameObject)))
             {
                 PlaySound();
-                eventTarget.SendCustomEvent(eventName);
+                SendCustomEventToTarget(eventName);
             }
             if (enableHaptics) PlayHaptic(hand);
 
@@ -125,7 +127,7 @@ namespace UdonRadioCommunication
                     {
                         PlayHaptic(hand);
                         PlaySound();
-                        eventTarget.SendCustomEvent(angle > 0 ? onKnobRight : onKnobLeft);
+                        SendCustomEventToTarget(angle > 0 ? onKnobRight : onKnobLeft);
                         inverseHandRotaion = Quaternion.Inverse(handRotation);
                     }
                 }
@@ -146,6 +148,12 @@ namespace UdonRadioCommunication
         {
             OnTouchStart(VRC_Pickup.PickupHand.None);
             OnTouchEnd();
+        }
+
+        private void SendCustomEventToTarget(string eventName)
+        {
+            if (sentToOwner) eventTarget.SendCustomNetworkEvent(NetworkEventTarget.Owner, eventName);
+            else eventTarget.SendCustomEvent(eventName);
         }
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
