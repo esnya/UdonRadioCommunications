@@ -88,8 +88,7 @@ namespace UdonRadioCommunication
             if ((hand == VRC_Pickup.PickupHand.None || !knobMode) && eventTarget != null && (!ownerOnly || Networking.IsOwner(eventTarget.gameObject)))
             {
                 PlaySound();
-                if (sentToOwner) eventTarget.SendCustomNetworkEvent(NetworkEventTarget.Owner, eventName);
-                else eventTarget.SendCustomEvent(eventName);
+                SendCustomEventToTarget(eventName);
             }
             if (enableHaptics) PlayHaptic(hand);
 
@@ -128,7 +127,7 @@ namespace UdonRadioCommunication
                     {
                         PlayHaptic(hand);
                         PlaySound();
-                        eventTarget.SendCustomEvent(angle > 0 ? onKnobRight : onKnobLeft);
+                        SendCustomEventToTarget(angle > 0 ? onKnobRight : onKnobLeft);
                         inverseHandRotaion = Quaternion.Inverse(handRotation);
                     }
                 }
@@ -149,6 +148,12 @@ namespace UdonRadioCommunication
         {
             OnTouchStart(VRC_Pickup.PickupHand.None);
             OnTouchEnd();
+        }
+
+        private void SendCustomEventToTarget(string eventName)
+        {
+            if (sentToOwner) eventTarget.SendCustomNetworkEvent(NetworkEventTarget.Owner, eventName);
+            else eventTarget.SendCustomEvent(eventName);
         }
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
