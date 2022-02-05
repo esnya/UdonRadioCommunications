@@ -22,6 +22,7 @@ namespace UdonRadioCommunication
         public bool ownerOnly = false;
         public bool sentToOwner = false;
         public bool disableInteractInVR = true;
+        public float throttlingDelay = 0.2f;
 
         [Header("Knob")]
         public bool knobMode = false;
@@ -83,8 +84,14 @@ namespace UdonRadioCommunication
             if (audioSource != null && switchSound != null) audioSource.PlayOneShot(switchSound);
         }
 
+        private float lastTouchStartTime;
         private void OnTouchStart(VRC_Pickup.PickupHand hand)
         {
+            var time = Time.time;
+            if (time - lastTouchStartTime < throttlingDelay) return;
+
+            lastTouchStartTime = time;
+
             if ((hand == VRC_Pickup.PickupHand.None || !knobMode) && eventTarget != null && (!ownerOnly || Networking.IsOwner(eventTarget.gameObject)))
             {
                 PlaySound();
@@ -102,6 +109,7 @@ namespace UdonRadioCommunication
         {
         }
 
+        private float lastKnobStepTime;
         public override void PostLateUpdate()
         {
             var localPlayer = Networking.LocalPlayer;
@@ -109,6 +117,7 @@ namespace UdonRadioCommunication
 
             if (localPlayer.IsUserInVR())
             {
+                var time = Time.time;
                 lastSwitchPosition = transform.position;
 
                 var touchRight = DetectTouch(VRC_Pickup.PickupHand.Right, lastSwitchPosition, radius);
@@ -125,10 +134,15 @@ namespace UdonRadioCommunication
                     var angle = Vector3.SignedAngle(worldUp, handRotation * inverseHandRotaion * worldUp, transform.TransformDirection(knobAxis));
                     if (Mathf.Abs(angle) >= knobStep)
                     {
-                        PlayHaptic(hand);
-                        PlaySound();
-                        SendCustomEventToTarget(angle > 0 ? onKnobRight : onKnobLeft);
-                        inverseHandRotaion = Quaternion.Inverse(handRotation);
+                        if (time - lastKnobStepTime > throttlingDelay)
+                        {
+                            lastKnobStepTime = time;
+
+                            PlayHaptic(hand);
+                            PlaySound();
+                            SendCustomEventToTarget(angle > 0 ? onKnobRight : onKnobLeft);
+                            inverseHandRotaion = Quaternion.Inverse(handRotation);
+                        }
                     }
                 }
 
