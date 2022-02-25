@@ -1379,6 +1379,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SaccAirVehicle
       variables:
+      - symbolName: _DisableStickyWheelWorkaround
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: _EngineOn
+        objectReference: {fileID: 0}
+        value: False
       - symbolName: AccelerationResponse
         objectReference: {fileID: 0}
         value: 4.5
@@ -1415,6 +1421,12 @@ MonoBehaviour:
       - symbolName: DisallowTaxiRotationWhileStill
         objectReference: {fileID: 0}
         value: False
+      - symbolName: EngineOffOnExit
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: EngineOnOnEnter
+        objectReference: {fileID: 0}
+        value: True
       - symbolName: EngineSpoolDownSpeedMulti
         objectReference: {fileID: 0}
         value: 0.5
@@ -1434,6 +1446,9 @@ MonoBehaviour:
       - symbolName: GDamage
         objectReference: {fileID: 0}
         value: 10
+      - symbolName: GripSensitivity
+        objectReference: {fileID: 0}
+        value: 0.75
       - symbolName: GroundDetector
         objectReference: {fileID: 7629702918395283271, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -1499,6 +1514,9 @@ MonoBehaviour:
       - symbolName: MaxGs
         objectReference: {fileID: 0}
         value: 40
+      - symbolName: MaxJoyAngles
+        objectReference: {fileID: 0}
+        value: (45.0, 45.0, 45.0)
       - symbolName: MaxLift
         objectReference: {fileID: 0}
         value: 10
@@ -1729,7 +1747,7 @@ MonoBehaviour:
         value: InVehicleOnly (UnityEngine.GameObject)
       - symbolName: LeftDialDivideStraightUp
         objectReference: {fileID: 0}
-        value: True
+        value: False
       - symbolName: LStickDisplayHighlighter
         objectReference: {fileID: 7629702918481622401, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -2022,6 +2040,9 @@ MonoBehaviour:
       - symbolName: EventName
         objectReference: {fileID: 0}
         value: SFEXT_O_RespawnButton
+      - symbolName: Global
+        objectReference: {fileID: 0}
+        value: False
     - udonInstance: {fileID: 7629702917083965505, guid: 5aa0696f016f7214b9ee757e6f549ee6,
         type: 3}
       gameObjectName: WaterTrigger
@@ -2334,6 +2355,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SaccAirVehicle
       variables:
+      - symbolName: _DisableStickyWheelWorkaround
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: _EngineOn
+        objectReference: {fileID: 0}
+        value: False
       - symbolName: AccelerationResponse
         objectReference: {fileID: 0}
         value: 4.5
@@ -2370,6 +2397,12 @@ MonoBehaviour:
       - symbolName: DisallowTaxiRotationWhileStill
         objectReference: {fileID: 0}
         value: False
+      - symbolName: EngineOffOnExit
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: EngineOnOnEnter
+        objectReference: {fileID: 0}
+        value: True
       - symbolName: EngineSpoolDownSpeedMulti
         objectReference: {fileID: 0}
         value: 0.5
@@ -2389,6 +2422,9 @@ MonoBehaviour:
       - symbolName: GDamage
         objectReference: {fileID: 0}
         value: 10
+      - symbolName: GripSensitivity
+        objectReference: {fileID: 0}
+        value: 0.75
       - symbolName: GroundDetector
         objectReference: {fileID: 4014350563118992839, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
@@ -2454,6 +2490,9 @@ MonoBehaviour:
       - symbolName: MaxGs
         objectReference: {fileID: 0}
         value: 40
+      - symbolName: MaxJoyAngles
+        objectReference: {fileID: 0}
+        value: (45.0, 45.0, 45.0)
       - symbolName: MaxLift
         objectReference: {fileID: 0}
         value: 10
@@ -2977,6 +3016,9 @@ MonoBehaviour:
       - symbolName: EventName
         objectReference: {fileID: 0}
         value: SFEXT_O_RespawnButton
+      - symbolName: Global
+        objectReference: {fileID: 0}
+        value: False
     - udonInstance: {fileID: 4014350561207100097, guid: 9d229afeea58f1e4799090ace23df4d9,
         type: 3}
       gameObjectName: WaterTrigger
@@ -3632,10 +3674,10 @@ MonoBehaviour:
         value: False
       - symbolName: EngineOffOnExit
         objectReference: {fileID: 0}
-        value: False
+        value: True
       - symbolName: EngineOnOnEnter
         objectReference: {fileID: 0}
-        value: False
+        value: True
       - symbolName: EngineSpoolDownSpeedMulti
         objectReference: {fileID: 0}
         value: 0.5
