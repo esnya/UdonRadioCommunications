@@ -14,6 +14,8 @@ namespace UdonRadioCommunication
         public GameObject indicator;
         public bool indicatorAsLocal = false;
 
+        [System.NonSerialized] public UdonSharpBehaviour urc;
+
         private float lastActivatedTime;
         [UdonSynced][FieldChangeCallback(nameof(Active))] private bool _active;
         public bool Active

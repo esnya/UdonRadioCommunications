@@ -13,6 +13,109 @@ MonoBehaviour:
   m_Name: _URC
   m_EditorClassIdentifier: 
   udonVariables:
+  - prefabInstance: {fileID: 6618188740344843702, guid: 5dc340bf8c775484eaa28b27b5e58069,
+      type: 3}
+    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/Prefabs/DFUNC_URC_Frequency.prefab
+    udonVariables:
+    - udonInstance: {fileID: 6000088465037644541, guid: 5dc340bf8c775484eaa28b27b5e58069,
+        type: 3}
+      gameObjectName: DFUNC_URC_Frequency
+      variables:
+      - symbolName: controllerSensitivity
+        objectReference: {fileID: 0}
+        value: 5
+      - symbolName: desktopDecrementKey
+        objectReference: {fileID: 0}
+        value: Comma
+      - symbolName: desktopIncrementKey
+        objectReference: {fileID: 0}
+        value: Colon
+      - symbolName: frequencyFormatOverride
+        objectReference: {fileID: 0}
+        value: '{0}'
+      - symbolName: frequencyStep
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: frequencyText
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: maxFrequency
+        objectReference: {fileID: 0}
+        value: 4
+      - symbolName: minFrequency
+        objectReference: {fileID: 0}
+        value: 1
+  - prefabInstance: {fileID: 3794536601450044535, guid: 65d62d943ef738846b76b933b8ecf304,
+      type: 3}
+    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/Prefabs/DFUNC_URC_PTT.prefab
+    udonVariables:
+    - udonInstance: {fileID: 4838727829773186363, guid: 65d62d943ef738846b76b933b8ecf304,
+        type: 3}
+      gameObjectName: DFUNC_URC_PTT
+      variables:
+      - symbolName: desktopKey
+        objectReference: {fileID: 0}
+        value: P
+      - symbolName: Dial_Funcon
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: transmitter
+        objectReference: {fileID: 6599876803505682599, guid: 65d62d943ef738846b76b933b8ecf304,
+          type: 3}
+        value: Transmitter (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 6599876803505682599, guid: 65d62d943ef738846b76b933b8ecf304,
+        type: 3}
+      gameObjectName: Transmitter
+      variables:
+      - symbolName: deactivateDelay
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: frequency
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: indicatorAsLocal
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: minDistance
+        objectReference: {fileID: 0}
+        value: 5
+  - prefabInstance: {fileID: 1533443288448328203, guid: e35111c4b3fe4d34882b843ca8064288,
+      type: 3}
+    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/Prefabs/DFUNC_URC_RX.prefab
+    udonVariables:
+    - udonInstance: {fileID: 3358971406886269520, guid: e35111c4b3fe4d34882b843ca8064288,
+        type: 3}
+      gameObjectName: DFUNC_URC_RX
+      variables:
+      - symbolName: activateOnEnter
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: desktopKey
+        objectReference: {fileID: 0}
+        value: L
+      - symbolName: receiver
+        objectReference: {fileID: 5881642756396582416, guid: e35111c4b3fe4d34882b843ca8064288,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 5881642756396582416, guid: e35111c4b3fe4d34882b843ca8064288,
+        type: 3}
+      gameObjectName: Receiver
+      variables:
+      - symbolName: active
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: frequency
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: limitRange
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: maxRange
+        objectReference: {fileID: 0}
+        value: 5
+      - symbolName: sync
+        objectReference: {fileID: 0}
+        value: False
   - prefabInstance: {fileID: 7422882663793839734, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
       type: 3}
     prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/Prefabs/SFVehicleTransceiver_SF-1.prefab

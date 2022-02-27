@@ -1,0 +1,21 @@
+{
+    "name": "UdonRadioCommunication.SF.Runtime",
+    "references": [
+        "GUID:3c1bc1267eab5884ebe7f232c09ee0d9",
+        "GUID:99835874ee819da44948776e0df4ff1d",
+        "GUID:823e7b1dbeb8b2a4c9d5014bf2a39093",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:4435fa71f40263248992f2313970ac17"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UDON"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

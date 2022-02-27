@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 using UdonSharpEditor;
 #endif
 
@@ -56,10 +57,13 @@ namespace UdonRadioCommunication
 
         private void Start()
         {
-            SendCustomEventDelayedSeconds(nameof(_LateStart), 10);
+            SendCustomEventDelayedSeconds(nameof(_LateStart), 3);
         }
         public void _LateStart()
         {
+            foreach (var receiver in receivers) receiver.urc = this;
+            foreach (var transmitter in transmitters) transmitter.urc = this;
+
             if (overrideFrequency)
             {
                 foreach (var receiver in receivers)
@@ -262,24 +266,25 @@ namespace UdonRadioCommunication
         }
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
-        private static IEnumerable<T> GetUdonSharpComponentsInScene<T>() where T : UdonSharpBehaviour
+        private static IEnumerable<T> GetUdonSharpComponentsInScene<T>(bool includeInActive) where T : UdonSharpBehaviour
         {
-            return FindObjectsOfType<UdonBehaviour>()
-                .Where(UdonSharpEditorUtility.IsUdonSharpBehaviour)
-                .Select(UdonSharpEditorUtility.GetProxyBehaviour)
-                .Select(u => u as T)
-                .Where(u => u != null);
+            // return FindObjectsOfType<UdonBehaviour>()
+            //     .Where(UdonSharpEditorUtility.IsUdonSharpBehaviour)
+            //     .Select(UdonSharpEditorUtility.GetProxyBehaviour)
+            //     .Select(u => u as T)
+            //     .Where(u => u != null);
+            return SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(o => o.GetUdonSharpComponentsInChildren<T>(includeInActive));
         }
 
         public void Setup()
         {
             this.UpdateProxy();
-            transmitters = GetUdonSharpComponentsInScene<Transmitter>().ToArray();
+            transmitters = GetUdonSharpComponentsInScene<Transmitter>(true).ToArray();
             this.ApplyProxyModifications();
             EditorUtility.SetDirty(UdonSharpEditorUtility.GetBackingUdonBehaviour(this));
 
             this.UpdateProxy();
-            receivers = GetUdonSharpComponentsInScene<Receiver>().ToArray();
+            receivers = GetUdonSharpComponentsInScene<Receiver>(true).ToArray();
             this.ApplyProxyModifications();
 
             EditorUtility.SetDirty(UdonSharpEditorUtility.GetBackingUdonBehaviour(this));
@@ -287,7 +292,7 @@ namespace UdonRadioCommunication
 
         static private void SetupAll()
         {
-            var targets = GetUdonSharpComponentsInScene<UdonRadioCommunication>();
+            var targets = GetUdonSharpComponentsInScene<UdonRadioCommunication>(true);
             foreach (var urc in targets)
             {
                 urc.Setup();

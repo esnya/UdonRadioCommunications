@@ -1,4 +1,4 @@
-﻿using UdonSharp;
+using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
@@ -6,11 +6,12 @@ using VRC.Udon;
 namespace UdonRadioCommunication
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
-    public class DFUNC_URC_PTT : UdonSharpBehaviour
+    public class DFUNC_URC_RX : UdonSharpBehaviour
     {
         public GameObject Dial_Funcon;
-        public KeyCode desktopKey = KeyCode.P;
-        public Transmitter transmitter;
+        public KeyCode desktopKey = KeyCode.L;
+        public Receiver receiver;
+        public bool activeOnEnter = true;
 
 #if URC_SF
         private string triggerAxis;
@@ -29,7 +30,7 @@ namespace UdonRadioCommunication
         {
             var entity = GetComponentInParent<SaccEntity>();
 
-            transmitter.indicator = Dial_Funcon;
+            receiver.indicator = Dial_Funcon;
 
             return entity;
         }
@@ -41,7 +42,7 @@ namespace UdonRadioCommunication
             {
                 if (seat.IsPilotSeat)
                 {
-                    transmitter.transform.SetParent(entity.transform, true);
+                    receiver.transform.SetParent(entity.transform, true);
                     break;
                 }
             }
@@ -50,16 +51,17 @@ namespace UdonRadioCommunication
         {
             var entity = CommonInit();
             var seat = gameObject.GetComponentInParent<SaccVehicleSeat>();
-            transmitter.transform.SetParent(seat ? seat.transform : entity.transform, true);
+            receiver.transform.SetParent(seat ? seat.transform : entity.transform, true);
         }
 
         public void SFEXT_O_PilotEnter()
         {
-            transmitter._Deactivate();
+            receiver._SetActive(activeOnEnter);
             if (!Networking.LocalPlayer.IsUserInVR()) DFUNC_Selected();
         }
         public void SFEXT_O_PilotExit()
         {
+            receiver._Deactivate();
             DFUNC_Deselected();
         }
         public void SFEXTP_O_UserEnter() => SFEXT_O_PilotEnter();
@@ -71,7 +73,6 @@ namespace UdonRadioCommunication
         }
         public void DFUNC_Deselected()
         {
-            transmitter._Deactivate();
             gameObject.SetActive(false);
         }
 
@@ -79,10 +80,7 @@ namespace UdonRadioCommunication
         private void Update()
         {
             var input = GetInput();
-            if (input != prevInput)
-            {
-                transmitter._SetActive(input);
-            }
+            if (input && !prevInput) receiver._ToggleActive();
             prevInput = input;
         }
 

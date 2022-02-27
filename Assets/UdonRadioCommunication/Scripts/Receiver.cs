@@ -15,6 +15,8 @@ namespace UdonRadioCommunication
         public bool sync = true;
         public GameObject indicator;
 
+        [System.NonSerialized] public UdonSharpBehaviour urc;
+
         [HideInInspector][UdonSynced] private bool syncActive;
         [HideInInspector][UdonSynced] private float syncFrequency;
 
