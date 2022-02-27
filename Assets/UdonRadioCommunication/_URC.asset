@@ -23,13 +23,13 @@ MonoBehaviour:
       variables:
       - symbolName: controllerSensitivity
         objectReference: {fileID: 0}
-        value: 5
+        value: 20
       - symbolName: desktopDecrementKey
         objectReference: {fileID: 0}
         value: Comma
       - symbolName: desktopIncrementKey
         objectReference: {fileID: 0}
-        value: Colon
+        value: Period
       - symbolName: frequencyFormatOverride
         objectReference: {fileID: 0}
         value: '{0}'

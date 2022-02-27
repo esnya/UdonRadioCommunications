@@ -12,7 +12,7 @@ namespace UdonRadioCommunication
         public GameObject Dial_Funcon;
         public KeyCode desktopDecrementKey = KeyCode.Comma;
         public KeyCode desktopIncrementKey = KeyCode.Period;
-        public float controllerSensitivity = 1.0f / 0.2f;
+        public float controllerSensitivity = 20;
         public TextMeshPro frequencyText;
         public float minFrequency = 1, maxFrequency = 4, frequencyStep = 1;
         public string frequencyFormatOverride = "{0}";
@@ -116,7 +116,7 @@ namespace UdonRadioCommunication
                         var diff = (inputPos - inputOrigin) * controllerSensitivity * frequencyStep;
                         if (Mathf.Abs(diff) > frequencyStep)
                         {
-                            SetFrequency(Mathf.Clamp(Mathf.Floor((frequency + diff) % frequencyStep) / frequencyStep, minFrequency, maxFrequency));
+                            SetFrequency(Mathf.Clamp(Mathf.Floor((frequency + diff) / frequencyStep) * frequencyStep, minFrequency, maxFrequency));
                             inputOrigin = inputPos;
                         }
                     }
