@@ -23,7 +23,7 @@ MonoBehaviour:
       variables:
       - symbolName: controllerSensitivity
         objectReference: {fileID: 0}
-        value: 20
+        value: 100
       - symbolName: desktopDecrementKey
         objectReference: {fileID: 0}
         value: Comma
