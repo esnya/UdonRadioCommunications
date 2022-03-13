@@ -1524,6 +1524,9 @@ MonoBehaviour:
       - symbolName: DisallowTaxiRotationWhileStill
         objectReference: {fileID: 0}
         value: False
+      - symbolName: DoStallForces
+        objectReference: {fileID: 0}
+        value: True
       - symbolName: EngineOffOnExit
         objectReference: {fileID: 0}
         value: True
@@ -1623,6 +1626,9 @@ MonoBehaviour:
       - symbolName: MaxLift
         objectReference: {fileID: 0}
         value: 10
+      - symbolName: MinFuelConsumption
+        objectReference: {fileID: 0}
+        value: 0.25
       - symbolName: MissileDamageTakenMultiplier
         objectReference: {fileID: 0}
         value: 1
@@ -1632,6 +1638,15 @@ MonoBehaviour:
       - symbolName: OnboardVehicleLayer
         objectReference: {fileID: 0}
         value: 31
+      - symbolName: OnlyChangeColliders
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: PitchAoaPitchForce
+        objectReference: {fileID: 0}
+        value: UnityEngine.AnimationCurve
+      - symbolName: PitchAoaPitchForceMulti
+        objectReference: {fileID: 0}
+        value: 8
       - symbolName: PitchConstantFriction
         objectReference: {fileID: 0}
         value: 0
@@ -1714,6 +1729,9 @@ MonoBehaviour:
       - symbolName: SoundBarrierWidth
         objectReference: {fileID: 0}
         value: 20
+      - symbolName: SquareJoyInput
+        objectReference: {fileID: 0}
+        value: True
       - symbolName: SwitchHandsJoyThrottle
         objectReference: {fileID: 0}
         value: False
@@ -1802,6 +1820,12 @@ MonoBehaviour:
       - symbolName: WindTurbulanceScale
         objectReference: {fileID: 0}
         value: 0
+      - symbolName: YawAoaRollForce
+        objectReference: {fileID: 0}
+        value: UnityEngine.AnimationCurve
+      - symbolName: YawAoaRollForceMulti
+        objectReference: {fileID: 0}
+        value: 30
       - symbolName: YawConstantFriction
         objectReference: {fileID: 0}
         value: 0
@@ -1896,9 +1920,36 @@ MonoBehaviour:
       - symbolName: BulletHit
         objectReference: {fileID: 0}
         value: UnityEngine.AudioSource[]
+      - symbolName: DoEngineLerpSpeedMultiplierChanges
+        objectReference: {fileID: 0}
+        value: True
       - symbolName: DopplerSounds
         objectReference: {fileID: 0}
         value: UnityEngine.AudioSource[]
+      - symbolName: EngineOffLerpSpeedMulti
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: EngineStartingLerpSpeedMulti
+        objectReference: {fileID: 0}
+        value: 0.3
+      - symbolName: EngineStartup
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: EngineStartupCancel
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: EngineStartupCancelInside
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: EngineStartupInside
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: EngineTurnOff
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: EngineTurnOffInside
+        objectReference: {fileID: 0}
+        value: null
       - symbolName: EnterWater
         objectReference: {fileID: 3238898590943568070, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -1910,6 +1961,12 @@ MonoBehaviour:
       - symbolName: Explosion
         objectReference: {fileID: 0}
         value: UnityEngine.AudioSource[]
+      - symbolName: InVehicleThrustVolumeFactor
+        objectReference: {fileID: 0}
+        value: 0.09
+      - symbolName: IsHelicopter
+        objectReference: {fileID: 0}
+        value: False
       - symbolName: MissileHit
         objectReference: {fileID: 0}
         value: UnityEngine.AudioSource[]
@@ -1917,13 +1974,49 @@ MonoBehaviour:
         objectReference: {fileID: 7629702918609738833, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
         value: EngineDistant (UnityEngine.AudioSource)
+      - symbolName: PlaneDistantVolLerpValueOff
+        objectReference: {fileID: 0}
+        value: 0.72
+      - symbolName: PlaneDistantVolLerpValueOn
+        objectReference: {fileID: 0}
+        value: 0.72
       - symbolName: PlaneIdle
         objectReference: {fileID: 0}
         value: UnityEngine.AudioSource[]
+      - symbolName: PlaneIdlePitchLerpValueOff
+        objectReference: {fileID: 0}
+        value: 0.09
+      - symbolName: PlaneIdlePitchLerpValueOn
+        objectReference: {fileID: 0}
+        value: 0.54
+      - symbolName: PlaneIdleVolLerpValueOff
+        objectReference: {fileID: 0}
+        value: 0.09
+      - symbolName: PlaneIdleVolLerpValueOn
+        objectReference: {fileID: 0}
+        value: 0.72
       - symbolName: PlaneInside
         objectReference: {fileID: 7629702917443600611, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
         value: Inside (UnityEngine.AudioSource)
+      - symbolName: PlaneInsidePitchLerpValueOff
+        objectReference: {fileID: 0}
+        value: 0.108
+      - symbolName: PlaneInsidePitchLerpValueOn
+        objectReference: {fileID: 0}
+        value: 2.25
+      - symbolName: PlaneInsideVolLerpValueOff
+        objectReference: {fileID: 0}
+        value: 0.72
+      - symbolName: PlaneInsideVolLerpValueOn
+        objectReference: {fileID: 0}
+        value: 0.72
+      - symbolName: PlaneThrustVolLerpValueOff
+        objectReference: {fileID: 0}
+        value: 1.08
+      - symbolName: PlaneThrustVolLerpValueOn
+        objectReference: {fileID: 0}
+        value: 1.08
       - symbolName: PlaneWind
         objectReference: {fileID: 7629702918178990719, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -2500,6 +2593,9 @@ MonoBehaviour:
       - symbolName: DisallowTaxiRotationWhileStill
         objectReference: {fileID: 0}
         value: False
+      - symbolName: DoStallForces
+        objectReference: {fileID: 0}
+        value: True
       - symbolName: EngineOffOnExit
         objectReference: {fileID: 0}
         value: True
@@ -2599,6 +2695,9 @@ MonoBehaviour:
       - symbolName: MaxLift
         objectReference: {fileID: 0}
         value: 10
+      - symbolName: MinFuelConsumption
+        objectReference: {fileID: 0}
+        value: 0.25
       - symbolName: MissileDamageTakenMultiplier
         objectReference: {fileID: 0}
         value: 1
@@ -2608,6 +2707,15 @@ MonoBehaviour:
       - symbolName: OnboardVehicleLayer
         objectReference: {fileID: 0}
         value: 31
+      - symbolName: OnlyChangeColliders
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: PitchAoaPitchForce
+        objectReference: {fileID: 0}
+        value: UnityEngine.AnimationCurve
+      - symbolName: PitchAoaPitchForceMulti
+        objectReference: {fileID: 0}
+        value: 8
       - symbolName: PitchConstantFriction
         objectReference: {fileID: 0}
         value: 0
@@ -2690,6 +2798,9 @@ MonoBehaviour:
       - symbolName: SoundBarrierWidth
         objectReference: {fileID: 0}
         value: 20
+      - symbolName: SquareJoyInput
+        objectReference: {fileID: 0}
+        value: True
       - symbolName: SwitchHandsJoyThrottle
         objectReference: {fileID: 0}
         value: False
@@ -2778,6 +2889,12 @@ MonoBehaviour:
       - symbolName: WindTurbulanceScale
         objectReference: {fileID: 0}
         value: 0
+      - symbolName: YawAoaRollForce
+        objectReference: {fileID: 0}
+        value: UnityEngine.AnimationCurve
+      - symbolName: YawAoaRollForceMulti
+        objectReference: {fileID: 0}
+        value: 30
       - symbolName: YawConstantFriction
         objectReference: {fileID: 0}
         value: 0
@@ -2872,9 +2989,36 @@ MonoBehaviour:
       - symbolName: BulletHit
         objectReference: {fileID: 0}
         value: UnityEngine.AudioSource[]
+      - symbolName: DoEngineLerpSpeedMultiplierChanges
+        objectReference: {fileID: 0}
+        value: True
       - symbolName: DopplerSounds
         objectReference: {fileID: 0}
         value: UnityEngine.AudioSource[]
+      - symbolName: EngineOffLerpSpeedMulti
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: EngineStartingLerpSpeedMulti
+        objectReference: {fileID: 0}
+        value: 0.3
+      - symbolName: EngineStartup
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: EngineStartupCancel
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: EngineStartupCancelInside
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: EngineStartupInside
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: EngineTurnOff
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: EngineTurnOffInside
+        objectReference: {fileID: 0}
+        value: null
       - symbolName: EnterWater
         objectReference: {fileID: 8261028795693853254, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
@@ -2886,6 +3030,12 @@ MonoBehaviour:
       - symbolName: Explosion
         objectReference: {fileID: 0}
         value: UnityEngine.AudioSource[]
+      - symbolName: InVehicleThrustVolumeFactor
+        objectReference: {fileID: 0}
+        value: 0.09
+      - symbolName: IsHelicopter
+        objectReference: {fileID: 0}
+        value: False
       - symbolName: MissileHit
         objectReference: {fileID: 0}
         value: UnityEngine.AudioSource[]
@@ -2893,13 +3043,49 @@ MonoBehaviour:
         objectReference: {fileID: 4014350563198113489, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
         value: EngineDistant (UnityEngine.AudioSource)
+      - symbolName: PlaneDistantVolLerpValueOff
+        objectReference: {fileID: 0}
+        value: 0.72
+      - symbolName: PlaneDistantVolLerpValueOn
+        objectReference: {fileID: 0}
+        value: 0.72
       - symbolName: PlaneIdle
         objectReference: {fileID: 0}
         value: UnityEngine.AudioSource[]
+      - symbolName: PlaneIdlePitchLerpValueOff
+        objectReference: {fileID: 0}
+        value: 0.09
+      - symbolName: PlaneIdlePitchLerpValueOn
+        objectReference: {fileID: 0}
+        value: 0.54
+      - symbolName: PlaneIdleVolLerpValueOff
+        objectReference: {fileID: 0}
+        value: 0.09
+      - symbolName: PlaneIdleVolLerpValueOn
+        objectReference: {fileID: 0}
+        value: 0.72
       - symbolName: PlaneInside
         objectReference: {fileID: 4014350561965132387, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
         value: Inside (UnityEngine.AudioSource)
+      - symbolName: PlaneInsidePitchLerpValueOff
+        objectReference: {fileID: 0}
+        value: 0.108
+      - symbolName: PlaneInsidePitchLerpValueOn
+        objectReference: {fileID: 0}
+        value: 2.25
+      - symbolName: PlaneInsideVolLerpValueOff
+        objectReference: {fileID: 0}
+        value: 0.72
+      - symbolName: PlaneInsideVolLerpValueOn
+        objectReference: {fileID: 0}
+        value: 0.72
+      - symbolName: PlaneThrustVolLerpValueOff
+        objectReference: {fileID: 0}
+        value: 1.08
+      - symbolName: PlaneThrustVolLerpValueOn
+        objectReference: {fileID: 0}
+        value: 1.08
       - symbolName: PlaneWind
         objectReference: {fileID: 4014350562303631615, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
