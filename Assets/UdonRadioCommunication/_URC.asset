@@ -1156,6 +1156,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: EffectsController
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: PlaySplashSpeed
         objectReference: {fileID: 0}
         value: 7
@@ -1252,6 +1258,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PassengerSeat
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -1270,6 +1282,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PilotSeat
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -1379,6 +1397,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SaccAirVehicle
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: _DisableStickyWheelWorkaround
         objectReference: {fileID: 0}
         value: False
@@ -1543,7 +1567,7 @@ MonoBehaviour:
         value: UnityEngine.AnimationCurve
       - symbolName: PitchAoaPitchForceMulti
         objectReference: {fileID: 0}
-        value: 8
+        value: 4
       - symbolName: PitchConstantFriction
         objectReference: {fileID: 0}
         value: 0
@@ -1746,6 +1770,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SF-1
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: AAMTargetsLayer
         objectReference: {fileID: 0}
         value: UnityEngine.LayerMask
@@ -1803,6 +1833,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SoundController
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: ABOnInside
         objectReference: {fileID: 7629702918493981221, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -2126,6 +2162,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: VehicleRespawner
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: EntityControl
         objectReference: {fileID: 7629702917102528272, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -2140,6 +2182,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: WaterTrigger
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: SAVControl
         objectReference: {fileID: 1816171220940932801, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -2225,6 +2273,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: EffectsController
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: PlaySplashSpeed
         objectReference: {fileID: 0}
         value: 7
@@ -2321,6 +2375,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PassengerSeat
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -2339,6 +2399,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PilotSeat
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -2448,6 +2514,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SaccAirVehicle
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: _DisableStickyWheelWorkaround
         objectReference: {fileID: 0}
         value: False
@@ -2612,7 +2684,7 @@ MonoBehaviour:
         value: UnityEngine.AnimationCurve
       - symbolName: PitchAoaPitchForceMulti
         objectReference: {fileID: 0}
-        value: 8
+        value: 4
       - symbolName: PitchConstantFriction
         objectReference: {fileID: 0}
         value: 0
@@ -2872,6 +2944,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SoundController
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: ABOnInside
         objectReference: {fileID: 4014350563020292261, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
@@ -3195,6 +3273,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: VehicleRespawner
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: EntityControl
         objectReference: {fileID: 4014350561221995920, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
@@ -3209,6 +3293,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: WaterTrigger
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: SAVControl
         objectReference: {fileID: 5144138724637297729, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
@@ -3358,6 +3448,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: EffectsController
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: PlaySplashSpeed
         objectReference: {fileID: 0}
         value: 7
@@ -3398,6 +3494,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: GunnerSeat
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -3548,6 +3650,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PassengerSeat
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -3566,6 +3674,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PassengerSeat (1)
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -3584,6 +3698,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PassengerSeat (2)
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -3602,6 +3722,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PassengerSeat (3)
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -3620,6 +3746,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PilotSeat
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -3816,6 +3948,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SaccAirVehicle
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: _DisableStickyWheelWorkaround
         objectReference: {fileID: 0}
         value: False
@@ -4183,6 +4321,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SH-1
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: AAMTargetsLayer
         objectReference: {fileID: 0}
         value: UnityEngine.LayerMask
@@ -4228,6 +4372,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SoundController
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: ABOnInside
         objectReference: {fileID: 6729289299968676791, guid: a35c399fcf052ad42aa9da31a8cfd147,
           type: 3}
@@ -4623,6 +4773,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: VehicleRespawner
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: EntityControl
         objectReference: {fileID: 6729289300238911998, guid: a35c399fcf052ad42aa9da31a8cfd147,
           type: 3}
@@ -4634,6 +4790,12 @@ MonoBehaviour:
         type: 3}
       gameObjectName: WaterTrigger
       variables:
+      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: ___UdonSharpBehaviourVersion___
+        objectReference: {fileID: 0}
+        value: 2
       - symbolName: SAVControl
         objectReference: {fileID: 1864949002255686726, guid: a35c399fcf052ad42aa9da31a8cfd147,
           type: 3}
