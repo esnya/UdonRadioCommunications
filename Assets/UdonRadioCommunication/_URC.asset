@@ -56,9 +56,6 @@ MonoBehaviour:
       - symbolName: desktopKey
         objectReference: {fileID: 0}
         value: P
-      - symbolName: Dial_Funcon
-        objectReference: {fileID: 0}
-        value: null
       - symbolName: transmitter
         objectReference: {fileID: 6599876803505682599, guid: 65d62d943ef738846b76b933b8ecf304,
           type: 3}
@@ -88,6 +85,9 @@ MonoBehaviour:
       gameObjectName: DFUNC_URC_RX
       variables:
       - symbolName: activateOnEnter
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: activeOnEnter
         objectReference: {fileID: 0}
         value: True
       - symbolName: desktopKey
