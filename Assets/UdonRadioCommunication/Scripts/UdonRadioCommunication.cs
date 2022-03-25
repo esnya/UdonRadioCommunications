@@ -32,6 +32,9 @@ namespace UdonRadioCommunication
         public bool disableLowpassFilter = true;
 
         [Space]
+        public float frequencyGap = 0.01f;
+
+        [Space]
         public bool overrideFrequency = false;
         public float minFrequency = 118.0f, maxFrequency = 136.975f;
         public float frequencyStep = 0.025f;
@@ -111,6 +114,11 @@ namespace UdonRadioCommunication
             if (disableLowpassFilter) player.SetVoiceLowpass(lowpassEnabled);
         }
 
+        private bool FrequencyEqual(float a, float b)
+        {
+            return Mathf.Abs(a - b) < frequencyGap;
+        }
+
         private Receiver GetReceiver(float frequency)
         {
             var localPosition = Networking.LocalPlayer.GetPosition();
@@ -118,7 +126,7 @@ namespace UdonRadioCommunication
             Receiver result = null;
             foreach (var r in receivers)
             {
-                if (r == null || !r.active || r.frequency != frequency) continue;
+                if (r == null || !r.active || !FrequencyEqual(r.frequency, frequency)) continue;
 
                 var distance = Vector3.SqrMagnitude(r.transform.position - localPosition);
                 if ((!r.limitRange || distance <= Mathf.Pow(r.maxRange, 2.0f)) && distance < minDistance) result = r;
