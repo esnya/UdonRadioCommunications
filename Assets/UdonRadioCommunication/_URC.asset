@@ -4912,6 +4912,52 @@ MonoBehaviour:
       - symbolName: WaterSlowDownRot
         objectReference: {fileID: 0}
         value: 3
+  - prefabInstance: {fileID: 8162674524155193012, guid: a0c93c79ea58c8c47aa07e805f7291b0,
+      type: 3}
+    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/LocalReceiver.prefab
+    udonVariables:
+    - udonInstance: {fileID: 2144728391, guid: a0c93c79ea58c8c47aa07e805f7291b0, type: 3}
+      gameObjectName: OffButton
+      variables:
+      - symbolName: eventName
+        objectReference: {fileID: 0}
+        value: _Deactivate
+      - symbolName: target
+        objectReference: {fileID: 1043634736, guid: a0c93c79ea58c8c47aa07e805f7291b0,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 2144728389, guid: a0c93c79ea58c8c47aa07e805f7291b0, type: 3}
+      gameObjectName: OnButton
+      variables:
+      - symbolName: eventName
+        objectReference: {fileID: 0}
+        value: _Activate
+      - symbolName: target
+        objectReference: {fileID: 1043634736, guid: a0c93c79ea58c8c47aa07e805f7291b0,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+    - udonInstance: {fileID: 1043634736, guid: a0c93c79ea58c8c47aa07e805f7291b0, type: 3}
+      gameObjectName: Receiver
+      variables:
+      - symbolName: active
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: frequency
+        objectReference: {fileID: 0}
+        value: 1
+      - symbolName: indicator
+        objectReference: {fileID: 5772557022574331242, guid: a0c93c79ea58c8c47aa07e805f7291b0,
+          type: 3}
+        value: RxIndicator (UnityEngine.GameObject)
+      - symbolName: limitRange
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: maxRange
+        objectReference: {fileID: 0}
+        value: 5
+      - symbolName: sync
+        objectReference: {fileID: 0}
+        value: False
   - prefabInstance: {fileID: 8162674524155193012, guid: cd45481f45f805d479b5ec5936f1aefd,
       type: 3}
     prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/PickupTransceiver.prefab
