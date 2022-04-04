@@ -28,15 +28,15 @@ namespace UdonRadioCommunication
         {
             if (udon == null) return EditorGUILayout.TextField(label, value);
 
-            var events = udon.GetType().GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public).Select(m => m.Name).ToList();
+            var events = udon.GetType().GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public).Select(m => m.Name).Prepend("(null)").ToList();
             if (events.Count == 0) return EditorGUILayout.TextField(label, value);
 
             var index = Mathf.Max(events.FindIndex(e => e == value), 0);
             index = EditorGUILayout.Popup(label, index, events.ToArray());
 
-            return events.Skip(index).FirstOrDefault();
+            var newValue = events.Skip(index).FirstOrDefault();
+            return newValue == "(null)" ? null : newValue;
         }
 #endif
-
     }
 }

@@ -649,7 +649,7 @@ PrefabInstance:
     - target: {fileID: 7629702917372400804, guid: 5aa0696f016f7214b9ee757e6f549ee6,
         type: 3}
       propertyPath: m_Name
-      value: SF-1Main+COM+PTT
+      value: SF-1Main+COM_PTT
       objectReference: {fileID: 0}
     - target: {fileID: 7629702917372400807, guid: 5aa0696f016f7214b9ee757e6f549ee6,
         type: 3}

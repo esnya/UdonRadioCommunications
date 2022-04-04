@@ -63,11 +63,21 @@ namespace UdonRadioCommunication
         }
         public void _LateStart()
         {
+            foreach (var receiver in receivers)
+            {
+                if (receiver) receiver.urc = this;
+            }
+
+            foreach (var transmitter in transmitters)
+            {
+                if (transmitter) transmitter.urc = this;
+            }
+
             if (overrideFrequency)
             {
                 foreach (var receiver in receivers)
                 {
-                    receiver.frequency = minFrequency;
+                    if (receiver) receiver.frequency = minFrequency;
 
                     var transceiver = receiver.GetComponentInParent<Transceiver>();
                     if (transceiver)
@@ -83,7 +93,10 @@ namespace UdonRadioCommunication
                     }
                 }
 
-                foreach (var transmitter in transmitters) transmitter.frequency = minFrequency;
+                foreach (var transmitter in transmitters)
+                {
+                    if (transmitter) transmitter.frequency = minFrequency;
+                }
             }
             Debug.Log($"[{gameObject.name}] Started with {transmitters.Length} transmitters, {receivers.Length} receivers");
         }

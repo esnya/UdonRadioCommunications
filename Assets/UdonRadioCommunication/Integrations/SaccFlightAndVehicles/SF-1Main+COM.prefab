@@ -296,7 +296,7 @@ PrefabInstance:
     - target: {fileID: 4371473018670842014, guid: a6c0823150e40ac4b88e3eebf0f4931a,
         type: 3}
       propertyPath: m_Name
-      value: SF-1Main+COM Variant
+      value: SF-1Main+COM
       objectReference: {fileID: 0}
     - target: {fileID: 4371473018679933881, guid: a6c0823150e40ac4b88e3eebf0f4931a,
         type: 3}
