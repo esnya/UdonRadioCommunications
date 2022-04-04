@@ -27,7 +27,6 @@ namespace UdonRadioCommunication
                 if (indicator != null) indicator.SetActive((!indicatorAsLocal || Networking.IsOwner(gameObject)) && value);
             }
         }
-        [System.NonSerialized] UdonRadioCommunication urc;
 
         private void Start()
         {
