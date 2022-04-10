@@ -5127,6 +5127,101 @@ MonoBehaviour:
       - symbolName: minDistance
         objectReference: {fileID: 0}
         value: 5
+  - prefabInstance: {fileID: 310419499813552750, guid: 34696ffc6d5760a42bdfc47bc914c230,
+      type: 3}
+    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/SampleAssets/Prefabs/TouchSwitch.prefab
+    udonVariables:
+    - udonInstance: {fileID: 6295146866336980111, guid: 34696ffc6d5760a42bdfc47bc914c230,
+        type: 3}
+      gameObjectName: TouchSwitch
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: desktopKey
+        objectReference: {fileID: 0}
+        value: None
+      - symbolName: directionalMode
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: directionalThreshold
+        objectReference: {fileID: 0}
+        value: 0.8
+      - symbolName: disableInteractInVR
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: enableDesktopKey
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: enableHaptics
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: eventName
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: fingerMode
+        objectReference: {fileID: 0}
+        value: True
+      - symbolName: hapticAmplitude
+        objectReference: {fileID: 0}
+        value: 0.5
+      - symbolName: hapticDuration
+        objectReference: {fileID: 0}
+        value: 0.2
+      - symbolName: hapticFrequency
+        objectReference: {fileID: 0}
+        value: 0.1
+      - symbolName: knobMode
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: knobStep
+        objectReference: {fileID: 0}
+        value: 10
+      - symbolName: localRight
+        objectReference: {fileID: 0}
+        value: (1.0, 0.0, 0.0)
+      - symbolName: localUp
+        objectReference: {fileID: 0}
+        value: (0.0, 1.0, 0.0)
+      - symbolName: onDown
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: onKnobLeft
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: onKnobRight
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: onLeft
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: onRight
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: onTouchEnd
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: onTouchStart
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: onUp
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: ownerOnly
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: radius
+        objectReference: {fileID: 0}
+        value: 0.0075
+      - symbolName: sentToOwner
+        objectReference: {fileID: 0}
+        value: False
+      - symbolName: switchSound
+        objectReference: {fileID: 0}
+        value: null
+      - symbolName: throttlingDelay
+        objectReference: {fileID: 0}
+        value: 0.5
   - prefabInstance: {fileID: 459845885882140270, guid: a496d14eadd8a2642afddf01b6517838,
       type: 3}
     prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/SampleAssets/UdonRadioCommunicationDemo.prefab

@@ -3,7 +3,11 @@ guid: 48b32729d8c194a41922552f36e0aa98
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - eventTarget: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - switchSound: {fileID: 8300000, guid: 484bb1a0a09f3f644806c74d9c794a58, type: 3}
+  - debugTouhSource: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
