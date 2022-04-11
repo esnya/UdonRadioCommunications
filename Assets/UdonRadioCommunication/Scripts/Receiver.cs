@@ -17,7 +17,6 @@ namespace UdonRadioCommunication
 
         [HideInInspector][UdonSynced] private bool syncActive;
         [HideInInspector][UdonSynced] private float syncFrequency;
-        [System.NonSerialized] UdonRadioCommunication urc;
 
         private void Start() => UpdateIndicator();
 

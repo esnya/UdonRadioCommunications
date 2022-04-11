@@ -63,16 +63,6 @@ namespace UdonRadioCommunication
         }
         public void _LateStart()
         {
-            foreach (var receiver in receivers)
-            {
-                if (receiver) receiver.urc = this;
-            }
-
-            foreach (var transmitter in transmitters)
-            {
-                if (transmitter) transmitter.urc = this;
-            }
-
             if (overrideFrequency)
             {
                 foreach (var receiver in receivers)
