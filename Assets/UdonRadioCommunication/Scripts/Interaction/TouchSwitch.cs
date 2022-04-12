@@ -176,7 +176,7 @@ namespace UdonRadioCommunication
             if (directionalMode)
             {
                 var touchPosition = transform.InverseTransformPoint(GetTouchPosition(isLeft));
-                var touchDirection = (touchPosition - touchStartPosition).normalized;
+                var touchDirection = touchPosition.normalized;
                 var localDirection = Vector3.ProjectOnPlane(touchDirection, localForward).normalized;
 
                 if (Vector3.Dot(localDirection, localUp) > directionalThreshold) SendCustomEventToTarget(onUp, isLeft);
