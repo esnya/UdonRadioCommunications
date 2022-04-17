@@ -228,8 +228,7 @@ namespace UdonRadioCommunication
 
             if (enableDesktopKey)
             {
-                if (Input.GetKeyDown(desktopKey)) OnTouchStart(false);
-                else if (Input.GetKeyUp(desktopKey)) OnTouchEnd(false);
+                if (Input.GetKeyDown(desktopKey)) SendCustomEventToTarget(eventName, false);
             }
         }
 
