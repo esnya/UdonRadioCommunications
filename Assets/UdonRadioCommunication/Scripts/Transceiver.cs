@@ -26,7 +26,7 @@ namespace UdonRadioCommunication
         public TextMeshPro frequencyText;
         [Tooltip("Drives bool parameters \"PowerOn\" and \"Talking\"")] public Animator[] animators = { };
 
-        private float Frequency
+        public float Frequency
         {
             set
             {

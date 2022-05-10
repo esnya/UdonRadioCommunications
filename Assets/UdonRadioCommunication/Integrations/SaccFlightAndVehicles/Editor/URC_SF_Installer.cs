@@ -55,10 +55,7 @@ namespace UdonRadioCommunication
             if (found != null) return found;
 
             var gameObject = new GameObject("UdonRadioCommunication");
-            var created = gameObject.AddComponent<UdonRadioCommunication>();
-            var udon = UdonSharpEditorUtility.ConvertToUdonBehaviours(new[] { created }).First();
-
-            return UdonSharpEditorUtility.GetProxyBehaviour(udon) as UdonRadioCommunication;
+            return gameObject.AddComponent<UdonRadioCommunication>();
         }
 
         private static void SetupURC()

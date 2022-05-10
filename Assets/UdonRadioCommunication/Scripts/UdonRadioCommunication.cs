@@ -87,7 +87,7 @@ namespace UdonRadioCommunication
                         transceiver.maxFrequency = maxFrequency;
                         transceiver.frequencyStep = frequencyStep;
                         transceiver.fastFrequencyStep = fastFrequencyStep;
-                        transceiver.frequency = minFrequency;
+                        transceiver.Frequency = minFrequency;
                         transceiver.overrideFrequencyFormat = true;
                         transceiver.frequencyFormat = frequencyFormat;
                         transceiver._UpdateFrequencyText();
