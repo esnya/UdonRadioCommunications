@@ -269,7 +269,7 @@ namespace UdonRadioCommunication
             if (knobMode)
             {
                 Gizmos.color = Color.white;
-                Gizmos.DrawRay(transform.position, -transform.TransformDirection(Vector3.Cross(localRight, localUp).normalized) * 0.1f);
+                Gizmos.DrawRay(transform.position, transform.TransformDirection(Vector3.Cross(localRight, localUp).normalized) * 0.1f);
             }
         }
 #endif
