@@ -51,7 +51,6 @@ namespace UdonRadioCommunication
 
         [Header("Sounds (Optional)")]
         public AudioSource audioSource;
-        public AudioClip switchSound;
 
         [Header("Haptics")]
         public bool enableHaptics = true;
@@ -128,14 +127,21 @@ namespace UdonRadioCommunication
             return (switchPosition - touchPosition).sqrMagnitude < Mathf.Pow(radius, 2);
         }
 
-        private void PlayHaptic(bool isLeft)
+        private void PlayHaptic(bool isLeft, float strength)
         {
-            Networking.LocalPlayer.PlayHapticEventInHand(isLeft ? VRC_Pickup.PickupHand.Left : VRC_Pickup.PickupHand.Right, hapticDuration, hapticAmplitude, hapticFrequency);
+            Networking.LocalPlayer.PlayHapticEventInHand(isLeft ? VRC_Pickup.PickupHand.Left : VRC_Pickup.PickupHand.Right, hapticDuration * strength, hapticAmplitude * strength, hapticFrequency);
         }
 
         private void PlaySound()
         {
-            if (audioSource != null && switchSound != null) audioSource.PlayOneShot(switchSound);
+            if (audioSource && audioSource.clip)
+            {
+                var obj = VRCInstantiate(audioSource.gameObject);
+                obj.transform.SetParent(transform, false);
+                var spawnedAudioSource = obj.GetComponent<AudioSource>();
+                spawnedAudioSource.Play();
+                Destroy(obj, spawnedAudioSource.clip.length + 1.0f);
+            }
         }
 
         private Quaternion GetHandRotaton(bool isLeft)
@@ -155,13 +161,14 @@ namespace UdonRadioCommunication
             if (knobMode)
             {
                 inverseHandRotation = Quaternion.Inverse(GetHandRotaton(isLeft));
-                if (enableHaptics) PlayHaptic(isLeft);
             }
             else
             {
                 SendCustomEventToTarget(eventName, isLeft);
                 SendCustomEventToTarget(onTouchStart, isLeft);
             }
+
+            if (enableHaptics && (knobMode || directionalMode)) PlayHaptic(isLeft, 0.5f);
         }
 
         private void OnTouchMove(bool isLeft)
@@ -242,7 +249,7 @@ namespace UdonRadioCommunication
         {
             if (eventTarget == null || string.IsNullOrEmpty(eventName) || ownerOnly && !Networking.IsOwner(eventTarget.gameObject)) return;
 
-            if (enableHaptics) PlayHaptic(isLeft);
+            if (enableHaptics) PlayHaptic(isLeft, 1.0f);
             PlaySound();
 
             if (networked) eventTarget.SendCustomNetworkEvent(networkEventTarget, eventName);

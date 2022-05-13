@@ -5,8 +5,8 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - eventTarget: {instanceID: 0}
-  - audioSource: {instanceID: 0}
-  - switchSound: {fileID: 8300000, guid: 484bb1a0a09f3f644806c74d9c794a58, type: 3}
+  - audioSource: {fileID: 6451254477142381142, guid: 6727c8a374937cb4cb1b73a38f7a1426,
+      type: 3}
   - debugTouhSource: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
