@@ -13,15 +13,18 @@ namespace UdonRadioCommunication
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class KeyboardInput : UdonSharpBehaviour
     {
+        private const int MODE_KEY_DOWN = 0;
+        private const int MODE_KEY_UP = 1;
+        private const int MODE_KEY_HOLD = 2;
+
         public int[] keyCodes = { };
-        public bool[] holds = {};
+        public int[] modes = { };
         public UdonSharpBehaviour[] eventTargets = { };
         public string[] onKeyDownEvents = { };
         public float holdTime = 1.0f;
         public int eventsPerSeconds = 4;
 
         public AudioSource audioSource;
-        public AudioClip audioClip;
 
         private int[] keyDownTimes;
         private void Start()
@@ -44,41 +47,65 @@ namespace UdonRadioCommunication
                 var keyCode = (KeyCode)keyCodes[i];
                 var onKeyDownEvent = onKeyDownEvents[i];
 
-                var hold = holds[i];
-                if (Input.GetKeyDown(keyCode))
+                var mode = modes[i];
+                switch (mode)
                 {
-                    if (!hold) Trigger(eventTarget, onKeyDownEvent);
-                    keyDownTimes[i] = frameCount;
-                }
-                else if (hold && keyDownTime >= holdFrames && keyDownTime % holdEventInterval == 0 && Input.GetKey(keyCode))
-                {
-                    Trigger(eventTarget, onKeyDownEvent);
+                    case MODE_KEY_DOWN:
+                        if (Input.GetKeyDown(keyCode)) Trigger(eventTarget, onKeyDownEvent);
+                        break;
+                    case MODE_KEY_UP:
+                        if (Input.GetKeyUp(keyCode)) Trigger(eventTarget, onKeyDownEvent);
+                        break;
+                    case MODE_KEY_HOLD:
+                        if (Input.GetKeyDown(keyCode)) keyDownTimes[i] = frameCount;
+                        else if (keyDownTime >= holdFrames && keyDownTime % holdEventInterval == 0 && Input.GetKey(keyCode)) Trigger(eventTarget, onKeyDownEvent);
+                        break;
                 }
             }
         }
 
         private void Trigger(UdonSharpBehaviour target, string eventName)
         {
-            if (target) target.SendCustomEvent(eventName);
-            if (audioSource && audioClip) audioSource.PlayOneShot(audioClip);
+            if (!target) return;
+            target.SendCustomEvent(eventName);
+            PlaySound();
         }
+
+        private void PlaySound()
+        {
+            if (audioSource && audioSource.clip)
+            {
+                var obj = VRCInstantiate(audioSource.gameObject);
+                obj.transform.SetParent(transform, false);
+                var spawnedAudioSource = obj.GetComponent<AudioSource>();
+                spawnedAudioSource.Play();
+                Destroy(obj, spawnedAudioSource.clip.length + 1.0f);
+            }
+        }
+
     }
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
     [CustomEditor(typeof(KeyboardInput))]
     class KeyboardInputEditor : Editor
     {
+        private readonly string[] Modes = {
+            "KeyDown",
+            "KeyUp",
+            "KeyHold",
+        };
+
         public override void OnInspectorGUI()
         {
             if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
 
             serializedObject.Update();
             var keyCodes = serializedObject.FindProperty(nameof(KeyboardInput.keyCodes));
-            var holds = serializedObject.FindProperty(nameof(KeyboardInput.holds));
+            var modes = serializedObject.FindProperty(nameof(KeyboardInput.modes));
             var eventTargets = serializedObject.FindProperty(nameof(KeyboardInput.eventTargets));
             var onKeyDownEvents = serializedObject.FindProperty(nameof(KeyboardInput.onKeyDownEvents));
 
-            holds.arraySize = keyCodes.arraySize;
+            modes.arraySize = keyCodes.arraySize;
             eventTargets.arraySize = keyCodes.arraySize;
             onKeyDownEvents.arraySize = keyCodes.arraySize;
 
@@ -91,16 +118,17 @@ namespace UdonRadioCommunication
                     using (new EditorGUILayout.HorizontalScope())
                     {
                         var keyCode = keyCodes.GetArrayElementAtIndex(i);
-                        var hold = holds.GetArrayElementAtIndex(i);
+                        var mode = modes.GetArrayElementAtIndex(i);
 
                         keyCode.intValue = (int)(KeyCode)EditorGUILayout.EnumPopup((Enum)Enum.ToObject(typeof(KeyCode), keyCode.intValue));
-                        hold.boolValue = EditorGUILayout.ToggleLeft("Hold", hold.boolValue, new [] { GUILayout.ExpandWidth(false), GUILayout.Width(100) });
+                        mode.intValue = EditorGUILayout.Popup(mode.intValue, Modes);
                         EditorGUILayout.PropertyField(eventTargets.GetArrayElementAtIndex(i), GUIContent.none);
                         URCUtility.UdonPublicEventField(eventTargets.GetArrayElementAtIndex(i), onKeyDownEvents.GetArrayElementAtIndex(i), GUIContent.none);
 
                         if (GUILayout.Button("-", EditorStyles.miniButton, GUILayout.ExpandWidth(false)))
                         {
                             keyCodes.DeleteArrayElementAtIndex(i);
+                            modes.DeleteArrayElementAtIndex(i);
                             eventTargets.DeleteArrayElementAtIndex(i);
                             onKeyDownEvents.DeleteArrayElementAtIndex(i);
                         }
@@ -118,7 +146,6 @@ namespace UdonRadioCommunication
             EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(KeyboardInput.holdTime)));
             EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(KeyboardInput.eventsPerSeconds)));
             EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(KeyboardInput.audioSource)));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(KeyboardInput.audioClip)));
 
             serializedObject.ApplyModifiedProperties();
         }

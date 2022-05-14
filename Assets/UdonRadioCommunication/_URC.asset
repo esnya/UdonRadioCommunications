@@ -10783,8 +10783,9 @@ MonoBehaviour:
         value: null
         arrayItems: []
       - symbolName: audioSource
-        objectReference: {fileID: 0}
-        value: null
+        objectReference: {fileID: 6451254477142381142, guid: 6727c8a374937cb4cb1b73a38f7a1426,
+          type: 3}
+        value: Sound_ToggleSwitch (UnityEngine.AudioSource)
         arrayItems: []
       - symbolName: eventsPerSeconds
         objectReference: {fileID: 0}
@@ -10813,6 +10814,10 @@ MonoBehaviour:
         value: 1
         arrayItems: []
       - symbolName: keyCodes
+        objectReference: {fileID: 0}
+        value: System.Int32[]
+        arrayItems: []
+      - symbolName: modes
         objectReference: {fileID: 0}
         value: System.Int32[]
         arrayItems: []
@@ -10970,6 +10975,18 @@ MonoBehaviour:
         objectReference: {fileID: 0}
         value: 5
         arrayItems: []
+      - symbolName: statusActive
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusDeactivating
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusIndicator
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
   - prefabInstance: {fileID: 310419499813552750, guid: 34696ffc6d5760a42bdfc47bc914c230,
       type: 3}
     prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/SampleAssets/Prefabs/TouchSwitch.prefab
@@ -10979,8 +10996,9 @@ MonoBehaviour:
       gameObjectName: TouchSwitch
       variables:
       - symbolName: audioSource
-        objectReference: {fileID: 0}
-        value: null
+        objectReference: {fileID: 6451254477142381142, guid: 6727c8a374937cb4cb1b73a38f7a1426,
+          type: 3}
+        value: Sound_ToggleSwitch (UnityEngine.AudioSource)
         arrayItems: []
       - symbolName: desktopKey
         objectReference: {fileID: 0}
@@ -11008,7 +11026,7 @@ MonoBehaviour:
         arrayItems: []
       - symbolName: eventName
         objectReference: {fileID: 0}
-        value: null
+        value: 
         arrayItems: []
       - symbolName: fingerMode
         objectReference: {fileID: 0}
@@ -11028,7 +11046,7 @@ MonoBehaviour:
         arrayItems: []
       - symbolName: knobMode
         objectReference: {fileID: 0}
-        value: False
+        value: True
         arrayItems: []
       - symbolName: knobStep
         objectReference: {fileID: 0}
@@ -11042,37 +11060,45 @@ MonoBehaviour:
         objectReference: {fileID: 0}
         value: (0.0, 1.0, 0.0)
         arrayItems: []
+      - symbolName: networked
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: networkEventTarget
+        objectReference: {fileID: 0}
+        value: All
+        arrayItems: []
       - symbolName: onDown
         objectReference: {fileID: 0}
-        value: null
+        value: 
         arrayItems: []
       - symbolName: onKnobLeft
         objectReference: {fileID: 0}
-        value: null
+        value: 
         arrayItems: []
       - symbolName: onKnobRight
         objectReference: {fileID: 0}
-        value: null
+        value: 
         arrayItems: []
       - symbolName: onLeft
         objectReference: {fileID: 0}
-        value: null
+        value: 
         arrayItems: []
       - symbolName: onRight
         objectReference: {fileID: 0}
-        value: null
+        value: 
         arrayItems: []
       - symbolName: onTouchEnd
         objectReference: {fileID: 0}
-        value: null
+        value: 
         arrayItems: []
       - symbolName: onTouchStart
         objectReference: {fileID: 0}
-        value: null
+        value: 
         arrayItems: []
       - symbolName: onUp
         objectReference: {fileID: 0}
-        value: null
+        value: 
         arrayItems: []
       - symbolName: ownerOnly
         objectReference: {fileID: 0}
@@ -11211,8 +11237,9 @@ MonoBehaviour:
         value: null
         arrayItems: []
       - symbolName: audioSource
-        objectReference: {fileID: 0}
-        value: null
+        objectReference: {fileID: 6451254477142381142, guid: 6727c8a374937cb4cb1b73a38f7a1426,
+          type: 3}
+        value: Sound_ToggleSwitch (UnityEngine.AudioSource)
         arrayItems: []
       - symbolName: eventsPerSeconds
         objectReference: {fileID: 0}
@@ -11241,6 +11268,10 @@ MonoBehaviour:
         value: 1
         arrayItems: []
       - symbolName: keyCodes
+        objectReference: {fileID: 0}
+        value: System.Int32[]
+        arrayItems: []
+      - symbolName: modes
         objectReference: {fileID: 0}
         value: System.Int32[]
         arrayItems: []
@@ -11263,8 +11294,9 @@ MonoBehaviour:
         value: null
         arrayItems: []
       - symbolName: audioSource
-        objectReference: {fileID: 0}
-        value: null
+        objectReference: {fileID: 6451254477142381142, guid: 6727c8a374937cb4cb1b73a38f7a1426,
+          type: 3}
+        value: Sound_ToggleSwitch (UnityEngine.AudioSource)
         arrayItems: []
       - symbolName: eventsPerSeconds
         objectReference: {fileID: 0}
@@ -11293,6 +11325,10 @@ MonoBehaviour:
         value: 1
         arrayItems: []
       - symbolName: keyCodes
+        objectReference: {fileID: 0}
+        value: System.Int32[]
+        arrayItems: []
+      - symbolName: modes
         objectReference: {fileID: 0}
         value: System.Int32[]
         arrayItems: []
@@ -11315,8 +11351,9 @@ MonoBehaviour:
         value: null
         arrayItems: []
       - symbolName: audioSource
-        objectReference: {fileID: 0}
-        value: null
+        objectReference: {fileID: 6451254477142381142, guid: 6727c8a374937cb4cb1b73a38f7a1426,
+          type: 3}
+        value: Sound_ToggleSwitch (UnityEngine.AudioSource)
         arrayItems: []
       - symbolName: eventsPerSeconds
         objectReference: {fileID: 0}
@@ -11348,6 +11385,10 @@ MonoBehaviour:
         objectReference: {fileID: 0}
         value: System.Int32[]
         arrayItems: []
+      - symbolName: modes
+        objectReference: {fileID: 0}
+        value: System.Int32[]
+        arrayItems: []
       - symbolName: onKeyDownEvents
         objectReference: {fileID: 0}
         value: System.String[]
@@ -11367,8 +11408,9 @@ MonoBehaviour:
         value: null
         arrayItems: []
       - symbolName: audioSource
-        objectReference: {fileID: 0}
-        value: null
+        objectReference: {fileID: 6451254477142381142, guid: 6727c8a374937cb4cb1b73a38f7a1426,
+          type: 3}
+        value: Sound_ToggleSwitch (UnityEngine.AudioSource)
         arrayItems: []
       - symbolName: eventsPerSeconds
         objectReference: {fileID: 0}
@@ -11397,6 +11439,10 @@ MonoBehaviour:
         value: 1
         arrayItems: []
       - symbolName: keyCodes
+        objectReference: {fileID: 0}
+        value: System.Int32[]
+        arrayItems: []
+      - symbolName: modes
         objectReference: {fileID: 0}
         value: System.Int32[]
         arrayItems: []
@@ -11939,6 +11985,18 @@ MonoBehaviour:
         objectReference: {fileID: 0}
         value: 5
         arrayItems: []
+      - symbolName: statusActive
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusDeactivating
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusIndicator
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
     - udonInstance: {fileID: 459845887047708469, guid: a496d14eadd8a2642afddf01b6517838,
         type: 3}
       gameObjectName: Transmitter
@@ -11962,6 +12020,18 @@ MonoBehaviour:
       - symbolName: minDistance
         objectReference: {fileID: 0}
         value: 5
+        arrayItems: []
+      - symbolName: statusActive
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusDeactivating
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusIndicator
+        objectReference: {fileID: 0}
+        value: null
         arrayItems: []
     - udonInstance: {fileID: 459845885666165775, guid: a496d14eadd8a2642afddf01b6517838,
         type: 3}
@@ -11987,6 +12057,18 @@ MonoBehaviour:
         objectReference: {fileID: 0}
         value: 5
         arrayItems: []
+      - symbolName: statusActive
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusDeactivating
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusIndicator
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
     - udonInstance: {fileID: 459845886827308779, guid: a496d14eadd8a2642afddf01b6517838,
         type: 3}
       gameObjectName: Transmitter
@@ -12010,6 +12092,18 @@ MonoBehaviour:
       - symbolName: minDistance
         objectReference: {fileID: 0}
         value: 5
+        arrayItems: []
+      - symbolName: statusActive
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusDeactivating
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusIndicator
+        objectReference: {fileID: 0}
+        value: null
         arrayItems: []
     - udonInstance: {fileID: 459845885882140268, guid: a496d14eadd8a2642afddf01b6517838,
         type: 3}
@@ -12281,9 +12375,9 @@ MonoBehaviour:
         value: MenuSelect (UnityEngine.AudioClip)
         arrayItems: []
       - symbolName: audioSource
-        objectReference: {fileID: 1581483195, guid: 417a26f9a8d9ffc4880245473499ecc6,
+        objectReference: {fileID: 6451254477142381142, guid: 6727c8a374937cb4cb1b73a38f7a1426,
           type: 3}
-        value: Audio Source (UnityEngine.AudioSource)
+        value: Sound_ToggleSwitch (UnityEngine.AudioSource)
         arrayItems: []
       - symbolName: eventsPerSeconds
         objectReference: {fileID: 0}
@@ -12312,6 +12406,10 @@ MonoBehaviour:
         value: 1
         arrayItems: []
       - symbolName: keyCodes
+        objectReference: {fileID: 0}
+        value: System.Int32[]
+        arrayItems: []
+      - symbolName: modes
         objectReference: {fileID: 0}
         value: System.Int32[]
         arrayItems: []

@@ -12,10 +12,14 @@ namespace UdonRadioCommunication
         public float deactivateDelay = 1.0f;
         public float minDistance = 5.0f;
         public GameObject indicator;
+        public Renderer statusIndicator;
+        public Material statusActive, statusDeactivating;
         public bool indicatorAsLocal = false;
 
         [System.NonSerialized] public UdonSharpBehaviour urc;
 
+        private Renderer indiatorRenderer;
+        private Material statusInactive;
         private float lastActivatedTime;
         [UdonSynced][FieldChangeCallback(nameof(Active))] private bool _active;
         public bool Active
@@ -25,11 +29,13 @@ namespace UdonRadioCommunication
                 if (value) lastActivatedTime = Time.time;
                 _active = value;
                 if (indicator != null) indicator.SetActive((!indicatorAsLocal || Networking.IsOwner(gameObject)) && value);
+                if (statusIndicator) statusIndicator.sharedMaterial = value ? statusActive : statusInactive;
             }
         }
 
         private void Start()
         {
+            if (statusIndicator) statusInactive = statusIndicator.sharedMaterial;
             Active = false;
         }
 
@@ -53,6 +59,7 @@ namespace UdonRadioCommunication
         public void _Deactivate()
         {
             _TakeOwnership();
+            if (statusIndicator && Active) statusIndicator.sharedMaterial = statusDeactivating;
             SendCustomEventDelayedSeconds(nameof(_DelayedDeactivate), deactivateDelay);
         }
         public void _DelayedDeactivate()
