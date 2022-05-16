@@ -12,7 +12,7 @@ namespace UdonRadioCommunication
         public float deactivateDelay = 1.0f;
         public float minDistance = 5.0f;
         public GameObject indicator;
-        public Renderer statusIndicator;
+        public GameObject statusIndicator;
         public Material statusActive, statusDeactivating;
         public bool indicatorAsLocal = false;
 
@@ -29,13 +29,13 @@ namespace UdonRadioCommunication
                 if (value) lastActivatedTime = Time.time;
                 _active = value;
                 if (indicator != null) indicator.SetActive((!indicatorAsLocal || Networking.IsOwner(gameObject)) && value);
-                if (statusIndicator) statusIndicator.sharedMaterial = value ? statusActive : statusInactive;
+                if (statusIndicator) SetIndicatorMateial(value ? statusActive : statusInactive);
             }
         }
 
         private void Start()
         {
-            if (statusIndicator) statusInactive = statusIndicator.sharedMaterial;
+            if (statusIndicator) statusInactive = statusIndicator.GetComponent<Renderer>().sharedMaterial;
             Active = false;
         }
 
@@ -59,7 +59,7 @@ namespace UdonRadioCommunication
         public void _Deactivate()
         {
             _TakeOwnership();
-            if (statusIndicator && Active) statusIndicator.sharedMaterial = statusDeactivating;
+            if (statusIndicator && Active) SetIndicatorMateial(statusDeactivating);
             SendCustomEventDelayedSeconds(nameof(_DelayedDeactivate), deactivateDelay);
         }
         public void _DelayedDeactivate()
@@ -78,5 +78,15 @@ namespace UdonRadioCommunication
         }
 
         public float _GetFrequency() => frequency;
+
+        private void SetIndicatorMateial(Material material)
+        {
+            if (!statusIndicator || !material) return;
+            foreach (var renderer in statusIndicator.GetComponentsInChildren<Renderer>(true))
+            {
+                if (!renderer) continue;
+                 renderer.sharedMaterial = statusDeactivating;
+            }
+        }
     }
 }
