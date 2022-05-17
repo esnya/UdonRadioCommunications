@@ -13,13 +13,11 @@ namespace UdonRadioCommunication
         public float minDistance = 5.0f;
         public GameObject indicator;
         public GameObject statusIndicator;
-        public Material statusActive, statusDeactivating;
+        public Material statusInactive, statusActive, statusDeactivating;
         public bool indicatorAsLocal = false;
 
         [System.NonSerialized] public UdonSharpBehaviour urc;
 
-        private Renderer indiatorRenderer;
-        private Material statusInactive;
         private float lastActivatedTime;
         [UdonSynced][FieldChangeCallback(nameof(Active))] private bool _active;
         public bool Active
@@ -35,7 +33,6 @@ namespace UdonRadioCommunication
 
         private void Start()
         {
-            if (statusIndicator) statusInactive = statusIndicator.GetComponent<Renderer>().sharedMaterial;
             Active = false;
         }
 
@@ -85,7 +82,7 @@ namespace UdonRadioCommunication
             foreach (var renderer in statusIndicator.GetComponentsInChildren<Renderer>(true))
             {
                 if (!renderer) continue;
-                 renderer.sharedMaterial = statusDeactivating;
+                 renderer.sharedMaterial = material;
             }
         }
     }
