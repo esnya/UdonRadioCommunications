@@ -10987,6 +10987,26 @@ MonoBehaviour:
         objectReference: {fileID: 0}
         value: null
         arrayItems: []
+  - prefabInstance: {fileID: 8549301819794777363, guid: 27d6ce055a1e27444ba522b9d695d597,
+      type: 3}
+    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/SampleAssets/Prefabs/KeyboardInput.prefab
+    udonVariables:
+    - udonInstance: {fileID: 2429176933069098452, guid: 27d6ce055a1e27444ba522b9d695d597,
+        type: 3}
+      gameObjectName: KeyboardInput
+      variables:
+      - symbolName: audioSource
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: eventsPerSeconds
+        objectReference: {fileID: 0}
+        value: 4
+        arrayItems: []
+      - symbolName: holdTime
+        objectReference: {fileID: 0}
+        value: 1
+        arrayItems: []
   - prefabInstance: {fileID: 310419499813552750, guid: 34696ffc6d5760a42bdfc47bc914c230,
       type: 3}
     prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/SampleAssets/Prefabs/TouchSwitch.prefab
@@ -11046,7 +11066,7 @@ MonoBehaviour:
         arrayItems: []
       - symbolName: knobMode
         objectReference: {fileID: 0}
-        value: True
+        value: False
         arrayItems: []
       - symbolName: knobStep
         objectReference: {fileID: 0}

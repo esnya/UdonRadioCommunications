@@ -1,6 +1,7 @@
 
 using UdonSharp;
 using UnityEngine;
+using UnityEngine.UI;
 using VRC.SDKBase;
 
 namespace UdonRadioCommunication
@@ -27,7 +28,7 @@ namespace UdonRadioCommunication
                 if (value) lastActivatedTime = Time.time;
                 _active = value;
                 if (indicator != null) indicator.SetActive((!indicatorAsLocal || Networking.IsOwner(gameObject)) && value);
-                if (statusIndicator) SetIndicatorMateial(value ? statusActive : statusInactive);
+                SetIndicatorMateial(value ? statusActive : statusInactive);
             }
         }
 
@@ -56,7 +57,7 @@ namespace UdonRadioCommunication
         public void _Deactivate()
         {
             _TakeOwnership();
-            if (statusIndicator && Active) SetIndicatorMateial(statusDeactivating);
+            if (Active) SetIndicatorMateial(statusDeactivating);
             SendCustomEventDelayedSeconds(nameof(_DelayedDeactivate), deactivateDelay);
         }
         public void _DelayedDeactivate()
@@ -83,6 +84,11 @@ namespace UdonRadioCommunication
             {
                 if (!renderer) continue;
                  renderer.sharedMaterial = material;
+            }
+            foreach (var image in statusIndicator.GetComponentsInChildren<Image>(true))
+            {
+                if (!image) continue;
+                 image.material = material;
             }
         }
     }

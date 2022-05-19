@@ -30,6 +30,7 @@ namespace UdonRadioCommunication
             var entity = GetComponentInParent<SaccEntity>();
 
             transmitter.indicator = Dial_Funcon;
+            transmitter.statusIndicator = Dial_Funcon;
 
             return entity;
         }
