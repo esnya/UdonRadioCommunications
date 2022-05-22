@@ -15,7 +15,7 @@ MonoBehaviour:
   udonVariables:
   - prefabInstance: {fileID: 6618188740344843702, guid: 5dc340bf8c775484eaa28b27b5e58069,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/Prefabs/DFUNC_URC_Frequency.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/Integrations/SaccFlightAndVehicles/Prefabs/DFUNC_URC_Frequency.prefab
     udonVariables:
     - udonInstance: {fileID: 6000088465037644541, guid: 5dc340bf8c775484eaa28b27b5e58069,
         type: 3}
@@ -55,7 +55,7 @@ MonoBehaviour:
         arrayItems: []
   - prefabInstance: {fileID: 3794536601450044535, guid: 65d62d943ef738846b76b933b8ecf304,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/Prefabs/DFUNC_URC_PTT.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/Integrations/SaccFlightAndVehicles/Prefabs/DFUNC_URC_PTT.prefab
     udonVariables:
     - udonInstance: {fileID: 4838727829773186363, guid: 65d62d943ef738846b76b933b8ecf304,
         type: 3}
@@ -92,7 +92,7 @@ MonoBehaviour:
         arrayItems: []
   - prefabInstance: {fileID: 1533443288448328203, guid: e35111c4b3fe4d34882b843ca8064288,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/Prefabs/DFUNC_URC_RX.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/Integrations/SaccFlightAndVehicles/Prefabs/DFUNC_URC_RX.prefab
     udonVariables:
     - udonInstance: {fileID: 3358971406886269520, guid: e35111c4b3fe4d34882b843ca8064288,
         type: 3}
@@ -141,7 +141,7 @@ MonoBehaviour:
         arrayItems: []
   - prefabInstance: {fileID: 7422882663793839734, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/Prefabs/SFVehicleTransceiver_SF-1.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/Integrations/SaccFlightAndVehicles/Prefabs/SFVehicleTransceiver_SF-1.prefab
     udonVariables:
     - udonInstance: {fileID: 8044369878589353289, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
         type: 3}
@@ -597,7 +597,7 @@ MonoBehaviour:
         arrayItems: []
   - prefabInstance: {fileID: 8695935339262680928, guid: a8ebd153792582b4bad70a61985cc644,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/Prefabs/SFVehicleTransceiver_SH-1.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/Integrations/SaccFlightAndVehicles/Prefabs/SFVehicleTransceiver_SH-1.prefab
     udonVariables:
     - udonInstance: {fileID: 8074422667412339807, guid: a8ebd153792582b4bad70a61985cc644,
         type: 3}
@@ -1053,7 +1053,7 @@ MonoBehaviour:
         arrayItems: []
   - prefabInstance: {fileID: 4666040163235209891, guid: 722a8583ae674644896e71f3cb756af1,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/Prefabs/SFVehicleTransceiver_SH-1_Gunner.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/Integrations/SaccFlightAndVehicles/Prefabs/SFVehicleTransceiver_SH-1_Gunner.prefab
     udonVariables:
     - udonInstance: {fileID: 5215499813179277724, guid: 722a8583ae674644896e71f3cb756af1,
         type: 3}
@@ -1509,7 +1509,7 @@ MonoBehaviour:
         arrayItems: []
   - prefabInstance: {fileID: 7629702917372400804, guid: 5aa0696f016f7214b9ee757e6f549ee6,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/SF-1Main+COM.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/Integrations/SaccFlightAndVehicles/SF-1Main+COM.prefab
     udonVariables:
     - udonInstance: {fileID: 4106852870412315911, guid: 5aa0696f016f7214b9ee757e6f549ee6,
         type: 3}
@@ -4369,7 +4369,7 @@ MonoBehaviour:
         arrayItems: []
   - prefabInstance: {fileID: 4014350562027953700, guid: 9d229afeea58f1e4799090ace23df4d9,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/SF-1Main+COM_PTT.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/Integrations/SaccFlightAndVehicles/SF-1Main+COM_PTT.prefab
     udonVariables:
     - udonInstance: {fileID: 7397593521665255303, guid: 9d229afeea58f1e4799090ace23df4d9,
         type: 3}
@@ -7233,7 +7233,7 @@ MonoBehaviour:
         arrayItems: []
   - prefabInstance: {fileID: 6729289301852982897, guid: a35c399fcf052ad42aa9da31a8cfd147,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles/SH-1Main+COM.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/Integrations/SaccFlightAndVehicles/SH-1Main+COM.prefab
     udonVariables:
     - udonInstance: {fileID: 2534295232534686756, guid: a35c399fcf052ad42aa9da31a8cfd147,
         type: 3}
@@ -10692,7 +10692,7 @@ MonoBehaviour:
         arrayItems: []
   - prefabInstance: {fileID: 8162674524155193012, guid: a0c93c79ea58c8c47aa07e805f7291b0,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/LocalReceiver.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/LocalReceiver.prefab
     udonVariables:
     - udonInstance: {fileID: 2144728391, guid: a0c93c79ea58c8c47aa07e805f7291b0, type: 3}
       gameObjectName: OffButton
@@ -10748,7 +10748,7 @@ MonoBehaviour:
         arrayItems: []
   - prefabInstance: {fileID: 8162674524155193012, guid: cd45481f45f805d479b5ec5936f1aefd,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/PickupTransceiver.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/PickupTransceiver.prefab
     udonVariables:
     - udonInstance: {fileID: 335755895, guid: cd45481f45f805d479b5ec5936f1aefd, type: 3}
       gameObjectName: Dec
@@ -10989,7 +10989,7 @@ MonoBehaviour:
         arrayItems: []
   - prefabInstance: {fileID: 8549301819794777363, guid: 27d6ce055a1e27444ba522b9d695d597,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/SampleAssets/Prefabs/KeyboardInput.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/SampleAssets/Prefabs/KeyboardInput.prefab
     udonVariables:
     - udonInstance: {fileID: 2429176933069098452, guid: 27d6ce055a1e27444ba522b9d695d597,
         type: 3}
@@ -11009,7 +11009,7 @@ MonoBehaviour:
         arrayItems: []
   - prefabInstance: {fileID: 310419499813552750, guid: 34696ffc6d5760a42bdfc47bc914c230,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/SampleAssets/Prefabs/TouchSwitch.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/SampleAssets/Prefabs/TouchSwitch.prefab
     udonVariables:
     - udonInstance: {fileID: 6295146866336980111, guid: 34696ffc6d5760a42bdfc47bc914c230,
         type: 3}
@@ -11142,7 +11142,7 @@ MonoBehaviour:
         arrayItems: []
   - prefabInstance: {fileID: 459845885882140270, guid: a496d14eadd8a2642afddf01b6517838,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/SampleAssets/UdonRadioCommunicationDemo.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/SampleAssets/UdonRadioCommunicationDemo.prefab
     udonVariables:
     - udonInstance: {fileID: 8585574336693194300, guid: a496d14eadd8a2642afddf01b6517838,
         type: 3}
@@ -12197,7 +12197,7 @@ MonoBehaviour:
         - URCDebugger (UnityEngine.GameObject)
   - prefabInstance: {fileID: 4898858244584455444, guid: 417a26f9a8d9ffc4880245473499ecc6,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/StaticTransceiver.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/StaticTransceiver.prefab
     udonVariables:
     - udonInstance: {fileID: 4472854453801750072, guid: 417a26f9a8d9ffc4880245473499ecc6,
         type: 3}
@@ -12723,7 +12723,7 @@ MonoBehaviour:
         arrayItems: []
   - prefabInstance: {fileID: 8288458946717863568, guid: 694cce977817f56459a966291200eca2,
       type: 3}
-    prefabPath: Assets/UdonRadioCommunication/Assets/UdonRadioCommunication/UdonRadioCommunication.prefab
+    prefabPath: Assets/UdonRadioCommunication/Packages/com.nekometer.esnya.udon-radio-communications/UdonRadioCommunication.prefab
     udonVariables:
     - udonInstance: {fileID: 8288458946717863570, guid: 694cce977817f56459a966291200eca2,
         type: 3}
