@@ -1,0 +1,7 @@
+plugins:
+  - semantic-release-gitmoji
+  - - "@semantic-release/npm"
+    - npmPublish: false
+      pkgRoot: /Packages/com.nekometer.esnya.udon-radio-communication
+  - "@semantic-release/github"
+  - "@semantic-release/git"
