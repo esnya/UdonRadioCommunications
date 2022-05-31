@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace UdonRadioCommunication
+namespace URC
 {
     public class URC_SF_Installer : EditorWindow
     {

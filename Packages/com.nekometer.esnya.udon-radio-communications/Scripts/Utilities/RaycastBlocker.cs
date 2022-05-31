@@ -1,7 +1,7 @@
 using UdonSharp;
 using VRC.SDKBase;
 
-namespace UdonRadioCommunication
+namespace URC
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class RaycastBlocker : UdonSharpBehaviour

@@ -1,7 +1,6 @@
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
-using VRC.Udon;
 using VRC.Udon.Common.Interfaces;
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
@@ -11,7 +10,7 @@ using System.Reflection;
 using System.Linq;
 #endif
 
-namespace UdonRadioCommunication
+namespace URC
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class TouchSwitch : UdonSharpBehaviour

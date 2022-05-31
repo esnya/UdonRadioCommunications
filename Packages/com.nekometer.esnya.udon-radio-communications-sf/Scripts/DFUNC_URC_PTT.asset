@@ -188,7 +188,7 @@ MonoBehaviour:
       Data: 12|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: UdonRadioCommunication.Transmitter, UdonRadioCommunication.Runtime
+      Data: URC.Transmitter, UdonRadioCommunication.Runtime
     - Name: 
       Entry: 8
       Data: 

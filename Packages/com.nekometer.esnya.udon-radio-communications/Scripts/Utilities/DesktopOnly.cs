@@ -2,7 +2,7 @@ using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
 
-namespace UdonRadioCommunication
+namespace URC
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class DesktopOnly : UdonSharpBehaviour

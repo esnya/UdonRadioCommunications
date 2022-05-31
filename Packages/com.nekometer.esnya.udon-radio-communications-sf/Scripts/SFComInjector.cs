@@ -2,7 +2,7 @@ using System;
 using UdonSharp;
 using UnityEngine;
 
-namespace UdonRadioCommunication
+namespace URC
 {
 
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]

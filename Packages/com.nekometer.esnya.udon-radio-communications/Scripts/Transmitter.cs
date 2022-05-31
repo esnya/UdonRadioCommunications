@@ -1,15 +1,14 @@
-
+using System;
 using UdonSharp;
 using UnityEngine;
 using UnityEngine.UI;
 using VRC.SDKBase;
 
-namespace UdonRadioCommunication
+namespace URC
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class Transmitter : UdonSharpBehaviour
     {
-        [UdonSynced] public float frequency = 118.0f;
         public float deactivateDelay = 1.0f;
         public float minDistance = 5.0f;
         public GameObject indicator;
@@ -17,7 +16,8 @@ namespace UdonRadioCommunication
         public Material statusInactive, statusActive, statusDeactivating;
         public bool indicatorAsLocal = false;
 
-        [System.NonSerialized] public UdonSharpBehaviour urc;
+        [NonSerialized][UdonSynced] public float frequency;
+        [NonSerialized] public UdonRadioCommunication urc;
 
         private float lastActivatedTime;
         [UdonSynced][FieldChangeCallback(nameof(Active))] private bool _active;
@@ -35,6 +35,12 @@ namespace UdonRadioCommunication
         private void Start()
         {
             Active = false;
+        }
+
+        public void _Initialize(UdonRadioCommunication urc)
+        {
+            this.urc = urc;
+            frequency = urc.defaultFrequency;
         }
 
         public void _TakeOwnership()

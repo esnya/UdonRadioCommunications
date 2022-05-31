@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Linq;
 #endif
 
-namespace UdonRadioCommunication
+namespace URC
 {
     public class URCUtility
     {

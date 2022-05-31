@@ -8,7 +8,7 @@ using UnityEditor;
 using UdonSharpEditor;
 #endif
 
-namespace UdonRadioCommunication
+namespace URC
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class KeyboardInput : UdonSharpBehaviour

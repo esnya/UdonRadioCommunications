@@ -2,7 +2,7 @@
 using UnityEngine;
 using VRC.SDK3.Components;
 
-namespace UdonRadioCommunication
+namespace URC
 {
     [RequireComponent(typeof(VRCPickup))]
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]

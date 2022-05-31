@@ -2,9 +2,8 @@ using TMPro;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
-using VRC.Udon;
 
-namespace UdonRadioCommunication
+namespace URC
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class DFUNC_URC_Frequency : UdonSharpBehaviour
@@ -14,8 +13,8 @@ namespace UdonRadioCommunication
         public KeyCode desktopIncrementKey = KeyCode.Period;
         public float controllerSensitivity = 100;
         public TextMeshPro frequencyText;
-        public float minFrequency = 118.0f, maxFrequency = 136.975f, frequencyStep = 0.025f;
         public string frequencyTextFormat = "COM Freq 000.000 [,.]";
+        private float minFrequency, maxFrequency, frequencyStep;
 
         public Transform debugTransform;
 
@@ -62,18 +61,12 @@ namespace UdonRadioCommunication
         private float frequency;
         public void SFEXT_O_PilotEnter()
         {
-            var frequency = transmitter.frequency;
+            var urc = (UdonRadioCommunication)transmitter.urc;
+            minFrequency = urc.minFrequency;
+            maxFrequency = urc.maxFrequency;
+            frequencyStep = urc.frequencyStep;
 
-            var urc = transmitter.urc;
-            if (urc && (bool)urc.GetProgramVariable(nameof(UdonRadioCommunication.overrideFrequency)))
-            {
-                frequency = (float)urc.GetProgramVariable(nameof(UdonRadioCommunication.minFrequency));
-                minFrequency = (float)urc.GetProgramVariable(nameof(UdonRadioCommunication.minFrequency));
-                maxFrequency = (float)urc.GetProgramVariable(nameof(UdonRadioCommunication.maxFrequency));
-                frequencyStep = (float)urc.GetProgramVariable(nameof(UdonRadioCommunication.frequencyStep));
-                frequencyTextFormat = (string)urc.GetProgramVariable(nameof(UdonRadioCommunication.frequencyTextFormat));
-            }
-            SetFrequency(frequency);
+            SetFrequency(transmitter.frequency);
             if (!Networking.LocalPlayer.IsUserInVR()) DFUNC_Selected();
         }
         public void SFEXT_O_PilotExit()

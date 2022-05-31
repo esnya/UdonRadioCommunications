@@ -1,40 +1,52 @@
-#pragma warning disable IDE0051,IDE1006
+using System;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
 
-namespace UdonRadioCommunication
+namespace URC
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class Receiver : UdonSharpBehaviour
     {
         public bool active;
-        public float frequency = 118.0f;
         public bool limitRange = true;
         public float maxRange = 5.0f;
         public bool sync = true;
         public GameObject indicator;
+        [NonSerialized] public float frequency;
 
-        [System.NonSerialized] public UdonSharpBehaviour urc;
+        [NonSerialized] public UdonRadioCommunication urc;
 
-        [HideInInspector][UdonSynced] private bool syncActive;
-        [HideInInspector][UdonSynced] private float syncFrequency;
+        [UdonSynced][FieldChangeCallback(nameof(SyncedActive))] private bool _syncedActive;
+        public bool SyncedActive {
+            set {
+                if (!sync) return;
+                active = _syncedActive = value;
+                UpdateIndicator();
+            }
+            get => _syncedActive;
+        }
+        [UdonSynced][FieldChangeCallback(nameof(SyncedFrequency))] private float _syncedFrequency;
+        public float SyncedFrequency {
+            set {
+                if (!sync) return;
+                frequency = _syncedFrequency = value;
+            }
+            get => _syncedFrequency;
+        }
 
         private void Start() => UpdateIndicator();
 
-        public override void OnPreSerialization()
+        public void _Initialize(UdonRadioCommunication urc)
         {
-            syncActive = active;
-            syncFrequency = frequency;
+            this.urc = urc;
+            frequency = urc.defaultFrequency;
         }
 
-        public override void OnDeserialization()
+        public override void OnPreSerialization()
         {
-            if (sync) {
-                active = syncActive;
-                frequency = syncFrequency;
-                UpdateIndicator();
-            }
+            _syncedActive = active;
+            _syncedFrequency = frequency;
         }
 
         private void UpdateIndicator()

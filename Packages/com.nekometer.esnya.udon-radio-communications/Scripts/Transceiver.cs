@@ -1,5 +1,6 @@
 
 #pragma warning disable IDE0051,IDE1006
+using System;
 using JetBrains.Annotations;
 using TMPro;
 using UdonSharp;
@@ -7,7 +8,7 @@ using UnityEngine;
 using VRC.SDK3.Components;
 using VRC.SDKBase;
 
-namespace UdonRadioCommunication
+namespace URC
 {
     [DefaultExecutionOrder(1000)]
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
@@ -16,15 +17,19 @@ namespace UdonRadioCommunication
         public bool exclusive = true;
         [NotNull] public Receiver receiver;
         [NotNull] public Transmitter transmitter;
-        [UdonSynced, FieldChangeCallback(nameof(Frequency))] public float frequency = 118.0f;
-        public float frequencyStep = 0.025f, fastFrequencyStep = 1.0f, minFrequency = 118.0f, maxFrequency = 136.975f;
-
 
         [Header("Optional")]
         public TextMeshPro frequencyText;
         public string frequencyTextFormat = "000.000";
         [Tooltip("Drives bool parameters \"PowerOn\" and \"Talking\"")] public Animator[] animators = { };
 
+        [NonSerialized] public UdonRadioCommunication urc;
+        [NonSerialized] public float minFrequency;
+        [NonSerialized] public float maxFrequency;
+        [NonSerialized] public float frequencyStep;
+        [NonSerialized] public float fastFrequencyStep;
+
+        [UdonSynced][FieldChangeCallback(nameof(Frequency))] private float _frequency;
         public float Frequency
         {
             set
@@ -33,13 +38,13 @@ namespace UdonRadioCommunication
                 if (!receiver.sync || isOwner) receiver._SetFrequency(value);
                 if (isOwner) transmitter._SetFrequency(value);
 
-                frequency = value;
+                _frequency = value;
                 _UpdateFrequencyText();
             }
-            get => frequency;
+            get => _frequency;
         }
 
-        [UdonSynced, FieldChangeCallback(nameof(Receive))] private bool _receive;
+        [UdonSynced][FieldChangeCallback(nameof(Receive))] private bool _receive;
         private bool Receive
         {
             set
@@ -51,7 +56,7 @@ namespace UdonRadioCommunication
             get => _receive;
         }
 
-        [UdonSynced, FieldChangeCallback(nameof(Transmit))] private bool _transmit;
+        [UdonSynced][FieldChangeCallback(nameof(Transmit))] private bool _transmit;
         private bool Transmit
         {
             set
@@ -82,9 +87,20 @@ namespace UdonRadioCommunication
             var pickup = (VRCPickup)GetComponent(typeof(VRCPickup));
             if (pickup != null) pickup.AutoHold = VRC_Pickup.AutoHoldMode.Yes;
 
-            Frequency = frequency;
             Receive = false;
             Transmit = false;
+        }
+
+        public void _Initialize(UdonRadioCommunication urc)
+        {
+            this.urc = urc;
+
+            minFrequency = urc.minFrequency;
+            maxFrequency = urc.maxFrequency;
+            frequencyStep = urc.frequencyStep;
+            fastFrequencyStep = urc.fastFrequencyStep;
+
+            Frequency = urc.defaultFrequency;
         }
 
         public void _TakeOwnership()

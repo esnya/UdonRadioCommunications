@@ -1,13 +1,10 @@
-﻿#pragma warning disable IDE0051
-using UdonSharp;
+﻿using UdonSharp;
 using UnityEngine;
 
-namespace UdonRadioCommunication
+namespace URC
 {
-    [
-        UdonBehaviourSyncMode(BehaviourSyncMode.None),
-        DefaultExecutionOrder(1100), // After Transceiver
-    ]
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
+    [DefaultExecutionOrder(1100)] // After Transceiver
     public class TransceiverEnabledTrigger : UdonSharpBehaviour
     {
         public Transceiver transceiver;

@@ -1,6 +1,3 @@
-#pragma warning disable IDE0051
-using System;
-
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
@@ -16,7 +13,7 @@ using UnityEngine.SceneManagement;
 using UdonSharpEditor;
 #endif
 
-namespace UdonRadioCommunication
+namespace URC
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [DefaultExecutionOrder(1100)]
@@ -33,14 +30,12 @@ namespace UdonRadioCommunication
         public bool disableLowpassFilter = true;
 
         [Space]
-        public float frequencyGap = 0.01f;
-
-        [Space]
-        public bool overrideFrequency = false;
-        public float minFrequency = 118.0f, maxFrequency = 136.975f;
+        public float defaultFrequency = 118.0f;
+        public float minFrequency = 118.0f;
+        public float maxFrequency = 136.975f;
         public float frequencyStep = 0.025f;
         public float fastFrequencyStep = 1.0f;
-        public string frequencyTextFormat = "000.000";
+        public float frequencyGap = 0.01f;
 
         [Space]
         public bool autoSetupBeforeSave = true;
@@ -48,6 +43,7 @@ namespace UdonRadioCommunication
         [Space]
         public Transmitter[] transmitters;
         public Receiver[] receivers;
+        public Transceiver[] transceivers;
 
         [Space]
         public TextMeshPro debugText;
@@ -62,43 +58,23 @@ namespace UdonRadioCommunication
         {
             SendCustomEventDelayedSeconds(nameof(_LateStart), 3);
         }
+
         public void _LateStart()
         {
             foreach (var receiver in receivers)
             {
-                if (receiver) receiver.urc = this;
+                if (receiver) receiver._Initialize(this);
             }
 
             foreach (var transmitter in transmitters)
             {
-                if (transmitter) transmitter.urc = this;
+                if (transmitter) transmitter._Initialize(this);
             }
 
-            if (overrideFrequency)
+            foreach (var transceiver in transceivers)
             {
-                foreach (var receiver in receivers)
-                {
-                    if (receiver) receiver.frequency = minFrequency;
-
-                    var transceiver = receiver.GetComponentInParent<Transceiver>();
-                    if (transceiver)
-                    {
-                        transceiver.minFrequency = minFrequency;
-                        transceiver.maxFrequency = maxFrequency;
-                        transceiver.frequencyStep = frequencyStep;
-                        transceiver.fastFrequencyStep = fastFrequencyStep;
-                        transceiver.Frequency = minFrequency;
-                        transceiver.frequencyTextFormat = frequencyTextFormat;
-                        transceiver._UpdateFrequencyText();
-                    }
-                }
-
-                foreach (var transmitter in transmitters)
-                {
-                    if (transmitter) transmitter.frequency = minFrequency;
-                }
+                if (transceiver) transceiver._Initialize(this);
             }
-            Debug.Log($"[{gameObject.name}] Started with {transmitters.Length} transmitters, {receivers.Length} receivers");
         }
 
         private int GetPlayerIndex(VRCPlayerApi player)
@@ -285,11 +261,6 @@ namespace UdonRadioCommunication
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
         private static IEnumerable<T> GetUdonSharpComponentsInScene<T>(bool includeInActive) where T : UdonSharpBehaviour
         {
-            // return FindObjectsOfType<UdonBehaviour>()
-            //     .Where(UdonSharpEditorUtility.IsUdonSharpBehaviour)
-            //     .Select(UdonSharpEditorUtility.GetProxyBehaviour)
-            //     .Select(u => u as T)
-            //     .Where(u => u != null);
             return SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(o => o.GetUdonSharpComponentsInChildren<T>(includeInActive));
         }
 
@@ -297,11 +268,8 @@ namespace UdonRadioCommunication
         {
             this.UpdateProxy();
             transmitters = GetUdonSharpComponentsInScene<Transmitter>(true).ToArray();
-            this.ApplyProxyModifications();
-            EditorUtility.SetDirty(UdonSharpEditorUtility.GetBackingUdonBehaviour(this));
-
-            this.UpdateProxy();
             receivers = GetUdonSharpComponentsInScene<Receiver>(true).ToArray();
+            transceivers = GetUdonSharpComponentsInScene<Transceiver>(true).ToArray();
             this.ApplyProxyModifications();
 
             EditorUtility.SetDirty(UdonSharpEditorUtility.GetBackingUdonBehaviour(this));
