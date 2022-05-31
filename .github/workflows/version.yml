@@ -8,11 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
 
       - name: Install dependencies
-        run: npm install
+        run: npm install semantic-release @semantic-release/github @semantic-release/npm @semantic-release/git semantic-release-gitmoji
 
       - name: Release
         env:
