@@ -9,7 +9,7 @@ namespace UdonRadioCommunication
     public class Receiver : UdonSharpBehaviour
     {
         public bool active;
-        public float frequency = 1.0f;
+        public float frequency = 118.0f;
         public bool limitRange = true;
         public float maxRange = 5.0f;
         public bool sync = true;

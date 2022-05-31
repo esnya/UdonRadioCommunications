@@ -14,8 +14,8 @@ namespace UdonRadioCommunication
         public KeyCode desktopIncrementKey = KeyCode.Period;
         public float controllerSensitivity = 100;
         public TextMeshPro frequencyText;
-        public float minFrequency = 1, maxFrequency = 4, frequencyStep = 1;
-        public string frequencyFormatOverride = "{0}";
+        public float minFrequency = 118.0f, maxFrequency = 136.975f, frequencyStep = 0.025f;
+        public string frequencyTextFormat = "COM Freq 000.000 [,.]";
 
         public Transform debugTransform;
 
@@ -37,7 +37,6 @@ namespace UdonRadioCommunication
         private Transform controlsRoot;
         private Receiver receiver;
         private Transmitter transmitter;
-        private string frequencyFormat;
         public void SFEXT_L_EntityStart()
         {
             var entity = GetComponentInParent<SaccEntity>();
@@ -57,7 +56,6 @@ namespace UdonRadioCommunication
             {
                 frequencyText = Dial_Funcon.transform.parent.GetComponent<TextMeshPro>();
             }
-            frequencyFormat = frequencyText.text;
         }
         public void SFEXTP_L_EntityStart() => SFEXT_L_EntityStart();
 
@@ -73,7 +71,7 @@ namespace UdonRadioCommunication
                 minFrequency = (float)urc.GetProgramVariable(nameof(UdonRadioCommunication.minFrequency));
                 maxFrequency = (float)urc.GetProgramVariable(nameof(UdonRadioCommunication.maxFrequency));
                 frequencyStep = (float)urc.GetProgramVariable(nameof(UdonRadioCommunication.frequencyStep));
-                frequencyFormatOverride = (string)urc.GetProgramVariable(nameof(UdonRadioCommunication.frequencyFormat));
+                frequencyTextFormat = (string)urc.GetProgramVariable(nameof(UdonRadioCommunication.frequencyTextFormat));
             }
             SetFrequency(frequency);
             if (!Networking.LocalPlayer.IsUserInVR()) DFUNC_Selected();
@@ -130,7 +128,7 @@ namespace UdonRadioCommunication
             frequency = value;
             transmitter._SetFrequency(value);
             receiver._SetFrequency(value);
-            frequencyText.text = string.Format(frequencyFormat, string.Format(frequencyFormatOverride, value));
+            frequencyText.text = value.ToString(frequencyTextFormat);
             if (switchFunctionSound) switchFunctionSound.Play();
         }
 #endif

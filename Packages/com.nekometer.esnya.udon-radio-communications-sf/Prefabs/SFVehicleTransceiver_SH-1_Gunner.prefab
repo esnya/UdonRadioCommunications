@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 8695935339262680928, guid: a8ebd153792582b4bad70a61985cc644,
         type: 3}
       propertyPath: m_Name
-      value: SFVehicleTransceiver_SH-1
+      value: SFVehicleTransceiver_SH-1_Gunner
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8ebd153792582b4bad70a61985cc644, type: 3}

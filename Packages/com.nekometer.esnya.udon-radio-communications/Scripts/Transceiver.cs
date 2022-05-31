@@ -16,14 +16,13 @@ namespace UdonRadioCommunication
         public bool exclusive = true;
         [NotNull] public Receiver receiver;
         [NotNull] public Transmitter transmitter;
-        [UdonSynced, FieldChangeCallback(nameof(Frequency))] public float frequency = 1.0f;
-        public float frequencyStep = 1.0f, fastFrequencyStep = 2.0f, minFrequency = 1.0f, maxFrequency = 8.0f;
+        [UdonSynced, FieldChangeCallback(nameof(Frequency))] public float frequency = 118.0f;
+        public float frequencyStep = 0.025f, fastFrequencyStep = 1.0f, minFrequency = 118.0f, maxFrequency = 136.975f;
 
-        public bool overrideFrequencyFormat = false;
-        public string frequencyFormat = "{0:#00.00#}";
 
         [Header("Optional")]
         public TextMeshPro frequencyText;
+        public string frequencyTextFormat = "000.000";
         [Tooltip("Drives bool parameters \"PowerOn\" and \"Talking\"")] public Animator[] animators = { };
 
         public float Frequency
@@ -83,8 +82,6 @@ namespace UdonRadioCommunication
             var pickup = (VRCPickup)GetComponent(typeof(VRCPickup));
             if (pickup != null) pickup.AutoHold = VRC_Pickup.AutoHoldMode.Yes;
 
-            if (frequencyText && !overrideFrequencyFormat) frequencyFormat = frequencyText.text;
-
             Frequency = frequency;
             Receive = false;
             Transmit = false;
@@ -142,7 +139,7 @@ namespace UdonRadioCommunication
 
         public void _UpdateFrequencyText()
         {
-            if (frequencyText != null) frequencyText.text = string.Format(frequencyFormat, frequency);
+            if (frequencyText != null) frequencyText.text = Frequency.ToString(frequencyTextFormat);
         }
     }
 }

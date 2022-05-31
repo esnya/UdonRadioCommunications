@@ -40,7 +40,7 @@ namespace UdonRadioCommunication
         public float minFrequency = 118.0f, maxFrequency = 136.975f;
         public float frequencyStep = 0.025f;
         public float fastFrequencyStep = 1.0f;
-        public string frequencyFormat = "{0:##0.000}";
+        public string frequencyTextFormat = "000.000";
 
         [Space]
         public bool autoSetupBeforeSave = true;
@@ -88,8 +88,7 @@ namespace UdonRadioCommunication
                         transceiver.frequencyStep = frequencyStep;
                         transceiver.fastFrequencyStep = fastFrequencyStep;
                         transceiver.Frequency = minFrequency;
-                        transceiver.overrideFrequencyFormat = true;
-                        transceiver.frequencyFormat = frequencyFormat;
+                        transceiver.frequencyTextFormat = frequencyTextFormat;
                         transceiver._UpdateFrequencyText();
                     }
                 }

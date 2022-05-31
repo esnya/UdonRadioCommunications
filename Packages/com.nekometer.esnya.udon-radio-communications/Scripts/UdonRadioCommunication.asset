@@ -918,7 +918,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 1
-      Data: frequencyFormat
+      Data: frequencyTextFormat
     - Name: $v
       Entry: 7
       Data: 51|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
@@ -945,10 +945,10 @@ MonoBehaviour:
       Data: SystemString
     - Name: symbolOriginalName
       Entry: 1
-      Data: frequencyFormat
+      Data: frequencyTextFormat
     - Name: symbolUniqueName
       Entry: 1
-      Data: frequencyFormat
+      Data: frequencyTextFormat
     - Name: symbolDefaultValue
       Entry: 6
       Data: 

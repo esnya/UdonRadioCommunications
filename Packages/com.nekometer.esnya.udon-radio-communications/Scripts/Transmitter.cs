@@ -9,7 +9,7 @@ namespace UdonRadioCommunication
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class Transmitter : UdonSharpBehaviour
     {
-        [UdonSynced] public float frequency = 1.0f;
+        [UdonSynced] public float frequency = 118.0f;
         public float deactivateDelay = 1.0f;
         public float minDistance = 5.0f;
         public GameObject indicator;
