@@ -2774,6 +2774,14 @@ MonoBehaviour:
         type: 3}
       gameObjectName: UdonRadioCommunication
       variables:
+      - symbolName: audioObjectFrequencies
+        objectReference: {fileID: 0}
+        value: System.Single[]
+        arrayItems: []
+      - symbolName: audioObjectTemplates
+        objectReference: {fileID: 0}
+        value: UnityEngine.GameObject[]
+        arrayItems: []
       - symbolName: autoSetupBeforeSave
         objectReference: {fileID: 0}
         value: True
@@ -2785,6 +2793,10 @@ MonoBehaviour:
       - symbolName: debugTextUi
         objectReference: {fileID: 0}
         value: null
+        arrayItems: []
+      - symbolName: defaultFrequency
+        objectReference: {fileID: 0}
+        value: 118
         arrayItems: []
       - symbolName: defaultVoiceDistanceFar
         objectReference: {fileID: 0}
@@ -2839,6 +2851,10 @@ MonoBehaviour:
         value: False
         arrayItems: []
       - symbolName: receivers
+        objectReference: {fileID: 0}
+        value: UnityEngine.Component[]
+        arrayItems: []
+      - symbolName: transceivers
         objectReference: {fileID: 0}
         value: UnityEngine.Component[]
         arrayItems: []

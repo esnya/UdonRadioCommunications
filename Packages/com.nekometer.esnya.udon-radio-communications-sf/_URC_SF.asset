@@ -33,13 +33,17 @@ MonoBehaviour:
         objectReference: {fileID: 0}
         value: Period
         arrayItems: []
+      - symbolName: Dial_Funcon
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
       - symbolName: frequencyFormatOverride
         objectReference: {fileID: 0}
-        value: '{000:000}'
+        value: '{0}'
         arrayItems: []
       - symbolName: frequencyStep
         objectReference: {fileID: 0}
-        value: 0.025
+        value: 1
         arrayItems: []
       - symbolName: frequencyText
         objectReference: {fileID: 0}
@@ -47,15 +51,15 @@ MonoBehaviour:
         arrayItems: []
       - symbolName: frequencyTextFormat
         objectReference: {fileID: 0}
-        value: COM 000.000 [,/.]
+        value: COM 000.000 '[,.]'
         arrayItems: []
       - symbolName: maxFrequency
         objectReference: {fileID: 0}
-        value: 136.975
+        value: 4
         arrayItems: []
       - symbolName: minFrequency
         objectReference: {fileID: 0}
-        value: 118
+        value: 1
         arrayItems: []
   - prefabInstance: {fileID: 3794536601450044535, guid: 65d62d943ef738846b76b933b8ecf304,
       type: 3}
