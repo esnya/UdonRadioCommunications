@@ -22,33 +22,27 @@ namespace URC
         public UdonSharpBehaviour[] eventTargets = { };
         public string[] onKeyDownEvents = { };
         public float holdTime = 1.0f;
-        public int eventsPerSeconds = 4;
+        public float holdInterval = 0.5f;
 
         public AudioSource audioSource;
 
-        private int[] keyDownTimes;
+        private float[] holdTimers;
         private void Start()
         {
-            keyDownTimes = new int[keyCodes.Length];
+            holdTimers = new float[keyCodes.Length];
         }
 
         private void Update()
         {
-            var frameCount = Time.frameCount;
-            var fixedUnscaledDeitaTime = Time.fixedUnscaledDeltaTime;
-            var holdEventInterval = Mathf.FloorToInt(1.0f / eventsPerSeconds / fixedUnscaledDeitaTime);
-            var holdFrames = Mathf.FloorToInt(holdTime / fixedUnscaledDeitaTime);
             for (int i = 0; i < keyCodes.Length; i++)
             {
                 var eventTarget = eventTargets[i];
                 if (!eventTarget) continue;
 
-                var keyDownTime = frameCount - keyDownTimes[i];
                 var keyCode = (KeyCode)keyCodes[i];
                 var onKeyDownEvent = onKeyDownEvents[i];
 
-                var mode = modes[i];
-                switch (mode)
+                switch (modes[i])
                 {
                     case MODE_KEY_DOWN:
                         if (Input.GetKeyDown(keyCode)) Trigger(eventTarget, onKeyDownEvent);
@@ -57,8 +51,12 @@ namespace URC
                         if (Input.GetKeyUp(keyCode)) Trigger(eventTarget, onKeyDownEvent);
                         break;
                     case MODE_KEY_HOLD:
-                        if (Input.GetKeyDown(keyCode)) keyDownTimes[i] = frameCount;
-                        else if (keyDownTime >= holdFrames && keyDownTime % holdEventInterval == 0 && Input.GetKey(keyCode)) Trigger(eventTarget, onKeyDownEvent);
+                        if (Input.GetKeyDown(keyCode)) holdTimers[i] = Time.time + holdTime;
+                        else if (Input.GetKey(keyCode) && Time.time >= holdTimers[i])
+                        {
+                            Trigger(eventTarget, onKeyDownEvent);
+                            holdTimers[i] = Time.time + holdInterval;
+                        }
                         break;
                 }
             }
@@ -144,7 +142,7 @@ namespace URC
             }
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(KeyboardInput.holdTime)));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(KeyboardInput.eventsPerSeconds)));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(KeyboardInput.holdInterval)));
             EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(KeyboardInput.audioSource)));
 
             serializedObject.ApplyModifiedProperties();

@@ -535,7 +535,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 1
-      Data: eventsPerSeconds
+      Data: holdInterval
     - Name: $v
       Entry: 7
       Data: 31|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
@@ -544,7 +544,7 @@ MonoBehaviour:
       Data: 32|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
     - Name: internalType
       Entry: 9
-      Data: 4
+      Data: 29
     - Name: declarationType
       Entry: 3
       Data: 1
@@ -553,13 +553,13 @@ MonoBehaviour:
       Data: 0
     - Name: symbolResolvedTypeName
       Entry: 1
-      Data: SystemInt32
+      Data: SystemSingle
     - Name: symbolOriginalName
       Entry: 1
-      Data: eventsPerSeconds
+      Data: holdInterval
     - Name: symbolUniqueName
       Entry: 1
-      Data: eventsPerSeconds
+      Data: holdInterval
     - Name: symbolDefaultValue
       Entry: 6
       Data: 
@@ -655,7 +655,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 1
-      Data: keyDownTimes
+      Data: holdTimers
     - Name: $v
       Entry: 7
       Data: 38|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
@@ -663,8 +663,14 @@ MonoBehaviour:
       Entry: 7
       Data: 39|UdonSharp.Compiler.SymbolDefinition, UdonSharp.Editor
     - Name: internalType
-      Entry: 9
-      Data: 14
+      Entry: 7
+      Data: 40|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Single[], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: declarationType
       Entry: 3
       Data: 2
@@ -673,13 +679,13 @@ MonoBehaviour:
       Data: 0
     - Name: symbolResolvedTypeName
       Entry: 1
-      Data: SystemInt32Array
+      Data: SystemSingleArray
     - Name: symbolOriginalName
       Entry: 1
-      Data: keyDownTimes
+      Data: holdTimers
     - Name: symbolUniqueName
       Entry: 1
-      Data: keyDownTimes
+      Data: holdTimers
     - Name: symbolDefaultValue
       Entry: 6
       Data: 
@@ -688,7 +694,7 @@ MonoBehaviour:
       Data: 
     - Name: fieldAttributes
       Entry: 7
-      Data: 40|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+      Data: 41|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
