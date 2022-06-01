@@ -296,25 +296,9 @@ MonoBehaviour:
         objectReference: {fileID: 0}
         value: 4
         arrayItems: []
-      - symbolName: eventTargets
-        objectReference: {fileID: 0}
-        value: UnityEngine.Component[]
-        arrayItems: []
       - symbolName: holdTime
         objectReference: {fileID: 0}
         value: 1
-        arrayItems: []
-      - symbolName: keyCodes
-        objectReference: {fileID: 0}
-        value: System.Int32[]
-        arrayItems: []
-      - symbolName: modes
-        objectReference: {fileID: 0}
-        value: System.Int32[]
-        arrayItems: []
-      - symbolName: onKeyDownEvents
-        objectReference: {fileID: 0}
-        value: System.String[]
         arrayItems: []
   - prefabInstance: {fileID: 5987379627658032072, guid: f0d15dd309cbdcc459c207e69631c4a0,
       type: 3}
@@ -2150,6 +2134,15 @@ MonoBehaviour:
         type: 3}
       gameObjectName: UdonRadioCommunicationDemo
       variables:
+      - symbolName: audioObjectFrequencies
+        objectReference: {fileID: 0}
+        value: System.Single[]
+        arrayItems: []
+      - symbolName: audioObjectTemplates
+        objectReference: {fileID: 0}
+        value: UnityEngine.GameObject[]
+        arrayItems:
+        - LoremIpsum (UnityEngine.GameObject)
       - symbolName: autoSetupBeforeSave
         objectReference: {fileID: 0}
         value: True
@@ -2162,6 +2155,10 @@ MonoBehaviour:
       - symbolName: debugTextUi
         objectReference: {fileID: 0}
         value: null
+        arrayItems: []
+      - symbolName: defaultFrequency
+        objectReference: {fileID: 0}
+        value: 118
         arrayItems: []
       - symbolName: defaultVoiceDistanceFar
         objectReference: {fileID: 0}
@@ -2199,10 +2196,6 @@ MonoBehaviour:
         objectReference: {fileID: 0}
         value: 0.025
         arrayItems: []
-      - symbolName: frequencyTextFormat
-        objectReference: {fileID: 0}
-        value: 000.000
-        arrayItems: []
       - symbolName: maxFrequency
         objectReference: {fileID: 0}
         value: 136.975
@@ -2210,10 +2203,6 @@ MonoBehaviour:
       - symbolName: minFrequency
         objectReference: {fileID: 0}
         value: 118
-        arrayItems: []
-      - symbolName: overrideFrequency
-        objectReference: {fileID: 0}
-        value: False
         arrayItems: []
       - symbolName: receivers
         objectReference: {fileID: 0}
@@ -2224,6 +2213,15 @@ MonoBehaviour:
         - Receiver (VRC.Udon.UdonBehaviour)
         - Receiver (VRC.Udon.UdonBehaviour)
         - Receiver (VRC.Udon.UdonBehaviour)
+      - symbolName: transceivers
+        objectReference: {fileID: 0}
+        value: UnityEngine.Component[]
+        arrayItems:
+        - Transceiver (VRC.Udon.UdonBehaviour)
+        - Transceiver (VRC.Udon.UdonBehaviour)
+        - Transceiver (VRC.Udon.UdonBehaviour)
+        - Transceiver (VRC.Udon.UdonBehaviour)
+        - StaticTransceiver (VRC.Udon.UdonBehaviour)
       - symbolName: transmitters
         objectReference: {fileID: 0}
         value: UnityEngine.Component[]
@@ -2607,10 +2605,6 @@ MonoBehaviour:
     - udonInstance: {fileID: 217070107, guid: 417a26f9a8d9ffc4880245473499ecc6, type: 3}
       gameObjectName: StaticTransceiver
       variables:
-      - symbolName: animators
-        objectReference: {fileID: 0}
-        value: UnityEngine.Animator[]
-        arrayItems: []
       - symbolName: exclusive
         objectReference: {fileID: 0}
         value: False
@@ -2635,10 +2629,6 @@ MonoBehaviour:
         objectReference: {fileID: 938041529, guid: 417a26f9a8d9ffc4880245473499ecc6,
           type: 3}
         value: Text (TMP) (TMPro.TextMeshPro)
-        arrayItems: []
-      - symbolName: frequencyTextFormat
-        objectReference: {fileID: 0}
-        value: 000.000
         arrayItems: []
       - symbolName: maxFrequency
         objectReference: {fileID: 0}

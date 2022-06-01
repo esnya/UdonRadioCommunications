@@ -8,50 +8,78 @@ namespace URC
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class Receiver : UdonSharpBehaviour
     {
-        public bool active;
         public bool limitRange = true;
         public float maxRange = 5.0f;
         public bool sync = true;
         public GameObject indicator;
-        [NonSerialized] public float frequency;
 
         [NonSerialized] public UdonRadioCommunication urc;
 
-        [UdonSynced][FieldChangeCallback(nameof(SyncedActive))] private bool _syncedActive;
-        public bool SyncedActive {
+        private bool _active;
+        public bool Active {
+            get => _active;
             set {
-                if (!sync) return;
-                active = _syncedActive = value;
-                UpdateIndicator();
+                if (!value) _DestroyAudioObject();
+                if (indicator != null) indicator.SetActive(value);
+
+                _active = value;
+
+                if (sync && value != SyncedActive) {
+                    _TakeOwnership();
+                    SyncedActive = value;
+                    RequestSerialization();
+                }
             }
-            get => _syncedActive;
-        }
-        [UdonSynced][FieldChangeCallback(nameof(SyncedFrequency))] private float _syncedFrequency;
-        public float SyncedFrequency {
-            set {
-                if (!sync) return;
-                frequency = _syncedFrequency = value;
-            }
-            get => _syncedFrequency;
         }
 
-        private void Start() => UpdateIndicator();
+        private float _frequency;
+        public float Frequency {
+            get => _frequency;
+            set {
+                _DestroyAudioObject();
+
+                _frequency = value;
+
+                if (sync && value != SyncedFrequency) {
+                    _TakeOwnership();
+                    SyncedFrequency = value;
+                    RequestSerialization();
+                }
+            }
+        }
+
+        [UdonSynced][FieldChangeCallback(nameof(SyncedActive))] private bool _syncedActive;
+        public bool SyncedActive
+        {
+            get => _syncedActive;
+            private set
+            {
+                if (!sync) return;
+                Active = _syncedActive = value;
+            }
+        }
+        [UdonSynced][FieldChangeCallback(nameof(SyncedFrequency))] private float _syncedFrequency;
+        public float SyncedFrequency
+        {
+            get => _syncedFrequency;
+            private set
+            {
+                if (!sync) return;
+                Frequency = _syncedFrequency = value;
+            }
+        }
+
+        private GameObject audioObject;
+
+        private void Start()
+        {
+            Active = false;
+        }
 
         public void _Initialize(UdonRadioCommunication urc)
         {
             this.urc = urc;
-            frequency = urc.defaultFrequency;
-        }
-
-        public override void OnPreSerialization()
-        {
-            _syncedActive = active;
-            _syncedFrequency = frequency;
-        }
-
-        private void UpdateIndicator()
-        {
-            if (indicator != null) indicator.SetActive(active);
+            Frequency = urc.defaultFrequency;
         }
 
         public void _TakeOwnership()
@@ -59,24 +87,25 @@ namespace URC
             if (!sync || Networking.IsOwner(gameObject)) return;
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
         }
+        public void _Activate() => Active = true;
+        public void _Deactivate() => Active = false;
+        public void _ToggleActive() => Active = !Active;
 
-        public void _SetActive(bool value)
+        public void _DestroyAudioObject()
         {
-            if (sync) _TakeOwnership();
-            active = value;
-            UpdateIndicator();
-            if (sync) RequestSerialization();
+            if (audioObject) Destroy(audioObject);
         }
-        public bool _IsActive() => active;
-        public void _Activate() => _SetActive(true);
-        public void _Deactivate() => _SetActive(false);
-        public void _ToggleActive() => _SetActive(!active);
-
-        public void _SetFrequency(float f)
+        public bool _IsPlayngAudio() => audioObject;
+        public void _SpawnAudioObject(GameObject template)
         {
-            if (sync) _TakeOwnership();
-            frequency = f;
-            if (sync) RequestSerialization();
+            _DestroyAudioObject();
+
+            if (!template) return;
+
+            audioObject = VRCInstantiate(template);
+            audioObject.transform.SetParent(transform, false);
+            audioObject.transform.localPosition = Vector3.zero;
+            audioObject.SetActive(true);
         }
     }
 }

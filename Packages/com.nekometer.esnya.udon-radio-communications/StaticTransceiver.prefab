@@ -162,7 +162,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'CH: {0}'
+  m_text: 000.000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 8cf6cd363eca5d8418bb3303f12a408b, type: 2}
@@ -1065,7 +1065,7 @@ PrefabInstance:
     - target: {fileID: 8873887803900181546, guid: 8a3d63624b397d0448e6c536d530a2f4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
-      value: 
+      value:
       objectReference: {fileID: 2100000, guid: 9b2f264f8b4023041a29d3f12bf0537f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a3d63624b397d0448e6c536d530a2f4, type: 3}

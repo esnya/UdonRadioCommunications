@@ -13,10 +13,23 @@ namespace URC
         public KeyCode desktopIncrementKey = KeyCode.Period;
         public float controllerSensitivity = 100;
         public TextMeshPro frequencyText;
-        public string frequencyTextFormat = "COM Freq 000.000 [,.]";
+        public string frequencyTextFormat = "COM 000.000 '[,.]'";
         private float minFrequency, maxFrequency, frequencyStep;
 
         public Transform debugTransform;
+
+        private float Frequency
+        {
+            get => transmitter.Frequency;
+            set
+            {
+                frequency = value;
+                transmitter._SetFrequency(value);
+                receiver.Frequency = value;
+                frequencyText.text = value.ToString(frequencyTextFormat);
+                if (switchFunctionSound) switchFunctionSound.Play();
+            }
+        }
 
 #if URC_SF
         private string triggerAxis;
@@ -61,12 +74,12 @@ namespace URC
         private float frequency;
         public void SFEXT_O_PilotEnter()
         {
-            var urc = (UdonRadioCommunication)transmitter.urc;
+            var urc = transmitter.urc;
             minFrequency = urc.minFrequency;
             maxFrequency = urc.maxFrequency;
             frequencyStep = urc.frequencyStep;
 
-            SetFrequency(transmitter.frequency);
+            Frequency = transmitter.Frequency;
             if (!Networking.LocalPlayer.IsUserInVR()) DFUNC_Selected();
         }
         public void SFEXT_O_PilotExit()
@@ -90,8 +103,8 @@ namespace URC
         private bool prevTriggered;
         private void LateUpdate()
         {
-            if (Input.GetKeyDown(desktopDecrementKey)) SetFrequency(Mathf.Max(frequency - frequencyStep, minFrequency));
-            else if (Input.GetKeyDown(desktopIncrementKey)) SetFrequency(Mathf.Min(frequency + frequencyStep, maxFrequency));
+            if (Input.GetKeyDown(desktopDecrementKey)) Frequency = Mathf.Max(frequency - frequencyStep, minFrequency);
+            else if (Input.GetKeyDown(desktopIncrementKey)) Frequency = Mathf.Min(frequency + frequencyStep, maxFrequency);
             else
             {
                 var trigger = Input.GetAxisRaw(triggerAxis) > 0.75f || debugTransform != null;
@@ -107,7 +120,7 @@ namespace URC
                         var diff = (inputPos - inputOrigin) * controllerSensitivity * frequencyStep;
                         if (Mathf.Abs(diff) > frequencyStep)
                         {
-                            SetFrequency(Mathf.Clamp(Mathf.Floor((frequency + diff) / frequencyStep) * frequencyStep, minFrequency, maxFrequency));
+                            Frequency = Mathf.Clamp(Mathf.Floor((frequency + diff) / frequencyStep) * frequencyStep, minFrequency, maxFrequency);
                             inputOrigin = inputPos;
                         }
                     }
@@ -116,14 +129,6 @@ namespace URC
             }
         }
 
-        private void SetFrequency(float value)
-        {
-            frequency = value;
-            transmitter._SetFrequency(value);
-            receiver._SetFrequency(value);
-            frequencyText.text = value.ToString(frequencyTextFormat);
-            if (switchFunctionSound) switchFunctionSound.Play();
-        }
 #endif
     }
 }

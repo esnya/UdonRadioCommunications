@@ -127,9 +127,19 @@ PrefabInstance:
       propertyPath: m_text
       value: 'COM
 
-        000.00
+        000.000
 
         [,/.]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690701860167875444, guid: ff4be531351b83549807def10f60a1d0,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690701860167875444, guid: ff4be531351b83549807def10f60a1d0,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff4be531351b83549807def10f60a1d0, type: 3}

@@ -13,17 +13,14 @@ namespace URC
         public Receiver receiver;
         public bool activeOnEnter = true;
 
-#if URC_SF
         private string triggerAxis;
         public void DFUNC_LeftDial()
         {
             triggerAxis = "Oculus_CrossPlatform_PrimaryIndexTrigger";
-            // trackingTarget = VRCPlayerApi.TrackingDataType.LeftHand;
         }
         public void DFUNC_RightDial()
         {
             triggerAxis = "Oculus_CrossPlatform_SecondaryIndexTrigger";
-            // trackingTarget = VRCPlayerApi.TrackingDataType.RightHand;
         }
 
         private SaccEntity CommonInit()
@@ -56,7 +53,7 @@ namespace URC
 
         public void SFEXT_O_PilotEnter()
         {
-            receiver._SetActive(activeOnEnter);
+            receiver.Active = activeOnEnter;
             if (!Networking.LocalPlayer.IsUserInVR()) DFUNC_Selected();
         }
         public void SFEXT_O_PilotExit()
@@ -88,6 +85,5 @@ namespace URC
         {
             return Input.GetKey(desktopKey) || Input.GetAxisRaw(triggerAxis) > 0.75f;
         }
-#endif
     }
 }

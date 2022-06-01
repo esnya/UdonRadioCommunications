@@ -11,6 +11,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using UdonSharpEditor;
+using UnityEditorInternal;
 #endif
 
 namespace URC
@@ -44,6 +45,10 @@ namespace URC
         public Transmitter[] transmitters;
         public Receiver[] receivers;
         public Transceiver[] transceivers;
+
+        [Space]
+        public GameObject[] audioObjectTemplates = { };
+        public float[] audioObjectFrequencies = { };
 
         [Space]
         public TextMeshPro debugText;
@@ -115,12 +120,24 @@ namespace URC
             Receiver result = null;
             foreach (var r in receivers)
             {
-                if (r == null || !r.active || !FrequencyEqual(r.frequency, frequency)) continue;
+                if (r == null || !r.Active || !FrequencyEqual(r.Frequency, frequency)) continue;
 
                 var distance = Vector3.SqrMagnitude(r.transform.position - localPosition);
                 if ((!r.limitRange || distance <= Mathf.Pow(r.maxRange, 2.0f)) && distance < minDistance) result = r;
             }
             return result;
+        }
+
+        private GameObject GetAudioTemplate(float frequency)
+        {
+            for (var i = 0; i < audioObjectFrequencies.Length; i++)
+            {
+                if (FrequencyEqual(frequency, audioObjectFrequencies[i]) && i < audioObjectTemplates.Length)
+                {
+                    return audioObjectTemplates[i];
+                }
+            }
+            return null;
         }
 
         private void Update()
@@ -157,7 +174,6 @@ namespace URC
                 if (index < 0) continue;
 
                 playerTransmitters[index] = transmitter;
-
             }
 
             for (int i = 0; i < players.Length; i++)
@@ -166,7 +182,7 @@ namespace URC
                 if (remotePlayer.isLocal) continue;
 
                 var transmitter = playerTransmitters[i];
-                Receiver receiver = transmitter == null ? null : GetReceiver(transmitter.frequency);
+                Receiver receiver = transmitter == null ? null : GetReceiver(transmitter.Frequency);
                 var isDefaultVoice = receiver == null;
 
                 if (isDefaultVoice)
@@ -194,6 +210,17 @@ namespace URC
                 playerPrevIsDefaultVoice[i] = isDefaultVoice;
             }
 
+            foreach (var receiver in receivers)
+            {
+                if (!receiver || !receiver.Active) continue;
+
+                if (!receiver._IsPlayngAudio())
+                {
+                    var template = GetAudioTemplate(receiver.Frequency);
+                    if (template) receiver._SpawnAudioObject(template);
+                }
+            }
+
             if (debugText != null && debugText.gameObject.activeInHierarchy || debugTextUi != null && ((Component)debugTextUi).gameObject.activeInHierarchy)
             {
                 var text = "<color=red>FOR DEBUG ONLY: This screen will worsen performance</color>\n\nTransmitters:\n";
@@ -207,7 +234,7 @@ namespace URC
                     if (transmitter == null) continue;
                     var owner = Networking.GetOwner(transmitter.gameObject);
                     var tooClose = (transmitter.transform.position - localPlayerPosition).sqrMagnitude < Mathf.Pow(transmitter.minDistance, 2);
-                    text += $"\t{i:000}:{GetUniqueName(transmitter)}\t{(transmitter.Active ? (tooClose ? closeText : activeText) : nonActiveText)}\t{transmitter.frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
+                    text += $"\t{i:000}:{GetUniqueName(transmitter)}\t{(transmitter.Active ? (tooClose ? closeText : activeText) : nonActiveText)}\t{transmitter.Frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
                 }
 
                 text += "\nReceivers:\n";
@@ -216,7 +243,7 @@ namespace URC
                     var receiver = receivers[i];
                     if (receiver == null) continue;
                     var owner = Networking.GetOwner(receiver.gameObject);
-                    text += $"\t{i:000}:{GetUniqueName(receiver)}\t{(receiver.active ? activeText : nonActiveText)}\t{receiver.frequency:#0.00}\t{(receiver.sync ? "Sync" : "Local")}\t{GetDebugPlayerString(owner)}\n";
+                    text += $"\t{i:000}:{GetUniqueName(receiver)}\t{(receiver.Active ? activeText : nonActiveText)}\t{receiver.Frequency:#0.00}\t{(receiver.sync ? "Sync" : "Local")}\t{GetDebugPlayerString(owner)}\n";
                 }
 
                 text += "\nPlayers:\n";
@@ -228,7 +255,7 @@ namespace URC
                     if (!Utilities.IsValid(player)) continue;
 
                     var transmitter = playerTransmitters[i];
-                    var receiver = transmitter == null ? (Receiver)null : GetReceiver(transmitter.frequency);
+                    var receiver = transmitter == null ? (Receiver)null : GetReceiver(transmitter.Frequency);
 
                     text += $"\t{i:000}:{GetDebugPlayerString(player)}\t{GetUniqueName(transmitter)}\t{GetUniqueName(receiver)}\t{(player.isLocal ? "<color=blue>Local</color>" : playerPrevIsDefaultVoice[i] ? defaultVoiceText : talkingText)}\n";
                 }
@@ -300,10 +327,79 @@ namespace URC
                 .Where(u => u != null);
         }
 
+        private ReorderableList audioObjectTemplatesList;
+
+        private void OnEnable()
+        {
+            var audioObjectTemplatesProperty = serializedObject.FindProperty(nameof(UdonRadioCommunication.audioObjectTemplates));
+            var audioObjectFrequenciesProperty = serializedObject.FindProperty(nameof(UdonRadioCommunication.audioObjectFrequencies));
+            audioObjectTemplatesList = new ReorderableList(serializedObject, audioObjectTemplatesProperty)
+            {
+                drawHeaderCallback = (rect) =>
+                {
+                    var itemRect = rect;
+                    itemRect.width /= 2;
+                    EditorGUI.LabelField(itemRect, "Template");
+                    itemRect.x += itemRect.width;
+                    EditorGUI.LabelField(itemRect, "Frequency");
+                },
+                drawElementCallback = (rect, index, isActive, isFocused) =>
+                {
+                    var itemRect = rect;
+                    itemRect.width /= 2;
+                    EditorGUI.PropertyField(itemRect, audioObjectTemplatesProperty.GetArrayElementAtIndex(index), GUIContent.none);
+                    itemRect.x += itemRect.width;
+                    EditorGUI.PropertyField(itemRect, audioObjectFrequenciesProperty.GetArrayElementAtIndex(index), GUIContent.none);
+                },
+                onAddCallback = (list) =>
+                {
+                    audioObjectTemplatesProperty.arraySize += 1;
+                    audioObjectFrequenciesProperty.arraySize = audioObjectTemplatesProperty.arraySize;
+                },
+                onRemoveCallback = (list) =>
+                {
+                    audioObjectTemplatesProperty.arraySize -= 1;
+                    audioObjectFrequenciesProperty.arraySize = audioObjectTemplatesProperty.arraySize;
+                },
+                onCanRemoveCallback = (list) => audioObjectTemplatesProperty.arraySize >= 1,
+                onReorderCallbackWithDetails = (list, oldIndex, newIndex) =>
+                {
+                    audioObjectTemplatesProperty.MoveArrayElement(oldIndex, newIndex);
+                    audioObjectFrequenciesProperty.MoveArrayElement(oldIndex, newIndex);
+                },
+            };
+
+            serializedObject.Update();
+            audioObjectFrequenciesProperty.arraySize = audioObjectTemplatesProperty.arraySize;
+            serializedObject.ApplyModifiedPropertiesWithoutUndo();
+        }
+
         public override void OnInspectorGUI()
         {
             if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
-            base.OnInspectorGUI();
+
+            serializedObject.Update();
+
+            var property = serializedObject.GetIterator();
+            property.NextVisible(true);
+            do
+            {
+                switch (property.name)
+                {
+                    case nameof(UdonRadioCommunication.audioObjectTemplates):
+                        EditorGUILayout.Space();
+                        EditorGUILayout.LabelField("Audio Objects");
+                        audioObjectTemplatesList.DoLayoutList();
+                        break;
+                    case nameof(UdonRadioCommunication.audioObjectFrequencies):
+                        break;
+                    default:
+                        EditorGUILayout.PropertyField(property, true);
+                        break;
+                }
+            } while (property.NextVisible(false));
+
+            serializedObject.ApplyModifiedProperties();
 
             EditorGUILayout.Space();
 

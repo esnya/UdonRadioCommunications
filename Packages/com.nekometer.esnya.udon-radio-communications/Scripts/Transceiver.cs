@@ -35,7 +35,7 @@ namespace URC
             set
             {
                 var isOwner = Networking.IsOwner(gameObject);
-                if (!receiver.sync || isOwner) receiver._SetFrequency(value);
+                if (!receiver.sync || isOwner) receiver.Frequency = value;
                 if (isOwner) transmitter._SetFrequency(value);
 
                 _frequency = value;
@@ -49,7 +49,7 @@ namespace URC
         {
             set
             {
-                if (Networking.IsOwner(gameObject)) receiver._SetActive(value);
+                if (Networking.IsOwner(gameObject)) receiver.Active = value;
                 _receive = value;
                 SetBool("PowerOn", value);
             }
@@ -64,7 +64,7 @@ namespace URC
                 if (Networking.IsOwner(gameObject))
                 {
                     transmitter._SetActive(value);
-                    if (exclusive && Receive) receiver._SetActive(!value);
+                    if (exclusive && Receive) receiver.Active = !value;
                 }
                 SetBool("Talking", value);
                 _transmit = value;

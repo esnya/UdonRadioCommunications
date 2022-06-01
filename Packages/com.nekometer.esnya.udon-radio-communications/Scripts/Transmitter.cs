@@ -16,7 +16,6 @@ namespace URC
         public Material statusInactive, statusActive, statusDeactivating;
         public bool indicatorAsLocal = false;
 
-        [NonSerialized][UdonSynced] public float frequency;
         [NonSerialized] public UdonRadioCommunication urc;
 
         private float lastActivatedTime;
@@ -24,11 +23,23 @@ namespace URC
         public bool Active
         {
             get => _active;
-            set {
+            private set
+            {
                 if (value) lastActivatedTime = Time.time;
                 _active = value;
-                if (indicator != null) indicator.SetActive((!indicatorAsLocal || Networking.IsOwner(gameObject)) && value);
-                SetIndicatorMateial(value ? statusActive : statusInactive);
+
+                if (indicator != null) indicator.SetActive((!indicatorAsLocal || Networking.IsOwner(gameObject)) && Active);
+                SetIndicatorMateial(Active ? statusActive : statusInactive);
+            }
+        }
+
+        [UdonSynced][FieldChangeCallback(nameof(Frequency))] private float _frequency;
+        public float Frequency
+        {
+            get => _frequency;
+            private set
+            {
+                _frequency = value;
             }
         }
 
@@ -40,7 +51,7 @@ namespace URC
         public void _Initialize(UdonRadioCommunication urc)
         {
             this.urc = urc;
-            frequency = urc.defaultFrequency;
+            Frequency = urc.defaultFrequency;
         }
 
         public void _TakeOwnership()
@@ -51,15 +62,11 @@ namespace URC
 
         public void _SetActive(bool value)
         {
-            if (value) _Activate();
-            else _Deactivate();
-        }
-        public void _Activate()
-        {
             _TakeOwnership();
-            Active = true;
+            Active = value;
             RequestSerialization();
         }
+        public void _Activate() => _SetActive(true);
         public void _Deactivate()
         {
             _TakeOwnership();
@@ -77,11 +84,9 @@ namespace URC
         public void _SetFrequency(float f)
         {
             _TakeOwnership();
-            frequency = f;
+            Frequency = f;
             RequestSerialization();
         }
-
-        public float _GetFrequency() => frequency;
 
         private void SetIndicatorMateial(Material material)
         {
@@ -89,12 +94,12 @@ namespace URC
             foreach (var renderer in statusIndicator.GetComponentsInChildren<Renderer>(true))
             {
                 if (!renderer) continue;
-                 renderer.sharedMaterial = material;
+                renderer.sharedMaterial = material;
             }
             foreach (var image in statusIndicator.GetComponentsInChildren<Image>(true))
             {
                 if (!image) continue;
-                 image.material = material;
+                image.material = material;
             }
         }
     }
