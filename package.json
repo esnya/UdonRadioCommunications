@@ -1,0 +1,34 @@
+{
+  "name": "com.nekometer.esnya.udon-radio-communication-packages",
+  "version": "5.0.0-beta.5",
+  "private": true,
+  "description": "Simplified radio communication system for VRChat Udon worlds.",
+  "homepage": "https://github.com/esnya/UdonRadioCommunication#readme",
+  "bugs": {
+    "url": "https://github.com/esnya/UdonRadioCommunication/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/esnya/UdonRadioCommunication.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "esnya"
+  },
+  "workspaces": [
+    "Packages/com.nekometer.esnya.udon-radio-communications",
+    "Packages/com.nekometer.esnya.udon-radio-communications-sf"
+  ],
+  "scripts": {
+    "postversion": "npx -ws sort-package-json"
+  },
+  "devDependencies": {
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.4",
+    "@semantic-release/npm": "^9.0.1",
+    "semantic-release": "^19.0.2",
+    "semantic-release-gitmoji": "^1.4.4",
+    "semantic-release-monorepo": "^7.0.5",
+    "sort-package-json": "^1.57.0"
+  }
+}

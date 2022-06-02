@@ -16,12 +16,12 @@
   "author": {
     "name": "esnya"
   },
+  "gitDependencies": {
+    "com.merlinvr.udonsharp": "https://github.com/vrchat-community/UdonSharp.git?path=/Packages/com.vrchat.UdonSharp#1.0.1",
+    "com.vrchat.worlds": "https://github.com/vrchat/packages.git?path=/packages/com.vrchat.worlds#3.0.2"
+  },
   "legacyFolders": [
     "Assets\\UdonRadioCommunication"
   ],
-  "gitDependencies": {
-    "com.merlinvr.udonsharp": "https://github.com/vrchat-community/UdonSharp.git?path=Assets/UdonSharp#1.0-dev-serialization",
-    "com.vrchat.worlds": "https://github.com/vrchat/packages.git?path=/packages/com.vrchat.worlds#3.0.2"
-  },
   "unity": "2019.4"
 }
