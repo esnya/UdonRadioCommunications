@@ -2,7 +2,7 @@ plugins:
   - semantic-release-gitmoji
   - - "@semantic-release/npm"
   - - "@semantic-release/exec"
-    - publishCmd: cd ../../ && VERSION=${nextRelease.version} npx ts-node ./.github/scripts/create-unitypackage.ts
+    - publishCmd: VERSION=${nextRelease.version} npx ts-node ../../.github/scripts/create-unitypackage.ts
   - - "@semantic-release/github"
     - assets: dist/*
   - "@semantic-release/git"
