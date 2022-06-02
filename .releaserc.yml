@@ -1,5 +1,8 @@
 extends: semantic-release-monorepo
 branches:
+  - master
+  - name: beta
+    prelerease: true
   - name: feature/ci
     prerelease: true
 plugins:
