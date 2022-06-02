@@ -1,7 +1,7 @@
 extends: semantic-release-monorepo
 plugins:
   - semantic-release-gitmoji
-  # - - "@semantic-release/npm"
-  #   - npmPublish: false
+  - - "@semantic-release/npm"
+    - npmPublish: false
   - "@semantic-release/github"
   - "@semantic-release/git"
