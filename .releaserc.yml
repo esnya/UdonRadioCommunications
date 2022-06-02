@@ -1,4 +1,7 @@
 extends: semantic-release-monorepo
+branches:
+  - name: feature/ci
+    prerelease: true
 plugins:
   - semantic-release-gitmoji
   # - - "@semantic-release/npm"
