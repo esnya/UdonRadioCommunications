@@ -11,7 +11,7 @@ jobs:
           registry-url: https://npm.pkg.github.com
           scope: com.nekometer.esnya
       - run: npm ci
-      - run: npx -ws semantic-release
+      - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
