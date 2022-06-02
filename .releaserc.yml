@@ -3,5 +3,5 @@ plugins:
   - semantic-release-gitmoji
   # - - "@semantic-release/npm"
   #   - npmPublish: false
-  # - "@semantic-release/github"
-  # - "@semantic-release/git"
+  - "@semantic-release/github"
+  - "@semantic-release/git"
