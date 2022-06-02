@@ -65,3 +65,6 @@ Lightmap-*.png*
 Lightmap-*.exr*
 Lightmap-*.png*
 ReflectionProbe-*.exr*
+
+/dist
+

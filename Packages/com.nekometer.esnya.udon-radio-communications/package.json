@@ -1,7 +1,7 @@
 {
   "name": "com.nekometer.esnya.udon-radio-communications",
   "displayName": "Udon Radio Communications",
-  "version": "5.0.0-beta.5",
+  "version": "5.0.0-alpha.2",
   "private": true,
   "description": "Simplified radio communication system for VRChat Udon worlds.",
   "homepage": "https://github.com/esnya/UdonRadioCommunication#readme",

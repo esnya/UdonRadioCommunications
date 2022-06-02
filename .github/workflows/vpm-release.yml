@@ -8,7 +8,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: lts/*
+          registry-url: 'https://npm.pkg.github.com'
       - run: npm ci
-      - run: npx semantic-release
+      - run: npx -ws semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
