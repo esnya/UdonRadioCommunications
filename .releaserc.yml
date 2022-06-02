@@ -5,6 +5,8 @@ branches:
     prelerease: true
   - name: feature/ci
     prerelease: true
+    tags:
+      - ci
 plugins:
   - semantic-release-gitmoji
   # - - "@semantic-release/npm"
