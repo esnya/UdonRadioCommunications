@@ -8,7 +8,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: lts/*
+          registry-url: https://npm.pkg.github.com
+          scope: com.nekometer.esnya
       - run: npm ci
       - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_REGISTRY: https://npm.pkg.github.com

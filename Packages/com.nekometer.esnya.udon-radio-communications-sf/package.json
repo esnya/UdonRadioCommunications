@@ -1,7 +1,7 @@
 {
   "name": "com.nekometer.esnya.udon-radio-communications-sf",
   "displayName": "Udon Radio Communications SaccFlight Integration",
-  "version": "5.0.0-beta.5",
+  "version": "1.0.0-alpha.1",
   "gitDependencies": {
     "com.merlinvr.udonsharp": "https://github.com/vrchat-community/UdonSharp.git?path=/Packages/com.vrchat.UdonSharp#1.0.1",
     "com.vrchat.worlds": "https://github.com/vrchat/packages.git?path=/packages/com.vrchat.worlds#3.0.2"
