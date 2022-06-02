@@ -9,6 +9,7 @@ jobs:
         with:
           node-version: lts/*
           registry-url: 'https://npm.pkg.github.com'
+          scope: com.nekometer.esnya
       - run: npm ci
       - run: npx -ws semantic-release
         env:

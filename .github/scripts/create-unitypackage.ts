@@ -13,7 +13,7 @@ async function createUnityPackage(workspace: string)
     (await fs.promises.readFile(`${workspace}/package.json`)).toString()
   );
 
-  const tmp = await fs.promises.mkdtemp(os.tmpdir());
+  const tmp = await fs.promises.mkdtemp(path.join(os.tmpdir(), 'pkg'));
   try {
     const name: string = pkg.name;
     const displayName: string = pkg.displayName;
