@@ -20,7 +20,8 @@
     "Packages/com.nekometer.esnya.udon-radio-communications-sf"
   ],
   "scripts": {
-    "version": "npm version -ws ${npm_package_version} && npx -ws sort-package-json"
+    "version": "npm version -ws ${npm_package_version} && npx -ws sort-package-json",
+    "publish": "npm publish -ws"
   },
   "devDependencies": {
     "@iam1337/create-unitypackage": "^1.0.4",
