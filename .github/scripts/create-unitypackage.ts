@@ -50,6 +50,7 @@ async function createUnityPackage(workspace: string)
     (await fs.promises.readFile("package.json")).toString()
   );
 
-  const workspaces: string[] = pkg.workspaces;
-  await workspaces.reduce((p, workspace) => p.then(() => createUnityPackage(workspace)), Promise.resolve());
+  const workspaces: string[] | undefined = pkg.workspaces;
+  if (workspaces) await workspaces.reduce((p, workspace) => p.then(() => createUnityPackage(workspace)), Promise.resolve());
+  else await createUnityPackage(process.cwd());
 })().catch(console.error);
