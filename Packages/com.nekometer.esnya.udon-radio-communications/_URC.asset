@@ -289,12 +289,17 @@ MonoBehaviour:
       gameObjectName: KeyboardInput
       variables:
       - symbolName: audioSource
-        objectReference: {fileID: 0}
-        value: null
+        objectReference: {fileID: 6451254477142381142, guid: 6727c8a374937cb4cb1b73a38f7a1426,
+          type: 3}
+        value: Sound_ToggleSwitch (UnityEngine.AudioSource)
         arrayItems: []
       - symbolName: eventsPerSeconds
         objectReference: {fileID: 0}
         value: 4
+        arrayItems: []
+      - symbolName: holdInterval
+        objectReference: {fileID: 0}
+        value: 0.5
         arrayItems: []
       - symbolName: holdTime
         objectReference: {fileID: 0}
