@@ -2734,14 +2734,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_AAM
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AAM
         objectReference: {fileID: 4106852870412315910, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -2839,14 +2831,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_AGM
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AGM
         objectReference: {fileID: 2960370530594620362, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -2937,14 +2921,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_AltHold
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AoALimiter
         objectReference: {fileID: 0}
         value: 99
@@ -3051,14 +3027,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Brake
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: Airbrake_snd
         objectReference: {fileID: 7629702918135841854, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -3164,14 +3132,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Catapult
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: CatapultLayer
         objectReference: {fileID: 0}
         value: 24
@@ -3227,14 +3187,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Flaps
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AnimatorBool
         objectReference: {fileID: 0}
         value: flaps
@@ -3274,14 +3226,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Flares
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: FlareActiveTime
         objectReference: {fileID: 0}
         value: 4
@@ -3327,14 +3271,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Gear
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: Dial_Funcon
         objectReference: {fileID: 535013873336265499, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -3443,14 +3379,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Hook
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: BrakeFunction
         objectReference: {fileID: 7629702918394224941, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -3492,14 +3420,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Limits
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AoALimiter
         objectReference: {fileID: 0}
         value: 15
@@ -3531,14 +3451,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Smoke
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: Dial_Funcon
         objectReference: {fileID: 535013871313791513, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -3568,14 +3480,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_ToggleEngine
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AnimEngineStartupAnimBool
         objectReference: {fileID: 0}
         value: EngineStarting
@@ -3618,14 +3522,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: EffectsController
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: PlaySplashSpeed
         objectReference: {fileID: 0}
         value: 7
@@ -3675,14 +3571,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: HUDController
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AltitudeConversion
         objectReference: {fileID: 0}
         value: 3.28084
@@ -3919,14 +3807,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: KeyboardControls
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: DoVTOL
         objectReference: {fileID: 0}
         value: False
@@ -4079,14 +3959,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PassengerSeat
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -4109,14 +3981,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PilotSeat
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -4194,14 +4058,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: ResupplyTrigger
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: EventName
         objectReference: {fileID: 0}
         value: SFEXT_O_ReSupply
@@ -4374,14 +4230,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SaccAirVehicle
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: _DisableStickyWheelWorkaround
         objectReference: {fileID: 0}
         value: False
@@ -4868,14 +4716,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SF-1
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AAMTargetsLayer
         objectReference: {fileID: 0}
         value: UnityEngine.LayerMask
@@ -4968,14 +4808,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SoundController
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: ABOnInside
         objectReference: {fileID: 7629702918493981221, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -5489,14 +5321,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: VehicleRespawner
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: EntityControl
         objectReference: {fileID: 7629702917102528272, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -5514,14 +5338,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: WaterTrigger
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: SAVControl
         objectReference: {fileID: 1816171220940932801, guid: 5aa0696f016f7214b9ee757e6f549ee6,
           type: 3}
@@ -5882,14 +5698,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_AAM
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AAM
         objectReference: {fileID: 7397593521665255302, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
@@ -5987,14 +5795,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_AGM
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AGM
         objectReference: {fileID: 8593617543662274890, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
@@ -6085,14 +5885,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_AltHold
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AoALimiter
         objectReference: {fileID: 0}
         value: 99
@@ -6199,14 +5991,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Brake
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: Airbrake_snd
         objectReference: {fileID: 4014350562321567422, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
@@ -6312,14 +6096,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Catapult
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: CatapultLayer
         objectReference: {fileID: 0}
         value: 24
@@ -6375,14 +6151,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Flaps
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AnimatorBool
         objectReference: {fileID: 0}
         value: flaps
@@ -6422,14 +6190,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Flares
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: FlareActiveTime
         objectReference: {fileID: 0}
         value: 4
@@ -6475,14 +6235,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Gear
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: Dial_Funcon
         objectReference: {fileID: 6429786461581844891, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
@@ -6591,14 +6343,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Hook
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: BrakeFunction
         objectReference: {fileID: 4014350563117935533, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
@@ -6640,14 +6384,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Limits
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AoALimiter
         objectReference: {fileID: 0}
         value: 15
@@ -6679,14 +6415,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Smoke
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: Dial_Funcon
         objectReference: {fileID: 6429786460164858009, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
@@ -6716,14 +6444,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_ToggleEngine
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AnimEngineStartupAnimBool
         objectReference: {fileID: 0}
         value: EngineStarting
@@ -6778,14 +6498,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: EffectsController
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: PlaySplashSpeed
         objectReference: {fileID: 0}
         value: 7
@@ -6835,14 +6547,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: HUDController
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AltitudeConversion
         objectReference: {fileID: 0}
         value: 3.28084
@@ -7079,14 +6783,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: KeyboardControls
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: DoVTOL
         objectReference: {fileID: 0}
         value: False
@@ -7239,14 +6935,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PassengerSeat
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -7269,14 +6957,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PilotSeat
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -7354,14 +7034,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: ResupplyTrigger
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: EventName
         objectReference: {fileID: 0}
         value: SFEXT_O_ReSupply
@@ -7534,14 +7206,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SaccAirVehicle
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: _DisableStickyWheelWorkaround
         objectReference: {fileID: 0}
         value: False
@@ -8120,14 +7784,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SoundController
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: ABOnInside
         objectReference: {fileID: 4014350563020292261, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
@@ -8577,14 +8233,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: VehicleRespawner
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: EntityControl
         objectReference: {fileID: 4014350561221995920, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
@@ -8602,14 +8250,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: WaterTrigger
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: SAVControl
         objectReference: {fileID: 5144138724637297729, guid: 9d229afeea58f1e4799090ace23df4d9,
           type: 3}
@@ -9099,14 +8739,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_AAM
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AAM
         objectReference: {fileID: 2534295232534686757, guid: a35c399fcf052ad42aa9da31a8cfd147,
           type: 3}
@@ -9204,14 +8836,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_AGM
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AGM
         objectReference: {fileID: 6297470958862747977, guid: a35c399fcf052ad42aa9da31a8cfd147,
           type: 3}
@@ -9302,14 +8926,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Bomb
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AllowFiringWhenGrounded
         objectReference: {fileID: 0}
         value: False
@@ -9384,14 +9000,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Canopy
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: CanopyAnimator
         objectReference: {fileID: 6729289300238911937, guid: a35c399fcf052ad42aa9da31a8cfd147,
           type: 3}
@@ -9436,14 +9044,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Door
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AnimBoolName
         objectReference: {fileID: 0}
         value: 
@@ -9489,14 +9089,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_EngineStart
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AnimEngineStartupAnimBool
         objectReference: {fileID: 0}
         value: EngineStarting
@@ -9539,14 +9131,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Flares
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: FlareActiveTime
         objectReference: {fileID: 0}
         value: 4
@@ -9592,14 +9176,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Gun
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AmmoBar
         objectReference: {fileID: 6729289300168019180, guid: a35c399fcf052ad42aa9da31a8cfd147,
           type: 3}
@@ -9690,14 +9266,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_Smoke
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AllowChangeColor
         objectReference: {fileID: 0}
         value: True
@@ -9731,14 +9299,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNC_VTOLAngle
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: SAVControl
         objectReference: {fileID: 1864949002255686726, guid: a35c399fcf052ad42aa9da31a8cfd147,
           type: 3}
@@ -9748,14 +9308,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNCP_Minigun
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AmmoBar
         objectReference: {fileID: 8632684932914676926, guid: a35c399fcf052ad42aa9da31a8cfd147,
           type: 3}
@@ -9802,14 +9354,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNCP_Rockets
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AmmoBar
         objectReference: {fileID: 3145171631447283374, guid: a35c399fcf052ad42aa9da31a8cfd147,
           type: 3}
@@ -9855,14 +9399,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNCP_Searchlight
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AnimBoolName
         objectReference: {fileID: 0}
         value: searchlight
@@ -9901,14 +9437,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: DFUNCP_SideDoor
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AnimBoolName
         objectReference: {fileID: 0}
         value: sidedoor
@@ -9957,14 +9485,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: EffectsController
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: PlaySplashSpeed
         objectReference: {fileID: 0}
         value: 7
@@ -10029,14 +9549,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: GunnerFunctions
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: Dial_Functions_L
         objectReference: {fileID: 0}
         value: UnityEngine.Component[]
@@ -10080,14 +9592,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: GunnerSeat
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -10115,14 +9619,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: HUDController
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AltitudeConversion
         objectReference: {fileID: 0}
         value: 3.28084
@@ -10506,14 +10002,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: KeyboardControls
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: DoVTOL
         objectReference: {fileID: 0}
         value: True
@@ -10636,14 +10124,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: KeyboardControls
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: DoVTOL
         objectReference: {fileID: 0}
         value: False
@@ -10726,14 +10206,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PassengerSeat
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -10756,14 +10228,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PassengerSeat (1)
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -10786,14 +10250,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PassengerSeat (2)
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -10816,14 +10272,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PassengerSeat (3)
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -10846,14 +10294,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: PilotSeat
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AdjustSeat
         objectReference: {fileID: 0}
         value: True
@@ -10960,14 +10400,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: ResupplyTrigger
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: EventName
         objectReference: {fileID: 0}
         value: SFEXT_O_ReSupply
@@ -11347,14 +10779,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SaccAirVehicle
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: _DisableStickyWheelWorkaround
         objectReference: {fileID: 0}
         value: False
@@ -11837,14 +11261,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SH-1
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: AAMTargetsLayer
         objectReference: {fileID: 0}
         value: UnityEngine.LayerMask
@@ -11918,14 +11334,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: SoundController
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: ABOnInside
         objectReference: {fileID: 6729289299968676791, guid: a35c399fcf052ad42aa9da31a8cfd147,
           type: 3}
@@ -12616,14 +12024,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: VehicleRespawner
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: EntityControl
         objectReference: {fileID: 6729289300238911998, guid: a35c399fcf052ad42aa9da31a8cfd147,
           type: 3}
@@ -12637,14 +12037,6 @@ MonoBehaviour:
         type: 3}
       gameObjectName: WaterTrigger
       variables:
-      - symbolName: ___UdonSharpBehaviourPersistDataFromUpgrade___
-        objectReference: {fileID: 0}
-        value: True
-        arrayItems: []
-      - symbolName: ___UdonSharpBehaviourVersion___
-        objectReference: {fileID: 0}
-        value: 2
-        arrayItems: []
       - symbolName: SAVControl
         objectReference: {fileID: 1864949002255686726, guid: a35c399fcf052ad42aa9da31a8cfd147,
           type: 3}
