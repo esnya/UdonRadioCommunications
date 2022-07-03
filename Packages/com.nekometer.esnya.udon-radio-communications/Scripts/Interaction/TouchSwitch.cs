@@ -26,6 +26,7 @@ namespace URC
         public bool disableInteractInVR = true;
         public float throttlingDelay = 0.5f;
         public bool fingerMode = true;
+        public bool grip;
         public string onTouchStart, onTouchEnd;
 
         public Vector3 localUp = Vector3.up;
@@ -43,6 +44,11 @@ namespace URC
         public string onDown;
         public string onLeft;
         public string onRight;
+
+        [Header("Wheel")]
+        public bool wheelMode = false;
+        public string onWheelRight, onWheelLeft;
+        public float wheelStep = 1.0f;
 
         [Header("Desktop Key")]
         public bool enableDesktopKey;
@@ -66,6 +72,8 @@ namespace URC
         private float lastTouchStartTime;
         private Vector3 touchStartPosition;
         private bool _leftTouchState, _rightTouchState;
+        private float wheelAngle;
+
         private void SetTouchState(bool isLeft, bool value)
         {
             var currentState = isLeft ? _leftTouchState : _rightTouchState;
@@ -122,6 +130,7 @@ namespace URC
 
         private bool DetectTouch(bool isLeft, Vector3 switchPosition, float radius)
         {
+            if (grip && Input.GetAxisRaw(isLeft ? "Oculus_CrossPlatform_PrimaryHandTrigger" : "Oculus_CrossPlatform_SecondaryHandTrigger") < 0.75f) return false;
             var touchPosition = GetTouchPosition(isLeft);
             return (switchPosition - touchPosition).sqrMagnitude < Mathf.Pow(radius, 2);
         }
@@ -161,6 +170,10 @@ namespace URC
             {
                 inverseHandRotation = Quaternion.Inverse(GetHandRotaton(isLeft));
             }
+            else if (wheelMode)
+            {
+                wheelAngle = Vector3.SignedAngle(localUp, Vector3.ProjectOnPlane(touchStartPosition, localForward), localForward);
+            }
             else
             {
                 SendCustomEventToTarget(eventName, isLeft);
@@ -173,6 +186,7 @@ namespace URC
         private void OnTouchMove(bool isLeft)
         {
             if (knobMode && GetTouchState(isLeft)) ProcessKnob(isLeft);
+            if (wheelMode && GetTouchState(isLeft)) ProcessWheel(isLeft);
         }
 
         private void OnTouchEnd(bool isLeft)
@@ -212,6 +226,23 @@ namespace URC
                     inverseHandRotation = Quaternion.Inverse(handRotation);
                 }
             }
+        }
+
+        private void ProcessWheel(bool isLeft)
+        {
+            var touchLocalPosition = transform.InverseTransformPoint(GetTouchPosition(isLeft));
+            var nextWheelAngle = Vector3.SignedAngle(localUp, Vector3.ProjectOnPlane(touchLocalPosition, localForward), localForward);
+            var diffAngle = Mathf.DeltaAngle(wheelAngle, nextWheelAngle);
+            var eventCount = Mathf.FloorToInt(Mathf.Abs(diffAngle) / wheelStep);
+            if (eventCount > 0)
+            {
+                var eventName = diffAngle > 0 ? onWheelRight : onWheelLeft;
+                for (var i = 0; i < Mathf.Abs(eventCount); i++)
+                {
+                    SendCustomEventToTarget(eventName, isLeft);
+                }
+            }
+            wheelAngle += Mathf.Sign(diffAngle) * wheelStep * eventCount;
         }
 
         public override void PostLateUpdate()
@@ -272,7 +303,7 @@ namespace URC
                 Gizmos.DrawRay(transform.position, transform.TransformDirection(localUp) * 0.1f);
             }
 
-            if (knobMode)
+            if (knobMode || wheelMode)
             {
                 Gizmos.color = Color.white;
                 Gizmos.DrawRay(transform.position, transform.TransformDirection(Vector3.Cross(localRight, localUp).normalized) * 0.1f);
@@ -296,6 +327,7 @@ namespace URC
 
             var networked = serializedObject.FindProperty(nameof(TouchSwitch.networked)).boolValue;
             var knobMode = serializedObject.FindProperty(nameof(TouchSwitch.knobMode)).boolValue;
+            var wheelMode = serializedObject.FindProperty(nameof(TouchSwitch.wheelMode)).boolValue;
             var directionalMode = serializedObject.FindProperty(nameof(TouchSwitch.directionalMode)).boolValue;
 
             while (property.NextVisible(false))
@@ -309,6 +341,11 @@ namespace URC
                     case nameof(TouchSwitch.onKnobLeft):
                     case nameof(TouchSwitch.knobStep):
                         if (!knobMode) continue;
+                        break;
+                    case nameof(TouchSwitch.onWheelLeft):
+                    case nameof(TouchSwitch.onWheelRight):
+                    case nameof(TouchSwitch.wheelStep):
+                        if (!wheelMode) continue;
                         break;
                     case nameof(TouchSwitch.directionalThreshold):
                     case nameof(TouchSwitch.onUp):
@@ -324,6 +361,8 @@ namespace URC
                     case nameof(TouchSwitch.eventName):
                     case nameof(TouchSwitch.onKnobRight):
                     case nameof(TouchSwitch.onKnobLeft):
+                    case nameof(TouchSwitch.onWheelLeft):
+                    case nameof(TouchSwitch.onWheelRight):
                     case nameof(TouchSwitch.onUp):
                     case nameof(TouchSwitch.onDown):
                     case nameof(TouchSwitch.onLeft):
