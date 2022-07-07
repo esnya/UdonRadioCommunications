@@ -11,7 +11,6 @@ namespace URC
     {
         public Transform inVehicleOnly, seatedPlayerOnly;
 
-#if URC_SF
         private void Start()
         {
             SendCustomEventDelayedSeconds(nameof(_Inject), 10);
@@ -54,6 +53,5 @@ namespace URC
             if (seat != null) return (GameObject)seat.GetProgramVariable("ThisSeatOnly");
             return null;
         }
-#endif
     }
 }

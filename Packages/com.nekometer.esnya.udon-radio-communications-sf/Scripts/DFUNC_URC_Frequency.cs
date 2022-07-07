@@ -31,7 +31,6 @@ namespace URC
             }
         }
 
-#if URC_SF
         private string triggerAxis;
         private VRCPlayerApi.TrackingDataType trackingTarget;
         public void DFUNC_LeftDial()
@@ -128,7 +127,5 @@ namespace URC
                 prevTriggered = trigger;
             }
         }
-
-#endif
     }
 }

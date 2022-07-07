@@ -12,7 +12,6 @@ namespace URC
         public KeyCode desktopKey = KeyCode.P;
         public Transmitter transmitter;
 
-#if URC_SF
         private string triggerAxis;
         public void DFUNC_LeftDial()
         {
@@ -91,6 +90,5 @@ namespace URC
         {
             return Input.GetKey(desktopKey) || Input.GetAxisRaw(triggerAxis) > 0.75f;
         }
-#endif
     }
 }
