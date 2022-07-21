@@ -27,4 +27,4 @@ Only one udon is using the `Update` loop. If the number of `Transmitters` is `Nt
 | Sync | If checked, anyone who is near the receiver can listen to the radio. If not, only local clients. |
 
 ## Integrations
-- [SaccFlightAndVehicles (1.5)](https://github.com/esnya/UdonRadioCommunication/tree/master/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles#readme)
+- [SaccFlightAndVehicles (1.6)](https://github.com/esnya/UdonRadioCommunication/tree/master/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles#readme)
