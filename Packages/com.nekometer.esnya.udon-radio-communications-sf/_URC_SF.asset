@@ -4006,7 +4006,7 @@ MonoBehaviour:
         arrayItems: []
     - udonInstance: {fileID: 7629702918710171444, guid: 5aa0696f016f7214b9ee757e6f549ee6,
         type: 3}
-      gameObjectName: RacingTrigger
+      gameObjectName: RacingTrigger_SF1
       variables:
       - symbolName: DisabledRaces
         objectReference: {fileID: 0}
@@ -6982,7 +6982,7 @@ MonoBehaviour:
         arrayItems: []
     - udonInstance: {fileID: 4014350562829376948, guid: 9d229afeea58f1e4799090ace23df4d9,
         type: 3}
-      gameObjectName: RacingTrigger
+      gameObjectName: RacingTrigger_SF1
       variables:
       - symbolName: DisabledRaces
         objectReference: {fileID: 0}
@@ -10319,7 +10319,7 @@ MonoBehaviour:
         arrayItems: []
     - udonInstance: {fileID: 6729289301901634519, guid: a35c399fcf052ad42aa9da31a8cfd147,
         type: 3}
-      gameObjectName: RacingTrigger
+      gameObjectName: RacingTrigger_SH1
       variables:
       - symbolName: DisabledRaces
         objectReference: {fileID: 0}
