@@ -15,22 +15,27 @@ namespace URC
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class TouchSwitch : UdonSharpBehaviour
     {
+        [Header("Dimensions")]
         public float radius = 0.0075f;
-        public UdonSharpBehaviour eventTarget;
-        public string eventName;
+        public float thickness = 1.0f;
+        public float maxPlayerDistance = 5.0f;
+        public int awakeCheckInterval = 5;
+
+        [Header("Networked")]
         public bool ownerOnly = false;
         [Tooltip("Deprecated: Use networked")] public bool sentToOwner = false;
         public bool networked = false;
         public NetworkEventTarget networkEventTarget;
+
+        [Header("Touch")]
+        public UdonSharpBehaviour eventTarget;
+        public string eventName;
 
         public bool disableInteractInVR = true;
         public float throttlingDelay = 0.5f;
         public bool fingerMode = true;
         public bool grip;
         public string onTouchStart, onTouchEnd;
-
-        public Vector3 localUp = Vector3.up;
-        public Vector3 localRight = Vector3.right;
 
         [Header("Knob")]
         public bool knobMode = false;
@@ -51,8 +56,8 @@ namespace URC
         public float wheelStep = 1.0f;
 
         [Header("Desktop Key")]
-        public bool enableDesktopKey;
-        public KeyCode desktopKey;
+        [Tooltip("Deprecated: Use KeyboardInput")] public bool enableDesktopKey;
+        [Tooltip("Deprecated: Use KeyboardInput")] public KeyCode desktopKey;
 
         [Header("Sounds (Optional)")]
         public AudioSource audioSource;
@@ -67,7 +72,6 @@ namespace URC
         public Transform debugTouhSource;
 
         private float lastKnobStepTime;
-        private Vector3 localForward;
         private Quaternion inverseHandRotation;
         private float lastTouchStartTime;
         private Vector3 touchStartPosition;
@@ -99,13 +103,20 @@ namespace URC
                 networkEventTarget = NetworkEventTarget.Owner;
             }
 
-            localForward = Vector3.Cross(localRight, localUp).normalized;
-            SendCustomEventDelayedFrames(nameof(_PostStart), 1);
+            SendCustomEventDelayedSeconds(nameof(_AwakeCheck), UnityEngine.Random.Range(0, awakeCheckInterval));
         }
 
         public void _PostStart()
         {
             if (disableInteractInVR && Networking.LocalPlayer.IsUserInVR()) DisableInteractive = true;
+        }
+
+        public void _AwakeCheck()
+        {
+            var inRange = Vector3.Distance(transform.position, Networking.LocalPlayer.GetPosition()) <= maxPlayerDistance;
+            if (enabled != inRange) enabled = inRange;
+
+            SendCustomEventDelayedSeconds(nameof(_AwakeCheck), awakeCheckInterval);
         }
 
         private Vector3 GetTouchPosition(bool isLeft)
@@ -132,7 +143,8 @@ namespace URC
         {
             if (grip && Input.GetAxisRaw(isLeft ? "Oculus_CrossPlatform_PrimaryHandTrigger" : "Oculus_CrossPlatform_SecondaryHandTrigger") < 0.75f) return false;
             var touchPosition = GetTouchPosition(isLeft);
-            return (switchPosition - touchPosition).sqrMagnitude < Mathf.Pow(radius, 2);
+            var relative = switchPosition - touchPosition;
+            return relative.sqrMagnitude < Mathf.Pow(radius, 2) && Mathf.Abs(Vector3.Dot(relative, transform.TransformDirection(Vector3.forward))) <= thickness * 0.5f;
         }
 
         private void PlayHaptic(bool isLeft, float strength)
@@ -172,7 +184,7 @@ namespace URC
             }
             else if (wheelMode)
             {
-                wheelAngle = Vector3.SignedAngle(localUp, Vector3.ProjectOnPlane(touchStartPosition, localForward), localForward);
+                wheelAngle = Vector3.SignedAngle(Vector3.up, Vector3.ProjectOnPlane(touchStartPosition, Vector3.forward), Vector3.forward);
             }
             else
             {
@@ -197,12 +209,12 @@ namespace URC
             {
                 var touchPosition = transform.InverseTransformPoint(GetTouchPosition(isLeft));
                 var touchDirection = touchPosition.normalized;
-                var localDirection = Vector3.ProjectOnPlane(touchDirection, localForward).normalized;
+                var localDirection = Vector3.ProjectOnPlane(touchDirection, Vector3.forward).normalized;
 
-                if (Vector3.Dot(localDirection, localUp) > directionalThreshold) SendCustomEventToTarget(onUp, isLeft);
-                if (Vector3.Dot(localDirection, -localUp) > directionalThreshold) SendCustomEventToTarget(onDown, isLeft);
-                if (Vector3.Dot(localDirection, localRight) > directionalThreshold) SendCustomEventToTarget(onRight, isLeft);
-                if (Vector3.Dot(localDirection, -localRight) > directionalThreshold) SendCustomEventToTarget(onLeft, isLeft);
+                if (Vector3.Dot(localDirection, Vector3.up) > directionalThreshold) SendCustomEventToTarget(onUp, isLeft);
+                if (Vector3.Dot(localDirection, -Vector3.up) > directionalThreshold) SendCustomEventToTarget(onDown, isLeft);
+                if (Vector3.Dot(localDirection, Vector3.right) > directionalThreshold) SendCustomEventToTarget(onRight, isLeft);
+                if (Vector3.Dot(localDirection, -Vector3.right) > directionalThreshold) SendCustomEventToTarget(onLeft, isLeft);
             }
         }
 
@@ -212,8 +224,8 @@ namespace URC
 
             var handRotation = GetHandRotaton(isLeft);
 
-            var worldUp = transform.TransformDirection(localUp);
-            var angle = Vector3.SignedAngle(worldUp, handRotation * inverseHandRotation * worldUp, transform.TransformDirection(localForward));
+            var worldUp = transform.TransformDirection(Vector3.up);
+            var angle = Vector3.SignedAngle(worldUp, handRotation * inverseHandRotation * worldUp, transform.TransformDirection(Vector3.forward));
 
             if (Mathf.Abs(angle) >= knobStep)
             {
@@ -231,7 +243,7 @@ namespace URC
         private void ProcessWheel(bool isLeft)
         {
             var touchLocalPosition = transform.InverseTransformPoint(GetTouchPosition(isLeft));
-            var nextWheelAngle = Vector3.SignedAngle(localUp, Vector3.ProjectOnPlane(touchLocalPosition, localForward), localForward);
+            var nextWheelAngle = Vector3.SignedAngle(Vector3.up, Vector3.ProjectOnPlane(touchLocalPosition, Vector3.forward), Vector3.forward);
             var diffAngle = Mathf.DeltaAngle(wheelAngle, nextWheelAngle);
             var eventCount = Mathf.FloorToInt(Mathf.Abs(diffAngle) / wheelStep);
             if (eventCount > 0)
@@ -289,24 +301,54 @@ namespace URC
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
         private void OnDrawGizmos()
         {
-            this.UpdateProxy();
-            Gizmos.color = Color.white;
-            Gizmos.DrawWireSphere(transform.position, radius);
-
-            if (directionalMode)
+            try
             {
-
-                Gizmos.color = Color.red;
-                Gizmos.DrawRay(transform.position, transform.TransformDirection(localRight) * 0.1f);
-
-                Gizmos.color = Color.green;
-                Gizmos.DrawRay(transform.position, transform.TransformDirection(localUp) * 0.1f);
-            }
-
-            if (knobMode || wheelMode)
-            {
+                this.UpdateProxy();
                 Gizmos.color = Color.white;
-                Gizmos.DrawRay(transform.position, transform.TransformDirection(Vector3.Cross(localRight, localUp).normalized) * 0.1f);
+                Gizmos.matrix = transform.localToWorldMatrix * Matrix4x4.Scale(new Vector3(1.0f, 1.0f, thickness));
+
+                Gizmos.DrawWireSphere(Vector3.zero, radius);
+
+                if (directionalMode)
+                {
+                    Gizmos.color = Color.red;
+                    Vector3 right = Vector3.right;
+                    Gizmos.DrawRay(Vector3.zero, right * radius);
+
+                    Gizmos.color = Color.green;
+                    Gizmos.DrawRay(Vector3.zero, Vector3.up * radius);
+                }
+
+                if (knobMode || wheelMode)
+                {
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawRay(Vector3.zero, Vector3.forward * radius);
+                }
+            }
+            finally
+            {
+                Gizmos.matrix = Matrix4x4.identity;
+            }
+        }
+
+        private void OnSceneGUI()
+        {
+            if (!EditorApplication.isPlaying) return;
+
+            Handles.BeginGUI();
+            try
+            {
+                this.UpdateProxy();
+
+                if (GUILayout.Button("Touch")) SendCustomEventToTarget(eventName, false);
+                if (wheelMode && GUILayout.Button("Wheel Left")) SendCustomEventToTarget(onWheelLeft, false);
+                if (wheelMode && GUILayout.Button("Wheel Right")) SendCustomEventToTarget(onWheelRight, false);
+                if (knobMode && GUILayout.Button("Knob Left")) SendCustomEventToTarget(onKnobLeft, false);
+                if (knobMode && GUILayout.Button("Knob Right")) SendCustomEventToTarget(onKnobRight, false);
+            }
+            finally
+            {
+                Handles.EndGUI();
             }
         }
 #endif
