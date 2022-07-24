@@ -299,7 +299,7 @@ namespace URC
             transceivers = GetUdonSharpComponentsInScene<Transceiver>(true).ToArray();
             this.ApplyProxyModifications();
 
-            EditorUtility.SetDirty(UdonSharpEditorUtility.GetBackingUdonBehaviour(this));
+            EditorUtility.SetDirty(this);
         }
 
         static private void SetupAll()

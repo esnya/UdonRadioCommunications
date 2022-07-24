@@ -7,6 +7,48 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4503298217267850038, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -4503298217267850038, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+    - target: {fileID: -3278729122673819842, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -3278729122673819842, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+    - target: {fileID: -2768433788967122633, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -2768433788967122633, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+    - target: {fileID: -1520631455441771421, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -1520631455441771421, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+    - target: {fileID: -1452086684519607039, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -1452086684519607039, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+    - target: {fileID: 696329235690739067, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 696329235690739067, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+    - target: {fileID: 6268409036308147914, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 6268409036308147914, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
     - target: {fileID: 6395599817492811100, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
         type: 3}
       propertyPath: m_RootOrder
@@ -65,7 +107,13 @@ PrefabInstance:
     - target: {fileID: 7422882663793839734, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
         type: 3}
       propertyPath: m_Name
-      value: SFVehicleTransceiver_SF-1
+      value: SFVehicleTransceiver_SH-1
       objectReference: {fileID: 0}
+    - target: {fileID: 8652480351978275679, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 8652480351978275679, guid: 4fccbf87556a63041a3cbc9aba65c1b3,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fccbf87556a63041a3cbc9aba65c1b3, type: 3}
