@@ -4,6 +4,7 @@ Simplified radio communication system for VRChat Udon worlds.
 ## Requirements
 - Text Mesh Pro
 - UdonSharp 1.x
+- (InariUdon)[https://github.com/esnya/InariUdon]
 
 ## Instllation
 1. Install requrirements.

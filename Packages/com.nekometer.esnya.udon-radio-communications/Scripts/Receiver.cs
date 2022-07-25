@@ -108,7 +108,7 @@ namespace URC
 
             if (!template) return;
 
-            audioObject = VRCInstantiate(template);
+            audioObject = Instantiate(template);
             audioObject.transform.SetParent(transform, false);
             audioObject.transform.localPosition = Vector3.zero;
             audioObject.SetActive(true);
