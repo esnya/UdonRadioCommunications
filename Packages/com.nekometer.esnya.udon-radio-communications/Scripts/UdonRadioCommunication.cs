@@ -286,17 +286,17 @@ namespace URC
         }
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
-        private static IEnumerable<T> GetUdonSharpComponentsInScene<T>(bool includeInActive) where T : UdonSharpBehaviour
+        private static IEnumerable<T> GetComponentsInScene<T>(bool includeInActive) where T : UdonSharpBehaviour
         {
-            return SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(o => o.GetUdonSharpComponentsInChildren<T>(includeInActive));
+            return SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(o => o.GetComponentsInChildren<T>(includeInActive));
         }
 
         public void Setup()
         {
             this.UpdateProxy();
-            transmitters = GetUdonSharpComponentsInScene<Transmitter>(true).ToArray();
-            receivers = GetUdonSharpComponentsInScene<Receiver>(true).ToArray();
-            transceivers = GetUdonSharpComponentsInScene<Transceiver>(true).ToArray();
+            transmitters = GetComponentsInScene<Transmitter>(true).ToArray();
+            receivers = GetComponentsInScene<Receiver>(true).ToArray();
+            transceivers = GetComponentsInScene<Transceiver>(true).ToArray();
             this.ApplyProxyModifications();
 
             EditorUtility.SetDirty(this);
@@ -304,7 +304,7 @@ namespace URC
 
         static private void SetupAll()
         {
-            var targets = GetUdonSharpComponentsInScene<UdonRadioCommunication>(true);
+            var targets = GetComponentsInScene<UdonRadioCommunication>(true);
             foreach (var urc in targets)
             {
                 urc.Setup();
@@ -318,7 +318,7 @@ namespace URC
     [CustomEditor(typeof(UdonRadioCommunication))]
     public class UdonRadioCommunicationEditor : Editor
     {
-        private static IEnumerable<T> GetUdonSharpComponentsInScene<T>() where T : UdonSharpBehaviour
+        private static IEnumerable<T> GetComponentsInScene<T>() where T : UdonSharpBehaviour
         {
             return FindObjectsOfType<UdonBehaviour>()
                 .Where(UdonSharpEditorUtility.IsUdonSharpBehaviour)
@@ -418,7 +418,7 @@ namespace URC
 
         private static void SetupAll()
         {
-            var urcs = GetUdonSharpComponentsInScene<UdonRadioCommunication>();
+            var urcs = GetComponentsInScene<UdonRadioCommunication>();
             foreach (var urc in urcs)
             {
                 if (urc?.autoSetupBeforeSave != true) continue;
