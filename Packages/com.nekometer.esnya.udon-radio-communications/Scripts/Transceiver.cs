@@ -34,9 +34,11 @@ namespace URC
         {
             set
             {
-                var isOwner = Networking.IsOwner(gameObject);
-                if (!receiver.sync || isOwner) receiver.Frequency = value;
-                if (isOwner) transmitter._SetFrequency(value);
+                if (Networking.IsOwner(gameObject))
+                {
+                    receiver.Frequency = value;
+                    transmitter._SetFrequency(value);
+                }
 
                 _frequency = value;
                 _UpdateFrequencyText();
@@ -44,7 +46,9 @@ namespace URC
             get => _frequency;
         }
 
-        [UdonSynced][FieldChangeCallback(nameof(Receive))] private bool _receive;
+        [UdonSynced]
+        [FieldChangeCallback(nameof(Receive))]
+        private bool _receive;
         private bool Receive
         {
             set
@@ -100,7 +104,7 @@ namespace URC
             frequencyStep = urc.frequencyStep;
             fastFrequencyStep = urc.fastFrequencyStep;
 
-            Frequency = urc.defaultFrequency;
+            if (Networking.IsOwner(gameObject)) Frequency = urc.defaultFrequency;
         }
 
         public void _TakeOwnership()
