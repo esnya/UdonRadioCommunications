@@ -4,7 +4,9 @@
   "version": "1.0.0-alpha.1",
   "gitDependencies": {
     "com.merlinvr.udonsharp": "https://github.com/vrchat-community/UdonSharp.git?path=/Packages/com.vrchat.UdonSharp#1.0.1",
-    "com.vrchat.worlds": "https://github.com/vrchat/packages.git?path=/packages/com.vrchat.worlds#3.0.2"
+    "com.vrchat.base": "https://github.com/vrchat/packages.git?path=/packages/com.vrchat.base#3.0.4",
+    "com.vrchat.worlds": "https://github.com/vrchat/packages.git?path=/packages/com.vrchat.worlds#3.0.4",
+    "com.nekometer.esnya.udon-rado-communications": "https://github.com/esnya/UdonRadioCommunications.git?path=Packages/com.nekometer.esnya.udon-radio-communications"
   },
   "repository": {
     "type": "git",
