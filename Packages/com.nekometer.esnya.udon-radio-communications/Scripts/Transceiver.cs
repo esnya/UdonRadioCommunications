@@ -1,5 +1,4 @@
 
-#pragma warning disable IDE0051,IDE1006
 using System;
 using JetBrains.Annotations;
 using TMPro;

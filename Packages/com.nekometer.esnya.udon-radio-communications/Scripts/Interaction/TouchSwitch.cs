@@ -6,8 +6,6 @@ using VRC.Udon.Common.Interfaces;
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
 using UnityEditor;
 using UdonSharpEditor;
-using System.Reflection;
-using System.Linq;
 #endif
 
 namespace URC
@@ -303,7 +301,6 @@ namespace URC
         {
             try
             {
-                this.UpdateProxy();
                 Gizmos.color = Color.white;
                 Gizmos.matrix = transform.localToWorldMatrix * Matrix4x4.Scale(new Vector3(1.0f, 1.0f, thickness));
 
@@ -338,8 +335,6 @@ namespace URC
             Handles.BeginGUI();
             try
             {
-                this.UpdateProxy();
-
                 if (GUILayout.Button("Touch")) SendCustomEventToTarget(eventName, false);
                 if (wheelMode && GUILayout.Button("Wheel Left")) SendCustomEventToTarget(onWheelLeft, false);
                 if (wheelMode && GUILayout.Button("Wheel Right")) SendCustomEventToTarget(onWheelRight, false);

@@ -16,15 +16,18 @@ namespace URC
         [NonSerialized] public UdonRadioCommunication urc;
 
         private bool _active;
-        public bool Active {
+        public bool Active
+        {
             get => _active;
-            set {
+            set
+            {
                 if (!value) _DestroyAudioObject();
                 if (indicator != null) indicator.SetActive(value);
 
                 _active = value;
 
-                if (sync && value != SyncedActive) {
+                if (sync && value != SyncedActive)
+                {
                     _TakeOwnership();
                     SyncedActive = value;
                     RequestSerialization();
@@ -33,14 +36,17 @@ namespace URC
         }
 
         private float _frequency;
-        public float Frequency {
+        public float Frequency
+        {
             get => _frequency;
-            set {
+            set
+            {
                 _DestroyAudioObject();
 
                 _frequency = value;
 
-                if (sync && value != SyncedFrequency) {
+                if (sync && value != SyncedFrequency)
+                {
                     _TakeOwnership();
                     SyncedFrequency = value;
                     RequestSerialization();

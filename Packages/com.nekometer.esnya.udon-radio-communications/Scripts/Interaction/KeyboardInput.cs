@@ -1,6 +1,5 @@
 using UdonSharp;
 using UnityEngine;
-using VRC.SDKBase;
 using System;
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR

@@ -293,12 +293,9 @@ namespace URC
 
         public void Setup()
         {
-            this.UpdateProxy();
             transmitters = GetComponentsInScene<Transmitter>(true).ToArray();
             receivers = GetComponentsInScene<Receiver>(true).ToArray();
             transceivers = GetComponentsInScene<Transceiver>(true).ToArray();
-            this.ApplyProxyModifications();
-
             EditorUtility.SetDirty(this);
         }
 
