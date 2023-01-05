@@ -71,8 +71,7 @@ MonoBehaviour:
   receivers: []
   transceivers: []
   audioObjectTemplates: []
-  audioObjectFrequencies:
-  - 118.3
+  audioObjectFrequencies: []
   debugText: {fileID: 0}
   debugTextUi: {fileID: 0}
 --- !u!114 &8288458946717863570
