@@ -8,10 +8,10 @@ using TMPro;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using UdonSharpEditor;
 using UnityEditorInternal;
+using VRC.SDKBase.Editor.BuildPipeline;
 #endif
 
 namespace URC
@@ -39,20 +39,18 @@ namespace URC
         public float frequencyGap = 0.01f;
 
         [Space]
-        public bool autoSetupBeforeSave = true;
-
-        [Space]
-        public Transmitter[] transmitters;
-        public Receiver[] receivers;
-        public Transceiver[] transceivers;
-
-        [Space]
         public GameObject[] audioObjectTemplates = { };
         public float[] audioObjectFrequencies = { };
 
         [Space]
         public TextMeshPro debugText;
         public TextMeshProUGUI debugTextUi;
+
+
+        [Space]
+        public Transmitter[] transmitters;
+        public Receiver[] receivers;
+        public Transceiver[] transceivers;
 
         private bool playerListDirty = true;
         private VRCPlayerApi[] players = { };
@@ -296,6 +294,7 @@ namespace URC
             transmitters = GetComponentsInScene<Transmitter>(true).ToArray();
             receivers = GetComponentsInScene<Receiver>(true).ToArray();
             transceivers = GetComponentsInScene<Transceiver>(true).ToArray();
+            Debug.Log($"{this} Setup done: ({transmitters.Length}, {receivers.Length}, {transceivers.Length})", this);
             EditorUtility.SetDirty(this);
         }
 
@@ -399,18 +398,6 @@ namespace URC
             serializedObject.ApplyModifiedProperties();
 
             EditorGUILayout.Space();
-
-            var urc = target as UdonRadioCommunication;
-            if (GUILayout.Button("Setup"))
-            {
-                urc.Setup();
-            }
-        }
-
-        [InitializeOnLoadMethod]
-        static public void RegisterCallback()
-        {
-            EditorSceneManager.sceneSaving += (_, __) => SetupAll();
         }
 
         private static void SetupAll()
@@ -418,9 +405,28 @@ namespace URC
             var urcs = GetComponentsInScene<UdonRadioCommunication>();
             foreach (var urc in urcs)
             {
-                if (urc?.autoSetupBeforeSave != true) continue;
                 Debug.Log($"[{urc.gameObject.name}] Auto setup");
                 urc.Setup();
+                UdonSharpEditorUtility.CopyProxyToUdon(urc);
+            }
+        }
+
+        [InitializeOnLoadMethod]
+        public static void RegisterCallbacks()
+        {
+            EditorApplication.playModeStateChanged += (PlayModeStateChange e) => {
+                if (e == PlayModeStateChange.EnteredPlayMode) SetupAll();
+            };
+        }
+
+        public class BuildCallback : Editor, IVRCSDKBuildRequestedCallback
+        {
+            public int callbackOrder => 10;
+
+            public bool OnBuildRequested(VRCSDKRequestedBuildType requestedBuildType)
+            {
+                SetupAll();
+                return true;
             }
         }
     }

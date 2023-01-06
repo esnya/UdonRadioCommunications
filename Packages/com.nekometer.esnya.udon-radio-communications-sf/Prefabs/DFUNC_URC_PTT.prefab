@@ -151,12 +151,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transmitter
       objectReference: {fileID: 0}
-    - target: {fileID: 9042347520711024458, guid: af6c6a7eecd94db4d99a6edfd3ef68d6,
-        type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 9042347520711024458, guid: af6c6a7eecd94db4d99a6edfd3ef68d6,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af6c6a7eecd94db4d99a6edfd3ef68d6, type: 3}
 --- !u!4 &3656439051290097712 stripped
