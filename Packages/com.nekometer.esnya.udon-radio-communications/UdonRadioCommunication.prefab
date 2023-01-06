@@ -71,7 +71,8 @@ MonoBehaviour:
   receivers: []
   transceivers: []
   audioObjectTemplates: []
-  audioObjectFrequencies: []
+  audioObjectFrequencies:
+  - 0
   debugText: {fileID: 0}
   debugTextUi: {fileID: 0}
 --- !u!114 &8288458946717863570
@@ -93,7 +94,7 @@ MonoBehaviour:
   SynchronizePosition: 0
   AllowCollisionOwnershipTransfer: 0
   Reliable: 0
-  _syncMethod: 2
+  _syncMethod: 1
   serializedProgramAsset: {fileID: 11400000, guid: cd4d5edfa9c55934ebc2a5be4a05e029,
     type: 2}
   programSource: {fileID: 11400000, guid: 994040da9f90b2f42a97d09885f3c5c0, type: 2}
