@@ -46,7 +46,6 @@ namespace URC
         public TextMeshPro debugText;
         public TextMeshProUGUI debugTextUi;
 
-
         [Space]
         public Transmitter[] transmitters;
         public Receiver[] receivers;
