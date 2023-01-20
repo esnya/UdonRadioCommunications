@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const guidPattern = '\\{fileID: .*(\n        type: [0-9]+)?\\}';
+const guidPattern = '\\{fileID: .*(\n     *type: [0-9]+)?\\}';
 const pattern = new RegExp(
   [
     `    - target: ${guidPattern}\n`,
