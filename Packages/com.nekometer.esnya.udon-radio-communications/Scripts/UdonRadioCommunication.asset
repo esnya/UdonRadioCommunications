@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: UdonRadioCommunication
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: cd4d5edfa9c55934ebc2a5be4a05e029,
-    type: 2}
   udonAssembly: 
   assemblyError: 
   sourceCsScript: {fileID: 11500000, guid: 5a1b6f42fc93f3d41a69e0ad3c9efa91, type: 3}
@@ -23,7 +21,6 @@ MonoBehaviour:
   hasInteractEvent: 0
   scriptID: 5442916336615805716
   serializationData:
-    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 

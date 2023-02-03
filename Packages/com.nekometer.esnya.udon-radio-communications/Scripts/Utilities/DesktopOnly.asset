@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: DesktopOnly
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 5d52ee4de4fd66643bc154077ea6bac4,
-    type: 2}
   udonAssembly: 
   assemblyError: 
   sourceCsScript: {fileID: 11500000, guid: 8fda92a4af7d88a4aba0f0d2b172847f, type: 3}
@@ -23,7 +21,6 @@ MonoBehaviour:
   hasInteractEvent: 0
   scriptID: 1001872975980958522
   serializationData:
-    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
