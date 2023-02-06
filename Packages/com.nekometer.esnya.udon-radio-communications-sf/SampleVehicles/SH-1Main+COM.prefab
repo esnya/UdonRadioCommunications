@@ -519,6 +519,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 1282772509638675324, guid: b15ac940e1c4d934f81546cc3bed689d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1439720729650657754, guid: b15ac940e1c4d934f81546cc3bed689d,
         type: 3}
       propertyPath: Dial_Functions_L.Array.size
@@ -599,6 +604,16 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 4300040, guid: a753c14a91335054282f470f1c93f533, type: 3}
+    - target: {fileID: 4350446342770330499, guid: b15ac940e1c4d934f81546cc3bed689d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792678280968202318, guid: b15ac940e1c4d934f81546cc3bed689d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 7533230820859794806, guid: b15ac940e1c4d934f81546cc3bed689d,
         type: 3}
       propertyPath: m_LocalPosition.x
