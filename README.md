@@ -1,16 +1,12 @@
 # UdonRadioCommunication
 Simplified radio communication system for VRChat Udon worlds.
 
-## Requirements
-- Text Mesh Pro
-- UdonSharp 1.x
-- (InariUdon)[https://github.com/esnya/InariUdon]
-
-## Instllation
-1. Install requrirements.
-2. Open Package Manager window.
-3. Click `+` button and select `Add package from git URL`.
-4. Enter `https://github.com/esnya/UdonRadioCommunications.git?path=Packages/com.nekometer.esnya.udon-radio-communications` (or `https://github.com/esnya/UdonRadioCommunications.git?path=Packages/com.nekometer.esnya.udon-radio-communications#beta` to use beta) and click `Add`.
+## Getting Started
+1. Create a Unity Project for VRChat World with UdonSharp using VRChat Creator Compoanion
+2. Open the Unity Project.
+3. Open the Package Manager window from Window menu.
+4. Click + button and select `Add package from git URL`.
+5. Enter `git+https://github.com/esnya/UdonRadioCommunications.git?pth=/Packages/com.nekometer.esnya.udon-radio-communications` and click Add button (Enter `git+https://github.com/esnya/UdonRadioCommunications.git?pth=/Packages/com.nekometer.esnya.udon-radio-communications#beta` to use beta releases)
 
 ## Usage
 - Place `Transmitter`s and `Receiver`s wherever you want.
