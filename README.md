@@ -33,5 +33,10 @@ Only one udon is using the `Update` loop. If the number of `Transmitters` is `Nt
 | :-- | :-- |
 | Sync | If checked, anyone who is near the receiver can listen to the radio. If not, only local clients. |
 
-## Integrations
-- [SaccFlightAndVehicles (1.6)](Packages/com.nekometer.esnya.udon-radio-communications-sf)
+# SaccFlight Integrations
+Integration addons for SaccFlightAndVehicles.
+
+## Installation
+1. Open the Package Manager window from Window menu.
+2. Click + button and select `Add package from git URL`.
+3. Enter `git+https://github.com/esnya/UdonRadioCommunications.git?pth=/Packages/com.nekometer.esnya.udon-radio-communications-sf` and click Add button (Enter `git+https://github.com/esnya/UdonRadioCommunications.git?pth=/Packages/com.nekometer.esnya.udon-radio-communications-sf#beta` to use beta releases)
