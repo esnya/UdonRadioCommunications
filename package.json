@@ -2,6 +2,7 @@
   "name": "com.nekometer.esnya.udon-radio-communication-packages",
   "displayName": "Udon Radio Communications",
   "version": "5.0.0-beta.5",
+  "private": true,
   "description": "Simplified radio communication system for VRChat Udon worlds.",
   "homepage": "https://github.com/esnya/UdonRadioCommunication#readme",
   "bugs": {
@@ -16,21 +17,17 @@
     "name": "esnya"
   },
   "workspaces": [
-    "Packages/com.nekometer.esnya.udon-radio-communications",
-    "Packages/com.nekometer.esnya.udon-radio-communications-sf"
+    "Packages/*"
   ],
   "scripts": {
-    "version": "npm version -ws ${npm_package_version} && npx -ws sort-package-json",
-    "publish": "npm publish -ws"
+    "publish": "npm publish -ws",
+    "version": "npm version -ws ${npm_package_version}"
   },
   "devDependencies": {
-    "@iam1337/create-unitypackage": "^1.0.4",
-    "@natsuneko-laboratory/unitypackage": "^0.1.5",
-    "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^8.0.4",
     "@semantic-release/npm": "^9.0.1",
-    "semantic-release": "^19.0.3",
+    "semantic-release": "^20.1.0",
     "semantic-release-gitmoji": "^1.4.5"
   },
   "unity": "2019.4"
