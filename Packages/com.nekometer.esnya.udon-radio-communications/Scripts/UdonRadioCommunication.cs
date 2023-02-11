@@ -283,6 +283,11 @@ namespace URC
         }
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
+        private void Awake()
+        {
+            Setup();
+        }
+
         private static IEnumerable<T> GetComponentsInScene<T>(bool includeInActive) where T : UdonSharpBehaviour
         {
             return SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(o => o.GetComponentsInChildren<T>(includeInActive));
@@ -406,16 +411,7 @@ namespace URC
             {
                 Debug.Log($"[{urc.gameObject.name}] Auto setup");
                 urc.Setup();
-                UdonSharpEditorUtility.CopyProxyToUdon(urc);
             }
-        }
-
-        [InitializeOnLoadMethod]
-        public static void RegisterCallbacks()
-        {
-            EditorApplication.playModeStateChanged += (PlayModeStateChange e) => {
-                if (e == PlayModeStateChange.EnteredPlayMode) SetupAll();
-            };
         }
 
         public class BuildCallback : Editor, IVRCSDKBuildRequestedCallback
