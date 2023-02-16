@@ -22,7 +22,7 @@ namespace URC
             set
             {
                 if (!value) _DestroyAudioObject();
-                if (indicator != null) indicator.SetActive(value);
+                if (indicator) indicator.SetActive(value);
 
                 _active = value;
 
@@ -85,7 +85,11 @@ namespace URC
         public void _Initialize(UdonRadioCommunication urc)
         {
             this.urc = urc;
-            if (Networking.IsOwner(gameObject)) Frequency = urc.defaultFrequency;
+            if (Networking.IsOwner(gameObject))
+            {
+                SyncedFrequency = Frequency = urc.defaultFrequency;
+                RequestSerialization();
+            }
         }
 
         public void _TakeOwnership()

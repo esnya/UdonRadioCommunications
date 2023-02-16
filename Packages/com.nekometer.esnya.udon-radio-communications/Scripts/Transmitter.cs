@@ -51,7 +51,11 @@ namespace URC
         public void _Initialize(UdonRadioCommunication urc)
         {
             this.urc = urc;
-            if (Networking.IsOwner(gameObject)) Frequency = urc.defaultFrequency;
+            if (Networking.IsOwner(gameObject))
+            {
+                Frequency = urc.defaultFrequency;
+                RequestSerialization();
+            }
         }
 
         public void _TakeOwnership()

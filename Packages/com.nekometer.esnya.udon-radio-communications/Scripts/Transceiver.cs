@@ -35,9 +35,9 @@ namespace URC
             {
                 if (Networking.IsOwner(gameObject))
                 {
-                    receiver.Frequency = value;
                     transmitter._SetFrequency(value);
                 }
+                receiver.Frequency = value;
 
                 _frequency = value;
                 _UpdateFrequencyText();
@@ -103,7 +103,11 @@ namespace URC
             frequencyStep = urc.frequencyStep;
             fastFrequencyStep = urc.fastFrequencyStep;
 
-            if (Networking.IsOwner(gameObject)) Frequency = urc.defaultFrequency;
+            if (Networking.IsOwner(gameObject))
+            {
+                Frequency = urc.defaultFrequency;
+                RequestSerialization();
+            }
         }
 
         public void _TakeOwnership()

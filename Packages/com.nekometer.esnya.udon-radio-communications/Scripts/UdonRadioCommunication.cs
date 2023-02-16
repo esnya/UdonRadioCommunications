@@ -55,6 +55,8 @@ namespace URC
         private VRCPlayerApi[] players = { };
         private Transmitter[] playerTransmitters = { };
         private bool[] playerPrevIsDefaultVoice = { };
+        private GameObject[] transmitterParents = null;
+        private GameObject[] receiverParents = null;
 
         private void Start()
         {
@@ -220,6 +222,26 @@ namespace URC
 
             if (debugText != null && debugText.gameObject.activeInHierarchy || debugTextUi != null && ((Component)debugTextUi).gameObject.activeInHierarchy)
             {
+                if (transmitterParents == null)
+                {
+                    transmitterParents = new GameObject[transmitters.Length];
+                    for (var i = 0; i < transmitters.Length; i++)
+                    {
+                        var rigidbody = transmitters[i].GetComponentInParent<Rigidbody>();
+                        transmitterParents[i] = rigidbody ? rigidbody.gameObject : null;
+                    }
+                }
+
+                if (receiverParents == null)
+                {
+                    receiverParents = new GameObject[receivers.Length];
+                    for (var i = 0; i < receivers.Length; i++)
+                    {
+                        var rigidbody = receivers[i].GetComponentInParent<Rigidbody>();
+                        receiverParents[i] = rigidbody ? rigidbody.gameObject : null;
+                    }
+                }
+
                 var text = "<color=red>FOR DEBUG ONLY: This screen will worsen performance</color>\n\nTransmitters:\n";
                 var closeText = "<color=red>Too Close (Active)</color>";
                 var activeText = "<color=green>Active</color>";
@@ -231,7 +253,7 @@ namespace URC
                     if (transmitter == null) continue;
                     var owner = Networking.GetOwner(transmitter.gameObject);
                     var tooClose = (transmitter.transform.position - localPlayerPosition).sqrMagnitude < Mathf.Pow(transmitter.minDistance, 2);
-                    text += $"\t{i:000}:{GetUniqueName(transmitter)}\t{(transmitter.Active ? (tooClose ? closeText : activeText) : nonActiveText)}\t{transmitter.Frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
+                    text += $"\t{i:000}:{GetUniqueName(transmitterParents[i])}/{GetUniqueName(transmitter)}\t{(transmitter.Active ? (tooClose ? closeText : activeText) : nonActiveText)}\t{transmitter.Frequency:#0.00}\t{GetDebugPlayerString(owner)}\n";
                 }
 
                 text += "\nReceivers:\n";
@@ -240,7 +262,7 @@ namespace URC
                     var receiver = receivers[i];
                     if (receiver == null) continue;
                     var owner = Networking.GetOwner(receiver.gameObject);
-                    text += $"\t{i:000}:{GetUniqueName(receiver)}\t{(receiver.Active ? activeText : nonActiveText)}\t{receiver.Frequency:#0.00}\t{(receiver.sync ? "Sync" : "Local")}\t{GetDebugPlayerString(owner)}\n";
+                    text += $"\t{i:000}:{GetUniqueName(receiverParents[i])}/{GetUniqueName(receiver)}\t{(receiver.Active ? activeText : nonActiveText)}\t{receiver.Frequency:#0.00}\t{(receiver.sync ? "Sync" : "Local")}\t{GetDebugPlayerString(owner)}\n";
                 }
 
                 text += "\nPlayers:\n";
@@ -262,9 +284,9 @@ namespace URC
             }
         }
 
-        private string GetUniqueName(UnityEngine.Object o)
+        private string GetUniqueName(Object o)
         {
-            if (o == null) return " - ";
+            if (o == null) return "-";
             return $"{o.GetInstanceID():x8}@{o}";
         }
 
