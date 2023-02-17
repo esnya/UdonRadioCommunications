@@ -1,0 +1,1324 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba914234891ddd458239d9a948eaa9a, type: 3}
+  m_Name: _URC_SF
+  m_EditorClassIdentifier: 
+  udonVariables:
+  - prefabInstance: {fileID: 6618188740344843702, guid: 5dc340bf8c775484eaa28b27b5e58069,
+      type: 3}
+    prefabPath: Prefabs/DFUNC_URC_Frequency.prefab
+    udonVariables:
+    - udonInstance: {fileID: 6000088465037644541, guid: 5dc340bf8c775484eaa28b27b5e58069,
+        type: 3}
+      gameObjectName: DFUNC_URC_Frequency
+      variables:
+      - symbolName: controllerSensitivity
+        objectReference: {fileID: 0}
+        value: 100
+        arrayItems: []
+      - symbolName: desktopDecrementKey
+        objectReference: {fileID: 0}
+        value: Comma
+        arrayItems: []
+      - symbolName: desktopIncrementKey
+        objectReference: {fileID: 0}
+        value: Period
+        arrayItems: []
+      - symbolName: Dial_Funcon
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: frequencyFormatOverride
+        objectReference: {fileID: 0}
+        value: '{0}'
+        arrayItems: []
+      - symbolName: frequencyStep
+        objectReference: {fileID: 0}
+        value: 1
+        arrayItems: []
+      - symbolName: frequencyText
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: frequencyTextFormat
+        objectReference: {fileID: 0}
+        value: COM 000.000 '[,.]'
+        arrayItems: []
+      - symbolName: maxFrequency
+        objectReference: {fileID: 0}
+        value: 4
+        arrayItems: []
+      - symbolName: minFrequency
+        objectReference: {fileID: 0}
+        value: 1
+        arrayItems: []
+  - prefabInstance: {fileID: 3794536601450044535, guid: 65d62d943ef738846b76b933b8ecf304,
+      type: 3}
+    prefabPath: Prefabs/DFUNC_URC_PTT.prefab
+    udonVariables:
+    - udonInstance: {fileID: 6599876803505682599, guid: 65d62d943ef738846b76b933b8ecf304,
+        type: 3}
+      gameObjectName: Transmitter
+      variables:
+      - symbolName: deactivateDelay
+        objectReference: {fileID: 0}
+        value: 1
+        arrayItems: []
+      - symbolName: frequency
+        objectReference: {fileID: 0}
+        value: 118
+        arrayItems: []
+      - symbolName: indicatorAsLocal
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: minDistance
+        objectReference: {fileID: 0}
+        value: 5
+        arrayItems: []
+      - symbolName: statusActive
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusDeactivating
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusInactive
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+  - prefabInstance: {fileID: 1533443288448328203, guid: e35111c4b3fe4d34882b843ca8064288,
+      type: 3}
+    prefabPath: Prefabs/DFUNC_URC_RX.prefab
+    udonVariables:
+    - udonInstance: {fileID: 3358971406886269520, guid: e35111c4b3fe4d34882b843ca8064288,
+        type: 3}
+      gameObjectName: DFUNC_URC_RX
+      variables:
+      - symbolName: activateOnEnter
+        objectReference: {fileID: 0}
+        value: True
+        arrayItems: []
+      - symbolName: activeOnEnter
+        objectReference: {fileID: 0}
+        value: True
+        arrayItems: []
+      - symbolName: desktopKey
+        objectReference: {fileID: 0}
+        value: L
+        arrayItems: []
+      - symbolName: receiver
+        objectReference: {fileID: 5881642756396582416, guid: e35111c4b3fe4d34882b843ca8064288,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+  - prefabInstance: {fileID: 7629702917372400804, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+      type: 3}
+    prefabPath: SampleVehicles/SF-1Main+COM.prefab
+    udonVariables:
+    - udonInstance: {fileID: 7629702918736086617, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: DFUNC_AAM
+      variables:
+      - symbolName: AAM
+        objectReference: {fileID: 4106852870412315910, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: AAM (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: AAMAnimator
+        objectReference: {fileID: 7629702917663411424, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SF-1 (UnityEngine.Animator)
+        arrayItems: []
+      - symbolName: AAMLaunchDelay
+        objectReference: {fileID: 0}
+        value: 0
+        arrayItems: []
+      - symbolName: AAMLaunchPoint
+        objectReference: {fileID: 7629702917280750927, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: AAMLaunchPoint (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: AAMLockAngle
+        objectReference: {fileID: 0}
+        value: 15
+        arrayItems: []
+      - symbolName: AAMLockTime
+        objectReference: {fileID: 0}
+        value: 1.5
+        arrayItems: []
+      - symbolName: AAMMaxTargetDistance
+        objectReference: {fileID: 0}
+        value: 6000
+        arrayItems: []
+      - symbolName: AAMTargetIndicator
+        objectReference: {fileID: 7629702918372711871, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: hud_aamtargetindicator (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: AAMTargeting
+        objectReference: {fileID: 7629702918739258053, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: AAMTargeting (UnityEngine.AudioSource)
+        arrayItems: []
+      - symbolName: AAMTargetLock
+        objectReference: {fileID: 7629702917037991255, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: AAMLock (UnityEngine.AudioSource)
+        arrayItems: []
+      - symbolName: AllowFiringWhenGrounded
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: AnimBoolName
+        objectReference: {fileID: 0}
+        value: AAMSelected
+        arrayItems: []
+      - symbolName: AnimBoolStayTrueOnExit
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: AnimFiredTriggerName
+        objectReference: {fileID: 0}
+        value: aamlaunched
+        arrayItems: []
+      - symbolName: AnimFloatName
+        objectReference: {fileID: 0}
+        value: AAMs
+        arrayItems: []
+      - symbolName: DoAnimBool
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: FullReloadTimeSec
+        objectReference: {fileID: 0}
+        value: 10
+        arrayItems: []
+      - symbolName: HUDControl
+        objectReference: {fileID: 7629702917605255849, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: HUDController (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: HUDText_AAM_ammo
+        objectReference: {fileID: 4749001772358050837, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: AAMs (UnityEngine.UI.Text)
+        arrayItems: []
+      - symbolName: NumAAM
+        objectReference: {fileID: 0}
+        value: 6
+        arrayItems: []
+      - symbolName: SAVControl
+        objectReference: {fileID: 1816171220940932801, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+    - udonInstance: {fileID: 7629702917085333919, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: DFUNC_AltHold
+      variables:
+      - symbolName: AoALimiter
+        objectReference: {fileID: 0}
+        value: 99
+        arrayItems: []
+      - symbolName: Dial_Funcon
+        objectReference: {fileID: 535013873310263890, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: MFD_ALTHOLD_funcon (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: GLimiter
+        objectReference: {fileID: 0}
+        value: 12
+        arrayItems: []
+      - symbolName: HudHold
+        objectReference: {fileID: 7629702918609948849, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: hud_hold (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: SAVControl
+        objectReference: {fileID: 1816171220940932801, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+    - udonInstance: {fileID: 7629702918394224941, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: DFUNC_Brake
+      variables:
+      - symbolName: Airbrake_snd
+        objectReference: {fileID: 7629702918135841854, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: Airbrake (UnityEngine.AudioSource)
+        arrayItems: []
+      - symbolName: AirbrakeStrength
+        objectReference: {fileID: 0}
+        value: 4
+        arrayItems: []
+      - symbolName: BrakeAnimator
+        objectReference: {fileID: 7629702917663411424, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SF-1 (UnityEngine.Animator)
+        arrayItems: []
+      - symbolName: BrakeForcePosition
+        objectReference: {fileID: 497238709378724828, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: BrakeForcePos (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: GroundBrakeForcePosition
+        objectReference: {fileID: 497238709378724828, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: BrakeForcePos (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: GroundBrakeSpeed
+        objectReference: {fileID: 0}
+        value: 40
+        arrayItems: []
+      - symbolName: GroundBrakeStrength
+        objectReference: {fileID: 0}
+        value: 6
+        arrayItems: []
+      - symbolName: KeyboardControl
+        objectReference: {fileID: 0}
+        value: B
+        arrayItems: []
+      - symbolName: NoPilotAlwaysGroundBrake
+        objectReference: {fileID: 0}
+        value: True
+        arrayItems: []
+      - symbolName: SAVControl
+        objectReference: {fileID: 1816171220940932801, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: WaterBrakeStrength
+        objectReference: {fileID: 0}
+        value: 1
+        arrayItems: []
+    - udonInstance: {fileID: 7629702917096634577, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: DFUNC_Canopy
+      variables:
+      - symbolName: AnimCanopyBool
+        objectReference: {fileID: 0}
+        value: canopyopen
+        arrayItems: []
+      - symbolName: AnimCanopyBroken
+        objectReference: {fileID: 0}
+        value: canopybroken
+        arrayItems: []
+      - symbolName: CanopyAnimator
+        objectReference: {fileID: 7629702917663411424, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SF-1 (UnityEngine.Animator)
+        arrayItems: []
+      - symbolName: CanopyAutoCloseSpeed
+        objectReference: {fileID: 0}
+        value: 100
+        arrayItems: []
+      - symbolName: CanopyBreakSpeed
+        objectReference: {fileID: 0}
+        value: 50
+        arrayItems: []
+      - symbolName: CanopyCanBreakOff
+        objectReference: {fileID: 0}
+        value: True
+        arrayItems: []
+      - symbolName: CanopyCloseTime
+        objectReference: {fileID: 0}
+        value: 1.8
+        arrayItems: []
+      - symbolName: CanopyDragMulti
+        objectReference: {fileID: 0}
+        value: 1.2
+        arrayItems: []
+      - symbolName: Dial_Funcon
+        objectReference: {fileID: 535013872754746923, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: MFD_CANOPY_funcon (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: SAVControl
+        objectReference: {fileID: 1816171220940932801, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: SoundControl
+        objectReference: {fileID: 7629702918379615263, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SoundController (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+    - udonInstance: {fileID: 7629702917363462019, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: DFUNC_Catapult
+      variables:
+      - symbolName: CatapultLayer
+        objectReference: {fileID: 0}
+        value: 24
+        arrayItems: []
+      - symbolName: CatapultLock
+        objectReference: {fileID: 7629702917451142688, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: CatapultLock (UnityEngine.AudioSource)
+        arrayItems: []
+      - symbolName: Dial_Funcon
+        objectReference: {fileID: 535013871403839797, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: MFD_CATAPULT_funcon (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: GearFunc
+        objectReference: {fileID: 7629702917392579454, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: DFUNC_Gear (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: MaxAttachAngle
+        objectReference: {fileID: 0}
+        value: 15
+        arrayItems: []
+      - symbolName: SAVControl
+        objectReference: {fileID: 1816171220940932801, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+    - udonInstance: {fileID: 7629702917959517118, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: DFUNC_Cruise
+      variables:
+      - symbolName: AllowCruiseGrounded
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: Dial_Funcon
+        objectReference: {fileID: 535013872962092557, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: MFD_CRUISE_funcon (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: HUDText_knotstarget
+        objectReference: {fileID: 7629702918788348867, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: knotstarget (UnityEngine.UI.Text)
+        arrayItems: []
+      - symbolName: SAVControl
+        objectReference: {fileID: 1816171220940932801, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+    - udonInstance: {fileID: 7629702917188530880, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: DFUNC_Flares
+      variables:
+      - symbolName: FlareActiveTime
+        objectReference: {fileID: 0}
+        value: 4
+        arrayItems: []
+      - symbolName: FlareLaunch
+        objectReference: {fileID: 4174338511366726088, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: LaunchFlare (UnityEngine.AudioSource)
+        arrayItems: []
+      - symbolName: FlareLaunchSpeed
+        objectReference: {fileID: 0}
+        value: 100
+        arrayItems: []
+      - symbolName: FlareParticles
+        objectReference: {fileID: 0}
+        value: UnityEngine.ParticleSystem[]
+        arrayItems:
+        - Flares (UnityEngine.ParticleSystem)
+        - Flares (1) (UnityEngine.ParticleSystem)
+      - symbolName: FullReloadTimeSec
+        objectReference: {fileID: 0}
+        value: 15
+        arrayItems: []
+      - symbolName: HUDText_flare_ammo
+        objectReference: {fileID: 8487297160256199984, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: Flares (UnityEngine.UI.Text)
+        arrayItems: []
+      - symbolName: NumFlares
+        objectReference: {fileID: 0}
+        value: 60
+        arrayItems: []
+      - symbolName: SAVControl
+        objectReference: {fileID: 1816171220940932801, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: SequentialLaunch
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+    - udonInstance: {fileID: 7629702917765327621, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: DFUNC_Gun
+      variables:
+      - symbolName: AmmoBar
+        objectReference: {fileID: 7629702916776507576, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: hud_ammobar (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: AnimBoolName
+        objectReference: {fileID: 0}
+        value: GunSelected
+        arrayItems: []
+      - symbolName: AnimBoolStayTrueOnExit
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: BulletSpeed
+        objectReference: {fileID: 0}
+        value: 1050
+        arrayItems: []
+      - symbolName: DoAnimBool
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: FullReloadTimeSec
+        objectReference: {fileID: 0}
+        value: 20
+        arrayItems: []
+      - symbolName: GunAmmoInSeconds
+        objectReference: {fileID: 0}
+        value: 12
+        arrayItems: []
+      - symbolName: GunAnimator
+        objectReference: {fileID: 7629702917663411424, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SF-1 (UnityEngine.Animator)
+        arrayItems: []
+      - symbolName: GunDamageParticle
+        objectReference: {fileID: 7629702917048907965, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: GunParticle_pilot (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: GunFiringBoolName
+        objectReference: {fileID: 0}
+        value: gunfiring
+        arrayItems: []
+      - symbolName: GUNLeadIndicator
+        objectReference: {fileID: 7629702917002538902, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: hud_gunlead (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: GunRecoil
+        objectReference: {fileID: 0}
+        value: 150
+        arrayItems: []
+      - symbolName: HUDControl
+        objectReference: {fileID: 7629702917605255849, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: HUDController (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: HudCrosshair
+        objectReference: {fileID: 7629702918855615926, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: hud_crosshair (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: HudCrosshairGun
+        objectReference: {fileID: 7629702916799219679, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: hud_crosshair_gun (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: MaxTargetDistance
+        objectReference: {fileID: 0}
+        value: 6000
+        arrayItems: []
+      - symbolName: SAVControl
+        objectReference: {fileID: 1816171220940932801, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: TargetIndicator
+        objectReference: {fileID: 7629702918372711871, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: hud_aamtargetindicator (UnityEngine.Transform)
+        arrayItems: []
+    - udonInstance: {fileID: 7629702917652300839, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: DFUNC_Limits
+      variables:
+      - symbolName: AoALimiter
+        objectReference: {fileID: 0}
+        value: 15
+        arrayItems: []
+      - symbolName: DefaultLimitsOn
+        objectReference: {fileID: 0}
+        value: True
+        arrayItems: []
+      - symbolName: Dial_Funcon
+        objectReference: {fileID: 535013872146456226, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: MFD_FLTLIMITS_funcon (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: GLimiter
+        objectReference: {fileID: 0}
+        value: 12
+        arrayItems: []
+      - symbolName: HudLimit
+        objectReference: {fileID: 7629702918479072815, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: hud_limit (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: SAVControl
+        objectReference: {fileID: 1816171220940932801, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+    - udonInstance: {fileID: 1220689003252276258, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: DFUNC_ToggleEngine
+      variables:
+      - symbolName: AnimEngineStartupAnimBool
+        objectReference: {fileID: 0}
+        value: EngineStarting
+        arrayItems: []
+      - symbolName: Dial_Funcon
+        objectReference: {fileID: 994947173848202850, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: MFD_ENGINESTART_funcon (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: DoEngineStartupAnimBool
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: EngineAnimator
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: EngineStartupSound
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: EngineTurnOffSound
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: SAVControl
+        objectReference: {fileID: 1816171220940932801, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: StartUpTime
+        objectReference: {fileID: 0}
+        value: 5
+        arrayItems: []
+      - symbolName: ToggleMinDelay
+        objectReference: {fileID: 0}
+        value: 6
+        arrayItems: []
+    - udonInstance: {fileID: 3713562890951676607, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: DFUNC_URC_Frequency
+      variables:
+      - symbolName: controllerSensitivity
+        objectReference: {fileID: 0}
+        value: 100
+        arrayItems: []
+      - symbolName: desktopDecrementKey
+        objectReference: {fileID: 0}
+        value: Comma
+        arrayItems: []
+      - symbolName: desktopIncrementKey
+        objectReference: {fileID: 0}
+        value: Period
+        arrayItems: []
+      - symbolName: Dial_Funcon
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: frequencyFormatOverride
+        objectReference: {fileID: 0}
+        value: '{0}'
+        arrayItems: []
+      - symbolName: frequencyStep
+        objectReference: {fileID: 0}
+        value: 1
+        arrayItems: []
+      - symbolName: frequencyText
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: frequencyTextFormat
+        objectReference: {fileID: 0}
+        value: COM 000.000 '[,.]'
+        arrayItems: []
+      - symbolName: maxFrequency
+        objectReference: {fileID: 0}
+        value: 4
+        arrayItems: []
+      - symbolName: minFrequency
+        objectReference: {fileID: 0}
+        value: 1
+        arrayItems: []
+    - udonInstance: {fileID: 8442706452620666563, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: DFUNC_URC_RX
+      variables:
+      - symbolName: activateOnEnter
+        objectReference: {fileID: 0}
+        value: True
+        arrayItems: []
+      - symbolName: activeOnEnter
+        objectReference: {fileID: 0}
+        value: True
+        arrayItems: []
+      - symbolName: desktopKey
+        objectReference: {fileID: 0}
+        value: L
+        arrayItems: []
+      - symbolName: receiver
+        objectReference: {fileID: 731897163117269635, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+    - udonInstance: {fileID: 7629702917102528272, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: SF-1
+      variables:
+      - symbolName: AAMTargetsLayer
+        objectReference: {fileID: 0}
+        value: UnityEngine.LayerMask
+        arrayItems: []
+      - symbolName: CenterOfMass
+        objectReference: {fileID: 7629702917201531074, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: CenterOfMass (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: Dial_Functions_L
+        objectReference: {fileID: 0}
+        value: UnityEngine.Component[]
+        arrayItems:
+        - DFUNC_ToggleEngine (VRC.Udon.UdonBehaviour)
+        - DFUNC_Limits (VRC.Udon.UdonBehaviour)
+        - DFUNC_Flares (VRC.Udon.UdonBehaviour)
+        - DFUNC_Catapult (VRC.Udon.UdonBehaviour)
+        - DFUNC_Brake (VRC.Udon.UdonBehaviour)
+        - DFUNC_AltHold (VRC.Udon.UdonBehaviour)
+        - DFUNC_Canopy (VRC.Udon.UdonBehaviour)
+        - DFUNC_Cruise (VRC.Udon.UdonBehaviour)
+      - symbolName: Dial_Functions_R
+        objectReference: {fileID: 0}
+        value: UnityEngine.Component[]
+        arrayItems:
+        - DFUNC_Gun (VRC.Udon.UdonBehaviour)
+        - DFUNC_AAM (VRC.Udon.UdonBehaviour)
+        - DFUNC_AGM (VRC.Udon.UdonBehaviour)
+        - DFUNC_Bomb (VRC.Udon.UdonBehaviour)
+        - DFUNC_Gear (VRC.Udon.UdonBehaviour)
+        - DFUNC_Flaps (VRC.Udon.UdonBehaviour)
+        - DFUNC_Hook (VRC.Udon.UdonBehaviour)
+        - DFUNC_Smoke (VRC.Udon.UdonBehaviour)
+      - symbolName: DisableAfter10Seconds
+        objectReference: {fileID: 0}
+        value: UnityEngine.GameObject[]
+        arrayItems: []
+      - symbolName: ExtensionUdonBehaviours
+        objectReference: {fileID: 0}
+        value: UnityEngine.Component[]
+        arrayItems:
+        - EffectsController (VRC.Udon.UdonBehaviour)
+        - SoundController (VRC.Udon.UdonBehaviour)
+        - WaterTrigger (VRC.Udon.UdonBehaviour)
+        - SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        - SyncScript (VRC.Udon.UdonBehaviour)
+      - symbolName: InVehicleOnly
+        objectReference: {fileID: 7629702918005804835, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: InVehicleOnly (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: LeftDialDivideStraightUp
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: LStickDisplayHighlighter
+        objectReference: {fileID: 7629702918481622401, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: LStickDisplayHighlighter (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: RightDialDivideStraightUp
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: RStickDisplayHighlighter
+        objectReference: {fileID: 7629702917376595452, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: RStickDisplayHighlighter (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: SwitchFunctionSound
+        objectReference: {fileID: 7629702918388607388, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: MenuSelect (UnityEngine.AudioSource)
+        arrayItems: []
+    - udonInstance: {fileID: 1673128289104593137, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: Transmitter
+      variables:
+      - symbolName: deactivateDelay
+        objectReference: {fileID: 0}
+        value: 1
+        arrayItems: []
+      - symbolName: frequency
+        objectReference: {fileID: 0}
+        value: 118
+        arrayItems: []
+      - symbolName: indicatorAsLocal
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: minDistance
+        objectReference: {fileID: 0}
+        value: 5
+        arrayItems: []
+      - symbolName: statusActive
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusDeactivating
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusInactive
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+    - udonInstance: {fileID: 7629702918557523881, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+        type: 3}
+      gameObjectName: VehicleRespawner
+      variables:
+      - symbolName: EntityControl
+        objectReference: {fileID: 7629702917102528272, guid: 5aa0696f016f7214b9ee757e6f549ee6,
+          type: 3}
+        value: SF-1 (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: EventName
+        objectReference: {fileID: 0}
+        value: SFEXT_O_RespawnButton
+        arrayItems: []
+      - symbolName: Global
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+  - prefabInstance: {fileID: 6729289301852982897, guid: a35c399fcf052ad42aa9da31a8cfd147,
+      type: 3}
+    prefabPath: SampleVehicles/SH-1Main+COM.prefab
+    udonVariables:
+    - udonInstance: {fileID: 6729289301878329407, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: DFUNC_AAM
+      variables:
+      - symbolName: AAM
+        objectReference: {fileID: 2534295232534686757, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: AAM (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: AAMAnimator
+        objectReference: {fileID: 6729289300238911937, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: SH-1 (UnityEngine.Animator)
+        arrayItems: []
+      - symbolName: AAMLaunchDelay
+        objectReference: {fileID: 0}
+        value: 0
+        arrayItems: []
+      - symbolName: AAMLaunchPoint
+        objectReference: {fileID: 6729289300528700499, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: AAMLaunchPoint (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: AAMLockAngle
+        objectReference: {fileID: 0}
+        value: 15
+        arrayItems: []
+      - symbolName: AAMLockTime
+        objectReference: {fileID: 0}
+        value: 1.5
+        arrayItems: []
+      - symbolName: AAMMaxTargetDistance
+        objectReference: {fileID: 0}
+        value: 6000
+        arrayItems: []
+      - symbolName: AAMTargetIndicator
+        objectReference: {fileID: 6729289301443883322, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: hud_aamtargetindicator (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: AAMTargeting
+        objectReference: {fileID: 6729289300567062603, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: AAMTargeting (UnityEngine.AudioSource)
+        arrayItems: []
+      - symbolName: AAMTargetLock
+        objectReference: {fileID: 6729289301396163810, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: AAMLock (UnityEngine.AudioSource)
+        arrayItems: []
+      - symbolName: AllowFiringWhenGrounded
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: AnimBoolName
+        objectReference: {fileID: 0}
+        value: AAMSelected
+        arrayItems: []
+      - symbolName: AnimBoolStayTrueOnExit
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: AnimFiredTriggerName
+        objectReference: {fileID: 0}
+        value: aamlaunched
+        arrayItems: []
+      - symbolName: AnimFloatName
+        objectReference: {fileID: 0}
+        value: AAMs
+        arrayItems: []
+      - symbolName: DoAnimBool
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: FullReloadTimeSec
+        objectReference: {fileID: 0}
+        value: 10
+        arrayItems: []
+      - symbolName: HUDControl
+        objectReference: {fileID: 6729289301754351666, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: HUDController (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: HUDText_AAM_ammo
+        objectReference: {fileID: 6729289301643219374, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: AAMs (UnityEngine.UI.Text)
+        arrayItems: []
+      - symbolName: NumAAM
+        objectReference: {fileID: 0}
+        value: 2
+        arrayItems: []
+      - symbolName: SAVControl
+        objectReference: {fileID: 1864949002255686726, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+    - udonInstance: {fileID: 6729289300622457192, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: DFUNC_Canopy
+      variables:
+      - symbolName: CanopyAnimator
+        objectReference: {fileID: 6729289300238911937, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: SH-1 (UnityEngine.Animator)
+        arrayItems: []
+      - symbolName: CanopyAutoCloseSpeed
+        objectReference: {fileID: 0}
+        value: 100
+        arrayItems: []
+      - symbolName: CanopyBreakSpeed
+        objectReference: {fileID: 0}
+        value: 50
+        arrayItems: []
+      - symbolName: CanopyCanBreakOff
+        objectReference: {fileID: 0}
+        value: True
+        arrayItems: []
+      - symbolName: CanopyCloseTime
+        objectReference: {fileID: 0}
+        value: 1.8
+        arrayItems: []
+      - symbolName: CanopyDragMulti
+        objectReference: {fileID: 0}
+        value: 1.35
+        arrayItems: []
+      - symbolName: Dial_Funcon
+        objectReference: {fileID: 2351585151365010588, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: MFD_CANOPY_funcon (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: SAVControl
+        objectReference: {fileID: 1864949002255686726, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: SoundControl
+        objectReference: {fileID: 6729289300127387237, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: SoundController (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+    - udonInstance: {fileID: 727273210586643879, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: DFUNC_Door
+      variables:
+      - symbolName: AnimBoolName
+        objectReference: {fileID: 0}
+        value: 
+        arrayItems: []
+      - symbolName: BoolAnimator
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: Dial_Funcon
+        objectReference: {fileID: 0}
+        value: UnityEngine.GameObject[]
+        arrayItems: []
+      - symbolName: DoorCloseTime
+        objectReference: {fileID: 0}
+        value: 2
+        arrayItems: []
+      - symbolName: MasterToggle
+        objectReference: {fileID: 4047814830619708757, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: DFUNCP_SideDoor (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: OnDefault
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: OpensDoor
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: PilotExitTurnOff
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: ToggleMinDelay
+        objectReference: {fileID: 0}
+        value: 0.17
+        arrayItems: []
+      - symbolName: ToggleObjects
+        objectReference: {fileID: 0}
+        value: UnityEngine.GameObject[]
+        arrayItems: []
+    - udonInstance: {fileID: 6729289301795019630, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: DFUNC_Flares
+      variables:
+      - symbolName: FlareActiveTime
+        objectReference: {fileID: 0}
+        value: 4
+        arrayItems: []
+      - symbolName: FlareLaunch
+        objectReference: {fileID: 4087025060700692194, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: LaunchFlare (UnityEngine.AudioSource)
+        arrayItems: []
+      - symbolName: FlareLaunchSpeed
+        objectReference: {fileID: 0}
+        value: 100
+        arrayItems: []
+      - symbolName: FlareParticles
+        objectReference: {fileID: 0}
+        value: UnityEngine.ParticleSystem[]
+        arrayItems:
+        - Flares (UnityEngine.ParticleSystem)
+        - Flares (1) (UnityEngine.ParticleSystem)
+      - symbolName: FullReloadTimeSec
+        objectReference: {fileID: 0}
+        value: 15
+        arrayItems: []
+      - symbolName: HUDText_flare_ammo
+        objectReference: {fileID: 727273209711930048, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Flares (UnityEngine.UI.Text)
+        arrayItems: []
+      - symbolName: NumFlares
+        objectReference: {fileID: 0}
+        value: 60
+        arrayItems: []
+      - symbolName: SAVControl
+        objectReference: {fileID: 1864949002255686726, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: SequentialLaunch
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+    - udonInstance: {fileID: 6729289301170759159, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: DFUNC_Gun
+      variables:
+      - symbolName: AmmoBar
+        objectReference: {fileID: 6729289300168019180, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: hud_ammobar (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: AnimBoolName
+        objectReference: {fileID: 0}
+        value: GunSelected
+        arrayItems: []
+      - symbolName: AnimBoolStayTrueOnExit
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: BulletSpeed
+        objectReference: {fileID: 0}
+        value: 1050
+        arrayItems: []
+      - symbolName: DoAnimBool
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: FullReloadTimeSec
+        objectReference: {fileID: 0}
+        value: 20
+        arrayItems: []
+      - symbolName: GunAmmoInSeconds
+        objectReference: {fileID: 0}
+        value: 35
+        arrayItems: []
+      - symbolName: GunAnimator
+        objectReference: {fileID: 6729289300238911937, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: SH-1 (UnityEngine.Animator)
+        arrayItems: []
+      - symbolName: GunDamageParticle
+        objectReference: {fileID: 5038688983204326031, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: PilotGunparticle (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: GunFiringBoolName
+        objectReference: {fileID: 0}
+        value: gunfiring
+        arrayItems: []
+      - symbolName: GUNLeadIndicator
+        objectReference: {fileID: 6729289301863445364, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: hud_gunlead (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: GunRecoil
+        objectReference: {fileID: 0}
+        value: 150
+        arrayItems: []
+      - symbolName: GunRecoilEmpty
+        objectReference: {fileID: 6729289301176307916, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: GunRecoilEmpty (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: HUDControl
+        objectReference: {fileID: 6729289301754351666, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: HUDController (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: HudCrosshair
+        objectReference: {fileID: 6729289300036182555, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: hud_crosshair (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: HudCrosshairGun
+        objectReference: {fileID: 6729289300539433423, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: hud_crosshair_gun (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: MaxTargetDistance
+        objectReference: {fileID: 0}
+        value: 6000
+        arrayItems: []
+      - symbolName: SAVControl
+        objectReference: {fileID: 1864949002255686726, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: TargetIndicator
+        objectReference: {fileID: 6729289301443883322, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: hud_aamtargetindicator (UnityEngine.Transform)
+        arrayItems: []
+    - udonInstance: {fileID: 8100135853749939507, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: DFUNC_URC_Frequency
+      variables:
+      - symbolName: controllerSensitivity
+        objectReference: {fileID: 0}
+        value: 100
+        arrayItems: []
+      - symbolName: desktopDecrementKey
+        objectReference: {fileID: 0}
+        value: Comma
+        arrayItems: []
+      - symbolName: desktopIncrementKey
+        objectReference: {fileID: 0}
+        value: Period
+        arrayItems: []
+      - symbolName: Dial_Funcon
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: frequencyFormatOverride
+        objectReference: {fileID: 0}
+        value: '{0}'
+        arrayItems: []
+      - symbolName: frequencyStep
+        objectReference: {fileID: 0}
+        value: 1
+        arrayItems: []
+      - symbolName: frequencyText
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: frequencyTextFormat
+        objectReference: {fileID: 0}
+        value: COM 000.000 '[,.]'
+        arrayItems: []
+      - symbolName: maxFrequency
+        objectReference: {fileID: 0}
+        value: 4
+        arrayItems: []
+      - symbolName: minFrequency
+        objectReference: {fileID: 0}
+        value: 1
+        arrayItems: []
+    - udonInstance: {fileID: 5306134455320974346, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: DFUNC_URC_RX
+      variables:
+      - symbolName: activateOnEnter
+        objectReference: {fileID: 0}
+        value: True
+        arrayItems: []
+      - symbolName: activeOnEnter
+        objectReference: {fileID: 0}
+        value: True
+        arrayItems: []
+      - symbolName: desktopKey
+        objectReference: {fileID: 0}
+        value: L
+        arrayItems: []
+      - symbolName: receiver
+        objectReference: {fileID: 3936587470581063754, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: Receiver (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+    - udonInstance: {fileID: 6729289300126288600, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: DFUNC_VTOLAngle
+      variables:
+      - symbolName: SAVControl
+        objectReference: {fileID: 1864949002255686726, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+    - udonInstance: {fileID: 6729289300238911998, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: SH-1
+      variables:
+      - symbolName: AAMTargetsLayer
+        objectReference: {fileID: 0}
+        value: UnityEngine.LayerMask
+        arrayItems: []
+      - symbolName: CenterOfMass
+        objectReference: {fileID: 6729289300822412600, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: CenterOfMass (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: Dial_Functions_L
+        objectReference: {fileID: 0}
+        value: UnityEngine.Component[]
+        arrayItems:
+        - DFUNC_VTOLAngle (VRC.Udon.UdonBehaviour)
+        - DFUNC_Flares (VRC.Udon.UdonBehaviour)
+        - DFUNC_Door (VRC.Udon.UdonBehaviour)
+        - DFUNC_Canopy (VRC.Udon.UdonBehaviour)
+      - symbolName: Dial_Functions_R
+        objectReference: {fileID: 0}
+        value: UnityEngine.Component[]
+        arrayItems:
+        - DFUNC_Gun (VRC.Udon.UdonBehaviour)
+        - DFUNC_AAM (VRC.Udon.UdonBehaviour)
+        - DFUNC_AGM (VRC.Udon.UdonBehaviour)
+        - DFUNC_Bomb (VRC.Udon.UdonBehaviour)
+        - DFUNC_Smoke (VRC.Udon.UdonBehaviour)
+        - DFUNC_EngineStart (VRC.Udon.UdonBehaviour)
+      - symbolName: DisableAfter10Seconds
+        objectReference: {fileID: 0}
+        value: UnityEngine.GameObject[]
+        arrayItems: []
+      - symbolName: ExtensionUdonBehaviours
+        objectReference: {fileID: 0}
+        value: UnityEngine.Component[]
+        arrayItems:
+        - SaccAirVehicle (VRC.Udon.UdonBehaviour)
+        - EffectsController (VRC.Udon.UdonBehaviour)
+        - SoundController (VRC.Udon.UdonBehaviour)
+        - WaterTrigger (VRC.Udon.UdonBehaviour)
+        - GunnerFunctions (VRC.Udon.UdonBehaviour)
+        - SyncScript (VRC.Udon.UdonBehaviour)
+      - symbolName: InVehicleOnly
+        objectReference: {fileID: 6729289300364810187, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: InVehicleOnly (UnityEngine.GameObject)
+        arrayItems: []
+      - symbolName: LeftDialDivideStraightUp
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: LStickDisplayHighlighter
+        objectReference: {fileID: 1340369793973884021, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: LStickDisplayHighlighter (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: RightDialDivideStraightUp
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: RStickDisplayHighlighter
+        objectReference: {fileID: 1340369794493376542, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: RStickDisplayHighlighter (UnityEngine.Transform)
+        arrayItems: []
+      - symbolName: SwitchFunctionSound
+        objectReference: {fileID: 6729289301482130668, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: MenuSelect (UnityEngine.AudioSource)
+        arrayItems: []
+    - udonInstance: {fileID: 8679621818941259566, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: Transmitter
+      variables:
+      - symbolName: deactivateDelay
+        objectReference: {fileID: 0}
+        value: 1
+        arrayItems: []
+      - symbolName: frequency
+        objectReference: {fileID: 0}
+        value: 118
+        arrayItems: []
+      - symbolName: indicatorAsLocal
+        objectReference: {fileID: 0}
+        value: False
+        arrayItems: []
+      - symbolName: minDistance
+        objectReference: {fileID: 0}
+        value: 5
+        arrayItems: []
+      - symbolName: statusActive
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusDeactivating
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+      - symbolName: statusInactive
+        objectReference: {fileID: 0}
+        value: null
+        arrayItems: []
+    - udonInstance: {fileID: 6729289301076432400, guid: a35c399fcf052ad42aa9da31a8cfd147,
+        type: 3}
+      gameObjectName: VehicleRespawner
+      variables:
+      - symbolName: EntityControl
+        objectReference: {fileID: 6729289300238911998, guid: a35c399fcf052ad42aa9da31a8cfd147,
+          type: 3}
+        value: SH-1 (VRC.Udon.UdonBehaviour)
+        arrayItems: []
+      - symbolName: EventName
+        objectReference: {fileID: 0}
+        value: SFEXT_O_RespawnButton
+        arrayItems: []

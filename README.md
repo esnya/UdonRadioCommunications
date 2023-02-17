@@ -1,6 +1,13 @@
 # UdonRadioCommunication
 Simplified radio communication system for VRChat Udon worlds.
 
+## Getting Started
+1. Create a Unity Project for VRChat World with UdonSharp using VRChat Creator Compoanion
+2. Open the Unity Project.
+3. Open the Package Manager window from Window menu.
+4. Click + button and select `Add package from git URL`.
+5. Enter `git+https://github.com/esnya/UdonRadioCommunications.git?pth=/Packages/com.nekometer.esnya.udon-radio-communications` and click Add button (Enter `git+https://github.com/esnya/UdonRadioCommunications.git?pth=/Packages/com.nekometer.esnya.udon-radio-communications#beta` to use beta releases)
+
 ## Usage
 - Place `Transmitter`s and `Receiver`s wherever you want.
 - Call custom events `Activate` and `Deactivate` and set variable `frequency` by player interactions.
@@ -26,5 +33,10 @@ Only one udon is using the `Update` loop. If the number of `Transmitters` is `Nt
 | :-- | :-- |
 | Sync | If checked, anyone who is near the receiver can listen to the radio. If not, only local clients. |
 
-## Integrations
-- [SaccFlightAndVehicles (1.5)](https://github.com/esnya/UdonRadioCommunication/tree/master/Assets/UdonRadioCommunication/Integrations/SaccFlightAndVehicles#readme)
+# SaccFlight Integrations
+Integration addons for SaccFlightAndVehicles.
+
+## Installation
+1. Open the Package Manager window from Window menu.
+2. Click + button and select `Add package from git URL`.
+3. Enter `git+https://github.com/esnya/UdonRadioCommunications.git?pth=/Packages/com.nekometer.esnya.udon-radio-communications-sf` and click Add button (Enter `git+https://github.com/esnya/UdonRadioCommunications.git?pth=/Packages/com.nekometer.esnya.udon-radio-communications-sf#beta` to use beta releases)

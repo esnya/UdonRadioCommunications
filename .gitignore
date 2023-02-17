@@ -60,3 +60,11 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+LightingData.asset*
+Lightmap-*.png*
+Lightmap-*.exr*
+Lightmap-*.png*
+ReflectionProbe-*.exr*
+
+/dist
+
