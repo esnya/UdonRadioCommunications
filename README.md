@@ -1,21 +1,27 @@
 # UdonRadioCommunication
 Simplified radio communication system for VRChat Udon worlds.
 
+![image](https://user-images.githubusercontent.com/2088693/219715229-396f0e71-921a-4e2e-814a-d814944c3fe8.png)
+
 ## Getting Started
 1. Create a Unity Project for VRChat World with UdonSharp using VRChat Creator Compoanion
 2. Open the Unity Project.
 3. Open the Package Manager window from Window menu.
 4. Click + button and select `Add package from git URL`.
 5. Enter `git+https://github.com/esnya/UdonRadioCommunications.git?pth=/Packages/com.nekometer.esnya.udon-radio-communications` and click Add button (Enter `git+https://github.com/esnya/UdonRadioCommunications.git?pth=/Packages/com.nekometer.esnya.udon-radio-communications#beta` to use beta releases)
+6. Install [optional dependencies](#optional-dependencies) if you need.
 
 ## Usage
 - Place `Transmitter`s and `Receiver`s wherever you want.
 - Call custom events `Activate` and `Deactivate` and set variable `frequency` by player interactions.
 - Add a single `UdonRadioCommunication` to the scene.
-- Press "Setup" button in the inspector.
-  - Press again when you added or removed `Transmitter`s or `Receiver`s.
 
 For more usage such as `Transceiver`, open a scene `Demo.unity`.
+
+## Optional Dependencies
+| Name | Description |
+| :-- | :-- |
+ |[InariUdon](https://github.com/esnya/InariUdon.git) | `Interaction/TouchSwitch` and `Interaction/KeyboardInput` are used and **required in sample prefabs**.  |
 
 ## Runtime Overhead
 Only one udon is using the `Update` loop. If the number of `Transmitters` is `Nt`, the number of `Receivers` is `Nr`, and the number of `Players` is `Np`, the computational complexity is `O(Np(Nt+Nr))`.
@@ -34,7 +40,9 @@ Only one udon is using the `Update` loop. If the number of `Transmitters` is `Nt
 | Sync | If checked, anyone who is near the receiver can listen to the radio. If not, only local clients. |
 
 # SaccFlight Integrations
-Integration addons for SaccFlightAndVehicles.
+Integration addons for SaccFlightAndVehicles. DFUNCs are provided to manage fequency, toggle receiving and push to talk.
+
+![image](https://user-images.githubusercontent.com/2088693/219712019-99885e55-98cc-4578-8931-456da063de62.png)
 
 ## Installation
 1. Open the Package Manager window from Window menu.
