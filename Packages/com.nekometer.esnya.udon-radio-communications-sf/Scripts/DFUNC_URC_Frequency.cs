@@ -27,7 +27,7 @@ namespace URC
                 frequency = value;
                 transmitter._SetFrequency(value);
                 receiver.Frequency = value;
-                frequencyText.text = value.ToString(frequencyTextFormat);
+                _UpdateFrequencyText();
                 if (switchFunctionSound) switchFunctionSound.Play();
             }
         }
@@ -127,6 +127,11 @@ namespace URC
                 }
                 prevTriggered = trigger;
             }
+        }
+
+        public void _UpdateFrequencyText()
+        {
+            frequencyText.text = frequency.ToString(frequencyTextFormat);
         }
     }
 }
