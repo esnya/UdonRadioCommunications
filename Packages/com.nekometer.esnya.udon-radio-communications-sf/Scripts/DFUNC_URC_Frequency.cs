@@ -24,7 +24,6 @@ namespace URC
             get => transmitter.Frequency;
             set
             {
-                frequency = value;
                 transmitter._SetFrequency(value);
                 receiver.Frequency = value;
                 _UpdateFrequencyText();
@@ -71,7 +70,6 @@ namespace URC
         }
         public void SFEXTP_L_EntityStart() => SFEXT_L_EntityStart();
 
-        private float frequency;
         public void SFEXT_O_PilotEnter()
         {
             var urc = transmitter.urc;
@@ -103,8 +101,8 @@ namespace URC
         private bool prevTriggered;
         private void LateUpdate()
         {
-            if (Input.GetKeyDown(desktopDecrementKey)) Frequency = Mathf.Max(frequency - frequencyStep, minFrequency);
-            else if (Input.GetKeyDown(desktopIncrementKey)) Frequency = Mathf.Min(frequency + frequencyStep, maxFrequency);
+            if (Input.GetKeyDown(desktopDecrementKey)) Frequency = Mathf.Max(Frequency - frequencyStep, minFrequency);
+            else if (Input.GetKeyDown(desktopIncrementKey)) Frequency = Mathf.Min(Frequency + frequencyStep, maxFrequency);
             else
             {
                 var trigger = Input.GetAxisRaw(triggerAxis) > 0.75f || debugTransform != null;
@@ -120,7 +118,7 @@ namespace URC
                         var diff = (inputPos - inputOrigin) * controllerSensitivity * frequencyStep;
                         if (Mathf.Abs(diff) > frequencyStep)
                         {
-                            Frequency = Mathf.Clamp(Mathf.Floor((frequency + diff) / frequencyStep) * frequencyStep, minFrequency, maxFrequency);
+                            Frequency = Mathf.Clamp(Mathf.Floor((Frequency + diff) / frequencyStep) * frequencyStep, minFrequency, maxFrequency);
                             inputOrigin = inputPos;
                         }
                     }
@@ -131,7 +129,7 @@ namespace URC
 
         public void _UpdateFrequencyText()
         {
-            frequencyText.text = frequency.ToString(frequencyTextFormat);
+            frequencyText.text = Frequency.ToString(frequencyTextFormat);
         }
     }
 }
