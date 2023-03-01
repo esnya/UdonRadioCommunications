@@ -1,20 +1,24 @@
 {
   "name": "com.nekometer.esnya.udon-radio-communications-sf",
   "displayName": "Udon Radio Communications SaccFlight Integration",
-  "version": "1.0.0-alpha.1",
-  "gitDependencies": {
-    "com.merlinvr.udonsharp": "https://github.com/vrchat-community/UdonSharp.git?path=/Packages/com.vrchat.UdonSharp#1.0.1",
-    "com.vrchat.base": "https://github.com/vrchat/packages.git?path=/packages/com.vrchat.base#3.0.4",
-    "com.vrchat.worlds": "https://github.com/vrchat/packages.git?path=/packages/com.vrchat.worlds#3.0.4",
-    "com.nekometer.esnya.udon-rado-communications": "https://github.com/esnya/UdonRadioCommunications.git?path=Packages/com.nekometer.esnya.udon-radio-communications"
-  },
+  "version": "5.0.0",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/esnya/UdonRadioCommunication.git"
   },
+  "license": "MIT",
   "author": {
     "name": "esnya"
   },
-  "license": "MIT",
-  "unity": "2019.4"
+  "type": "library",
+  "dependencies": {
+    "com.nekometer.esnya.udon-radio-communications": "5.0.0",
+    "com.unity.textmeshpro": "2.1.6"
+  },
+  "unity": "2019.4",
+  "vpmDependencies": {
+    "com.vrchat.worlds": "3.1.1",
+    "com.vrchat.udonsharp": "1.1.7"
+  }
 }

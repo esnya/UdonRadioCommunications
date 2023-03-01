@@ -76,7 +76,8 @@ MonoBehaviour:
   frequencyGap: 0.01
   audioObjectTemplates:
   - {fileID: 3301363561128965584, guid: df5c8681be97959439e1422d60053153, type: 3}
-  audioObjectFrequencies: []
+  audioObjectFrequencies:
+  - 0
   debugText: {fileID: 8847472149701082144}
   debugTextUi: {fileID: 0}
   transmitters:

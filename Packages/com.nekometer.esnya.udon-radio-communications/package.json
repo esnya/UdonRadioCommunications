@@ -1,7 +1,7 @@
 {
   "name": "com.nekometer.esnya.udon-radio-communications",
   "displayName": "Udon Radio Communications",
-  "version": "5.0.0-alpha.9",
+  "version": "5.0.0",
   "private": true,
   "description": "Simplified radio communication system for VRChat Udon worlds.",
   "homepage": "https://github.com/esnya/UdonRadioCommunication#readme",
@@ -16,13 +16,17 @@
   "author": {
     "name": "esnya"
   },
-  "gitDependencies": {
-    "com.merlinvr.udonsharp": "https://github.com/vrchat-community/UdonSharp.git?path=/Packages/com.vrchat.UdonSharp#1.0.1",
-    "com.vrchat.base": "https://github.com/vrchat/packages.git?path=/packages/com.vrchat.base#3.0.4",
-    "com.vrchat.worlds": "https://github.com/vrchat/packages.git?path=/packages/com.vrchat.worlds#3.0.4"
+  "type": "library",
+  "dependencies": {
+    "com.nekometer.esnya.inari-udon": "9.1.0",
+    "com.unity.textmeshpro": "2.1.6"
   },
   "legacyFolders": [
     "Assets\\UdonRadioCommunication"
   ],
-  "unity": "2019.4"
+  "unity": "2019.4",
+  "vpmDependencies": {
+    "com.vrchat.worlds": "3.1.1",
+    "com.vrchat.udonsharp": "1.1.7"
+  }
 }

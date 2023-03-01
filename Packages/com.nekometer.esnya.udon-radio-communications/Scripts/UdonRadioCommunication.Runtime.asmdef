@@ -12,7 +12,7 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": false,
-    "defineConstraints": [],
+    "defineConstraints": ["UDONSHARP"],
     "versionDefines": [],
     "noEngineReferences": false
 }
