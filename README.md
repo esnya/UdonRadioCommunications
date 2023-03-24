@@ -8,7 +8,7 @@ Simplified radio communication system for VRChat Udon worlds.
 2. Open the Unity Project.
 3. Open the Package Manager window from Window menu.
 4. Click + button and select `Add package from git URL`.
-5. Enter `git+https://github.com/esnya/UdonRadioCommunications.git?pth=/Packages/com.nekometer.esnya.udon-radio-communications` and click Add button (Enter `git+https://github.com/esnya/UdonRadioCommunications.git?pth=/Packages/com.nekometer.esnya.udon-radio-communications#beta` to use beta releases)
+5. Enter `git+https://github.com/esnya/UdonRadioCommunications.git?path=/Packages/com.nekometer.esnya.udon-radio-communications` and click Add button (Enter `git+https://github.com/esnya/UdonRadioCommunications.git?path=/Packages/com.nekometer.esnya.udon-radio-communications#beta` to use beta releases)
 6. Install [optional dependencies](#optional-dependencies) if you need.
 
 ## Usage
@@ -47,4 +47,4 @@ Integration addons for SaccFlightAndVehicles. DFUNCs are provided to manage fequ
 ## Installation
 1. Open the Package Manager window from Window menu.
 2. Click + button and select `Add package from git URL`.
-3. Enter `git+https://github.com/esnya/UdonRadioCommunications.git?pth=/Packages/com.nekometer.esnya.udon-radio-communications-sf` and click Add button (Enter `git+https://github.com/esnya/UdonRadioCommunications.git?pth=/Packages/com.nekometer.esnya.udon-radio-communications-sf#beta` to use beta releases)
+3. Enter `git+https://github.com/esnya/UdonRadioCommunications.git?path=/Packages/com.nekometer.esnya.udon-radio-communications-sf` and click Add button (Enter `git+https://github.com/esnya/UdonRadioCommunications.git?path=/Packages/com.nekometer.esnya.udon-radio-communications-sf#beta` to use beta releases)
