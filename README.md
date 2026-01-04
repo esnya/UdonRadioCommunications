@@ -1,3 +1,10 @@
+## **Archived**
+
+Since August 2022, I parted ways with a certain company under unfavorable circumstances. Since I am no longer active on that platform, this repository can no longer be properly maintained and has been archived.
+
+For an actively maintained alternative, please see:
+https://github.com/VirtualAviationJapan/UdonRadioCommunications-Redux
+
 # UdonRadioCommunication
 Simplified radio communication system for VRChat Udon worlds.
 
