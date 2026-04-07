@@ -2,7 +2,6 @@
   "name": "com.nekometer.esnya.udon-radio-communications",
   "displayName": "Udon Radio Communications",
   "version": "5.0.0-alpha.9",
-  "private": true,
   "description": "Simplified radio communication system for VRChat Udon worlds.",
   "homepage": "https://github.com/esnya/UdonRadioCommunication#readme",
   "bugs": {
@@ -25,8 +24,8 @@
     "com.vrchat.udonsharp": ">=1.0.0",
     "com.vrchat.worlds": ">=3.0.0"
   },
-  "legacyFolders": [
-    "Assets\\UdonRadioCommunication"
-  ],
+  "legacyFolders": {
+    "Assets\\UdonRadioCommunication": ""
+  },
   "unity": "2022.3"
 }

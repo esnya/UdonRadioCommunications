@@ -1,0 +1,16 @@
+{
+  "name": "Udon Radio Communications",
+  "id": "com.nekometer.esnya.udon-radio-communications.listing",
+  "description": "Simplified radio communication system for VRChat Udon worlds.",
+  "url": "https://esnya.github.io/UdonRadioCommunications/index.json",
+  "author": {
+    "name": "esnya",
+    "url": "https://github.com/esnya"
+  },
+  "infoLink": {
+    "url": "https://github.com/esnya/UdonRadioCommunications",
+    "text": "GitHub Repository"
+  },
+  "githubRepos": ["esnya/UdonRadioCommunications"],
+  "packages": []
+}

@@ -3,8 +3,12 @@ on: push
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
@@ -12,3 +16,21 @@ jobs:
       - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create VPM package archives and upload to release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./Packages/com.nekometer.esnya.udon-radio-communications/package.json').version")
+          if gh release view "${VERSION}" &>/dev/null; then
+            cd Packages/com.nekometer.esnya.udon-radio-communications
+            zip -r "../../com.nekometer.esnya.udon-radio-communications-${VERSION}.zip" .
+            cd ../com.nekometer.esnya.udon-radio-communications-sf
+            zip -r "../../com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.zip" .
+            cd ../..
+            gh release upload "${VERSION}" \
+              "com.nekometer.esnya.udon-radio-communications-${VERSION}.zip" \
+              "com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.zip" \
+              "Packages/com.nekometer.esnya.udon-radio-communications/package.json" \
+              "Packages/com.nekometer.esnya.udon-radio-communications-sf/package.json" \
+              --clobber
+          fi
