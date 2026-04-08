@@ -1,4 +1,4 @@
-import { baseLayerLuminance, StandardLuminance } from 'https://unpkg.com/@fluentui/web-components';
+import { baseLayerLuminance, StandardLuminance } from 'https://unpkg.com/@fluentui/web-components@2.6.1';
 
 const LISTING_URL = "{{ listingInfo.Url }}";
 
@@ -49,7 +49,7 @@ const setTheme = () => {
 
   const searchInput = document.getElementById('searchInput');
   searchInput.addEventListener('input', ({ target: { value = '' }}) => {
-    const items = packageGrid.querySelectorAll('fluent-data-grid-row[row-type="default"]');
+    const items = packageGrid.querySelectorAll('fluent-data-grid-row:not([row-type="header"])');
     items.forEach(item => {
       if (value === '') {
         item.style.display = 'grid';
