@@ -29,13 +29,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VERSION=$(node -p "require('./Packages/com.nekometer.esnya.udon-radio-communications/package.json').version")
-          if gh release view "${VERSION}" &>/dev/null; then
+          TAG="v${VERSION}"
+          if gh release view "${TAG}" &>/dev/null; then
             cd Packages/com.nekometer.esnya.udon-radio-communications
             zip -r "../../com.nekometer.esnya.udon-radio-communications-${VERSION}.zip" . -x "*.meta" -x "Demo.unity"
             cd ../com.nekometer.esnya.udon-radio-communications-sf
             zip -r "../../com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.zip" . -x "*.meta"
             cd ../..
-            gh release upload "${VERSION}" \
+            gh release upload "${TAG}" \
               "com.nekometer.esnya.udon-radio-communications-${VERSION}.zip" \
               "com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.zip" \
               "Packages/com.nekometer.esnya.udon-radio-communications/package.json" \

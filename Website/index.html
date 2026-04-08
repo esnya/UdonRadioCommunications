@@ -26,10 +26,10 @@
           {{ listingInfo.Author.Email }}
         </fluent-tooltip>
         {{~ end; ~}}
-        <div class="caption1 mb-2" id="publishedByText">Published by <a href="{{listingInfo.Author.Url}}" target="_blank">{{ listingInfo.Author.Name }}</a></div>
+        <div class="caption1 mb-2" id="publishedByText">Published by <a href="{{listingInfo.Author.Url}}" target="_blank" rel="noopener noreferrer">{{ listingInfo.Author.Name }}</a></div>
         {{~ if listingInfo.InfoLink.Url ~}}
-          <div class="caption1" id="publishedByText">
-            <a href="{{listingInfo.InfoLink.Url}}" target="_blank">{{ if listingInfo.InfoLink.Text; listingInfo.InfoLink.Text; else; "Learn More"; end; }}</a>
+          <div class="caption1" id="infoLinkText">
+            <a href="{{listingInfo.InfoLink.Url}}" target="_blank" rel="noopener noreferrer">{{ if listingInfo.InfoLink.Text; listingInfo.InfoLink.Text; else; "Learn More"; end; }}</a>
           </div>
         {{~ end; ~}}
       </div>
@@ -91,7 +91,7 @@
             Copy
           </fluent-button>
         </div>
-        <div class="caption1 mt-4">You can read more about Package Listings <a href="https://vcc.docs.vrchat.com" target="_blank">on the VCC docs</a></div>
+        <div class="caption1 mt-4">You can read more about Package Listings <a href="https://vcc.docs.vrchat.com" target="_blank" rel="noopener noreferrer">on the VCC docs</a></div>
       </div>
     </fluent-dialog>
     <div class="searchBlock">
@@ -129,7 +129,7 @@
         </p>
         <h5 class="m-0">Author</h5>
         <p class="mb-4 mt-1">
-          <a href="#" target="_blank" id="packageInfoAuthor">
+          <a href="#" target="_blank" rel="noopener noreferrer" id="packageInfoAuthor">
             Author Name
           </a>
         </p>
@@ -166,7 +166,7 @@
             </svg>
           </fluent-button>
         </div>
-        <div class="caption1 mt-4">You can read more about Package Listings <a href="https://vcc.docs.vrchat.com" target="_blank">on the VCC docs</a></div>
+        <div class="caption1 mt-4">You can read more about Package Listings <a href="https://vcc.docs.vrchat.com" target="_blank" rel="noopener noreferrer">on the VCC docs</a></div>
       </div>
     </fluent-dialog>
     <fluent-card class="packages">
@@ -211,8 +211,8 @@
       </fluent-data-grid>
     </fluent-card>
     {{~ if listingInfo.InfoLink.Url ~}}
-      <div class="caption1" id="publishedByText">
-        <a href="{{listingInfo.InfoLink.Url}}" target="_blank">{{ if listingInfo.InfoLink.Text; listingInfo.InfoLink.Text; else; "Learn More"; end; }}</a>
+      <div class="caption1" id="bottomInfoLinkText">
+        <a href="{{listingInfo.InfoLink.Url}}" target="_blank" rel="noopener noreferrer">{{ if listingInfo.InfoLink.Text; listingInfo.InfoLink.Text; else; "Learn More"; end; }}</a>
       </div>
     {{~ end; ~}}
   </div>

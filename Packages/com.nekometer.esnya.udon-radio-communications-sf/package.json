@@ -11,7 +11,7 @@
   "vpmDependencies": {
     "com.vrchat.udonsharp": ">=1.0.0",
     "com.vrchat.worlds": ">=3.0.0",
-    "com.nekometer.esnya.udon-radio-communications": ">=5.0.0"
+    "com.nekometer.esnya.udon-radio-communications": ">=5.0.0-alpha.0"
   },
   "repository": {
     "type": "git",

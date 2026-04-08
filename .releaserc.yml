@@ -2,7 +2,7 @@ branches:
   - main
   - name: alpha
     prerelease: true
-  - name: "copilot/upgrade-to-latest-environment"
+  - name: "copilot/**"
     prerelease: "alpha"
 plugins:
   - semantic-release-gitmoji

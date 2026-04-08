@@ -1,5 +1,6 @@
 ﻿using UdonSharp;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VRC.SDK3.Components;
 
 namespace URC
@@ -8,6 +9,7 @@ namespace URC
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class TransceiverPickupTrigger : UdonSharpBehaviour
     {
+        [FormerlySerializedAs("trasnceiver")]
         public Transceiver transceiver;
         public GameObject pickupOnly;
         public bool keepPosition;
