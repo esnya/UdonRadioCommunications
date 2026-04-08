@@ -2,7 +2,7 @@ name: Release
 on:
   push:
     branches:
-      - main
+      - master
       - alpha
       - "copilot/**"
   workflow_dispatch:
@@ -21,28 +21,36 @@ jobs:
         with:
           node-version: "22"
       - run: npm ci
-      - run: npx semantic-release
+      - name: Record latest tag before semantic-release
+        id: tag_before
+        run: |
+          TAG_BEFORE="$(git describe --tags --abbrev=0 2>/dev/null || true)"
+          echo "tag=${TAG_BEFORE}" >> "$GITHUB_OUTPUT"
+      - name: Run semantic-release
+        run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create VPM package archives and upload to release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TAG=$(git describe --tags --abbrev=0 2>/dev/null) || {
-            echo "No git tag found after semantic-release." >&2
+          TAG_AFTER="$(git describe --tags --abbrev=0 2>/dev/null || true)"
+          TAG_BEFORE="${{ steps.tag_before.outputs.tag }}"
+          if [ -z "${TAG_AFTER}" ] || [ "${TAG_AFTER}" = "${TAG_BEFORE}" ]; then
+            echo "No new release was published by semantic-release; skipping packaging."
+            exit 0
+          fi
+          gh release view "${TAG_AFTER}" >/dev/null 2>&1 || {
+            echo "GitHub release '${TAG_AFTER}' was not found after semantic-release." >&2
             exit 1
           }
-          VERSION="${TAG#v}"
-          gh release view "${TAG}" >/dev/null 2>&1 || {
-            echo "GitHub release '${TAG}' was not found after semantic-release." >&2
-            exit 1
-          }
+          VERSION="${TAG_AFTER#v}"
           cd Packages/com.nekometer.esnya.udon-radio-communications
           zip -r "../../com.nekometer.esnya.udon-radio-communications-${VERSION}.zip" . -x "Demo.unity" -x "Demo.unity.meta"
           cd ../com.nekometer.esnya.udon-radio-communications-sf
           zip -r "../../com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.zip" .
           cd ../..
-          gh release upload "${TAG}" \
+          gh release upload "${TAG_AFTER}" \
             "com.nekometer.esnya.udon-radio-communications-${VERSION}.zip" \
             "com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.zip" \
             "Packages/com.nekometer.esnya.udon-radio-communications/package.json" \

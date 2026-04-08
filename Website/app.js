@@ -112,7 +112,7 @@ const setTheme = () => {
   const downloadLink = rowMoreMenu.querySelector('#rowMoreMenuDownload');
   let currentPackageUrl = null;
   downloadLink.addEventListener('click', () => {
-    if (currentPackageUrl) window.open(currentPackageUrl, '_blank');
+    if (currentPackageUrl) window.open(currentPackageUrl, '_blank', 'noopener,noreferrer');
   });
 
   rowMenuButtons.forEach(button => {

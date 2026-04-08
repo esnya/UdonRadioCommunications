@@ -100,7 +100,7 @@ h1 {
 }
 
 .vccUrlField {
-  min-width: 450px;
+  width: 100%;
   max-width: 90%;
   flex-grow:1;
 }

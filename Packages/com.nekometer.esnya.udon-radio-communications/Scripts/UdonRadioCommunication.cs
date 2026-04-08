@@ -196,8 +196,8 @@ namespace URC
                         var remotePlayerPosition = remotePlayer.GetPosition();
                         var transmitterPosition = transmitter.transform.position;
 
-                        // * 0 intentionally disables radio path-length attenuation; voice is heard at constant gain regardless of transmitter/receiver distance
-                        var distanceOverRadio = (Vector3.Distance(remotePlayerPosition, transmitterPosition) + Vector3.Distance(localPlayerPosition, receiverPosition)) * 0;
+                        // Radio path-length attenuation is intentionally disabled; voice is heard at constant gain regardless of transmitter/receiver distance.
+                        var distanceOverRadio = 0f;
                         var realDistance = Vector3.Distance(localPlayerPosition, remotePlayerPosition);
 
                         var near = Mathf.Max(realDistance - distanceOverRadio, 0);
