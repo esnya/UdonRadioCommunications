@@ -50,9 +50,13 @@ jobs:
           cd ../com.nekometer.esnya.udon-radio-communications-sf
           zip -r "../../com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.zip" .
           cd ../..
+          cp "Packages/com.nekometer.esnya.udon-radio-communications/package.json" \
+             "com.nekometer.esnya.udon-radio-communications-${VERSION}.json"
+          cp "Packages/com.nekometer.esnya.udon-radio-communications-sf/package.json" \
+             "com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.json"
           gh release upload "${TAG_AFTER}" \
             "com.nekometer.esnya.udon-radio-communications-${VERSION}.zip" \
             "com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.zip" \
-            "Packages/com.nekometer.esnya.udon-radio-communications/package.json" \
-            "Packages/com.nekometer.esnya.udon-radio-communications-sf/package.json" \
+            "com.nekometer.esnya.udon-radio-communications-${VERSION}.json" \
+            "com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.json" \
             --clobber
