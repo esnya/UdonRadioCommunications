@@ -109,21 +109,22 @@ const setTheme = () => {
   }
 
   const rowMenuButtons = document.querySelectorAll('.rowMenuButton');
+  const downloadLink = rowMoreMenu.querySelector('#rowMoreMenuDownload');
+  let currentPackageUrl = null;
+  downloadLink.addEventListener('click', () => {
+    if (currentPackageUrl) window.open(currentPackageUrl, '_blank');
+  });
+
   rowMenuButtons.forEach(button => {
     button.addEventListener('click', e => {
       const menuButton = e.currentTarget;
       const buttonRect = menuButton.getBoundingClientRect();
 
       if (rowMoreMenu?.hidden) {
+        currentPackageUrl = menuButton?.dataset?.packageUrl ?? null;
         rowMoreMenu.style.top = `${buttonRect.top + window.scrollY + menuButton.clientHeight}px`;
         rowMoreMenu.style.left = `${buttonRect.left + window.scrollX - 120}px`;
         rowMoreMenu.hidden = false;
-
-        const downloadLink = rowMoreMenu.querySelector('#rowMoreMenuDownload');
-        const downloadListener = () => {
-          window.open(menuButton?.dataset?.packageUrl, '_blank');
-        };
-        downloadLink.addEventListener('click', downloadListener, { once: true });
 
         setTimeout(() => {
           document.addEventListener('click', hideRowMoreMenu);
