@@ -29,7 +29,7 @@ namespace URC
                 _active = value;
 
                 if (indicator != null) indicator.SetActive((!indicatorAsLocal || Networking.IsOwner(gameObject)) && Active);
-                SetIndicatorMateial(Active ? statusActive : statusInactive);
+                SetIndicatorMaterial(Active ? statusActive : statusInactive);
             }
         }
 
@@ -74,7 +74,7 @@ namespace URC
         public void _Deactivate()
         {
             _TakeOwnership();
-            if (Active) SetIndicatorMateial(statusDeactivating);
+            if (Active) SetIndicatorMaterial(statusDeactivating);
             SendCustomEventDelayedSeconds(nameof(_DelayedDeactivate), deactivateDelay);
         }
         public void _DelayedDeactivate()
@@ -92,7 +92,7 @@ namespace URC
             RequestSerialization();
         }
 
-        private void SetIndicatorMateial(Material material)
+        private void SetIndicatorMaterial(Material material)
         {
             if (!statusIndicator || !material) return;
             foreach (var renderer in statusIndicator.GetComponentsInChildren<Renderer>(true))
