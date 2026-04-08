@@ -79,7 +79,10 @@ const setTheme = () => {
   const vccListingInfoUrlFieldCopy = document.getElementById('vccListingInfoUrlFieldCopy');
   vccListingInfoUrlFieldCopy.addEventListener('click', () => {
     const vccUrlField = document.getElementById('vccListingInfoUrlField');
-    vccUrlField.select();
+    const selectableField = typeof vccUrlField?.select === 'function'
+      ? vccUrlField
+      : vccUrlField?.shadowRoot?.querySelector('input, textarea');
+    if (typeof selectableField?.select === 'function') selectableField.select();
     navigator.clipboard.writeText(vccUrlField.value);
     vccListingInfoUrlFieldCopy.appearance = 'accent';
     setTimeout(() => {
@@ -93,7 +96,10 @@ const setTheme = () => {
   const vccUrlFieldCopy = document.getElementById('vccUrlFieldCopy');
   vccUrlFieldCopy.addEventListener('click', () => {
     const vccUrlField = document.getElementById('vccUrlField');
-    vccUrlField.select();
+    const selectableField = typeof vccUrlField?.select === 'function'
+      ? vccUrlField
+      : vccUrlField?.shadowRoot?.querySelector('input, textarea');
+    if (typeof selectableField?.select === 'function') selectableField.select();
     navigator.clipboard.writeText(vccUrlField.value);
     vccUrlFieldCopy.appearance = 'accent';
     setTimeout(() => {
@@ -108,11 +114,13 @@ const setTheme = () => {
     rowMoreMenu.hidden = true;
   }
 
+  const isSafeUrl = url => typeof url === 'string' && /^https?:\/\//i.test(url);
+
   const rowMenuButtons = document.querySelectorAll('.rowMenuButton');
   const downloadLink = rowMoreMenu.querySelector('#rowMoreMenuDownload');
   let currentPackageUrl = null;
   downloadLink.addEventListener('click', () => {
-    if (currentPackageUrl) window.open(currentPackageUrl, '_blank', 'noopener,noreferrer');
+    if (currentPackageUrl && isSafeUrl(currentPackageUrl)) window.open(currentPackageUrl, '_blank', 'noopener,noreferrer');
   });
 
   rowMenuButtons.forEach(button => {
@@ -174,7 +182,7 @@ const setTheme = () => {
       packageInfoVersion.textContent = `v${packageInfo.version}`;
       packageInfoDescription.textContent = packageInfo.description;
       packageInfoAuthor.textContent = packageInfo.author.name;
-      packageInfoAuthor.href = packageInfo.author.url;
+      packageInfoAuthor.href = isSafeUrl(packageInfo.author.url) ? packageInfo.author.url : '#';
 
       if ((packageInfo.keywords?.length ?? 0) === 0) {
         packageInfoKeywords.parentElement.classList.add('hidden');
@@ -194,7 +202,7 @@ const setTheme = () => {
       } else {
         packageInfoLicense.parentElement.classList.remove('hidden');
         packageInfoLicense.textContent = packageInfo.license ?? 'See License';
-        packageInfoLicense.href = packageInfo.licensesUrl ?? '#';
+        packageInfoLicense.href = isSafeUrl(packageInfo.licensesUrl) ? packageInfo.licensesUrl : '#';
       }
 
       packageInfoDependencies.innerHTML = '';
@@ -217,7 +225,10 @@ const setTheme = () => {
   const packageInfoVccUrlFieldCopy = document.getElementById('packageInfoVccUrlFieldCopy');
   packageInfoVccUrlFieldCopy.addEventListener('click', () => {
     const vccUrlField = document.getElementById('packageInfoVccUrlField');
-    vccUrlField.select();
+    const selectableField = typeof vccUrlField?.select === 'function'
+      ? vccUrlField
+      : vccUrlField?.shadowRoot?.querySelector('input, textarea');
+    if (typeof selectableField?.select === 'function') selectableField.select();
     navigator.clipboard.writeText(vccUrlField.value);
     packageInfoVccUrlFieldCopy.appearance = 'accent';
     setTimeout(() => {
