@@ -19,12 +19,12 @@
     "com.vrchat.udonsharp": "https://github.com/vrchat-community/UdonSharp.git?path=/Packages/com.vrchat.UdonSharp#vcc",
     "com.vrchat.base": "https://github.com/vrchat/packages.git?path=/packages/com.vrchat.base#3.0.9",
     "com.vrchat.worlds": "https://github.com/vrchat/packages.git?path=/packages/com.vrchat.worlds#3.0.9",
-    "com.nekometer.esnya.inari-udon": "https://github.com/esnya/InariUdon.git?path=/Packages/com.nekometer.esnya.inari-udon#0.0.1-alpha"
+    "com.nekometer.esnya.inari-udon": "https://github.com/esnya/InariUdon.git?path=/Packages/com.nekometer.esnya.inari-udon#v10.0.2-alpha.1"
   },
   "vpmDependencies": {
     "com.vrchat.udonsharp": ">=1.0.0",
     "com.vrchat.worlds": ">=3.0.0",
-    "com.nekometer.esnya.inari-udon": ">=0.0.1-alpha"
+    "com.nekometer.esnya.inari-udon": ">=10.0.0-alpha"
   },
   "legacyFolders": {
     "Assets\\UdonRadioCommunication": ""
