@@ -1,9 +1,9 @@
 branches:
-  - main
+  - master
   - name: alpha
     prerelease: true
   - name: "copilot/**"
-    prerelease: "alpha"
+    prerelease: "copilot"
 plugins:
   - semantic-release-gitmoji
   - "@semantic-release/npm"

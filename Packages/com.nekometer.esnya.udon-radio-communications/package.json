@@ -3,13 +3,13 @@
   "displayName": "Udon Radio Communications",
   "version": "5.0.0-alpha.9",
   "description": "Simplified radio communication system for VRChat Udon worlds.",
-  "homepage": "https://github.com/esnya/UdonRadioCommunication#readme",
+  "homepage": "https://github.com/esnya/UdonRadioCommunications#readme",
   "bugs": {
-    "url": "https://github.com/esnya/UdonRadioCommunication/issues"
+    "url": "https://github.com/esnya/UdonRadioCommunications/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/esnya/UdonRadioCommunication.git"
+    "url": "git+https://github.com/esnya/UdonRadioCommunications.git"
   },
   "license": "MIT",
   "author": {
