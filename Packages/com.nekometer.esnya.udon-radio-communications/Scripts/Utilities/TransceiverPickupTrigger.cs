@@ -8,7 +8,7 @@ namespace URC
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class TransceiverPickupTrigger : UdonSharpBehaviour
     {
-        public Transceiver trasnceiver;
+        public Transceiver transceiver;
         public GameObject pickupOnly;
         public bool keepPosition;
 
@@ -22,11 +22,11 @@ namespace URC
 
         public override void OnPickupUseDown()
         {
-            if (trasnceiver) trasnceiver._StartTransmit();
+            if (transceiver) transceiver._StartTransmit();
         }
         public override void OnPickupUseUp()
         {
-            if (trasnceiver) trasnceiver._StopTransmit();
+            if (transceiver) transceiver._StopTransmit();
         }
 
         public override void OnPickup()

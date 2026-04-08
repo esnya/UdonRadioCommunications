@@ -1,17 +1,25 @@
 name: Release
-on: push
+on:
+  push:
+    branches:
+      - main
+      - alpha
+      - "copilot/**"
+  workflow_dispatch:
 jobs:
   release:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: "20"
       - run: npm ci
       - run: npx semantic-release
         env:
@@ -23,9 +31,9 @@ jobs:
           VERSION=$(node -p "require('./Packages/com.nekometer.esnya.udon-radio-communications/package.json').version")
           if gh release view "${VERSION}" &>/dev/null; then
             cd Packages/com.nekometer.esnya.udon-radio-communications
-            zip -r "../../com.nekometer.esnya.udon-radio-communications-${VERSION}.zip" .
+            zip -r "../../com.nekometer.esnya.udon-radio-communications-${VERSION}.zip" . -x "*.meta" -x "Demo.unity"
             cd ../com.nekometer.esnya.udon-radio-communications-sf
-            zip -r "../../com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.zip" .
+            zip -r "../../com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.zip" . -x "*.meta"
             cd ../..
             gh release upload "${VERSION}" \
               "com.nekometer.esnya.udon-radio-communications-${VERSION}.zip" \

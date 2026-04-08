@@ -11,6 +11,6 @@
     "url": "https://github.com/esnya/UdonRadioCommunications",
     "text": "GitHub Repository"
   },
-  "githubRepos": ["esnya/UdonRadioCommunications"],
+  "githubRepos": ["esnya/UdonRadioCommunications", "esnya/InariUdon"],
   "packages": []
 }

@@ -29,6 +29,7 @@ jobs:
   # Build the VPM Listing Website and deploy to GitHub Pages
   build-listing:
     name: build-listing
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
