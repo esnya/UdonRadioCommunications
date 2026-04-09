@@ -1,14 +1,69 @@
 name: Release
-on: push
+on:
+  push:
+    branches:
+      - main
+      - master
+      - alpha
+      - "copilot/**"
+  workflow_dispatch:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
         with:
-          node-version: lts/*
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
       - run: npm ci
-      - run: npx semantic-release
+      - name: Record latest tag before semantic-release
+        id: tag_before
+        run: |
+          TAG_BEFORE="$(git describe --tags --abbrev=0 2>/dev/null || true)"
+          echo "tag=${TAG_BEFORE}" >> "$GITHUB_OUTPUT"
+      - name: Run semantic-release
+        run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create VPM package archives and upload to release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG_AFTER="$(git describe --tags --abbrev=0 2>/dev/null || true)"
+          TAG_BEFORE="${{ steps.tag_before.outputs.tag }}"
+          if [ -z "${TAG_AFTER}" ] || [ "${TAG_AFTER}" = "${TAG_BEFORE}" ]; then
+            echo "No new release was published by semantic-release; skipping packaging."
+            exit 0
+          fi
+          gh release view "${TAG_AFTER}" >/dev/null 2>&1 || {
+            echo "GitHub release '${TAG_AFTER}' was not found after semantic-release." >&2
+            exit 1
+          }
+          export VERSION="${TAG_AFTER#v}"
+          node -e 'const fs=require("fs"); for (const path of process.argv.slice(1)) { const manifest=JSON.parse(fs.readFileSync(path, "utf8")); manifest.version=process.env.VERSION; if (manifest.name === "com.nekometer.esnya.udon-radio-communications-sf") { if (manifest.gitDependencies) { manifest.gitDependencies["com.nekometer.esnya.udon-radio-communications"] = `https://github.com/esnya/UdonRadioCommunications.git?path=Packages/com.nekometer.esnya.udon-radio-communications#v${process.env.VERSION}`; } if (manifest.vpmDependencies) { manifest.vpmDependencies["com.nekometer.esnya.udon-radio-communications"] = process.env.VERSION; } } fs.writeFileSync(path, `${JSON.stringify(manifest, null, 2)}\n`); }' \
+            "Packages/com.nekometer.esnya.udon-radio-communications/package.json" \
+            "Packages/com.nekometer.esnya.udon-radio-communications-sf/package.json"
+          cd Packages/com.nekometer.esnya.udon-radio-communications
+          zip -r "../../com.nekometer.esnya.udon-radio-communications-${VERSION}.zip" . -x "Demo.unity" -x "Demo.unity.meta"
+          cd ../com.nekometer.esnya.udon-radio-communications-sf
+          zip -r "../../com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.zip" .
+          cd ../..
+          cp "Packages/com.nekometer.esnya.udon-radio-communications/package.json" \
+             "com.nekometer.esnya.udon-radio-communications-${VERSION}.json"
+          cp "Packages/com.nekometer.esnya.udon-radio-communications-sf/package.json" \
+             "com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.json"
+          node -e 'const fs=require("fs"); for (const path of process.argv.slice(1)) { const manifest=JSON.parse(fs.readFileSync(path, "utf8")); manifest.version=process.env.VERSION; if (manifest.name === "com.nekometer.esnya.udon-radio-communications-sf") { if (manifest.gitDependencies) { manifest.gitDependencies["com.nekometer.esnya.udon-radio-communications"] = `https://github.com/esnya/UdonRadioCommunications.git?path=Packages/com.nekometer.esnya.udon-radio-communications#v${process.env.VERSION}`; } if (manifest.vpmDependencies) { manifest.vpmDependencies["com.nekometer.esnya.udon-radio-communications"] = process.env.VERSION; } } fs.writeFileSync(path, `${JSON.stringify(manifest, null, 2)}\n`); }' \
+            "com.nekometer.esnya.udon-radio-communications-${VERSION}.json" \
+            "com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.json"
+          gh release upload "${TAG_AFTER}" \
+            "com.nekometer.esnya.udon-radio-communications-${VERSION}.zip" \
+            "com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.zip" \
+            "com.nekometer.esnya.udon-radio-communications-${VERSION}.json" \
+            "com.nekometer.esnya.udon-radio-communications-sf-${VERSION}.json" \
+            --clobber
