@@ -4,12 +4,11 @@ using VRC.SDKBase;
 using VRC.Udon;
 using TMPro;
 
-#if !COMPILER_UDONSHARP && UNITY_EDITOR
+#if URC_EDITOR_TOOLS && UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine.SceneManagement;
-using UdonSharpEditor;
 using UnityEditorInternal;
 using VRC.SDKBase.Editor.BuildPipeline;
 #endif
@@ -196,7 +195,8 @@ namespace URC
                         var remotePlayerPosition = remotePlayer.GetPosition();
                         var transmitterPosition = transmitter.transform.position;
 
-                        var distanceOverRadio = (Vector3.Distance(remotePlayerPosition, transmitterPosition) + Vector3.Distance(localPlayerPosition, receiverPosition)) * 0;
+                        // Radio path-length attenuation is intentionally disabled; voice is heard at constant gain regardless of transmitter/receiver distance.
+                        var distanceOverRadio = 0f;
                         var realDistance = Vector3.Distance(localPlayerPosition, remotePlayerPosition);
 
                         var near = Mathf.Max(realDistance - distanceOverRadio, 0);
@@ -213,7 +213,7 @@ namespace URC
             {
                 if (!receiver || !receiver.Active) continue;
 
-                if (!receiver._IsPlayngAudio())
+                if (!receiver._IsPlayingAudio())
                 {
                     var template = GetAudioTemplate(receiver.Frequency);
                     if (template) receiver._SpawnAudioObject(template);
@@ -304,7 +304,7 @@ namespace URC
             playerListDirty = true;
         }
 
-#if !COMPILER_UDONSHARP && UNITY_EDITOR
+#if URC_EDITOR_TOOLS && UNITY_EDITOR
         private void Awake()
         {
             Setup();
@@ -335,117 +335,4 @@ namespace URC
 #endif
     }
 
-#if !COMPILER_UDONSHARP && UNITY_EDITOR
-
-    [CustomEditor(typeof(UdonRadioCommunication))]
-    public class UdonRadioCommunicationEditor : Editor
-    {
-        private static IEnumerable<T> GetComponentsInScene<T>() where T : UdonSharpBehaviour
-        {
-            return FindObjectsOfType<UdonBehaviour>()
-                .Where(UdonSharpEditorUtility.IsUdonSharpBehaviour)
-                .Select(UdonSharpEditorUtility.GetProxyBehaviour)
-                .Select(u => u as T)
-                .Where(u => u != null);
-        }
-
-        private ReorderableList audioObjectTemplatesList;
-
-        private void OnEnable()
-        {
-            var audioObjectTemplatesProperty = serializedObject.FindProperty(nameof(UdonRadioCommunication.audioObjectTemplates));
-            var audioObjectFrequenciesProperty = serializedObject.FindProperty(nameof(UdonRadioCommunication.audioObjectFrequencies));
-            audioObjectTemplatesList = new ReorderableList(serializedObject, audioObjectTemplatesProperty)
-            {
-                drawHeaderCallback = (rect) =>
-                {
-                    var itemRect = rect;
-                    itemRect.width /= 2;
-                    EditorGUI.LabelField(itemRect, "Template");
-                    itemRect.x += itemRect.width;
-                    EditorGUI.LabelField(itemRect, "Frequency");
-                },
-                drawElementCallback = (rect, index, isActive, isFocused) =>
-                {
-                    var itemRect = rect;
-                    itemRect.width /= 2;
-                    EditorGUI.PropertyField(itemRect, audioObjectTemplatesProperty.GetArrayElementAtIndex(index), GUIContent.none);
-                    itemRect.x += itemRect.width;
-                    EditorGUI.PropertyField(itemRect, audioObjectFrequenciesProperty.GetArrayElementAtIndex(index), GUIContent.none);
-                },
-                onAddCallback = (list) =>
-                {
-                    audioObjectTemplatesProperty.arraySize += 1;
-                    audioObjectFrequenciesProperty.arraySize = audioObjectTemplatesProperty.arraySize;
-                },
-                onRemoveCallback = (list) =>
-                {
-                    audioObjectTemplatesProperty.arraySize -= 1;
-                    audioObjectFrequenciesProperty.arraySize = audioObjectTemplatesProperty.arraySize;
-                },
-                onCanRemoveCallback = (list) => audioObjectTemplatesProperty.arraySize >= 1,
-                onReorderCallbackWithDetails = (list, oldIndex, newIndex) =>
-                {
-                    audioObjectTemplatesProperty.MoveArrayElement(oldIndex, newIndex);
-                    audioObjectFrequenciesProperty.MoveArrayElement(oldIndex, newIndex);
-                },
-            };
-
-            serializedObject.Update();
-            audioObjectFrequenciesProperty.arraySize = audioObjectTemplatesProperty.arraySize;
-            serializedObject.ApplyModifiedPropertiesWithoutUndo();
-        }
-
-        public override void OnInspectorGUI()
-        {
-            if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
-
-            serializedObject.Update();
-
-            var property = serializedObject.GetIterator();
-            property.NextVisible(true);
-            do
-            {
-                switch (property.name)
-                {
-                    case nameof(UdonRadioCommunication.audioObjectTemplates):
-                        EditorGUILayout.Space();
-                        EditorGUILayout.LabelField("Audio Objects");
-                        audioObjectTemplatesList.DoLayoutList();
-                        break;
-                    case nameof(UdonRadioCommunication.audioObjectFrequencies):
-                        break;
-                    default:
-                        EditorGUILayout.PropertyField(property, true);
-                        break;
-                }
-            } while (property.NextVisible(false));
-
-            serializedObject.ApplyModifiedProperties();
-
-            EditorGUILayout.Space();
-        }
-
-        private static void SetupAll()
-        {
-            var urcs = GetComponentsInScene<UdonRadioCommunication>();
-            foreach (var urc in urcs)
-            {
-                Debug.Log($"[{urc.gameObject.name}] Auto setup");
-                urc.Setup();
-            }
-        }
-
-        public class BuildCallback : Editor, IVRCSDKBuildRequestedCallback
-        {
-            public int callbackOrder => 10;
-
-            public bool OnBuildRequested(VRCSDKRequestedBuildType requestedBuildType)
-            {
-                SetupAll();
-                return true;
-            }
-        }
-    }
-#endif
 }
