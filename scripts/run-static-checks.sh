@@ -41,7 +41,7 @@ for (const file of [...packageJsons, ...asmdefs]) {
   JSON.parse(fs.readFileSync(file, "utf8"));
 }
 
-const editorGuardPattern = /#if\s+(?:!COMPILER_UDONSHARP\s*&&\s*)?UNITY_EDITOR|#if\s+UNITY_EDITOR/;
+const editorGuardPattern = /^#if\s+.*\bUNITY_EDITOR\b/m;
 const forbiddenUsingPattern = /^(using UnityEditor;|using UdonSharpEditor;)$/m;
 const errors = [];
 const csFiles = [];
