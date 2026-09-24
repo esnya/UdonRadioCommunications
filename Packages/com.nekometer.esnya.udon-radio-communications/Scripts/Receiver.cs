@@ -106,6 +106,7 @@ namespace URC
             if (audioObject) Destroy(audioObject);
         }
         public bool _IsPlayngAudio() => audioObject;
+        public bool _IsPlayingAudio() => _IsPlayngAudio();
         public void _SpawnAudioObject(GameObject template)
         {
             _DestroyAudioObject();

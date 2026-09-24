@@ -1,14 +1,16 @@
 {
-    "name": "UdonRadioCommunication.SF.Runtime",
+    "name": "UdonRadioCommunication.Editor",
     "references": [
-        "VRC.Udon",
-        "UdonSharp.Runtime",
-        "VRC.SDKBase",
-        "Unity.TextMeshPro",
         "UdonRadioCommunication.Runtime",
-        "SaccFlightAndVehicles.Runtime"
+        "UdonSharp.Runtime",
+        "UdonSharp.Editor",
+        "VRC.Udon",
+        "VRC.SDKBase",
+        "VRC.SDKBase.Editor"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
