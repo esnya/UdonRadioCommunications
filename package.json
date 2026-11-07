@@ -28,7 +28,7 @@
     "@semantic-release/github": "^8.1.0",
     "@semantic-release/npm": "^13.1.5",
     "semantic-release": "^25.0.3",
-    "semantic-release-gitmoji": "^1.4.5"
+    "semantic-release-gitmoji": "^1.6.9"
   },
   "unity": "2019.4"
 }
